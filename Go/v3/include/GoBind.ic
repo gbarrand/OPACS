@@ -1,0 +1,28 @@
+/* +---------------------- Copyright notice -------------------------------+ */
+/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+/* |   Permission to use, copy, modify, and distribute this software       | */
+/* |   and its documentation for any purpose and without fee is hereby     | */
+/* |   granted, provided that the above copyright notice appear in all     | */
+/* |   copies and that both that copyright notice and this permission      | */
+/* |   notice appear in supporting documentation.  This software is        | */
+/* |   provided "as is" without express or implied warranty.               | */
+/* +---------------------- Copyright notice -------------------------------+ */
+#ifndef GoBind_ic
+#define GoBind_ic
+
+  CiBindClass ("CiBindGo",(CiRoutine)CiBindGo);
+  CiBindClass ("CiBindGoF77",(CiRoutine)CiBindGoF77);
+  CiBindClass ("CiBindGoTypes",(CiRoutine)CiBindGoTypes);
+  CiBindClass ("CiBindOCamDAWN",(CiRoutine)CiBindOCamDAWN);
+  CiBindClass ("CiBindOCamVRML",(CiRoutine)CiBindOCamVRML);
+  CiBindClass ("CiBindOCamera",(CiRoutine)CiBindOCamera);
+  CiBindClass ("CiBindOColormap",(CiRoutine)CiBindOColormap);
+  CiBindClass ("CiBindOContext",(CiRoutine)CiBindOContext);
+  CiBindClass ("CiBindONode",(CiRoutine)CiBindONode);
+  CiBindClass ("CiBindOPick",(CiRoutine)CiBindOPick);
+  CiBindClass ("CiBindOPointList",(CiRoutine)CiBindOPointList);
+  CiBindClass ("CiBindOPrimitive",(CiRoutine)CiBindOPrimitive);
+
+
+#endif /*GoBind_ic*/
+

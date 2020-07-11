@@ -1,0 +1,66 @@
+#
+#  Usage :
+#      NT> nmake /nologo /f NMake
+#      NT> nmake /nologo /f NMake TARGET=libs WoXo
+#
+TARGET = clean
+TARGET = all
+CONFIG = NTD
+CONFIG = NT
+
+all :: WoXo
+
+Wo ::
+	cd $(COROOT)\mgr
+	nmake /nologo /f NMake t=$(TARGET) $(CONFIG)
+	cd $(XXROOT)\mgr
+	nmake /nologo /f NMake t=$(TARGET) $(CONFIG)
+	cd $(WOROOT)\mgr
+	nmake /nologo /f NMake t=$(TARGET) $(CONFIG)
+
+WoXo ::
+	cd $(COROOT)\mgr
+	nmake /nologo /f NMake t=$(TARGET) $(CONFIG)
+	cd $(HOROOT)\mgr
+	nmake /nologo /f NMake t=$(TARGET) $(CONFIG)
+	cd $(W3OROOT)\mgr
+	nmake /nologo /f NMake t=$(TARGET) $(CONFIG)
+	cd $(HTMLOROOT)\mgr
+	nmake /nologo /f NMake t=$(TARGET) $(CONFIG)
+	cd $(GLOROOT)\mgr
+	nmake /nologo /f NMake t=$(TARGET) $(CONFIG)
+	cd $(GOROOT)\mgr
+	nmake /nologo /f NMake t=$(TARGET) $(CONFIG)
+	cd $(XXROOT)\mgr
+	nmake /nologo /f NMake t=$(TARGET) $(CONFIG)
+	cd $(XOROOT)\mgr
+	nmake /nologo /f NMake t=$(TARGET) $(CONFIG)
+	cd $(WOROOT)\mgr
+	nmake /nologo /f NMake t=$(TARGET) $(CONFIG)
+
+WoXoCERN ::
+	cd $(COROOT)\mgr
+	nmake /nologo /f NMake t=$(TARGET) $(CONFIG)
+	cd $(HOROOT)\mgr
+	nmake /nologo /f NMake t=$(TARGET) $(CONFIG)
+	cd $(W3OROOT)\mgr
+	nmake /nologo /f NMake t=$(TARGET) $(CONFIG)
+	cd $(HTMLOROOT)\mgr
+	nmake /nologo /f NMake t=$(TARGET) $(CONFIG)
+	cd $(GLOROOT)\mgr
+	nmake /nologo /f NMake t=$(TARGET) $(CONFIG)
+	cd $(GOROOT)\mgr
+	nmake /nologo /f NMake t=$(TARGET) $(CONFIG)
+	cd $(XXROOT)\mgr
+	nmake /nologo /f NMake t=$(TARGET) $(CONFIG)
+	cd $(XOROOT)\mgr
+	nmake /nologo /f NMake t=$(TARGET) $(CONFIG)
+	cd $(XZROOT)\mgr
+	nmake /nologo /f NMake t=$(TARGET) $(CONFIG)
+	cd $(G3OROOT)\mgr
+	nmake /nologo /f NMake t=$(TARGET) $(CONFIG)
+	cd $(WOROOT)\mgr
+	nmake /nologo /f NMake t=$(TARGET) $(CONFIG)
+
+
+

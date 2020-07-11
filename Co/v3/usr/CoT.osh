@@ -1,0 +1,43 @@
+echo 123
+spawn `get CSystem listCommand`
+set -v;set +x
+collect OShell | dump -
+osh 'collect OShell where name eq xxx'
+#
+#
+#
+isValid OCommand/isValid && echo 'isValid is a known command'
+collect OCommand  | dump -
+collect OType | dump - name properties
+collect OType where name eq O* | collect OType where name eq *x* | dump - name properties
+cat CoT.osh >x.lis;cat x.lis;rm x.lis
+help 'CoT.htm'
+#
+# Spawn
+#
+spawn UNIX sh     as2 /usr/bin/X11/xclock
+spawn UNIX csh    as2 /usr/bin/X11/xclock
+spawn VMS  DECNET lalux0 lalaxs 'run sys$system:decw$mail'
+# Require a DECNET proxy login for lalux0 on VMS node lalaxs.
+# axs is not a decnet name.
+# spawn VMS  DECNET lalux0 lalaxs create/terminal/detached
+# Require a DECNET proxy login for lalux3 on VMS node lalaxs.
+#spawn VMS  UCX    <password>  axs 'run sys$system:decw$mail'
+load CoT.odb;collect OLUT | dump -;collect OMatrix33 | dump -
+#
+# Shell variables
+#
+xxx=2;echo $xxx
+if test $xxx eq '2'
+then
+echo 'if : in then'
+else
+echo 'if : in else'
+fi
+xxx=3;echo $xxx
+if test $xxx eq '2'
+then
+echo 'if : in then'
+else
+echo 'if : in else'
+fi

@@ -1,0 +1,43 @@
+/* +---------------------- Copyright notice -------------------------------+ */
+/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+/* |   Permission to use, copy, modify, and distribute this software       | */
+/* |   and its documentation for any purpose and without fee is hereby     | */
+/* |   granted, provided that the above copyright notice appear in all     | */
+/* |   copies and that both that copyright notice and this permission      | */
+/* |   notice appear in supporting documentation.  This software is        | */
+/* |   provided "as is" without express or implied warranty.               | */
+/* +---------------------- Copyright notice -------------------------------+ */
+#ifndef WoXtw_ic
+#define WoXtw_ic
+
+#ifdef HAS_XTW
+
+  OInterfaceAddPackage                      ("Xtw");
+  WoSetInitializeClassFunction              (XWidgetInitializeClass);
+  OResourceAddGetOptionsFunction            (XWidgetGetResourceOptions);
+  OResourceAddConvertValueToStringFunction  (XtwConvertResourceValueToString);
+  OResourceAddConvertStringToChangeFunction (XtwConvertStringToResourceChange);
+
+/* Xt classes declaration must be done before any widget creation */
+ {OClass oclass;
+  OClassDeclareWidgetClass   ("Xt/Core"             ,coreWidgetClass);
+  OClassDeclareWidgetClass   ("Xt/Composite"        ,compositeWidgetClass);
+  OClassDeclareWidgetClass   ("Xt/Constraint"       ,constraintWidgetClass);
+  OClassDeclareWidgetClass   ("Xt/Shell"            ,shellWidgetClass);
+  OClassDeclareWidgetClass   ("Xt/WMShell"          ,wmShellWidgetClass);
+/*
+  OClassDeclareWidgetClass   ("Xt/VendorShell"      ,vendorShellWidgetClass);
+*/
+  oclass                     = OClassDeclareWidgetClass   ("Xt/ApplicationShell" ,applicationShellWidgetClass);
+  OClassSetPS_Function       (oclass,XWidgetPutFrameInPS_Stream);
+
+  OClassDeclareWidgetClass   ("Xt/OverrideShell"    ,overrideShellWidgetClass);
+  OClassDeclareWidgetClass   ("Xt/TransientShell"   ,transientShellWidgetClass);
+
+  oclass                     = OClassDeclareWidgetClass   ("Xt/TopLevelShell"    ,topLevelShellWidgetClass);
+  OClassSetPS_Function       (oclass,XWidgetPutFrameInPS_Stream);}
+
+
+#endif /*HAS_XTW*/
+
+#endif /*WoXtw_ic*/

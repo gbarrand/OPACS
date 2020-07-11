@@ -1,0 +1,189 @@
+/*
+  Included by XoLabel.c
+*/
+#define XtEleft "left"
+#define XtEcenter "center"
+#define XtEright "right"
+#define XtEtop "top"
+#define XtEbottom "bottom"
+
+/*#include <X11/Intrinsic.h>*/
+
+/***************************************************************************/
+static void XmuCvtStringToJustify (
+ XrmValuePtr args
+,Cardinal* num_args
+,XrmValuePtr fromVal
+,XrmValuePtr toVal
+)
+/***************************************************************************/
+/* 
+  From Xmu/StrToJust.c 
+*/
+/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+{
+    static XtJustify	e;
+    static XrmQuark	XrmQEleft;
+    static XrmQuark	XrmQEcenter;
+    static XrmQuark	XrmQEright;
+    static int		haveQuarks;
+    XrmQuark    q;
+    char	*s = (char *) fromVal->addr;
+    char        lowerName[1000];
+/*.........................................................................*/
+    if (s == NULL) return;
+
+    if (!haveQuarks) {
+	XrmQEleft   = XrmPermStringToQuark(XtEleft);
+	XrmQEcenter = XrmPermStringToQuark(XtEcenter);
+	XrmQEright  = XrmPermStringToQuark(XtEright);
+	haveQuarks = 1;
+    }
+
+    XmuCopyISOLatin1Lowered(lowerName, s);
+
+    q = XrmStringToQuark(lowerName);
+
+    toVal->size = sizeof(XtJustify);
+    toVal->addr = (XPointer) &e;
+
+    if (q == XrmQEleft)   { e = XtJustifyLeft;   return; }
+    if (q == XrmQEcenter) { e = XtJustifyCenter; return; }
+    if (q == XrmQEright)  { e = XtJustifyRight;  return; }
+
+    toVal->size = 0;
+    toVal->addr = NULL;
+    args = NULL;
+    num_args = 0;
+}
+
+/*
+#include <stdio.h>
+#include <X11/IntrinsicP.h>
+*/
+
+typedef struct _PixmapCache {
+    Screen *screen;
+    Pixmap pixmap;
+    Pixel foreground, background;
+    unsigned int depth;
+    int ref_count;
+    struct _PixmapCache *next;
+  } CacheEntry;
+
+static CacheEntry *pixmapCache = NULL;
+
+/***************************************************************************/
+static Pixmap XmuCreateStippledPixmap (
+ Screen* screen
+,Pixel fore
+,Pixel back
+,unsigned int depth
+)
+/***************************************************************************/
+/*
+ * From Xmu/GrayPixmap.c.
+ *	Creates a stippled pixmap of specified depth
+ *	caches these so that multiple requests share the pixmap
+ */
+/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+{
+    register Display *display = DisplayOfScreen(screen);
+    CacheEntry *cachePtr;
+    Pixmap stippled_pixmap;
+    static unsigned char pixmap_bits[] = {
+	0x02, 0x01,
+    };
+/*.........................................................................*/
+
+/*
+ *	Creates a stippled pixmap of depth DefaultDepth(screen)
+ *	caches these so that multiple requests share the pixmap
+ */
+
+#define pixmap_width 2
+#define pixmap_height 2
+
+    /* see if we already have a pixmap suitable for this screen */
+    for (cachePtr = pixmapCache; cachePtr; cachePtr = cachePtr->next) {
+	if (cachePtr->screen == screen && cachePtr->foreground == fore &&
+	    cachePtr->background == back && cachePtr->depth == depth)
+	    return( cachePtr->ref_count++, cachePtr->pixmap );
+    }
+
+    stippled_pixmap = XCreatePixmapFromBitmapData (display,
+			RootWindowOfScreen(screen), (char *)pixmap_bits, 
+			pixmap_width, pixmap_height, fore, back, depth);
+
+    /* and insert it at the head of the cache */
+    cachePtr = XtNew(CacheEntry);
+    cachePtr->screen = screen;
+    cachePtr->foreground = fore;
+    cachePtr->background = back;
+    cachePtr->depth = depth;
+    cachePtr->pixmap = stippled_pixmap;
+    cachePtr->ref_count = 1;
+    cachePtr->next = pixmapCache;
+    pixmapCache = cachePtr;
+
+    return( stippled_pixmap );
+}
+
+/***************************************************************************/
+static void XmuReleaseStippledPixmap (
+ Screen* screen
+,Pixmap pixmap
+)
+/***************************************************************************/
+/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+{
+    register Display *display = DisplayOfScreen(screen);
+    CacheEntry *cachePtr, **prevP;
+/*.........................................................................*/
+    for (prevP = &pixmapCache, cachePtr = pixmapCache; cachePtr;) {
+	if (cachePtr->screen == screen && cachePtr->pixmap == pixmap) {
+	    if (--cachePtr->ref_count == 0) {
+		XFreePixmap( display, pixmap );
+		*prevP = cachePtr->next;
+		XtFree( (char*)cachePtr );
+		break;
+	    }
+	}
+	prevP = &cachePtr->next;
+	cachePtr = *prevP;
+    }
+}
+#define  XK_LATIN1
+#include <X11/keysymdef.h>
+
+/***************************************************************************/
+static void XmuCopyISOLatin1Lowered (
+ char* dst
+,char* src
+)
+/***************************************************************************/
+/*
+ * From Xmu/Lower.c
+ * ISO Latin-1 case conversion routine
+ */
+/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+{
+    register unsigned char *dest, *source;
+/*.........................................................................*/
+
+    for (dest = (unsigned char *)dst, source = (unsigned char *)src;
+	 *source;
+	 source++, dest++)
+    {
+	if ((*source >= XK_A) && (*source <= XK_Z))
+	    *dest = *source + (XK_a - XK_A);
+	else if ((*source >= XK_Agrave) && (*source <= XK_Odiaeresis))
+	    *dest = *source + (XK_agrave - XK_Agrave);
+	else if ((*source >= XK_Ooblique) && (*source <= XK_Thorn))
+	    *dest = *source + (XK_oslash - XK_Ooblique);
+	else
+	    *dest = *source;
+    }
+    *dest = '\0';
+}
+

@@ -1,0 +1,90 @@
+!/* +---------------------- Copyright notice -------------------------------+ */
+!/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+!/* |   Permission to use, copy, modify, and distribute this software       | */
+!/* |   and its documentation for any purpose and without fee is hereby     | */
+!/* |   granted, provided that the above copyright notice appear in all     | */
+!/* |   copies and that both that copyright notice and this permission      | */
+!/* |   notice appear in supporting documentation.  This software is        | */
+!/* |   provided "as is" without express or implied warranty.               | */
+!/* +---------------------- Copyright notice -------------------------------+ */
+!----------------------------
+begin OInterface
+ version = v3
+ prefix = Vised_
+ packages = Xm
+end
+!----------------------------
+begin OWidget
+ name = Vised_palette
+ type = XmFormDialog
+ children = Vised_35 Vised_36 Vised_37 Vised_39 Vised_38 
+ autoUnmanage = False
+ dialogTitle = Edit callback
+end
+!----------------------------
+begin OWidget
+ name = Vised_35
+ type = XmPushButton
+ labelString = Get target script
+ background = grey
+ topAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ activateCallback = osh> widget=`get Widget target`;setWidgetResource Vised_27 value `getWidgetResource $widget userCallback`
+end
+!----------------------------
+begin OWidget
+ name = Vised_36
+ type = XmFrame
+ children = Vised_27 
+ background = grey
+ topAttachment = attach_widget
+ bottomAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = Vised_35
+ bottomWidget = Vised_37
+end
+!----------------------------
+begin OWidget
+ name = Vised_27
+ type = XmScrolledText
+ editMode = multi_line_edit
+ background = white
+ createCallback = osh> setWidgetTextSize `get Widget this` 10 20
+end
+!----------------------------
+begin OWidget
+ name = Vised_37
+ type = XmPushButton
+ labelString = Apply
+ activateCallback = osh> setWidgetResource `get Widget target` userCallback `getWidgetResource Vised_27 value`
+ background = grey
+ bottomAttachment = attach_widget
+ bottomWidget = Vised_39
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = Vised_39
+ type = XmPushButton
+ labelString = Save
+ activateCallback = osh> do Wo saveInterface user.odb
+ background = grey
+ bottomAttachment = attach_widget
+ bottomWidget = Vised_38
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = Vised_38
+ type = XmPushButton
+ labelString = Cancel
+ activateCallback = osh> unmanageWidget `get Widget thisParent`
+ background = grey
+ bottomAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end

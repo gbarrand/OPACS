@@ -1,0 +1,62 @@
+!----------------------------
+begin OInterface
+ prefix = OApp_
+ packages = Xaw
+end
+!----------------------------
+begin OWidget
+ name = OApp_shell
+ type = TopLevelShell
+ children = OApp_form 
+ geometry = 400x300+0+0
+ title = OApp
+end
+!----------------------------
+begin OWidget
+ name = OApp_form
+ type = Form
+ children = OApp_menubar OApp_bb
+end
+!----------------------------
+begin OWidget
+ name = OApp_menubar
+ type = Box
+ children = OApp_casc
+ background = lightgrey
+ left       = chainleft
+ top        = chaintop
+ right      = chainright
+end
+!----------------------------
+begin OWidget
+ name = OApp_bb
+ type = Form
+ background = grey
+ left       = chainleft
+ bottom     = chainbottom
+ right      = chainright
+ fromVert   = OApp_menubar
+end
+!----------------------------
+begin OWidget
+ name = OApp_casc
+ type = MenuButton
+ label = OApp
+ menuName = OApp_pdm
+ children = OApp_pdm
+end
+!----------------------------
+begin OWidget
+ name = OApp_pdm
+ type = SimpleMenu
+ children = OApp_stop
+ mappedWhenManaged = false
+end
+!----------------------------
+begin OWidget
+ name = OApp_stop
+ type = SmeBSB
+ label = Quit
+ callback = osh> do Wo sendExit 0
+end
+

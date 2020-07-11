@@ -1,0 +1,317 @@
+!----------------------------
+begin OInterface
+ prefix = WoTest_
+ packages = Xtw Xm 
+ createCallback = osh> echo 'Known packages';get Wo packages
+ resources = \
+Wo*fontList:-*-helvetica-bold-r-*-*-*-140-*-*-*-*-iso8859-1\
+Wo*XmText.fontList:*courier*-r-*--14-*\
+Wo*XmLabel.background:red
+!Examples of general resources :
+!Wo*fontList:-adobe-times-medium-r-normal--11-80-100-100-p-54-iso8859-1
+!Wo*fontList:-adobe-times-medium-r-normal--25-180-100-100-p-125-iso8859-1
+!Wo*XmText.fontList:*courier*-r-*--34-*
+!Wo*XmText.fontList:*courier*-r-*--11-*
+end
+!----------------------------
+begin OWidget
+ name = WoTest_top
+ type = TopLevelShell
+ children = WoTest_2 
+ createCallback = osh> setWidgetOption WoTest_252 ?
+ geometry = 450x450+0+0
+ title = Wo examples
+ iconPixmap = eye.xbm
+ iconName = Wo
+end
+!----------------------------
+begin OWidget
+ name = WoTest_2
+ type = XmForm
+ children = WoTest_4 WoTest_252 WoTest_385 WoTest_253 
+ x = 11
+ y = 35
+ background = grey
+end
+!----------------------------
+begin OWidget
+ name = WoTest_4
+ type = XmMenuBar
+ children = WoTest_392 Wo_casc<Wo.odb Wo_pull<Wo.odb WoTest_393 
+ x = 6
+ y = 2
+ background = lightgrey
+ shadowThickness = 4
+ topShadowColor = white
+ bottomShadowColor = black
+ menuHelpWidget = WoTest_392
+ topAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = WoTest_392
+ type = XmCascadeButton
+ labelString = Help
+ mnemonic = H
+ subMenuId = WoTest_393
+end
+!----------------------------
+begin OWidget
+ name = WoTest_393
+ type = XmPulldownMenu
+ children = WoTest_394 
+end
+!----------------------------
+begin OWidget
+ name = WoTest_394
+ type = XmPushButton
+ background = lightgrey
+ labelType = pixmap
+ labelPixmap = book.xpm
+ labelString = Help
+ activateCallback = osh>\
+  load Help.odb | realize -\
+  manageWidget Help_palette;raiseWidget Help_palette_popup\
+  showTopic Help_help 'Wo.htm'
+end
+!----------------------------
+begin OWidget
+ name = WoTest_252
+ type = XmOptionMenu
+ background = lightgrey
+ borderColor = lightgrey
+ labelString = Panels
+ subMenuId = WoTest_253
+ menuHistory = WoTest_xxx
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = WoTest_4
+end
+!----------------------------
+begin OWidget
+ name = WoTest_385
+ type = XmFrame
+ children = WoTest_form 
+ shadowThickness = 4
+ topAttachment = attach_widget
+ bottomAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = WoTest_252
+end
+!----------------------------
+begin OWidget
+ name = WoTest_form
+ type = XmForm
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = WoTest_253
+ type = XmPulldownMenu
+ children = WoTest_xxx WoTest_WidgetT WoTest_XmT WoTest_XawT WoTest_XoT WoTest_XoCameraT WoTest_XoImageT WoTest_MosaicT WoTest_sep WoTest_XoPlotterT WoTest_OFuncT WoTest_AnalyseT WoTest_SpawnT WoTest_FitT WoTest_XzT WoTest_KUIP_T WoTest_PAW_T WoTest_sep2 WoTest_geantT WoTest_tclT WoTest_CiT WoTest_CiXoT WoTest_JavaT WoTest_FNAL_T WoTest_DeXT 
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = WoTest_xxx
+ type = XmPushButton
+ background = lightgrey
+ labelString = ?
+end
+!----------------------------
+begin OWidget
+ name = WoTest_WidgetT
+ type = XmPushButton
+ background = lightgrey
+ labelString = Wo features
+ activateCallback = osh>\
+  unmapWidget WoTest_form;load WidgetT.odb | realize -\
+  isValid Widget/WidgetT_panel && raiseWidget WidgetT_panel\
+  mapWidget WoTest_form
+end
+!----------------------------
+begin OWidget
+ name = WoTest_XmT
+ type = XmPushButton
+ background = lightgrey
+ labelString = Xm
+ activateCallback = osh> unmapWidget WoTest_form;load XmT.odb | realize -;raiseWidget XmT_panel;mapWidget WoTest_form
+end
+!----------------------------
+begin OWidget
+ name = WoTest_XawT
+ type = XmPushButton
+ background = lightgrey
+ labelString = Xaw
+ activateCallback = osh> unmapWidget WoTest_form;load XawT.odb | realize -;raiseWidget XawT_panel;mapWidget WoTest_form
+end
+!----------------------------
+begin OWidget
+ name = WoTest_XoT
+ type = XmPushButton
+ background = lightgrey
+ labelString = Xo
+ activateCallback = osh> unmapWidget WoTest_form;load XoT.odb | realize -;raiseWidget XoT_panel;mapWidget WoTest_form
+end
+!----------------------------
+begin OWidget
+ name = WoTest_FNAL_T
+ type = XmPushButton
+ background = lightgrey
+ labelString = FNAL
+ activateCallback = osh>\
+  unmapWidget WoTest_form\
+  load FNAL_T.odb | realize -\
+  isValid Widget/FNAL_T_panel && raiseWidget FNAL_T_panel\
+  mapWidget WoTest_form
+end
+!----------------------------
+begin OWidget
+ name = WoTest_XoCameraT
+ type = XmPushButton
+ background = lightgrey
+ labelString = XoCamera
+ activateCallback = osh> unmapWidget WoTest_form;load XoCamT.odb | realize -;raiseWidget XoCameraT_panel;mapWidget WoTest_form
+end
+!----------------------------
+begin OWidget
+ name = WoTest_XoImageT
+ type = XmPushButton
+ background = lightgrey
+ labelString = XoImage
+ activateCallback = osh> unmapWidget WoTest_form;load XoImageT.odb | realize -;raiseWidget XoImageT_panel;mapWidget WoTest_form
+end
+!----------------------------
+begin OWidget
+ name = WoTest_MosaicT
+ type = XmPushButton
+ background = lightgrey
+ labelString = XoMosaic
+ activateCallback = osh> unmapWidget WoTest_form;load MosaicT.odb | realize -;raiseWidget MosaicT_panel;mapWidget WoTest_form
+end
+!----------------------------
+begin OWidget
+ name = WoTest_sep
+ type = XmSeparator
+end
+!----------------------------
+begin OWidget
+ name = WoTest_XoPlotterT
+ type = XmPushButton
+ background = lightgrey
+ labelString = XoPlotter
+ activateCallback = osh> unmapWidget WoTest_form;load XoPlotT.odb | realize -;raiseWidget XoPlotterT_panel;mapWidget WoTest_form
+end
+!----------------------------
+begin OWidget
+ name = WoTest_OFuncT
+ type = XmPushButton
+ background = lightgrey
+ labelString = Function
+ activateCallback = osh> unmapWidget WoTest_form;load OFuncT.odb | realize -;raiseWidget OFuncT_panel;mapWidget WoTest_form
+end
+!----------------------------
+begin OWidget
+ name = WoTest_AnalyseT
+ type = XmPushButton
+ background = lightgrey
+ labelString = Analysis
+ activateCallback = osh> unmapWidget WoTest_form;load AnalyseT.odb | realize -;raiseWidget AnalyseT_panel;mapWidget WoTest_form
+end
+!----------------------------
+begin OWidget
+ name = WoTest_SpawnT
+ type = XmPushButton
+ background = lightgrey
+ labelString = Spawn
+ activateCallback = osh> unmapWidget WoTest_form;load SpawnT.odb | realize -;raiseWidget SpawnT_panel;mapWidget WoTest_form
+end
+!----------------------------
+begin OWidget
+ name = WoTest_FitT
+ type = XmPushButton
+ background = lightgrey
+ labelString = Fit
+ activateCallback = osh> unmapWidget WoTest_form;load FitT.odb | realize -;raiseWidget FitT_panel;mapWidget WoTest_form
+end
+!----------------------------
+begin OWidget
+ name = WoTest_XzT
+ type = XmPushButton
+ background = lightgrey
+ labelString = Xz
+ activateCallback = osh> unmapWidget WoTest_form;load XzT.odb | realize -;raiseWidget XzT_panel;mapWidget WoTest_form
+end
+!----------------------------
+begin OWidget
+ name = WoTest_KUIP_T
+ type = XmPushButton
+ background = lightgrey
+ labelString = KUIP
+ activateCallback = osh> unmapWidget WoTest_form;load KUIP_T.odb | realize -;raiseWidget KUIP_T_panel;mapWidget WoTest_form
+end
+!----------------------------
+begin OWidget
+ name = WoTest_PAW_T
+ type = XmPushButton
+ background = lightgrey
+ labelString = PAW
+ activateCallback = osh> unmapWidget WoTest_form;load PAW_T.odb | realize -;raiseWidget PAW_T_panel;mapWidget WoTest_form
+end
+!----------------------------
+begin OWidget
+ name = WoTest_sep2
+ type = XmSeparator
+end
+!----------------------------
+begin OWidget
+ name = WoTest_geantT
+ type = XmPushButton
+ background = lightgrey
+ labelString = GEANT 3
+ activateCallback = osh> unmapWidget WoTest_form;load geantT.odb | realize -;raiseWidget geantT_panel;mapWidget WoTest_form
+end
+!----------------------------
+begin OWidget
+ name = WoTest_tclT
+ type = XmPushButton
+ background = lightgrey
+ labelString = tcl
+ activateCallback = osh> unmapWidget WoTest_form;load tclT.odb | realize -;raiseWidget tclT_panel;mapWidget WoTest_form
+end
+!----------------------------
+begin OWidget
+ name = WoTest_CiT
+ type = XmPushButton
+ background = lightgrey
+ labelString = Ci
+ activateCallback = osh> unmapWidget WoTest_form;load CiT.odb | realize -;raiseWidget CiT_panel;mapWidget WoTest_form
+end
+!----------------------------
+begin OWidget
+ name = WoTest_CiXoT
+ type = XmPushButton
+ background = lightgrey
+ labelString = Ci & Xo
+ activateCallback = osh> unmapWidget WoTest_form;load CiXoT.odb | realize -;raiseWidget CiXoT_panel;mapWidget WoTest_form
+end
+!----------------------------
+begin OWidget
+ name = WoTest_JavaT
+ type = XmPushButton
+ background = lightgrey
+ labelString = JAVA
+ activateCallback = osh> unmapWidget WoTest_form;load JavaT.odb | realize -;raiseWidget JavaT_panel;mapWidget WoTest_form
+end
+!----------------------------
+begin OWidget
+ name = WoTest_DeXT
+ type = XmPushButton
+ background = lightgrey
+ labelString = DeX
+ activateCallback = osh> unmapWidget WoTest_form;load DeXT.odb | realize -;raiseWidget DeXT_panel;mapWidget WoTest_form
+end

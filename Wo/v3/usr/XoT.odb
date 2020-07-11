@@ -1,0 +1,62 @@
+!/* +---------------------- Copyright notice -------------------------------+ */
+!/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+!/* |   Permission to use, copy, modify, and distribute this software       | */
+!/* |   and its documentation for any purpose and without fee is hereby     | */
+!/* |   granted, provided that the above copyright notice appear in all     | */
+!/* |   copies and that both that copyright notice and this permission      | */
+!/* |   notice appear in supporting documentation.  This software is        | */
+!/* |   provided "as is" without express or implied warranty.               | */
+!/* +---------------------- Copyright notice -------------------------------+ */
+!----------------------------
+begin OInterface
+ version = v3
+ prefix = XoT_
+ parent = WoTest_form
+ packages = Xm Xo
+end
+!----------------------------
+begin OWidget
+ name = XoT_panel
+ type = XmBulletinBoard
+ children = XoT_graph XoT_label
+ background = dimgrey
+ topAttachment = attach_form
+ bottomAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = XoT_graph
+ type = XoGraph
+ children = XoT_eyes_1 XoT_eyes_2
+ width = 270
+ height = 300
+ linkedWidgets = XoT_eyes_1\nXoT_eyes_2
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = XoT_eyes_1
+ type = XoEyes
+end
+!----------------------------
+begin OWidget
+ name = XoT_eyes_2
+ type = XoEyes
+ x    = 50
+ y    = 180
+end
+!----------------------------
+begin OWidget
+ name = XoT_label
+ type = XoLabel
+ x    = 300
+ doubleBuffer = True
+ createCallback = osh> \
+  script='osh> setWidgetResource XoT_label label `get CMath random`;do Widget/XoT_label draw'\
+  create OCyclic name XoT_label widget `thisWidget` delay 100 script $script\
+  do OCyclic/XoT_label start
+end
+
+

@@ -1,0 +1,30 @@
+/* +---------------------- Copyright notice -------------------------------+ */
+/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+/* |   Permission to use, copy, modify, and distribute this software       | */
+/* |   and its documentation for any purpose and without fee is hereby     | */
+/* |   granted, provided that the above copyright notice appear in all     | */
+/* |   copies and that both that copyright notice and this permission      | */
+/* |   notice appear in supporting documentation.  This software is        | */
+/* |   provided "as is" without express or implied warranty.               | */
+/* +---------------------- Copyright notice -------------------------------+ */
+#ifndef WoBind_ic
+#define WoBind_ic
+
+  CiBindClass ("CiBindOClass",(CiRoutine)CiBindOClass);
+  CiBindClass ("CiBindOCyclic",(CiRoutine)CiBindOCyclic);
+  CiBindClass ("CiBindOEvent",(CiRoutine)CiBindOEvent);
+  CiBindClass ("CiBindOInterface",(CiRoutine)CiBindOInterface);
+  CiBindClass ("CiBindOInterpreter",(CiRoutine)CiBindOInterpreter);
+  CiBindClass ("CiBindOPart",(CiRoutine)CiBindOPart);
+  CiBindClass ("CiBindOPiece",(CiRoutine)CiBindOPiece);
+  CiBindClass ("CiBindOResource",(CiRoutine)CiBindOResource);
+  CiBindClass ("CiBindOTrace",(CiRoutine)CiBindOTrace);
+  CiBindClass ("CiBindOWidget",(CiRoutine)CiBindOWidget);
+  CiBindClass ("CiBindWo",(CiRoutine)CiBindWo);
+  CiBindClass ("CiBindWoTypes",(CiRoutine)CiBindWoTypes);
+
+#endif  /*WoBind_ic*/
+
+
+
+

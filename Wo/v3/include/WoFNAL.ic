@@ -1,0 +1,31 @@
+/* +---------------------- Copyright notice -------------------------------+ */
+/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+/* |   Permission to use, copy, modify, and distribute this software       | */
+/* |   and its documentation for any purpose and without fee is hereby     | */
+/* |   granted, provided that the above copyright notice appear in all     | */
+/* |   copies and that both that copyright notice and this permission      | */
+/* |   notice appear in supporting documentation.  This software is        | */
+/* |   provided "as is" without express or implied warranty.               | */
+/* +---------------------- Copyright notice -------------------------------+ */
+#ifndef WoFNAL_ic
+#define WoFNAL_ic
+
+#ifdef HAS_FNAL
+
+  OInterfaceAddPackage            ("FNAL");
+
+  FNAL_AddCommands                (WoGetShellInterpreter());
+
+ {OClass                     oclass;
+  oclass                     = OClassDeclareWidgetClass ("FNAL/2DHist"  ,hist2DWidgetClass);
+  oclass                     = OClassDeclareWidgetClass ("FNAL/Scat3D"  ,scat3DWidgetClass);
+  oclass                     = OClassDeclareWidgetClass ("FNAL/Cell"    ,cellWidgetClass);
+  oclass                     = OClassDeclareWidgetClass ("FNAL/Curves"  ,curvesWidgetClass);
+  oclass                     = OClassDeclareWidgetClass ("FNAL/H1D"     ,h1DWidgetClass);
+  oclass                     = OClassDeclareWidgetClass ("FNAL/Scat"    ,scatWidgetClass);
+  oclass                     = OClassDeclareWidgetClass ("FNAL/XY"      ,xyWidgetClass);
+ }
+
+#endif /*HAS_FNAL*/
+
+#endif /*WoFNAL_ic*/

@@ -1,0 +1,8 @@
+begin OCamera
+  name       = my_camera
+  width      = 400;
+  height     = 200;
+  backgroundColor  = pink
+  viewLimits = -200 200
+!  depthTreatment = zbuffer
+end

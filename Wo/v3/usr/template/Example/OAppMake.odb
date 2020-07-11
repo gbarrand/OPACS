@@ -1,0 +1,37 @@
+!----------------------------
+begin Make
+ package = OApp
+ incNMake = !include macros.nmk
+ has = X11 Xext Xt Xmu Xm OApp_Wo OApp_Xm OApp_Xo OApp_HTML
+ libs = \
+X11:     libX11\
+Xext:    libXext\
+Xt:      libXt\
+Xmu:     libXmu\
+Xm:      libXm\
+Xaw:     libXaw\
+OApp_Wo:   libc libm libCo libXx libWo\
+OApp_Xm:   libWoXm\
+OApp_HTML: libwww libhtmlw\
+OApp_Xo:   libHo libGL libGLU libGLX libGo libXo libWoGL\
+OApp_Ci:   libCSet libCi libWoCi\
+OApp_Xz:   libf77 libkernlib libpacklib libgrafX11 libgraflib libXz libXzPAWC libWoHoXz\
+OApp_G3o:  libGL libGLU libGo libf77 libkernlib libpacklib libgeant libG3o libG3oEXPO\
+OApp_Xaw:  libWoXaw\
+OApp_tcl:  libtcl\
+OApp_FNAL: libWoFNAL libFNAL\
+OApp_PAW:  libWoPAW libmathlib libpawlib
+end
+!----------------------------
+begin OModule
+ name = OApp
+ type = bin
+! Take libs of oshow
+ libs = libWoPAW libpawlib libWoFNAL libFNAL libG3oEXPO libG3o libgeant libWoHoXz libXz libXzPAWC libgraflib libgrafX11 libpacklib libkernlib libmathlib libf77 libWoCi libCi libCSet libWoGL libXo libhtmlw libWoXm libXm libWoXaw libXaw libWo libXx libXmu libXt libGo libGLX libGLU libGL libXext libX11 libHo libCo libwww libm libcxx
+end
+!----------------------------
+!----------------------------
+!----------------------------
+
+
+

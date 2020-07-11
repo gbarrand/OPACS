@@ -1,0 +1,39 @@
+*************************************************************
+*  A simple command file definition
+* used by kuipT.f
+*  To produce a ktcdf.c file, 
+* it is compiled with :
+*    UNIX> /cern/pro/bin/kuipc ktcdf.txt ktcdf.c 
+*    UNIX> /cern/pro/bin/kuipc ../src/ktcdf.txt ../src/ktcdf.c 
+*************************************************************
+
+>Name KTDEF
+
+>Menu Xz
+
+*************************************************************
+>Command xxx
+*************************************************************
+* Action is defined in kuipT.f
+*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+>Parameters
+file   'File name'  C D=xxx.c
+ident  'identifier' I D=10
++
+number 'Number of bin' I D=100
+
+>Action KTXXX
+
+*************************************************************
+>Command yyy
+*************************************************************
+* Action is defined in ktyyy.c
+*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+>Parameters
+file   'File name'  C D=xxx.c
+ident  'identifier' I D=10
++
+number 'Number of bin' I D=100
+
+>Action KTYYY
+

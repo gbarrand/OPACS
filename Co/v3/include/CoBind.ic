@@ -1,0 +1,62 @@
+/* +---------------------- Copyright notice -------------------------------+ */
+/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+/* |   Permission to use, copy, modify, and distribute this software       | */
+/* |   and its documentation for any purpose and without fee is hereby     | */
+/* |   granted, provided that the above copyright notice appear in all     | */
+/* |   copies and that both that copyright notice and this permission      | */
+/* |   notice appear in supporting documentation.  This software is        | */
+/* |   provided "as is" without express or implied warranty.               | */
+/* +---------------------- Copyright notice -------------------------------+ */
+#ifndef CoBind_ic
+#define CoBind_ic
+
+  CiBindClass   ("CiBindCiDummy",(CiRoutine)CiBindCiDummy);
+  CiBindCiDummy (NULL);
+
+  CiBindClass ("CiBindCBatch",(CiRoutine)CiBindCBatch);
+  CiBindClass ("CiBindCCharacter",(CiRoutine)CiBindCCharacter);
+  CiBindClass ("CiBindCColor",(CiRoutine)CiBindCColor);
+  CiBindClass ("CiBindCError",(CiRoutine)CiBindCError);
+  CiBindClass ("CiBindCFITS",(CiRoutine)CiBindCFITS);
+  CiBindClass ("CiBindCFile",(CiRoutine)CiBindCFile);
+  CiBindClass ("CiBindCGIF",(CiRoutine)CiBindCGIF);
+  CiBindClass ("CiBindCImageshort",(CiRoutine)CiBindCImageshort);
+  CiBindClass ("CiBindCJPEG",(CiRoutine)CiBindCJPEG);
+  CiBindClass ("CiBindCLibrary",(CiRoutine)CiBindCLibrary);
+  CiBindClass ("CiBindCList",(CiRoutine)CiBindCList);
+  CiBindClass ("CiBindCManager",(CiRoutine)CiBindCManager);
+  CiBindClass ("CiBindCMath",(CiRoutine)CiBindCMath);
+  CiBindClass ("CiBindCMemory",(CiRoutine)CiBindCMemory);
+  CiBindClass ("CiBindCOption",(CiRoutine)CiBindCOption);
+  CiBindClass ("CiBindCPS",(CiRoutine)CiBindCPS);
+  CiBindClass ("CiBindCPrinter",(CiRoutine)CiBindCPrinter);
+  CiBindClass ("CiBindCStream",(CiRoutine)CiBindCStream);
+  CiBindClass ("CiBindCString",(CiRoutine)CiBindCString);
+  CiBindClass ("CiBindCSystem",(CiRoutine)CiBindCSystem);
+  CiBindClass ("CiBindCTIFF",(CiRoutine)CiBindCTIFF);
+  CiBindClass ("CiBindCText",(CiRoutine)CiBindCText);
+  CiBindClass ("CiBindCTime",(CiRoutine)CiBindCTime);
+  CiBindClass ("CiBindCVector",(CiRoutine)CiBindCVector);
+  CiBindClass ("CiBindCXPM",(CiRoutine)CiBindCXPM);
+  CiBindClass ("CiBindCoCommands",(CiRoutine)CiBindCoCommands);
+  CiBindClass ("CiBindCoTypes",(CiRoutine)CiBindCoTypes);
+  CiBindClass ("CiBindFString",(CiRoutine)CiBindFString);
+  CiBindClass ("CiBindOBatch",(CiRoutine)CiBindOBatch);
+  CiBindClass ("CiBindOCommand",(CiRoutine)CiBindOCommand);
+  CiBindClass ("CiBindOHTML",(CiRoutine)CiBindOHTML);
+  CiBindClass ("CiBindOHandle",(CiRoutine)CiBindOHandle);
+  CiBindClass ("CiBindOLUT",(CiRoutine)CiBindOLUT);
+  CiBindClass ("CiBindOMatrix",(CiRoutine)CiBindOMatrix);
+  CiBindClass ("CiBindOMatrix33",(CiRoutine)CiBindOMatrix33);
+  CiBindClass ("CiBindOModule",(CiRoutine)CiBindOModule);
+  CiBindClass ("CiBindOProcedure",(CiRoutine)CiBindOProcedure);
+  CiBindClass ("CiBindOProcedureL",(CiRoutine)CiBindOProcedureL);
+  CiBindClass ("CiBindOProcess",(CiRoutine)CiBindOProcess);
+  CiBindClass ("CiBindOProperty",(CiRoutine)CiBindOProperty);
+  CiBindClass ("CiBindOShell",(CiRoutine)CiBindOShell);
+  CiBindClass ("CiBindOTouch",(CiRoutine)CiBindOTouch);
+  CiBindClass ("CiBindOType",(CiRoutine)CiBindOType);
+  CiBindClass ("CiBindOColor",(CiRoutine)CiBindOColor);
+
+#endif  /*CoBind_ic*/
+

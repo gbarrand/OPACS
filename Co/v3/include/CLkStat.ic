@@ -1,0 +1,229 @@
+#ifndef CLkStat_c
+#define CLkStat_c
+
+#ifdef HAS_LKLIST
+
+/*LkList come as an external package.*/
+
+#else /*no HAS_LKLIST*/
+
+/***************************************************************************/
+/************ CLk = Lk + CMemory *******************************************/
+/***************************************************************************/
+
+/*-----------------------------------------------------------------------*/
+static void CLkListInit (LkList This)
+/*-----------------------------------------------------------------------*/
+{
+  if (This==NULL) return;
+  
+  _LkListSetFirstEntry (This, NULL);
+  _LkListSetLastEntry (This, NULL);
+}
+/*-----------------------------------------------------------------------*/
+static void CLkListClear (LkList This, LkFunction function)
+/*-----------------------------------------------------------------------*/
+{
+  LkEntry entry;
+
+  if (This==NULL) return;
+
+  if (function!=NULL)
+  {
+    while ((entry = _LkListFirstEntry (This))!=NULL)
+    {
+      function (entry);
+      LkEntryDelete (entry);
+    }
+  }
+  else
+  {
+    while ((entry = _LkListFirstEntry (This))!=NULL)
+    {
+      LkEntryDelete (entry);
+    }
+  }
+}
+/*-----------------------------------------------------------------------*/
+static int CLkListCount (LkList This)
+/*-----------------------------------------------------------------------*/
+{
+  LkEntry entry;
+  int count = 0;
+
+  if (This==NULL) return (0);
+
+  entry = _LkListFirstEntry (This);
+  while (entry!=NULL)
+  {
+    count++;
+    entry = _LkEntryNext (entry);
+  }
+  return (count);
+}
+/*-----------------------------------------------------------------------*/
+static void CLkListConnectEntry (LkList This, LkEntry entry)
+/*-----------------------------------------------------------------------*/
+{
+  if (This==NULL)  return;
+  if (entry==NULL) return;
+
+  if (_LkListLastEntry (This)!=NULL)
+  {
+    _LkEntrySetNext (_LkListLastEntry (This), entry);
+  }
+  else
+  {
+    _LkListSetFirstEntry (This, entry);
+  }
+  _LkEntrySetPrevious (entry, _LkListLastEntry (This));
+  _LkEntrySetNext (entry, NULL);
+  _LkEntrySetFather (entry, This);
+
+  _LkListSetLastEntry (This, entry);
+}
+/*-----------------------------------------------------------------------*/
+static LkEntry CLkListFirstEntry (LkList This)
+/*-----------------------------------------------------------------------*/
+{
+  if (This==NULL) return NULL;
+  return (This->firstEntry);
+}
+/*-----------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------*/
+static LkEntry CLkEntryCreate (LkList list, int size)
+/*-----------------------------------------------------------------------*/
+{
+  LkEntry This;
+
+  This = (LkEntry) CMemoryAllocateBlock (size);
+  if(This==NULL) return NULL; /*Protect against failing malloc.*/
+
+  if (list!=NULL)
+  {
+    if (_LkListFirstEntry (list)!=NULL)
+    {
+      _LkEntrySetNext (_LkListLastEntry (list), This);
+    }
+    else
+    {
+      _LkListSetFirstEntry (list, This);
+    }
+    _LkEntrySetPrevious (This, _LkListLastEntry (list));
+    _LkListSetLastEntry (list, This);
+  }
+  else
+  {
+    _LkEntrySetPrevious (This, NULL);
+  }
+  _LkEntrySetNext (This, NULL);
+  _LkEntrySetFather (This, list);
+  
+  return (This);
+}
+/*-----------------------------------------------------------------------*/
+static void CLkEntryDelete (LkEntry This)
+/*-----------------------------------------------------------------------*/
+{
+  if (This==NULL) return;
+
+  CLkEntryDisconnect (This);
+  CMemoryFreeBlock (This);
+}
+/*-----------------------------------------------------------------------*/
+static void CLkEntryDisconnect (LkEntry This)
+/*-----------------------------------------------------------------------*/
+{
+  LkList list;
+  LkEntry prev;
+  LkEntry next;
+
+  if (This==NULL) return;
+  list = _LkEntryFather (This);
+  if (list==NULL) return;
+  
+  prev = _LkEntryPrevious (This);
+  next = _LkEntryNext (This);
+  
+  if (prev!=NULL) _LkEntrySetNext (prev, next);
+  else            _LkListSetFirstEntry (list, next);
+  
+  if (next!=NULL) _LkEntrySetPrevious (next, prev);
+  else            _LkListSetLastEntry (list, prev);
+
+  _LkEntrySetPrevious (This, NULL);
+  _LkEntrySetNext (This, NULL);
+  _LkEntrySetFather (This, NULL);
+}
+/*-----------------------------------------------------------------------*/
+static int CLkEntryPosition (LkEntry This)
+/*-----------------------------------------------------------------------*/
+{
+  LkEntry entry;
+  int count = 0;
+
+  if (This==NULL) return (-1);
+
+  entry = This;
+  while ((entry = _LkEntryPrevious (entry))!=NULL) count++;
+  return (count);
+}
+/*-----------------------------------------------------------------------*/
+static void CLkEntryInit (LkEntry This, LkList list)
+/*-----------------------------------------------------------------------*/
+{
+  if (This==NULL) return;
+
+  _LkEntrySetPrevious (This, NULL);
+  _LkEntrySetNext (This, NULL);
+  _LkEntrySetFather (This, NULL);
+  
+  if (list!=NULL) LkListConnectEntry (list, This);
+}
+/*-----------------------------------------------------------------------*/
+static LkList CLkEntryFather (LkEntry This)
+/*-----------------------------------------------------------------------*/
+{
+  if (This==NULL) return NULL;
+  return (This->fatherList);
+}
+/*-----------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------*/
+static LkIterator CLkIteratorCreate (LkList list)
+/*-----------------------------------------------------------------------*/
+{
+  LkIterator This;
+
+  This      = (LkIterator) CMemoryAllocateBlock (sizeof(LkIteratorRec));
+  if(This==NULL) return NULL; /*Protect against failing malloc.*/
+  
+  This->list    = list;
+  This->current = NULL;
+
+  return (This);
+}
+/*-----------------------------------------------------------------------*/
+static LkEntry CLkIteratorNext (LkIterator This)
+/*-----------------------------------------------------------------------*/
+{
+  if (This==NULL) return (NULL);
+
+  if (This->current!=NULL)
+    {
+      This->current = _LkEntryNext (This->current);
+    }
+  else
+    {
+      if (This->list==NULL) This->current = NULL;
+      else                  This->current = _LkListFirstEntry (This->list);
+    }
+  return (This->current);
+}
+
+#endif /*HAS_LKLIST*/
+
+#endif /*CLkStat_c*/

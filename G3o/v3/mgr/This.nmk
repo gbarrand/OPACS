@@ -1,0 +1,168 @@
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#  File produced by the Co/omake tool
+# using file Make.odb.
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#  The soft linked packages has been taken
+# from the property 'has' of the 
+# 'Make' object of file Make.odb.
+# It had the value :
+#    GL
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+HAS_CPPFLAGS = \
+ $(G3o_CPPFLAGS)\
+ $(GL_CPPFLAGS)
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+all   :: mkdir
+
+clean ::
+	if exist $(bin)\*.obj del $(bin)\*.obj
+	if exist $(bin)\*.exe del $(bin)\*.exe
+	if exist $(bin)\*.lib del $(bin)\*.lib
+	if exist $(bin)\*.dll del $(bin)\*.dll
+	if exist $(bin)\*.exp del $(bin)\*.exp
+	if exist $(bin)\*.pdb del $(bin)\*.pdb
+rmlib ::
+	if exist $(bin)\*.lib del $(bin)\*.lib
+rmo   ::
+	if exist $(bin)\*.obj del $(bin)\*.obj
+rmexe ::
+	if exist $(bin)\*.exe del $(bin)\*.exe
+
+mkdir :
+	@if not exist $(bin) mkdir $(bin)
+
+libG3oEXPO_target = $(bin)\libG3oEXPO.lib
+libG3o_target = $(bin)\libG3o.lib
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+all :: mkdir \
+$(libG3oEXPO_target) \
+$(libG3o_target) \
+$(bin)\G3oT.exe 
+	@echo "G3o : all ok." 
+
+libs :: mkdir \
+$(libG3oEXPO_target) \
+$(libG3o_target) 
+	@echo "G3o : libs ok." 
+
+apps :: mkdir \
+$(bin)\G3oT.exe \
+$(bin)\geantT.exe \
+$(bin)\NoHT.exe 
+	@echo "G3o : apps ok." 
+#--------------------------------------------
+rmexeo :
+	if exist $(bin)\G3oT.obj del $(bin)\G3oT.obj
+	if exist $(bin)\geantT.obj del $(bin)\geantT.obj
+	if exist $(bin)\NoHT.obj del $(bin)\NoHT.obj
+#--------------------------------------------
+G3oT : $(bin)\G3oT.exe
+	@echo "G3o : G3oT ok."
+geantT : $(bin)\geantT.exe
+	@echo "G3o : geantT ok."
+NoHT : $(bin)\NoHT.exe
+	@echo "G3o : NoHT ok."
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#--------------------------------------------
+$(bin)\G3oT.exe : $(bin)\G3oT.obj \
+$(bin)\idummy.obj \
+$(libG3oEXPO_target) \
+$(libG3o_target) 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\G3oT.exe $(bin)\G3oT.obj \
+$(bin)\idummy.obj \
+$(libG3oEXPO) \
+$(libG3o) \
+$(libgeant) \
+$(libpacklib) \
+$(libkernlib) \
+$(libf77) \
+$(libGo) \
+$(libGLU) \
+$(libGL) \
+$(libCo) \
+$(libm) \
+$(CCLDEND) 
+
+$(bin)\G3oT.obj   : $(app)\G3oT.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\G3oT.obj $(app)\G3oT.c
+#--------------------------------------------
+$(bin)\geantT.exe : $(bin)\geantT.obj \
+$(libG3oEXPO_target) 
+	$(F77LD) $(F77LDFLAGS) $(CCLDO)$(bin)\geantT.exe $(bin)\geantT.obj \
+$(libG3oEXPO) \
+$(libgeant) \
+$(libpacklib) \
+$(libkernlib) \
+$(F77LDEND) 
+
+$(bin)\geantT.obj   : $(app)\geantT.f
+	$(F77) $(F77FLAGS) /c Fo$(bin)\geantT.obj $(app)\geantT.f
+#--------------------------------------------
+$(bin)\NoHT.exe : $(bin)\NoHT.obj 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\NoHT.exe $(bin)\NoHT.obj \
+$(CCLDEND) 
+
+$(bin)\NoHT.obj   : $(app)\NoHT.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\NoHT.obj $(app)\NoHT.c
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# libraries 
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#--------------------------------------------
+
+$(bin)\libG3oEXPO.lib : \
+$(bin)\G3oEXPO.obj \
+$(bin)\G3oEXPO_F77.obj 
+	if exist $(bin)\libG3oEXPO.lib del $(bin)\libG3oEXPO.lib 
+	lib.exe @<<
+/nologo /out:$(bin)\libG3oEXPO.lib
+$(bin)\G3oEXPO.obj
+$(bin)\G3oEXPO_F77.obj
+<<
+#--------------------------------------------
+
+$(bin)\libG3o.lib : \
+$(bin)\G3oCommands.obj \
+$(bin)\G3oTypes.obj \
+$(bin)\GEANT.obj \
+$(bin)\ogeant.obj \
+$(bin)\G3oBinds.obj 
+	if exist $(bin)\libG3o.lib del $(bin)\libG3o.lib 
+	lib.exe @<<
+/nologo /out:$(bin)\libG3o.lib
+$(bin)\G3oCommands.obj
+$(bin)\G3oTypes.obj
+$(bin)\GEANT.obj
+$(bin)\ogeant.obj
+$(bin)\G3oBinds.obj
+<<
+#--------------------------------------------
+# libG3oEXPO dependencies 
+#--------------------------------------------
+$(bin)\G3oEXPO.obj : $(src)\G3oEXPO.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\G3oEXPO.obj $(src)\G3oEXPO.c
+
+$(bin)\G3oEXPO_F77.obj : $(src)\G3oEXPO_F77.f
+	$(F77) $(F77FLAGS) /c /Fo$(bin)\G3oEXPO_F77.obj $(src)\G3oEXPO_F77.f
+
+#--------------------------------------------
+# libG3o dependencies 
+#--------------------------------------------
+$(bin)\G3oCommands.obj : $(src)\G3oCommands.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\G3oCommands.obj $(src)\G3oCommands.c
+
+$(bin)\G3oTypes.obj : $(src)\G3oTypes.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\G3oTypes.obj $(src)\G3oTypes.c
+
+$(bin)\GEANT.obj : $(src)\GEANT.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\GEANT.obj $(src)\GEANT.c
+
+$(bin)\ogeant.obj : $(src)\ogeant.f
+	$(F77) $(F77FLAGS) /c /Fo$(bin)\ogeant.obj $(src)\ogeant.f
+
+$(bin)\G3oBinds.obj : $(src)\G3oBinds.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\G3oBinds.obj $(src)\G3oBinds.c
+
+$(bin)\idummy.obj : $(app)\idummy.f
+	$(F77) $(F77FLAGS) /c /Fo$(bin)\idummy.obj $(app)\idummy.f
+
+

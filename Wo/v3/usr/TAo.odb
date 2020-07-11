@@ -1,0 +1,133 @@
+!----------------------------
+begin OInterface
+ prefix = TAo_
+ resources = \
+Wo*XoPlotter.PLOTTER_STATS.borderColor:black\
+Wo*XoPlotter.PLOTTER_STATS.borderWidth:1\
+Wo*XoPlotter.borderWidth:3\
+Wo*XoPlotter.textScale:2\
+Wo*XoPlotter.borderColor:dimgrey\
+Wo*XoPlotter.statisticsShort:False\
+Wo*XoPlotter.titlePosition:down\
+Wo*XzPlotter.vAxisTitle:hello\
+Wo*XzPlotter.borderWidth:3\
+Wo*XzPlotter.borderColor:dimgrey
+ createCallback = .osh>\
+  plotterType='XoPlotter'\
+  #plotterType='XzPlotter'
+end
+!Wo*XoPlotter.valueColorMapping:black 1000 red 34000 blue
+!Wo*XoPlotter.virtualColormap:ocolormap_gradient
+!Wo*PLOT_STATS.fontList:*courier*-r-*--11-*
+!Wo*XoPlotter.histogramContext:modeling solid
+!Wo*XoPlotter.histogramContext:color brown lineStyle solid areaStyle solid markerStyle dot modeling solid
+!----------------------------
+begin OWidget
+ name = TAo_1
+ type = TopLevelShell
+ children = TAo_shell_form
+ mappedWhenManaged = true
+ geometry = 500x700+0+0
+ title = TAo
+end
+!----------------------------
+begin OWidget
+ name = TAo_shell_form
+ type = XmForm
+ children = TAo_menuBar MainPanel
+end
+!----------------------------
+begin OWidget
+ name = TAo_menuBar
+ type = XmMenuBar
+ children = TAo_file_casc TAo_file_pdm GridMenu_casc<GridMenu.odb GridMenu_pdm<GridMenu.odb FitMenu_casc<FitMenu.odb FitMenu_pdm<FitMenu.odb Panel_casc<Panel.odb Panel_pdm<Panel.odb Panels_casc<Panels.odb Panels_pdm<Panels.odb Wo_casc<Wo.odb Wo_pull<Wo.odb 
+ background = lightgrey
+ shadowThickness = 4
+ topShadowColor = white
+ bottomShadowColor = black
+ topAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = MainPanel
+ type = XmForm
+ background = grey
+ topAttachment = attach_widget
+ bottomAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = TAo_menuBar
+ children = StoreFileName StoreGridName StoreGridParent
+ createCallback = &osh>fileName=TAoDefault.odb;. LoadPanel.osh
+end
+!----------------------------
+begin OWidget
+ name = StoreFileName
+ type = XmText
+ mappedWhenManaged = false
+end
+!----------------------------
+begin OWidget
+ name = StoreGridName
+ type = XmText
+ mappedWhenManaged = false
+end
+!----------------------------
+begin OWidget
+ name = StoreGridParent
+ type = XmText
+ mappedWhenManaged = false
+ value = MainPanel
+end
+!----------------------------
+begin OWidget
+ name = TAo_file_casc
+ type = XmCascadeButton
+ labelString = File
+ subMenuId = TAo_file_pdm
+end
+!----------------------------
+begin OWidget
+ name = TAo_file_pdm
+ type = XmPulldownMenu
+ children = TAo_tuple TAo_analysis TAo_XoPlotter TAo_print TAo_stop
+end
+!----------------------------
+begin OWidget
+ name = TAo_tuple
+ type = XmPushButton
+ labelString = Load tuple
+ activateCallback = osh> load OTuple.odb | realize -; manageWidget OTuple_palette;raiseWidget OTuple_palette_popup
+end
+!----------------------------
+begin OWidget
+ name = TAo_XoPlotter
+ type = XmPushButton
+ labelString = XoPlotter
+ activateCallback = osh> load XoPlot.odb | realize -; manageWidget XoPlotter_palette;raiseWidget XoPlotter_palette_popup
+end
+!----------------------------
+begin OWidget
+ name = TAo_analysis
+ type = XmPushButton
+ labelString = tuple & XoPlotter
+ activateCallback = osh> load Tuple.odb | realize -; manageWidget Tuple_palette;raiseWidget Tuple_palette_popup
+end
+!----------------------------
+begin OWidget
+ name = TAo_print
+ type = XmPushButton
+ labelString = Print
+ activateCallback = osh> load Visps.odb | realize -;manageWidget Visps_palette;raiseWidget Visps_palette_popup
+end
+!----------------------------
+begin OWidget
+ name = TAo_stop
+ type = XmPushButton
+ labelString = Stop
+ activateCallback = &osh> \
+  isValid OCyclic/cyclic_refresh && delete OCyclic/cyclic_refresh\
+  do Wo sendExit 0
+end

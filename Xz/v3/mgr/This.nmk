@@ -1,0 +1,258 @@
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#  File produced by the Co/omake tool
+# using file Make.odb.
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#  The soft linked packages has been taken
+# from the property 'has' of the 
+# 'Make' object of file Make.odb.
+# It had the value :
+#    X11 Xext Xt Xmu CERN
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+HAS_CPPFLAGS = \
+ $(Xz_CPPFLAGS)\
+ $(X11_CPPFLAGS)\
+ $(Xext_CPPFLAGS)\
+ $(Xt_CPPFLAGS)\
+ $(Xmu_CPPFLAGS)\
+ $(CERN_CPPFLAGS)
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+all   :: mkdir
+
+clean ::
+	if exist $(bin)\*.obj del $(bin)\*.obj
+	if exist $(bin)\*.exe del $(bin)\*.exe
+	if exist $(bin)\*.lib del $(bin)\*.lib
+	if exist $(bin)\*.dll del $(bin)\*.dll
+	if exist $(bin)\*.exp del $(bin)\*.exp
+	if exist $(bin)\*.pdb del $(bin)\*.pdb
+rmlib ::
+	if exist $(bin)\*.lib del $(bin)\*.lib
+rmo   ::
+	if exist $(bin)\*.obj del $(bin)\*.obj
+rmexe ::
+	if exist $(bin)\*.exe del $(bin)\*.exe
+
+mkdir :
+	@if not exist $(bin) mkdir $(bin)
+
+libXz_target = $(bin)\libXz.lib
+libXzPAWC_target = $(bin)\libXzPAWC.lib
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+all :: mkdir \
+$(libXz_target) \
+$(libXzPAWC_target) \
+$(bin)\XzPlotterT.exe \
+$(bin)\oshXz.exe 
+	@echo "Xz : all ok." 
+
+libs :: mkdir \
+$(libXz_target) \
+$(libXzPAWC_target) 
+	@echo "Xz : libs ok." 
+
+apps :: mkdir \
+$(bin)\XzPlotterT.exe \
+$(bin)\oshXz.exe \
+$(bin)\hbookT.exe \
+$(bin)\kuipT.exe \
+$(bin)\pawcT.exe \
+$(bin)\NoHT.exe 
+	@echo "Xz : apps ok." 
+#--------------------------------------------
+rmexeo :
+	if exist $(bin)\XzPlotterT.obj del $(bin)\XzPlotterT.obj
+	if exist $(bin)\oshXz.obj del $(bin)\oshXz.obj
+	if exist $(bin)\hbookT.obj del $(bin)\hbookT.obj
+	if exist $(bin)\kuipT.obj del $(bin)\kuipT.obj
+	if exist $(bin)\pawcT.obj del $(bin)\pawcT.obj
+	if exist $(bin)\NoHT.obj del $(bin)\NoHT.obj
+#--------------------------------------------
+XzPlotterT : $(bin)\XzPlotterT.exe
+	@echo "Xz : XzPlotterT ok."
+oshXz : $(bin)\oshXz.exe
+	@echo "Xz : oshXz ok."
+hbookT : $(bin)\hbookT.exe
+	@echo "Xz : hbookT ok."
+kuipT : $(bin)\kuipT.exe
+	@echo "Xz : kuipT ok."
+pawcT : $(bin)\pawcT.exe
+	@echo "Xz : pawcT ok."
+NoHT : $(bin)\NoHT.exe
+	@echo "Xz : NoHT ok."
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#--------------------------------------------
+$(bin)\XzPlotterT.exe : $(bin)\XzPlotterT.obj \
+$(libXz_target) \
+$(libXzPAWC_target) 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\XzPlotterT.exe $(bin)\XzPlotterT.obj \
+$(libXz) \
+$(libXzPAWC) \
+$(libgraflib) \
+$(libgrafX11) \
+$(libpacklib) \
+$(libkernlib) \
+$(libf77) \
+$(libXx) \
+$(libXmu) \
+$(libXt) \
+$(libXext) \
+$(libX11) \
+$(libCo) \
+$(libm) \
+$(CCLDEND) 
+
+$(bin)\XzPlotterT.obj   : $(app)\XzPlotterT.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\XzPlotterT.obj $(app)\XzPlotterT.c
+#--------------------------------------------
+$(bin)\oshXz.exe : $(bin)\oshXz.obj \
+$(libXz_target) \
+$(libXzPAWC_target) 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\oshXz.exe $(bin)\oshXz.obj \
+$(libXz) \
+$(libXzPAWC) \
+$(libgraflib) \
+$(libgrafX11) \
+$(libpacklib) \
+$(libkernlib) \
+$(libf77) \
+$(libXx) \
+$(libXmu) \
+$(libXt) \
+$(libXext) \
+$(libX11) \
+$(libCo) \
+$(libm) \
+$(CCLDEND) 
+
+$(bin)\oshXz.obj   : $(app)\oshXz.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\oshXz.obj $(app)\oshXz.c
+#--------------------------------------------
+$(bin)\hbookT.exe : $(bin)\hbookT.obj 
+	$(F77LD) $(F77LDFLAGS) $(CCLDO)$(bin)\hbookT.exe $(bin)\hbookT.obj \
+$(libpacklib) \
+$(libkernlib) \
+$(F77LDEND) 
+
+$(bin)\hbookT.obj   : $(app)\hbookT.f
+	$(F77) $(F77FLAGS) /c Fo$(bin)\hbookT.obj $(app)\hbookT.f
+#--------------------------------------------
+$(bin)\kuipT.exe : $(bin)\kuipT.obj \
+$(bin)\ktcdf.obj \
+$(bin)\ktyyy.obj 
+	$(F77LD) $(F77LDFLAGS) $(CCLDO)$(bin)\kuipT.exe $(bin)\kuipT.obj \
+$(bin)\ktcdf.obj \
+$(bin)\ktyyy.obj \
+$(libpacklib) \
+$(F77LDEND) 
+
+$(bin)\kuipT.obj   : $(app)\kuipT.f
+	$(F77) $(F77FLAGS) /c Fo$(bin)\kuipT.obj $(app)\kuipT.f
+#--------------------------------------------
+$(bin)\pawcT.exe : $(bin)\pawcT.obj 
+	$(F77LD) $(F77LDFLAGS) $(CCLDO)$(bin)\pawcT.exe $(bin)\pawcT.obj \
+$(F77LDEND) 
+
+$(bin)\pawcT.obj   : $(app)\pawcT.f
+	$(F77) $(F77FLAGS) /c Fo$(bin)\pawcT.obj $(app)\pawcT.f
+#--------------------------------------------
+$(bin)\NoHT.exe : $(bin)\NoHT.obj 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\NoHT.exe $(bin)\NoHT.obj \
+$(CCLDEND) 
+
+$(bin)\NoHT.obj   : $(app)\NoHT.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\NoHT.obj $(app)\NoHT.c
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# libraries 
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#--------------------------------------------
+
+$(bin)\libXz.lib : \
+$(bin)\XzCommands.obj \
+$(bin)\XzTypes.obj \
+$(bin)\XzPlotter.obj \
+$(bin)\HFile.obj \
+$(bin)\HBook.obj \
+$(bin)\HPlot.obj \
+$(bin)\Kuip.obj \
+$(bin)\ohplot.obj \
+$(bin)\ohbook.obj \
+$(bin)\okuip.obj \
+$(bin)\hg.obj \
+$(bin)\XzBinds.obj 
+	if exist $(bin)\libXz.lib del $(bin)\libXz.lib 
+	lib.exe @<<
+/nologo /out:$(bin)\libXz.lib
+$(bin)\XzCommands.obj
+$(bin)\XzTypes.obj
+$(bin)\XzPlotter.obj
+$(bin)\HFile.obj
+$(bin)\HBook.obj
+$(bin)\HPlot.obj
+$(bin)\Kuip.obj
+$(bin)\ohplot.obj
+$(bin)\ohbook.obj
+$(bin)\okuip.obj
+$(bin)\hg.obj
+$(bin)\XzBinds.obj
+<<
+#--------------------------------------------
+
+$(bin)\libXzPAWC.lib : \
+$(bin)\opawc.obj 
+	if exist $(bin)\libXzPAWC.lib del $(bin)\libXzPAWC.lib 
+	lib.exe @<<
+/nologo /out:$(bin)\libXzPAWC.lib
+$(bin)\opawc.obj
+<<
+#--------------------------------------------
+# libXz dependencies 
+#--------------------------------------------
+$(bin)\XzCommands.obj : $(src)\XzCommands.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\XzCommands.obj $(src)\XzCommands.c
+
+$(bin)\XzTypes.obj : $(src)\XzTypes.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\XzTypes.obj $(src)\XzTypes.c
+
+$(bin)\XzPlotter.obj : $(src)\XzPlotter.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\XzPlotter.obj $(src)\XzPlotter.c
+
+$(bin)\HFile.obj : $(src)\HFile.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\HFile.obj $(src)\HFile.c
+
+$(bin)\HBook.obj : $(src)\HBook.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\HBook.obj $(src)\HBook.c
+
+$(bin)\HPlot.obj : $(src)\HPlot.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\HPlot.obj $(src)\HPlot.c
+
+$(bin)\Kuip.obj : $(src)\Kuip.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\Kuip.obj $(src)\Kuip.c
+
+$(bin)\ohplot.obj : $(src)\ohplot.f
+	$(F77) $(F77FLAGS) /c /Fo$(bin)\ohplot.obj $(src)\ohplot.f
+
+$(bin)\ohbook.obj : $(src)\ohbook.f
+	$(F77) $(F77FLAGS) /c /Fo$(bin)\ohbook.obj $(src)\ohbook.f
+
+$(bin)\okuip.obj : $(src)\okuip.f
+	$(F77) $(F77FLAGS) /c /Fo$(bin)\okuip.obj $(src)\okuip.f
+
+$(bin)\hg.obj : $(src)\hg.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\hg.obj $(src)\hg.c
+
+$(bin)\XzBinds.obj : $(src)\XzBinds.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\XzBinds.obj $(src)\XzBinds.c
+
+#--------------------------------------------
+# libXzPAWC dependencies 
+#--------------------------------------------
+$(bin)\opawc.obj : $(src)\opawc.f
+	$(F77) $(F77FLAGS) /c /Fo$(bin)\opawc.obj $(src)\opawc.f
+
+$(bin)\ktcdf.obj : $(app)\ktcdf.c
+	$(CC) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\ktcdf.obj $(app)\ktcdf.c
+
+$(bin)\ktyyy.obj : $(app)\ktyyy.c
+	$(CC) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\ktyyy.obj $(app)\ktyyy.c
+
+

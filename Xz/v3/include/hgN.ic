@@ -1,0 +1,27 @@
+/* +---------------------- Copyright notice -------------------------------+ */
+/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+/* |   Permission to use, copy, modify, and distribute this software       | */
+/* |   and its documentation for any purpose and without fee is hereby     | */
+/* |   granted, provided that the above copyright notice appear in all     | */
+/* |   copies and that both that copyright notice and this permission      | */
+/* |   notice appear in supporting documentation.  This software is        | */
+/* |   provided "as is" without express or implied warranty.               | */
+/* +---------------------- Copyright notice -------------------------------+ */
+#include <CPrinter.h>
+
+#ifndef HAS_NOT_U
+#define hcreateg hcreateg_
+#define hmapg    hmapg_
+#define hfreeg   hfreeg_
+#endif
+
+#ifdef __cplusplus
+extern "C"{
+#endif
+int  hcreateg    () {CWarn("Xz/hg.c/hcreateg:dummy.\n");return -1;}
+int  hmapg       () {CWarn("Xz/hg.c/hmapg:dummy.\n");return -1;}
+int  hfreeg      () {CWarn("Xz/hg.c/hfreeg:dummy.\n");return -1;}
+#ifdef __cplusplus
+}
+#endif
+

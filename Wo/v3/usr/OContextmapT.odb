@@ -1,0 +1,42 @@
+!----------------------------
+begin OContextmap
+ name = Marker
+ labelPosition = -100. 100. 0.
+ labelHeight = 12.
+ defaultContext = color black lineStyle solid
+ title = Markers
+!labelRotation = x 45 y 45 z 45
+ labelPacking = vertical
+ labelContext = color red
+ iconTypes = marker
+ contexts = color red markerStyle cross markerSize 1\
+color red markerStyle cross markerSize 2\
+color red markerStyle cross markerSize 3\
+color red markerStyle cross markerSize 4\
+color red markerStyle cross markerSize 5\
+color red markerStyle cross markerSize 6\
+color red markerStyle cross markerSize 7\
+color red markerStyle plus markerSize 1\
+color red markerStyle plus markerSize 10\
+color red markerStyle star markerSize 1\
+color red markerStyle star markerSize 10\
+color red markerStyle circle markerSize 2\
+color red markerStyle circle markerSize 5\
+color red markerStyle circle markerSize 7\
+color red markerStyle dot markerSize 10
+ labels = cross size=1\
+cross size=2\
+cross size=3\
+cross size=4\
+cross size=5\
+cross size=6\
+cross size=7\
+plus size=1\
+plus size=7\
+star size=1\
+star size=7\
+circle, size=2\
+circle, size=5\
+circle, size=7\
+dot, no size
+end

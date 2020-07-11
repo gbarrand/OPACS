@@ -1,0 +1,295 @@
+/* +---------------------- Copyright notice -------------------------------+ */
+!/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+!/* |   Permission to use, copy, modify, and distribute this software       | */
+!/* |   and its documentation for any purpose and without fee is hereby     | */
+!/* |   granted, provided that the above copyright notice appear in all     | */
+!/* |   copies and that both that copyright notice and this permission      | */
+!/* |   notice appear in supporting documentation.  This software is        | */
+!/* |   provided "as is" without express or implied warranty.               | */
+!/* +---------------------- Copyright notice -------------------------------+ */
+!----------------------------
+begin OInterface
+ version = v3
+ prefix = Attach_
+ packages = Xm
+end
+!----------------------------
+begin OWidget
+ name = Attach_palette
+ type = XmFormDialog
+ children = Attach_12 Attach_14 Attach_15 Attach_17 Attach_31 Attach_localTarget Attach_33 Attach_34 Attach_41 Attach_35 Attach_42 Attach_43 Attach_44 Attach_13 Attach_18 
+ x = 396
+ y = 428
+ background = lightgrey
+ autoUnmanage = false
+ dialogTitle = Attachment
+end
+!----------------------------
+begin OWidget
+ name = Attach_12
+ type = XmOptionMenu
+ background = lightgrey
+ labelString = side
+ subMenuId = Attach_13
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ topWidget = Attach_44
+end
+!----------------------------
+begin OWidget
+ name = Attach_14
+ type = XmPushButton
+ background = grey
+ labelString = Apply
+ activateCallback = osh> attachWidget `get Widget thisLocalTarget` apply
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = Attach_42
+end
+!----------------------------
+begin OWidget
+ name = Attach_15
+ type = XmPushButton
+ background = lightgrey
+ labelString = Cancel
+ activateCallback = osh> unmanageWidget `get Widget thisParent`
+ topAttachment = attach_widget
+ topWidget = Attach_14
+ bottomAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = Attach_17
+ type = XmOptionMenu
+ background = lightgrey
+ labelString = mode
+ subMenuId = Attach_18
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ topWidget = Attach_12
+end
+!----------------------------
+begin OWidget
+ name = Attach_31
+ type = XmPushButton
+ background = grey
+ labelString = Widget
+ createCallback = osh> setWidgetResource `thisWidget` height `getWidgetResource Attach_localTarget height`
+ activateCallback = osh>\
+   ref=`thisWidget`\
+   widget=`grabWidget $ref`\
+   parent=`get $widget parent`\
+   isNotWidgetSubclass $parent XmForm && ringBell $ref\
+   isNotWidgetSubclass $parent XmForm && echo 'Parent not an XmForm.'\
+   isNotWidgetSubclass $parent XmForm && setWidgetResource Attach_localTarget value ``\
+   isNotWidgetSubclass $parent XmForm && exit\
+   setWidgetResource Attach_localTarget value `get $widget name`
+ topAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_position
+ rightPosition = 30
+end
+!----------------------------
+begin OWidget
+ name = Attach_localTarget
+ type = XmText
+ background = wheat
+ activateCallback = osh> setWidgetResource Attach_12 menuHistory Attach_19; attachWidget `get Widget thisLocalTarget` left
+ topAttachment = attach_form
+ leftAttachment = attach_widget
+ rightAttachment = attach_form
+ leftWidget = Attach_31
+end
+!----------------------------
+begin OWidget
+ name = Attach_33
+ type = XmPushButton
+ background = lightgrey
+ labelString = Glued to
+ createCallback = osh> setWidgetResource `thisWidget` height `getWidgetResource Attach_34 height`
+ activateCallback = osh>\
+   ref=`thisWidget`\
+   widget=`grabWidget $ref`\
+   parent=`get $widget parent`\
+   isNotWidgetSubclass $parent XmForm && ringBell $ref\
+   isNotWidgetSubclass $parent XmForm && echo 'Parent not an XmForm.'\
+   isNotWidgetSubclass $parent XmForm && setWidgetResource Attach_34 value ``\
+   isNotWidgetSubclass $parent XmForm && exit\
+   setWidgetResource Attach_34 value `get $widget name`
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_position
+ topWidget = Attach_localTarget
+ rightPosition = 30
+end
+!----------------------------
+begin OWidget
+ name = Attach_34
+ type = XmText
+ background = wheat
+ topAttachment = attach_widget
+ leftAttachment = attach_widget
+ rightAttachment = attach_form
+ topWidget = Attach_localTarget
+ leftWidget = Attach_33
+end
+!----------------------------
+begin OWidget
+ name = Attach_41
+ type = XmLabel
+ createCallback = osh> setWidgetResource `thisWidget` height `getWidgetResource Attach_35 height`
+ background = lightgrey
+ labelString = Position
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_position
+ topWidget = Attach_34
+ rightPosition = 30
+end
+!----------------------------
+begin OWidget
+ name = Attach_35
+ type = XmText
+ background = lightgrey
+ activateCallback = osh> attachWidget `get Widget thisLocalTarget` apply
+ topAttachment = attach_widget
+ leftAttachment = attach_widget
+ rightAttachment = attach_form
+ topWidget = Attach_34
+ leftWidget = Attach_41
+end
+!----------------------------
+begin OWidget
+ name = Attach_42
+ type = XmPushButton
+ background = grey
+ labelString = Glue position
+ activateCallback = osh> attachWidget `get Widget thisLocalTarget` glue
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = Attach_17
+end
+!----------------------------
+begin OWidget
+ name = Attach_43
+ type = XmLabel
+ createCallback = osh> setWidgetResource `thisWidget` height `getWidgetResource Attach_44 height`
+ background = lightgrey
+ labelString = Offset
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_position
+ topWidget = Attach_35
+ rightPosition = 30
+end
+!----------------------------
+begin OWidget
+ name = Attach_44
+ type = XmText
+ background = lightgrey
+ activateCallback = osh> attachWidget `get Widget thisLocalTarget` apply
+ topAttachment = attach_widget
+ leftAttachment = attach_widget
+ rightAttachment = attach_form
+ topWidget = Attach_35
+ leftWidget = Attach_43
+end
+!----------------------------
+begin OWidget
+ name = Attach_13
+ type = XmPulldownMenu
+ children = Attach_19 Attach_20 Attach_21 Attach_22 
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = Attach_19
+ type = XmPushButton
+ background = lightgrey
+ labelString = left
+ activateCallback = osh> attachWidget `get Widget thisLocalTarget` left
+end
+!----------------------------
+begin OWidget
+ name = Attach_20
+ type = XmPushButton
+ background = lightgrey
+ labelString = top
+ activateCallback = osh> attachWidget `get Widget thisLocalTarget` top
+end
+!----------------------------
+begin OWidget
+ name = Attach_21
+ type = XmPushButton
+ background = lightgrey
+ labelString = right
+ activateCallback = osh> attachWidget `get Widget thisLocalTarget` right
+end
+!----------------------------
+begin OWidget
+ name = Attach_22
+ type = XmPushButton
+ background = lightgrey
+ labelString = bottom
+ activateCallback = osh> attachWidget `get Widget thisLocalTarget` bottom
+end
+!----------------------------
+begin OWidget
+ name = Attach_18
+ type = XmPulldownMenu
+ children = Attach_24 Attach_25 Attach_26 Attach_23 Attach_27 Attach_28 Attach_29 
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = Attach_24
+ type = XmPushButton
+ background = lightgrey
+ labelString = attach_form
+end
+!----------------------------
+begin OWidget
+ name = Attach_25
+ type = XmPushButton
+ background = lightgrey
+ labelString = attach_widget
+end
+!----------------------------
+begin OWidget
+ name = Attach_26
+ type = XmPushButton
+ background = lightgrey
+ labelString = attach_position
+end
+!----------------------------
+begin OWidget
+ name = Attach_23
+ type = XmPushButton
+ background = lightgrey
+ labelString = attach_none
+end
+!----------------------------
+begin OWidget
+ name = Attach_27
+ type = XmPushButton
+ background = lightgrey
+ labelString = attach_opposite_form
+end
+!----------------------------
+begin OWidget
+ name = Attach_28
+ type = XmPushButton
+ background = lightgrey
+ labelString = attach_opposite_widget
+end
+!----------------------------
+begin OWidget
+ name = Attach_29
+ type = XmPushButton
+ background = lightgrey
+ labelString = attach_self
+end

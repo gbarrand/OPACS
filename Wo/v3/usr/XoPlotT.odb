@@ -1,0 +1,183 @@
+!/* +---------------------- Copyright notice -------------------------------+ */
+!/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+!/* |   Permission to use, copy, modify, and distribute this software       | */
+!/* |   and its documentation for any purpose and without fee is hereby     | */
+!/* |   granted, provided that the above copyright notice appear in all     | */
+!/* |   copies and that both that copyright notice and this permission      | */
+!/* |   notice appear in supporting documentation.  This software is        | */
+!/* |   provided "as is" without express or implied warranty.               | */
+!/* +---------------------- Copyright notice -------------------------------+ */
+!----------------------------
+begin OInterface
+ version = v3
+ prefix = XoPlotterT_
+ parent = WoTest_form
+ packages = Xm Xo
+ createCallback = osh>\
+  isValid OTuple/naine && exit\
+  load naine.odb | get - name
+end
+!----------------------------
+begin OWidget
+ name = XoPlotterT_panel
+ type = XmBulletinBoard
+ children = XoPlotterT_xyv XoPlotterT_scatter XoPlotterT_cloud XoPlotterT_tuple XoPlotterT_profile XoPlotterT_curve XoPlotterT_camera XoPlotterT_hist
+ background = dimgrey
+ topAttachment = attach_form
+ bottomAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = XoPlotterT_xyv
+ type = XoPlotter
+ x = 472
+ y = 111
+ width = 195
+ height = 169
+ highlightContext = color green
+ buffering = double
+ depthTreatment = zbuffer
+ layout = xyv
+ textContext = color blue
+ wallContext = color skyblue
+ histogramContext = color pink painting shadow
+ plottedObjects = naine
+ statisticsVisible = false
+ numberOfBoundColumns = 2
+ xAxisBinding = VAR3
+ xAxisAutomatic = false
+ xAxisMinimum = 0
+ xAxisMaximum = 3000
+ yAxisBinding = VAR4
+end
+!----------------------------
+begin OWidget
+ name = XoPlotterT_scatter
+ type = XoPlotter
+ x = 191
+ y = 242
+ width = 198
+ height = 180
+ layout = xy
+ wallsVisible = false
+ plottedObjects = naine
+ statisticsVisible = false
+ tupleDataReceiver = scatter
+ numberOfBoundColumns = 2
+ yAxisBinding = VAR4
+ scatterContext = color blue markerStyle plus markerSize 10 modeling cloud
+end
+!----------------------------
+begin OWidget
+ name = XoPlotterT_cloud
+ type = XoPlotter
+ x = 250
+ y = 430
+ width = 198
+ height = 180
+ layout = xyz
+ gridsVisible = True
+ wallsVisible = false
+ wallContext = color green
+ plottedObjects = naine
+ statisticsVisible = false
+ tupleDataReceiver = scatter
+ numberOfBoundColumns = 3
+ yAxisBinding = VAR4
+ zAxisBinding = VAR2
+ histogramContext = color blue markerStyle plus markerSize 10 modeling cloud
+end
+!----------------------------
+begin OWidget
+ name = XoPlotterT_tuple
+ type = XoPlotter
+ x = 14
+ y = 144
+ width = 158
+ height = 186
+ gridsVisible = false
+ histogramContext = color magenta lineStyle dotted
+ plottedObjects = naine
+ statisticsVisible = true
+ xAxisBinding = VAR3
+ xAxisAutomatic = false
+ xAxisMinimum = 0
+ xAxisMaximum = 2000
+end
+!----------------------------
+begin OWidget
+ name = XoPlotterT_profile
+ type = XoPlotter
+ x = 441
+ y = 333
+ width = 192
+ height = 164
+ layout = xv
+ histogramContext = modeling solid
+ plottedObjects = naine
+ statisticsVisible = false
+ titleEditable = true
+ binBarType = sigma
+ tupleDataReceiver = profile
+ numberOfBoundColumns = 2
+ yAxisBinding = VAR4
+ vAxisAutomatic = false
+ vAxisMinimum = 85
+ vAxisMaximum = 110
+end
+!----------------------------
+begin OWidget
+ name = XoPlotterT_curve
+ type = XoPlotter
+ children = XoPlotterT_button 
+ x = 196
+ y = 11
+ width = 220
+ height = 217
+ scatterContext = color blue modeling wire_frame
+ statisticsVisible = false
+ xAxisAutomatic = false
+ xAxisMinimum = 0
+ xAxisMaximum = 1
+ yAxisAutomatic = false
+ yAxisMinimum = 0
+ yAxisMaximum = 1
+end
+!----------------------------
+begin OWidget
+ name = XoPlotterT_camera
+ type = XoCamera
+ x = 680
+ y = 111
+ width = 195
+ height = 169
+ buffering = double
+ depthTreatment = zbuffer
+ referenceCamera = XoPlotterT_xyv
+ backgroundColor = wheat
+end
+!----------------------------
+begin OWidget
+ name = XoPlotterT_button
+ type = XmPushButton
+ activateCallback = osh> plotCurve XoPlotterT_curve 0. 0. 0.25 0.75 0.75 0.25 0.9 0.75
+ labelString = Draw curve
+end
+!----------------------------
+begin OWidget
+ name = XoPlotterT_hist
+ type = XoPlotter
+ width = 198
+ height = 180
+ depthTreatment = zbuffer
+ gridsVisible = False
+ createCallback = osh>\
+  ohist=`create OHistogram name XoPlotterT_hist dimension 1 xAxisNumberOfBins 10 xAxisMinimum 0. xAxisMaximum 1.`\
+  setWidgetResource `thisWidget` plottedObjects $ohist\
+  set CMath randomMaximum 1.\
+  script='osh> value=`get CMath random`;do OHistogram/XoPlotterT_hist fill $value;updatePlot XoPlotterT_hist'\
+  ocyclic=`create OCyclic name XoPlotterT_hist widget XoPlotterT_hist delay 100 script $script`\
+  do $ocyclic start
+end

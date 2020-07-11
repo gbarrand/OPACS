@@ -1,0 +1,186 @@
+/* +---------------------- Copyright notice -------------------------------+ */
+/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+/* |   Permission to use, copy, modify, and distribute this software       | */
+/* |   and its documentation for any purpose and without fee is hereby     | */
+/* |   granted, provided that the above copyright notice appear in all     | */
+/* |   copies and that both that copyright notice and this permission      | */
+/* |   notice appear in supporting documentation.  This software is        | */
+/* |   provided "as is" without express or implied warranty.               | */
+/* +---------------------- Copyright notice -------------------------------+ */
+
+#ifdef __cplusplus
+extern "C"{
+#endif
+static void      XmListSetItemsFromText          (Widget,int,char**);
+
+static XmString* XmStringTableCreateFromString   (char*);
+static XmString* XmStringTableCreateFromText     (int,char**);
+static int       XmStringTableGetSize            (XmString*);
+static void      XmStringTableDelete             (XmString*);
+
+static char*     XmConvertCompoundStringToString (XmString,int);
+#ifdef __cplusplus
+}
+#endif
+/***************************************************************************/
+/***************************************************************************/
+/***************************************************************************/
+/***************************************************************************/
+static void XmListSetItemsFromText (
+ Widget        This 
+,int           a_linen
+,char**        a_lines
+)
+/***************************************************************************/
+/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+{
+  XmString* xmss;
+  int       xmsn;
+/*.........................................................................*/
+  if(This==NULL)                                  return;
+  if(!XtIsSubclass(This,xmListWidgetClass)) return;
+  xmss                   = XmStringTableCreateFromText  (a_linen,a_lines);
+  xmsn                   = XmStringTableGetSize    (xmss);
+  XmListDeleteAllItems   (This);
+  XmListDeselectAllItems (This);
+  XmListAddItems         (This,xmss,xmsn,0);
+  XmStringTableDelete         (xmss);
+}
+/***************************************************************************/
+/******** XmStringTable routine to handle null ended list of XmString ***********/
+/***************************************************************************/
+/***************************************************************************/
+static XmString* XmStringTableCreateFromString (
+ char* a_string
+)
+/***************************************************************************/
+/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+{
+  CList        items  = NULL;
+  char*         string;
+  char*         token;
+  XmString      xmstring;
+/*.........................................................................*/
+  if( (a_string==NULL) || (*a_string=='\0') ) return NULL;
+  items      = NULL;
+  token      = string = (char*)XtNewString(a_string);
+  while(1)
+    { char* pos;
+      pos = strstr(token,"\\n");
+      if(pos!=NULL)
+        {  
+          *pos         = 0;
+          xmstring     = XmStringLtoRCreate(token,XmSTRING_DEFAULT_CHARSET);
+          CListAddEntry (&items,xmstring);
+          token        = pos + 2;
+        }
+      else /* last item */
+        {
+          xmstring     = XmStringLtoRCreate(token,XmSTRING_DEFAULT_CHARSET);
+          CListAddEntry (&items,xmstring);
+          break; 
+        }
+    }
+  XtFree (string);
+  return (XmString*)items;
+}
+/***************************************************************************/
+static XmString* XmStringTableCreateFromText (
+ int a_number
+,char** a_list
+)
+/***************************************************************************/
+/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+{
+  XmString*  table;
+   int count,icount;
+/*.........................................................................*/
+  if(a_list==NULL)     return NULL; 
+  if(a_number<=0) return NULL; 
+  table          = (XmString*) CMemoryAllocateBlock((a_number+1)*sizeof(XmString));
+  if(table==NULL)     return NULL;
+  icount         = 0;
+  for(count=0;count<a_number;count++)
+    { XmString     xmstring;
+      xmstring     = XmStringLtoRCreate(a_list[count],XmSTRING_DEFAULT_CHARSET);
+      if(xmstring!=NULL)
+        {
+	  table[icount] = xmstring;
+	  icount++;
+	}
+    }
+  table[icount]  = NULL; /*Null ended list*/
+  return         table;
+}
+/***************************************************************************/
+static int XmStringTableGetSize (
+ XmString* This
+)
+/***************************************************************************/
+/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+{
+/*.........................................................................*/
+  return CListGetSize ((CList)This);
+}
+/***************************************************************************/
+static void XmStringTableDelete (
+ XmString* This
+)
+/***************************************************************************/
+/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+{
+   int count;
+/*.........................................................................*/
+  if(This==NULL) return;
+  count = 0;
+  while(This[count]!=NULL)
+    {
+      XmStringFree (This[count]);
+      count++;
+    }
+  CListDelete ((CList)This);
+}
+/***************************************************************************/
+/***************************************************************************/
+/***************************************************************************/
+static char* XmConvertCompoundStringToString (
+ XmString a_cps 
+,int a_number 
+)
+/***************************************************************************/
+/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+{
+  char*             string;
+   int      icount;
+  XmStringContext   context;
+  Boolean           done;
+/*.........................................................................*/
+  if(a_cps==NULL)           return NULL;
+  string               = NULL;
+  XmStringInitContext  (&context,a_cps);
+  icount               = 0;
+  done                 = False;
+  while(done==False)
+    {  
+      char*             text    = NULL;
+      XmStringCharSet   charset = NULL;
+      XmStringDirection direct;
+      Boolean           sep;
+      if(XmStringGetNextSegment (context,&text,&charset,&direct,&sep)==True) 
+	{
+	  XtFree               (charset);
+	  if(sep==True)        done = True;
+	  if(icount==a_number) 
+	    { 
+	      string = text;
+	      break;
+	    }
+	  icount               ++;
+	  XtFree               (text);
+	}
+      else
+	done = True;
+    }
+  XmStringFreeContext  (context);
+  return               string;
+}

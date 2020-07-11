@@ -1,0 +1,141 @@
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#  File produced by the Co/omake tool
+# using file Make.odb.
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#  The soft linked packages has been taken
+# from the property 'has' of the 
+# 'Make' object of file Make.odb.
+# It had the value :
+#    X11 Xext Xt Xmu
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+HAS_CPPFLAGS = \
+ $(Xx_CPPFLAGS)\
+ $(X11_CPPFLAGS)\
+ $(Xext_CPPFLAGS)\
+ $(Xt_CPPFLAGS)\
+ $(Xmu_CPPFLAGS)
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+all   :: mkdir
+
+clean ::
+	if exist $(bin)\*.obj del $(bin)\*.obj
+	if exist $(bin)\*.exe del $(bin)\*.exe
+	if exist $(bin)\*.lib del $(bin)\*.lib
+	if exist $(bin)\*.dll del $(bin)\*.dll
+	if exist $(bin)\*.exp del $(bin)\*.exp
+	if exist $(bin)\*.pdb del $(bin)\*.pdb
+rmlib ::
+	if exist $(bin)\*.lib del $(bin)\*.lib
+rmo   ::
+	if exist $(bin)\*.obj del $(bin)\*.obj
+rmexe ::
+	if exist $(bin)\*.exe del $(bin)\*.exe
+
+mkdir :
+	@if not exist $(bin) mkdir $(bin)
+
+libXx_target = $(bin)\libXx.lib
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+all :: mkdir \
+$(libXx_target) 
+	@echo "Xx : all ok." 
+
+libs :: mkdir \
+$(libXx_target) 
+	@echo "Xx : libs ok." 
+
+apps :: mkdir \
+$(bin)\omail.exe \
+$(bin)\NoHT.exe 
+	@echo "Xx : apps ok." 
+#--------------------------------------------
+rmexeo :
+	if exist $(bin)\omail.obj del $(bin)\omail.obj
+	if exist $(bin)\NoHT.obj del $(bin)\NoHT.obj
+#--------------------------------------------
+omail : $(bin)\omail.exe
+	@echo "Xx : omail ok."
+NoHT : $(bin)\NoHT.exe
+	@echo "Xx : NoHT ok."
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#--------------------------------------------
+$(bin)\omail.exe : $(bin)\omail.obj \
+$(libXx_target) 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\omail.exe $(bin)\omail.obj \
+$(libXx) \
+$(libCo) \
+$(libXmu) \
+$(libXt) \
+$(libXext) \
+$(libX11) \
+$(libm) \
+$(CCLDEND) 
+
+$(bin)\omail.obj   : $(app)\omail.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\omail.obj $(app)\omail.c
+#--------------------------------------------
+$(bin)\NoHT.exe : $(bin)\NoHT.obj 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\NoHT.exe $(bin)\NoHT.obj \
+$(CCLDEND) 
+
+$(bin)\NoHT.obj   : $(app)\NoHT.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\NoHT.obj $(app)\NoHT.c
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# libraries 
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#--------------------------------------------
+
+$(bin)\libXx.lib : \
+$(bin)\XxCommands.obj \
+$(bin)\XxTypes.obj \
+$(bin)\XxF77.obj \
+$(bin)\XWidget.obj \
+$(bin)\XMailbox.obj \
+$(bin)\XSelection.obj \
+$(bin)\XDisplay.obj \
+$(bin)\LocPix.obj \
+$(bin)\XxBinds.obj 
+	if exist $(bin)\libXx.lib del $(bin)\libXx.lib 
+	lib.exe @<<
+/nologo /out:$(bin)\libXx.lib
+$(bin)\XxCommands.obj
+$(bin)\XxTypes.obj
+$(bin)\XxF77.obj
+$(bin)\XWidget.obj
+$(bin)\XMailbox.obj
+$(bin)\XSelection.obj
+$(bin)\XDisplay.obj
+$(bin)\LocPix.obj
+$(bin)\XxBinds.obj
+<<
+#--------------------------------------------
+# libXx dependencies 
+#--------------------------------------------
+$(bin)\XxCommands.obj : $(src)\XxCommands.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\XxCommands.obj $(src)\XxCommands.c
+
+$(bin)\XxTypes.obj : $(src)\XxTypes.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\XxTypes.obj $(src)\XxTypes.c
+
+$(bin)\XxF77.obj : $(src)\XxF77.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\XxF77.obj $(src)\XxF77.c
+
+$(bin)\XWidget.obj : $(src)\XWidget.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\XWidget.obj $(src)\XWidget.c
+
+$(bin)\XMailbox.obj : $(src)\XMailbox.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\XMailbox.obj $(src)\XMailbox.c
+
+$(bin)\XSelection.obj : $(src)\XSelection.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\XSelection.obj $(src)\XSelection.c
+
+$(bin)\XDisplay.obj : $(src)\XDisplay.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\XDisplay.obj $(src)\XDisplay.c
+
+$(bin)\LocPix.obj : $(src)\LocPix.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\LocPix.obj $(src)\LocPix.c
+
+$(bin)\XxBinds.obj : $(src)\XxBinds.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\XxBinds.obj $(src)\XxBinds.c
+
+

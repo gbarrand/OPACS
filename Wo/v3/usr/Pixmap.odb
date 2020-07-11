@@ -1,0 +1,198 @@
+!/* +---------------------- Copyright notice -------------------------------+ */
+!/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+!/* |   Permission to use, copy, modify, and distribute this software       | */
+!/* |   and its documentation for any purpose and without fee is hereby     | */
+!/* |   granted, provided that the above copyright notice appear in all     | */
+!/* |   copies and that both that copyright notice and this permission      | */
+!/* |   notice appear in supporting documentation.  This software is        | */
+!/* |   provided "as is" without express or implied warranty.               | */
+!/* +---------------------- Copyright notice -------------------------------+ */
+!----------------------------
+begin OInterface
+ version = v3
+ prefix = Pixmap_
+ packages = Xm
+end
+!----------------------------
+begin OWidget
+ name = Pixmap_palette
+ type = XmFormDialog
+ children = Pixmap_widget Pixmap_localTarget Pixmap_capture Pixmap_radio Pixmap_6 Pixmap_7 Pixmap_8 Pixmap_label Pixmap_apply Pixmap_sys Pixmap_cancel 
+ dialogTitle = Save pixmap
+ background = lightgrey
+ autoUnmanage = False
+end
+!----------------------------
+begin OWidget
+ name = Pixmap_widget
+ type = XmPushButton
+ background = grey
+ labelString = Widget
+ createCallback = osh> setWidgetResource `thisWidget` height `getWidgetResource Pixmap_localTarget height`
+ activateCallback = osh>\
+  ref=`thisWidget`\
+  setWidgetResource Pixmap_localTarget value `grabWidgetName $ref`
+ topAttachment = attach_widget
+ topWidget = Pixmap_capture
+ leftAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = Pixmap_localTarget
+ type = XmText
+ background = wheat
+ topAttachment = attach_widget
+ topWidget = Pixmap_capture
+ leftAttachment = attach_widget
+ rightAttachment = attach_form
+ leftWidget = Pixmap_widget
+end
+!----------------------------
+begin OWidget
+ name = Pixmap_capture
+ type = XmPushButton
+ activateCallback = osh>\
+  widget=`thisWidget`\
+  set $widget cursor watch\
+  fname=`getWidgetResource Pixmap_7 value`\
+  set Widget grabCursor crosshair\
+  do $widget grabRootWindowPart\
+  x=`get Widget grabbedX`\
+  y=`get Widget grabbedY`\
+  w=`get Widget grabbedWidth`\
+  h=`get Widget grabbedHeight`\
+  test `getWidgetResource Pixmap_4 set` eq true && saveRootWindowPixmap $widget $x $y $w $h ps  $fname\
+  test `getWidgetResource Pixmap_5 set` eq true && saveRootWindowPixmap $widget $x $y $w $h gif $fname\
+  test `getWidgetResource Pixmap_9 set` eq true && saveRootWindowPixmap $widget $x $y $w $h xbm $fname\
+  set $widget cursor default
+ labelString = Capture
+ background = lightgrey
+ topAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = Pixmap_radio
+ type = XmRadioBox
+ children = Pixmap_4 Pixmap_5 Pixmap_9 
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = Pixmap_localTarget
+end
+!----------------------------
+begin OWidget
+ name = Pixmap_4
+ type = XmToggleButton
+ background = grey
+ labelString = ps
+ set = true
+ valueChangedCallback = osh> setWidgetResource Pixmap_7 value out.ps;setWidgetResource Pixmap_sys value 'ghostview -back white -fore black  out.ps &'
+end
+!----------------------------
+begin OWidget
+ name = Pixmap_5
+ type = XmToggleButton
+ background = grey
+ labelString = gif
+ valueChangedCallback = osh> setWidgetResource Pixmap_7 value out.gif;setWidgetResource Pixmap_sys value 'xv out.gif &'
+end
+!----------------------------
+begin OWidget
+ name = Pixmap_9
+ type = XmToggleButton
+ background = grey
+ labelString = X bitmap
+ valueChangedCallback = osh> setWidgetResource Pixmap_7 value out.xbm;setWidgetResource Pixmap_sys value 'bitmap out.xbm &'
+end
+!----------------------------
+begin OWidget
+ name = Pixmap_6
+ type = XmLabel
+ background = black
+ foreground = white
+ labelString = File name
+ topAttachment = attach_widget
+ topWidget = Pixmap_radio
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = Pixmap_7
+ type = XmText
+ background = grey
+ topAttachment = attach_widget
+ topWidget = Pixmap_6
+ createCallback = osh> setWidgetResource `get Widget this` value out.ps
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = Pixmap_8
+ type = XmPushButton
+ activateCallback = osh>\
+  set `get Widget this` cursor watch\
+  widget=`get Widget thisLocalTarget`\
+  fname=`getWidgetResource Pixmap_7 value`\
+  test `getWidgetResource Pixmap_4 set` eq true && saveWidgetPixmap $widget ps  $fname\
+  test `getWidgetResource Pixmap_5 set` eq true && saveWidgetPixmap $widget gif $fname\
+  test `getWidgetResource Pixmap_9 set` eq true && saveWidgetPixmap $widget xbm $fname\
+  set `get Widget this` cursor default
+ labelString = Write pixmap
+ background = grey
+ topAttachment = attach_widget
+ topWidget = Pixmap_7
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = Pixmap_label
+ type = XmLabel
+ labelString = View command
+ foreground = white
+ background = black
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = Pixmap_8
+end
+!----------------------------
+begin OWidget
+ name = Pixmap_apply
+ type = XmPushButton
+ labelString = Apply
+ createCallback = osh> setWidgetResource `thisWidget` height `getWidgetResource Pixmap_sys height`
+ background = lightgrey
+ topAttachment = attach_widget
+ topWidget = Pixmap_label
+ activateCallback = osh> spawn `getWidgetResource Pixmap_sys value`
+end
+!----------------------------
+begin OWidget
+ name = Pixmap_sys
+ type = XmText
+ createCallback = osh> setWidgetResource `get Widget this` value 'ghostview -back white -fore black  out.ps &'
+ activateCallback = osh> spawn `get Widget thisValue`
+ background = lightgrey
+ topAttachment = attach_widget
+ leftAttachment = attach_widget
+ rightAttachment = attach_form
+ topWidget = Pixmap_label
+ leftWidget = Pixmap_apply
+end
+!----------------------------
+begin OWidget
+ name = Pixmap_cancel
+ type = XmPushButton
+ activateCallback = osh> do `get Widget thisParent` unmanage
+ labelString = Cancel
+ background = lightgrey
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topAttachment = attach_widget
+ topWidget = Pixmap_sys
+end

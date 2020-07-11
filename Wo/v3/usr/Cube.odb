@@ -1,0 +1,84 @@
+!----------------------------
+begin OInterface
+ version = v3
+ prefix = Cube_
+ packages = Xm 
+end
+!----------------------------
+begin OWidget
+ name = Cube_shell
+ type = TopLevelShell
+ children = Cube_form 
+ geometry = 400x300+0+0
+ title = Xxx
+end
+!----------------------------
+begin OWidget
+ name = Cube_form
+ type = XmForm
+ children = Cube_menubar Cube_bb 
+end
+!----------------------------
+begin OWidget
+ name = Cube_menubar
+ type = XmMenuBar
+ children = Wo_casc<Wo.odb Cube_casc Wo_pull<Wo.odb Cube_pdm 
+ background = lightgrey
+ shadowThickness = 4
+ topShadowColor = white
+ bottomShadowColor = black
+ menuHelpWidget = Cube_casc
+ topAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = Cube_casc
+ type = XmCascadeButton
+ labelString = Help
+ mnemonic = H
+ subMenuId = Cube_pdm
+end
+!----------------------------
+begin OWidget
+ name = Cube_pdm
+ type = XmPulldownMenu
+ children = Cube_help 
+end
+!----------------------------
+begin OWidget
+ name = Cube_help
+ type = XmPushButton
+ background = lightgrey
+ labelString = Help
+ activateCallback = osh>\
+  load Help.odb | realize -\
+  showTopic Help_help 'Xxx.htm'\
+  manageWidget Help_palette;raiseWidget Help_palette_popup
+end
+!----------------------------
+begin OWidget
+ name = Cube_bb
+ type = XmBulletinBoard
+ children = Cube_camera 
+ background = grey
+ topAttachment = attach_widget
+ bottomAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = Cube_menubar
+end
+!----------------------------
+begin OWidget
+ name = Cube_camera
+ type = XoCamera
+ x = 71
+ y = 23
+ width = 294
+ height = 219
+ createCallback = osh>\
+  load CubeCtx.odb | empty\
+  collect Cube | represent - nil Cube_size | viewNode - Cube_camera\
+  represent OContextmap/Cube_size | viewNode - Cube_camera
+end

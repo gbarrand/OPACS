@@ -1,0 +1,431 @@
+!/* +---------------------- Copyright notice -------------------------------+ */
+!/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+!/* |   Permission to use, copy, modify, and distribute this software       | */
+!/* |   and its documentation for any purpose and without fee is hereby     | */
+!/* |   granted, provided that the above copyright notice appear in all     | */
+!/* |   copies and that both that copyright notice and this permission      | */
+!/* |   notice appear in supporting documentation.  This software is        | */
+!/* |   provided "as is" without express or implied warranty.               | */
+!/* +---------------------- Copyright notice -------------------------------+ */
+!----------------------------
+begin OInterface
+ version = v3
+ prefix = Tuple_
+ packages = Xm Xo
+end
+!----------------------------
+begin OWidget
+ name = Tuple_palette
+ type = XmFormDialog
+ children = Tuple_220 Tuple_localTarget Tuple_326 Tuple_331 Tuple_332 Tuple_bind Tuple_339 Tuple_340 Tuple_coln Tuple_label_plottedObjects Tuple_plottedObjects Tuple_354 Tuple_362 Tuple_372 Tuple_378 Tuple_384 Tuple_390 Tuple_bar_option Tuple_327 Tuple_bind_pdm Tuple_coln_pdm Tuple_bar_pdm 
+ background = grey
+ autoUnmanage = false
+ dialogTitle = tuple->XoPlotter
+end
+!----------------------------
+begin OWidget
+ name = Tuple_354
+ type = XmPushButton
+ background = grey
+ labelString = XoPlotter
+ createCallback = osh> setWidgetResource `thisWidget` height `getWidgetResource Tuple_localTarget height`
+ activateCallback = osh> \
+  ref=`thisWidget`\
+  setWidgetResource Tuple_localTarget value `grabWidgetName $ref`\
+  callWidgetCallbacks Tuple_localTarget activateCallback
+ topAttachment = attach_form
+ leftAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = Tuple_localTarget
+ type = XmText
+ background = wheat
+ activateCallback = osh>\
+  localTarget=`get Widget thisLocalTarget`\
+  test $localTarget eq '' && exit\
+  isNotWidgetSubclass $localTarget XoPlotter && echo 'Not an XoPlotter.'\
+  isNotWidgetSubclass $localTarget XoPlotter && exit\
+  #Tuple_plottedObjects\
+  setWidgetResource Tuple_plottedObjects value `getWidgetResource $localTarget plottedObjects`\
+  #Tuple_326\
+  setWidgetOption Tuple_326 `getWidgetResource $localTarget tupleDataReceiver`\
+  #Tuple_list_cols\
+  table=`getWidgetResource $localTarget tuple`\
+  list=`collect OTuple where name eq $table | get - labels`\
+  test $table ne '' && setWidgetResource Tuple_list_cols items $list\
+  #Tuple_coln, Tuple_390, Tuple_372, Tuple_bar_option\
+  setWidgetOption Tuple_coln `getWidgetResource $localTarget numberOfBoundColumns`\
+  setWidgetResource Tuple_390 value `getWidgetResource $localTarget cuts`\
+  setWidgetResource Tuple_372 value `getWidgetResource $localTarget title`\
+  setWidgetOption Tuple_bar_option `getWidgetResource $localTarget binBarType`\
+  #Tuple_340\
+  axis=`getWidgetOption Tuple_bind`\
+  res=`printf %sAxisBinding $axis`\
+  setWidgetResource Tuple_340 value `getWidgetResource $localTarget $res`
+ targetChangedCallback = osh> callWidgetCallbacks `get Widget this` activateCallback
+ topAttachment = attach_form
+ leftAttachment = attach_widget
+ rightAttachment = attach_form
+ leftWidget = Tuple_354
+end
+!----------------------------
+begin OWidget
+ name = Tuple_326
+ type = XmOptionMenu
+ background = grey
+ labelString = To what
+ subMenuId = Tuple_327
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = Tuple_coln
+end
+!----------------------------
+begin OWidget
+ name = Tuple_331
+ type = XmLabel
+ background = black
+ foreground = white
+ labelString = Input table columns
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = Tuple_bar_option
+end
+!----------------------------
+begin OWidget
+ name = Tuple_332
+ type = XmFrame
+ children = Tuple_list_cols 
+ borderWidth = 5
+ borderColor = grey
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = Tuple_331
+ bottomAttachment = attach_widget
+ bottomWidget = Tuple_bind
+end
+!----------------------------
+begin OWidget
+ name = Tuple_list_cols
+ type = XmScrolledList
+ background = lightgrey
+ visibleItemCount = 5
+ selectionPolicy = single_select
+ scrollBarDisplayPolicy = static
+ singleSelectionCallback = osh>\
+  axis=`getWidgetOption Tuple_bind`\
+  res=`printf %sAxisBinding $axis`\
+  localTarget=`get Widget thisLocalTarget`\
+  test $localTarget eq '' && exit\
+  setAndMarkWidgetResource $localTarget $res `get Widget thisValue`\
+  callWidgetCallbacks Tuple_localTarget activateCallback
+end
+!----------------------------
+begin OWidget
+ name = Tuple_bind
+ type = XmOptionMenu
+ background = grey
+ labelString = Bind axis
+ subMenuId = Tuple_bind_pdm
+ bottomAttachment = attach_widget
+ bottomWidget = Tuple_340
+end
+!----------------------------
+begin OWidget
+ name = Tuple_339
+ type = XmLabel
+ background = grey
+ labelString = Bind
+ bottomAttachment = attach_widget
+ bottomWidget = Tuple_362
+ createCallback = osh> setWidgetResource `thisWidget` height `getWidgetResource Tuple_340 height`
+end
+!----------------------------
+begin OWidget
+ name = Tuple_340
+ type = XmText
+ background = lightgrey
+ activateCallback = osh>\
+  widget=`get Widget this`\
+  value=`getWidgetResource $widget value`\
+  axis=`getWidgetOption Tuple_bind`\
+  res=`printf %sAxisBinding $axis`\
+  localTarget=`get Widget thisLocalTarget`\
+  test $localTarget eq '' && exit\
+  setAndMarkWidgetResource $localTarget $res $value
+ leftAttachment = attach_widget
+ rightAttachment = attach_form
+ leftWidget = Tuple_339
+ bottomAttachment = attach_widget
+ bottomWidget = Tuple_362
+end
+!----------------------------
+begin OWidget
+ name = Tuple_label_plottedObjects
+ type = XmLabel
+ labelString = Plotted objects
+ foreground = white
+ background = black
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = Tuple_localTarget
+end
+!----------------------------
+begin OWidget
+ name = Tuple_plottedObjects
+ type = XmText
+ background = lightgrey
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = Tuple_label_plottedObjects
+ activateCallback = osh>\
+  value=`getWidgetResource Tuple_plottedObjects value`\
+  localTarget=`get Widget thisLocalTarget`\
+  test $localTarget eq '' && exit\
+  setAndMarkWidgetResource $localTarget plottedObjects $value\
+  updatePlot $localTarget now\
+  callWidgetCallbacks Tuple_localTarget activateCallback
+end
+!----------------------------
+begin OWidget
+ name = Tuple_coln
+ type = XmOptionMenu
+ background = grey
+ labelString = Number of column to plot
+ subMenuId = Tuple_coln_pdm
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = Tuple_plottedObjects
+end
+!----------------------------
+begin OWidget
+ name = Tuple_362
+ type = XmLabel
+ background = black
+ foreground = white
+ labelString = Cuts
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ bottomAttachment = attach_widget
+ bottomWidget = Tuple_390
+end
+!----------------------------
+begin OWidget
+ name = Tuple_378
+ type = XmPushButton
+ background = grey
+ labelString = Title
+ topAttachment = attach_widget
+ topWidget = Tuple_326
+ createCallback = osh> setWidgetResource `thisWidget` height `getWidgetResource Tuple_372 height`
+ activateCallback = osh> callWidgetCallbacks Tuple_372 activateCallback
+end
+!----------------------------
+begin OWidget
+ name = Tuple_372
+ type = XmText
+ background = grey
+ activateCallback = osh>\
+  widget=`get Widget this`\
+  localTarget=`get Widget thisLocalTarget`\
+  test $localTarget eq '' && exit\
+  setWidgetResource $localTarget title `getWidgetResource $widget value`
+ topAttachment = attach_widget
+ leftAttachment = attach_widget
+ rightAttachment = attach_form
+ topWidget = Tuple_326
+ leftWidget = Tuple_378
+end
+!----------------------------
+begin OWidget
+ name = Tuple_384
+ type = XmPushButton
+ background = grey
+ labelString = Swap X Y
+ activateCallback = osh>\
+  localTarget=`get Widget thisLocalTarget`\
+  test $localTarget eq '' && exit\
+  sbindx=`getWidgetResource $localTarget xAxisBinding`\
+  sbindy=`getWidgetResource $localTarget yAxisBinding`\
+  setAndMarkWidgetResource $localTarget xAxisBinding $sbindy\
+  setAndMarkWidgetResource $localTarget yAxisBinding $sbindx\
+  callWidgetCallbacks Tuple_localTarget activateCallback
+ leftAttachment = attach_widget
+ rightAttachment = attach_form
+ leftWidget = Tuple_bind
+ bottomAttachment = attach_widget
+ bottomWidget = Tuple_340
+end
+!----------------------------
+begin OWidget
+ name = Tuple_390
+ type = XmText
+ background = lightgrey
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ bottomAttachment = attach_widget
+ bottomWidget = Tuple_220
+ activateCallback = osh>\
+  widget=`get Widget this`\
+  localTarget=`get Widget thisLocalTarget`\
+  test $localTarget eq '' && exit\
+  setAndMarkWidgetResource $localTarget cuts `getWidgetResource $widget value`
+end
+!----------------------------
+begin OWidget
+ name = Tuple_bar_option
+ type = XmOptionMenu
+ background = grey
+ labelString = Bar type
+ subMenuId = Tuple_bar_pdm
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = Tuple_372
+end
+!----------------------------
+begin OWidget
+ name = Tuple_327
+ type = XmPulldownMenu
+ children = Tuple_404 Tuple_405 Tuple_406 
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = Tuple_bind_pdm
+ type = XmPulldownMenu
+ children = Tuple_bind_X Tuple_bind_Y Tuple_bind_Z
+ background = grey
+end
+!----------------------------
+begin OWidget
+ name = Tuple_bind_X
+ type = XmPushButton
+ background = grey
+ labelString = x
+ activateCallback = osh> callWidgetCallbacks Tuple_localTarget activateCallback
+end
+!----------------------------
+begin OWidget
+ name = Tuple_bind_Y
+ type = XmPushButton
+ background = grey
+ labelString = y
+ activateCallback = osh> callWidgetCallbacks Tuple_localTarget activateCallback
+end
+!----------------------------
+begin OWidget
+ name = Tuple_bind_Z
+ type = XmPushButton
+ background = grey
+ labelString = z
+ activateCallback = osh> callWidgetCallbacks Tuple_localTarget activateCallback
+end
+!----------------------------
+begin OWidget
+ name = Tuple_coln_pdm
+ type = XmPulldownMenu
+ children = Tuple_coln_1 Tuple_coln_2 Tuple_coln_3
+ background = grey
+end
+!----------------------------
+begin OWidget
+ name = Tuple_bar_pdm
+ type = XmPulldownMenu
+ children = Tuple_bar_sigma
+ background = grey
+end
+!----------------------------
+begin OWidget
+ name = Tuple_coln_1
+ type = XmPushButton
+ labelString = 1
+ activateCallback = osh>\
+  localTarget=`get Widget thisLocalTarget`\
+  test $localTarget eq '' && exit\
+  setAndMarkWidgetResource $localTarget numberOfBoundColumns 1\
+  callWidgetCallbacks Tuple_localTarget activateCallback
+end
+!----------------------------
+begin OWidget
+ name = Tuple_coln_2
+ type = XmPushButton
+ labelString = 2
+ activateCallback = osh>\
+  localTarget=`get Widget thisLocalTarget`\
+  test $localTarget eq '' && exit\
+  setAndMarkWidgetResource $localTarget numberOfBoundColumns 2\
+  callWidgetCallbacks Tuple_localTarget activateCallback
+end
+!----------------------------
+begin OWidget
+ name = Tuple_coln_3
+ type = XmPushButton
+ labelString = 3
+ activateCallback = osh>\
+  localTarget=`get Widget thisLocalTarget`\
+  test $localTarget eq '' && exit\
+  setAndMarkWidgetResource $localTarget numberOfBoundColumns 3\
+  callWidgetCallbacks Tuple_localTarget activateCallback
+end
+!----------------------------
+begin OWidget
+ name = Tuple_404
+ type = XmPushButton
+ labelString = histogram
+ activateCallback = osh>\
+  localTarget=`get Widget thisLocalTarget`\
+  test $localTarget eq '' && exit\
+  setAndMarkWidgetResource $localTarget tupleDataReceiver histogram\
+  callWidgetCallbacks Tuple_localTarget activateCallback
+end
+!----------------------------
+begin OWidget
+ name = Tuple_405
+ type = XmPushButton
+ labelString = scatter
+ activateCallback = osh>\
+  localTarget=`get Widget thisLocalTarget`\
+  test $localTarget eq '' && exit\
+  setAndMarkWidgetResource $localTarget tupleDataReceiver scatter\
+  callWidgetCallbacks Tuple_localTarget activateCallback
+end
+!----------------------------
+begin OWidget
+ name = Tuple_406
+ type = XmPushButton
+ labelString = profile
+ activateCallback = osh>\
+  localTarget=`get Widget thisLocalTarget`\
+  test $localTarget eq '' && exit\
+  setAndMarkWidgetResource $localTarget tupleDataReceiver profile\
+  callWidgetCallbacks Tuple_localTarget activateCallback
+end
+!----------------------------
+begin OWidget
+ name = Tuple_bar_sigma
+ type = XmPushButton
+ labelString = sqrt(Sw2)
+ activateCallback = osh>\
+  localTarget=`get Widget thisLocalTarget`\
+  test $localTarget eq '' && exit\
+  setAndMarkWidgetResource $localTarget binBarType sigma\
+  callWidgetCallbacks Tuple_localTarget activateCallback
+end
+!----------------------------
+begin OWidget
+ name = Tuple_220
+ type = XmPushButton
+ background = lightgrey
+ labelString = Cancel
+ activateCallback = osh> do `get Widget thisParent` unmanage
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ bottomAttachment = attach_form
+end

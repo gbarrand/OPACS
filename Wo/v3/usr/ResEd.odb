@@ -1,0 +1,532 @@
+!/* +---------------------- Copyright notice -------------------------------+ */
+!/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+!/* |   Permission to use, copy, modify, and distribute this software       | */
+!/* |   and its documentation for any purpose and without fee is hereby     | */
+!/* |   granted, provided that the above copyright notice appear in all     | */
+!/* |   copies and that both that copyright notice and this permission      | */
+!/* |   notice appear in supporting documentation.  This software is        | */
+!/* |   provided "as is" without express or implied warranty.               | */
+!/* +---------------------- Copyright notice -------------------------------+ */
+!----------------------------
+begin OInterface
+ version  = v3
+ prefix  = ResEd_
+ packages = Xm Xo
+end
+!----------------------------
+begin OWidget
+ name = ResEd_palette
+ type = XmFormDialog
+ children = ResEd_12 ResEd_grab ResEd_localTarget ResEd_options ResEd_22 ResEd_value ResEd_24 ResEd_to_modify ResEd_apply ResEd_ok ResEd_54 ResEd_57 ResEd_58 ResEd_64 
+ autoUnmanage = False
+ x = 626
+ y = 254
+ background = lightgrey
+ dialogTitle = Resource
+end
+!----------------------------
+begin OWidget
+ name = ResEd_12
+ type = XmFrame
+ children = ResEd_list 
+ borderWidth = 3
+ background = lightgrey
+ borderColor = lightgrey
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = ResEd_58
+end
+!----------------------------
+begin OWidget
+ name = ResEd_list
+ type = XmScrolledList
+ listSizePolicy = constant
+ visibleItemCount = 10
+ selectionPolicy = single_select
+ scrollBarDisplayPolicy = static
+ singleSelectionCallback = osh>\
+  setWidgetResource ResEd_value value ''\
+  setWidgetOptions ResEd_options ''\
+  editWidgetResource `get Widget thisLocalTarget` select
+ background = lightgrey
+ fontList = *courier*--14-*
+end
+!----------------------------
+begin OWidget
+ name = ResEd_grab
+ type = XmPushButton
+ labelString = Widget
+ background = grey
+ topAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_position
+ rightPosition = 30
+ createCallback = osh> setWidgetResource `thisWidget` height `getWidgetResource ResEd_localTarget height`
+ activateCallback = osh>\
+  ref=`thisWidget`\
+  setWidgetResource ResEd_localTarget value `grabWidgetName $ref`\
+  callWidgetCallbacks Widget/ResEd_localTarget activateCallback
+end
+!----------------------------
+begin OWidget
+ name = ResEd_localTarget
+ type = XmText
+ background = wheat
+ topAttachment = attach_form
+ leftAttachment = attach_widget
+ leftWidget = ResEd_grab
+ rightAttachment = attach_form
+ activateCallback = osh>\
+  editWidgetResource `get Widget thisLocalTarget` reset\
+  set Widget filter all\
+  get `get Widget thisLocalTarget` resources | setWidgetResource ResEd_list items -\
+  setWidgetResource ResEd_value value ''\
+  setWidgetOptions ResEd_options ''\
+  #single line getWidgetResource\
+  setWidgetResource ResEd_value value ''\
+  setWidgetOptions  ResEd_options ''\
+  #multiline getWidgetResource\
+  setWidgetResource ResEd_edit_widget_name value ''\
+  setWidgetResource ResEd_edit_resource value ''\
+  setWidgetResource ResEd_edit value ''\
+  #cmap\
+  setWidgetResource ResEd_colormap_widget_name value ''\
+  setWidgetResource ResEd_colormap_resource value ''\
+  setWidgetResource ResEd_colormap selectedColor -1\
+  widget=`get Widget thisLocalTarget`\
+  string=`get $widget type`\
+  setWidgetResource ResEd_54 value $string
+end
+!----------------------------
+begin OWidget
+ name = ResEd_options
+ type = XmOptionMenu
+ labelString = options
+ topAttachment = attach_widget
+ bottomAttachment = attach_none
+ topWidget = ResEd_12
+ subMenuId = ResEd_22
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = ResEd_22
+ type = XmPulldownMenu
+ children = ResEd_23 
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = ResEd_23
+ type = XmPushButton
+ background = lightgrey
+ labelString = 
+end
+!----------------------------
+begin OWidget
+ name = ResEd_value
+ type = XmText
+ activateCallback = osh> editWidgetResource `get Widget thisLocalTarget` apply
+ background = lightgrey
+ topAttachment = attach_widget
+ bottomAttachment = attach_none
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = ResEd_options
+ resizable = False
+end
+!----------------------------
+begin OWidget
+ name = ResEd_24
+ type = XmPushButton
+ activateCallback = osh> unmanageWidget `get Widget thisParent`
+ labelString = Cancel
+ background = lightgrey
+ topAttachment = attach_widget
+ topWidget = ResEd_ok
+ bottomAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = ResEd_to_modify
+ type = XmPushButton
+ activateCallback = osh>  editWidgetResource `get Widget thisLocalTarget` add
+ labelString = To modify
+ background = lightgrey
+ topAttachment = attach_widget
+ topWidget = ResEd_value
+ bottomAttachment = attach_none
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = ResEd_apply
+ type = XmPushButton
+ activateCallback = osh>  editWidgetResource `get Widget thisLocalTarget` apply
+ labelString = Apply
+ background = lightgrey
+ topAttachment = attach_widget
+ topWidget = ResEd_to_modify
+ bottomAttachment = attach_none
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = ResEd_ok
+ type = XmPushButton
+ activateCallback = osh>  editWidgetResource `get Widget thisLocalTarget` apply;unmanageWidget `thisWidgetParent`
+ labelString = Ok
+ background = lightgrey
+ topAttachment = attach_widget
+ topWidget = ResEd_apply
+ bottomAttachment = attach_none
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = ResEd_edit_dialog
+ type = XmFormDialog
+ children = ResEd_35 ResEd_37 ResEd_edit_widget_name ResEd_edit_resource ResEd_36 
+ autoUnmanage = False
+ dialogTitle = Edit callback
+end
+!----------------------------
+begin OWidget
+ name = ResEd_35
+ type = XmPushButton
+ activateCallback = osh> unmanageWidget `get Widget thisParent`
+ labelString = Cancel
+ background = grey
+ bottomAttachment = attach_form
+ leftAttachment = attach_position
+ leftPosition = 50
+ rightAttachment = attach_form
+ topAttachment = attach_position
+ topPosition = 90
+end
+!----------------------------
+begin OWidget
+ name = ResEd_37
+ type = XmPushButton
+ labelString = Apply
+ activateCallback = osh>\
+  widget=`getWidgetResource ResEd_edit_widget_name value`\
+  res=`getWidgetResource ResEd_edit_resource value`\
+  value=`getWidgetResource ResEd_edit value`\
+  setAndMarkWidgetResource $widget $res $value\
+  setWidgetResource ResEd_value value $value
+ background = grey
+ topAttachment = attach_position
+ topPosition = 90
+ bottomAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_position
+ rightPosition = 50
+end
+!----------------------------
+begin OWidget
+ name = ResEd_edit_widget_name
+ type = XmText
+ background = wheat
+ topAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = ResEd_edit_resource
+ type = XmText
+ background = grey
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = ResEd_edit_widget_name
+end
+!----------------------------
+begin OWidget
+ name = ResEd_36
+ type = XmFrame
+ children = ResEd_edit 
+ background = grey
+ topAttachment = attach_widget
+ bottomAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = ResEd_edit_resource
+ bottomWidget = ResEd_37
+end
+!----------------------------
+begin OWidget
+ name = ResEd_edit
+ type = XmScrolledText
+ editMode = multi_line_edit
+ background = white
+ createCallback = osh> setWidgetTextSize `get Widget this` 10 30
+end
+!----------------------------
+begin OWidget
+ name = ResEd_colormap_dialog
+ type = XmFormDialog
+ children = ResEd_41 ResEd_colormap_widget_name ResEd_colormap_resource ResEd_colormap ResEd_68 
+ autoUnmanage = False
+ dialogTitle = Colors
+end
+!----------------------------
+begin OWidget
+ name = ResEd_41
+ type = XmPushButton
+ activateCallback = osh> unmanageWidget `get Widget thisParent`
+ labelString = Cancel
+ background = grey
+ bottomAttachment = attach_form
+ topAttachment = attach_none
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = ResEd_colormap_widget_name
+ type = XmText
+ background = wheat
+ topAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = ResEd_colormap_resource
+ type = XmText
+ background = grey
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = ResEd_colormap_widget_name
+end
+!----------------------------
+begin OWidget
+ name = ResEd_colormap
+ type = XoColormap
+ width = 300
+ height = 304
+ background = black
+ topAttachment = attach_widget
+ topWidget = ResEd_68
+ bottomAttachment = attach_widget
+ bottomWidget = ResEd_41
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ selectCallback = osh> \
+  widget=`getWidgetResource ResEd_colormap_widget_name value`\
+  res=`getWidgetResource ResEd_colormap_resource value`\
+  value=`getWidgetResource ResEd_colormap selectedColor`\
+  setAndMarkWidgetResource $widget $res $value\
+  setWidgetResource ResEd_value value $value
+end
+!----------------------------
+begin OWidget
+ name = ResEd_43
+ type = XmPushButton
+ activateCallback = osh>\
+  editWidgetResource `get Widget thisLocalTarget` reset\
+  set Widget filter all\
+  get `get Widget thisLocalTarget` resources | setWidgetResource ResEd_list items -\
+  setWidgetResource ResEd_value value ''\
+  setWidgetOptions ResEd_options ''
+ labelString = all
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = ResEd_44
+ type = XmPushButton
+ activateCallback = osh>\
+  editWidgetResource `get Widget thisLocalTarget` reset\
+  set Widget filter *Callback\
+  get `get Widget thisLocalTarget` resources | setWidgetResource ResEd_list items -\
+  setWidgetResource ResEd_value value ''\
+  setWidgetOptions ResEd_options ''
+ labelString = callbacks
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = ResEd_file
+ type = XmFileSelectionDialog
+ dialogTitle = File
+ okCallback = osh>\
+  setAndMarkWidgetResource `get Widget thisLocalTarget` `getWidgetResource ResEd_list selectedItems | getStringWord - 1` `get Widget thisValue`
+ cancelCallback = osh> unmanageWidget `get Widget this`
+end
+!----------------------------
+begin OWidget
+ name = ResEd_54
+ type = XmText
+ background = lightgrey
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = ResEd_localTarget
+end
+!----------------------------
+begin OWidget
+ name = ResEd_57
+ type = XmPushButton
+ createCallback = osh> setWidgetResource `thisWidget` height `getWidgetResource ResEd_58 height`
+ activateCallback = osh>\
+  editWidgetResource `get Widget thisLocalTarget` reset\
+  set Widget filter `getWidgetResource ResEd_58 value`\
+  get `get Widget thisLocalTarget` resources | setWidgetResource ResEd_list items -\
+  setWidgetResource ResEd_value value ''\
+  setWidgetOptions ResEd_options ''
+ labelString = Filter
+ background = lightgrey
+ topAttachment = attach_widget
+ topWidget = ResEd_64
+ leftAttachment = attach_form
+ rightAttachment = attach_position
+ rightPosition = 30
+end
+!----------------------------
+begin OWidget
+ name = ResEd_58
+ type = XmText
+ activateCallback = osh>\
+  editWidgetResource `get Widget thisLocalTarget` reset\
+  set Widget filter `getWidgetResource ResEd_58 value`\
+  get `get Widget thisLocalTarget` resources | setWidgetResource ResEd_list items -\
+  setWidgetResource ResEd_value value ''\
+  setWidgetOptions ResEd_options ''
+ background = lightgrey
+ topAttachment = attach_widget
+ topWidget = ResEd_64
+ leftAttachment = attach_widget
+ leftWidget = ResEd_57
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = ResEd_60
+ type = XmPushButton
+ activateCallback = osh>\
+  res=`getWidgetResource ResEd_list selectedItems | getStringWord - 1`\
+  callWidgetCallbacks `get Widget thisLocalTarget` $res
+ labelString = Exec callback
+ background = grey
+end
+!----------------------------
+begin OWidget
+ name = ResEd_62
+ type = XmPushButton
+ activateCallback = osh>\
+  res=`getWidgetResource ResEd_list selectedItems | getStringWord - 1`\
+  do `get Widget thisLocalTarget` markResource $res
+ labelString = To be saved
+ background = grey
+end
+!----------------------------
+begin OWidget
+ name = ResEd_64
+ type = XmMenuBar
+ children = ResEd_65 ResEd_66 
+ shadowThickness = 4
+ topShadowColor = white
+ bottomShadowColor = black
+ background = lightgrey
+ topAttachment = attach_widget
+ rightAttachment = attach_form
+ leftAttachment = attach_form
+ topWidget = ResEd_54
+ topOffset = 0
+end
+!----------------------------
+begin OWidget
+ name = ResEd_65
+ type = XmCascadeButton
+ subMenuId = ResEd_66
+ labelString = Filters...
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = ResEd_66
+ type = XmPulldownMenu
+ children = ResEd_43 ResEd_44 ResEd_60 ResEd_62 ResEd_69 ResEd_72 ResEd_73 
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = ResEd_68
+ type = XmLabel
+ labelString = To choose: left button in color box
+ background = black
+ foreground = white
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = ResEd_colormap_resource
+end
+!----------------------------
+begin OWidget
+ name = ResEd_69
+ type = XmPushButton
+ activateCallback = osh>\
+  editWidgetResource `get Widget thisLocalTarget` reset\
+  set Widget filter bin*\
+  get `get Widget thisLocalTarget` resources | setWidgetResource ResEd_list items -\
+  setWidgetResource ResEd_value value ''\
+  setWidgetOptions ResEd_options ''
+ labelString = bin*
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = ResEd_72
+ type = XmPushButton
+ activateCallback = osh>\
+  editWidgetResource `get Widget thisLocalTarget` reset\
+  set Widget filter fit*\
+  get `get Widget thisLocalTarget` resources | setWidgetResource ResEd_list items -\
+  setWidgetResource ResEd_value value ''\
+  setWidgetOptions ResEd_options ''
+ labelString = fit*
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = ResEd_73
+ type = XmPushButton
+ activateCallback = osh>\
+  editWidgetResource `get Widget thisLocalTarget` reset\
+  set Widget filter *Axis*\
+  get `get Widget thisLocalTarget` resources | setWidgetResource ResEd_list items -\
+  setWidgetResource ResEd_value value ''\
+  setWidgetOptions ResEd_options ''
+ labelString = *Axis*
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = ResEd_font
+ type = XmSelectionDialog
+ dialogTitle = Font
+ background = grey
+ autoUnmanage = false
+ mapCallback = osh>\
+  widget=`get Widget this`\
+  getDisplayFonts $widget * 1000 | setWidgetResource $widget listItems -
+ okCallback = osh> \
+  string=`getWidgetResource ResEd_list selectedItems | getStringWord - 1`\
+  setAndMarkWidgetResource `get Widget thisLocalTarget` $string `get Widget thisValue`\
+  setWidgetResource ResEd_value value `get Widget thisValue`
+ applyCallback = osh>\
+  string=`getWidgetResource ResEd_list selectedItems | getStringWord - 1`\
+  setAndMarkWidgetResource `get Widget thisLocalTarget` $string `get Widget thisValue`\
+  setWidgetResource ResEd_value value `get Widget thisValue`
+ cancelCallback = osh> unmanageWidget `get Widget this`
+end

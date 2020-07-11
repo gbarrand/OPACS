@@ -1,0 +1,77 @@
+!/* +---------------------- Copyright notice -------------------------------+ */
+!/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+!/* |   Permission to use, copy, modify, and distribute this software       | */
+!/* |   and its documentation for any purpose and without fee is hereby     | */
+!/* |   granted, provided that the above copyright notice appear in all     | */
+!/* |   copies and that both that copyright notice and this permission      | */
+!/* |   notice appear in supporting documentation.  This software is        | */
+!/* |   provided "as is" without express or implied warranty.               | */
+!/* +---------------------- Copyright notice -------------------------------+ */
+!----------------------------
+begin OInterface
+ version = v3
+ prefix = Ci_
+ packages = Xm
+end
+!----------------------------
+begin OWidget
+ name = Ci_palette
+ type = XmFormDialog
+ children = Ci_1 Ci_2 Ci_4 Ci_5 
+ background = lightgrey
+ autoUnmanage = false
+ dialogTitle = Ci
+end
+!----------------------------
+begin OWidget
+ name = Ci_1
+ type = XmPushButton
+ background = lightgrey
+ labelString = Cancel
+ activateCallback = osh> unmanageWidget `get Widget thisParent`
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ bottomAttachment = attach_form
+ topAttachment = attach_widget
+ topWidget = Ci_4
+end
+!----------------------------
+begin OWidget
+ name = Ci_2
+ type = XmFrame
+ children = Ci_3 
+ borderWidth = 3
+ borderColor = lightgrey
+ topAttachment = attach_form
+ rightAttachment = attach_form
+ leftAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = Ci_3
+ type = XmScrolledText
+ editMode = multi_line_edit
+ createCallback = osh> setWidgetTextSize `get Widget this` 10 30
+end
+!----------------------------
+begin OWidget
+ name = Ci_4
+ type = XmPushButton
+ labelString = Compile & execute
+ activateCallback = osh> doCiScript `getWidgetResource Ci_3 value`
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = Ci_5
+end
+!----------------------------
+begin OWidget
+ name = Ci_5
+ type = XmPushButton
+ labelString = Compile
+ activateCallback = osh> parseCiScript `getWidgetResource Ci_3 value`
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = Ci_2
+end

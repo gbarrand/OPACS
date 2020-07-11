@@ -1,0 +1,767 @@
+!/* +---------------------- Copyright notice -------------------------------+ */
+!/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+!/* |   Permission to use, copy, modify, and distribute this software       | */
+!/* |   and its documentation for any purpose and without fee is hereby     | */
+!/* |   granted, provided that the above copyright notice appear in all     | */
+!/* |   copies and that both that copyright notice and this permission      | */
+!/* |   notice appear in supporting documentation.  This software is        | */
+!/* |   provided "as is" without express or implied warranty.               | */
+!/* +---------------------- Copyright notice -------------------------------+ */
+!----------------------------
+begin OInterface
+ version = v3
+ prefix = XoCamera_
+ packages = Xm Xo
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_palette
+ type = XmFormDialog
+ children = XoCamera_85 XoCamera_170 XoCamera_mv_rc XoCamera_reset XoCamera_what_rc XoCamera_axe_rc XoCamera_pointer_sensitivity XoCamera_142 XoCamera_24 XoCamera_337 XoCamera_177 XoCamera_localTarget XoCamera_179 XoCamera_181 XoCamera_182 XoCamera_184 
+ width = 200
+ background = grey
+ resizePolicy = resize_none
+ autoUnmanage = False
+ dialogTitle = XoCamera
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_85
+ type = XmPushButton
+ background = lightgrey
+ labelString = Cancel
+ activateCallback = osh> do `get Widget thisParent` unmanage
+ topAttachment = attach_widget
+ topWidget = XoCamera_24
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_170
+ type = XmMenuBar
+ children = XoCamera_171 XoCamera_173 XoCamera_174 XoCamera_172 
+ background = grey
+ shadowThickness = 4
+ topShadowColor = white
+ bottomShadowColor = black
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = XoCamera_localTarget
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_171
+ type = XmCascadeButton
+ background = grey
+ labelString = Gen
+ subMenuId = XoCamera_172
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_173
+ type = XmCascadeButton
+ background = grey
+ labelString = Objs
+ subMenuId = XoCamera_174
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_174
+ type = XmPulldownMenu
+ children = XoCamera_atbs XoCamera_224 XoCamera_225 XoCamera_12 XoCamera_158 XoCamera_20 XoCamera_21 XoCamera_22 XoCamera_25 XoCamera_27 XoCamera_28 XoCamera_30 XoCamera_338 XoCamera_31 
+ background = grey
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_atbs
+ type = XmPushButton
+ background = grey
+ labelString = Attributes
+ activateCallback = osh> load oatb.odb  | realize -;manageWidget oatb_palette;raiseWidget oatb_palette_popup
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_224
+ type = XmPushButton
+ background = grey
+ labelString = Copy objects
+ activateCallback = osh>\
+  fname=`buildFileName`\
+  widget=`get Widget thisLocalTarget`\
+  camera=`get $widget name`\
+  getCameraNodes $camera | collect ONode where highlight eq 1 | save - $fname\
+  sendFileToDisplayBuffer $widget $fname\
+  rm $fname
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_225
+ type = XmPushButton
+ background = grey
+ labelString = Paste objects
+ activateCallback = osh>\
+  widget=`get Widget thisLocalTarget`\
+  camera=`get $widget name`\
+  fname=`buildFileName`\
+  string=`printf 'osh> saveDisplayBuffer %s;load %s | viewNode - %s;rm %s' $fname $fname $camera $fname`\
+  set Wo pasteScript $string\
+  requireDisplayBuffer $widget
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_12
+ type = XmPushButton
+ background = grey
+ labelString = Show names
+ activateCallback = osh>\
+  widget=`get Widget thisLocalTarget`\
+  camera=`get $widget name`\
+  do Widget/XoCamera_186 manage\
+  getCameraNodes $camera | collect ONode where highlight eq 1 | get - name | setWidgetResource XoCamera_infos value -
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_158
+ type = XmPushButton
+ background = grey
+ labelString = Normalize
+ activateCallback = osh>\
+  widget=`get Widget thisLocalTarget`\
+  camera=`get $widget name`\
+  getCameraNodes $camera | collect ONode where highlight eq 1 | normalizeNode - $camera
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_20
+ type = XmPushButton
+ background = grey
+ labelString = Align
+ activateCallback = osh>\
+  widget=`get Widget thisLocalTarget`\
+  camera=`get $widget name`\
+  doCameraPick $camera align
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_21
+ type = XmPushButton
+ background = grey
+ labelString = Distance
+ activateCallback = osh>\
+  widget=`get Widget thisLocalTarget`\
+  camera=`get $widget name`\
+  do Widget/XoCamera_186 manage\
+  setWidgetResource XoCamera_infos value `doCameraPick $camera distance`
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_22
+ type = XmPushButton
+ background = grey
+ labelString = Pick getInfos
+ activateCallback = osh>\
+  widget=`get Widget thisLocalTarget`\
+  camera=`get $widget name`\
+  do Widget/XoCamera_186 manage\
+  setWidgetResource XoCamera_infos value `doCameraPick $camera infos`
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_25
+ type = XmPushButton
+ background = grey
+ labelString = Select by name
+ activateCallback = osh>\
+  widget=`get Widget thisLocalTarget`\
+  camera=`get $widget name`\
+  prompt='ONode name selector'\
+  name=`ask $prompt *`\
+  getCameraNodes $camera | collect ONode where name eq $name | set - highlight 1   
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_27
+ type = XmPushButton
+ background = grey
+ labelString = Select all
+ activateCallback = osh>\
+  widget=`get Widget thisLocalTarget`\
+  camera=`get $widget name`\
+  getCameraNodes $camera | set - highlight 1   
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_28
+ type = XmPushButton
+ background = grey
+ labelString = Write in 3D metafile
+ activateCallback = osh>\
+  widget=`get Widget thisLocalTarget`\
+  camera=`get $widget name`\
+  prompt='File name'\
+  fname=`ask $prompt out.odb`\
+  getCameraNodes $camera | collect ONode where highlight eq 1 | save - $fname
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_30
+ type = XmPushButton
+ background = grey
+ labelString = Blink
+ activateCallback = osh>\
+  widget=`get Widget thisLocalTarget`\
+  camera=`get $widget name`\
+  getCameraNodes $camera | collect ONode where highlight eq 1 | set - blink 1
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_338
+ type = XmPushButton
+ background = grey
+ labelString = Erase not high
+ activateCallback = osh>\
+  widget=`get Widget thisLocalTarget`\
+  camera=`get $widget name`\
+  getCameraNodes $camera | collect ONode where highlight ne 1 | delete -
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_31
+ type = XmPushButton
+ background = grey
+ labelType = pixmap
+ labelPixmap = trash40.xbm
+ labelString = Destroy
+ activateCallback = osh>\
+  widget=`get Widget thisLocalTarget`\
+  camera=`get $widget name`\
+  getCameraNodes $camera | collect ONode where highlight eq 1 | delete -
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_172
+ type = XmPulldownMenu
+ children = XoCamera_proj XoCamera_146 XoCamera_147 XoCamera_243 XoCamera_152 XoCamera_244 XoCamera_292 XoCamera_148 XoCamera_154 XoCamera_157 XoCamera_168 XoCamera_222 XoCamera_169 XoCamera_263 XoCamera_164 XoCamera_165 XoCamera_166 
+ background = grey
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_proj
+ type = XmPushButton
+ background = grey
+ labelString = Special projection
+ activateCallback = osh> load XoCamProj.odb  | realize -;manageWidget XoCamProj_palette;raiseWidget XoCamProj_palette_popup
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_146
+ type = XmPushButton
+ background = grey
+ labelString = Zoom in
+ activateCallback = osh>\
+  widget=`get Widget thisLocalTarget`\
+  camera=`get $widget name`\
+  scaleCamera $camera 2 scene
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_147
+ type = XmPushButton
+ background = grey
+ labelString = Zoom out
+ activateCallback = osh>\
+  widget=`get Widget thisLocalTarget`\
+  camera=`get $widget name`\
+  scaleCamera $camera 0.5 scene
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_243
+ type = XmPushButton
+ background = grey
+ labelString = Zoom on selection
+ activateCallback = osh>\
+  widget=`get Widget thisLocalTarget`\
+  camera=`get $widget name`\
+  getCameraNodes $camera | collect ONode where highlight eq 1 | normalizeNode - $camera
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_152
+ type = XmPushButton
+ background = grey
+ labelString = Reset
+ activateCallback = osh>\
+  widget=`get Widget thisLocalTarget`\
+  camera=`get $widget name`\
+  resetCamera $camera
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_244
+ type = XmSeparator
+ background = grey
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_292
+ type = XmPushButton
+ background = grey
+ labelString = Change colormap
+ activateCallback = osh>\
+  list=`collect OColormap | get - name`\
+  echo $list\
+  setWidgetResource XoCamera_293 listItems $list\
+  do Widget/XoCamera_293 manage
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_148
+ type = XmPushButton
+ background = grey
+ labelString = Normalize
+ activateCallback = osh>\
+  widget=`get Widget thisLocalTarget`\
+  camera=`get $widget name`\
+  getCameraNodes $camera | normalizeNode - $camera
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_154
+ type = XmPushButton
+ background = grey
+ labelString = Erase
+ activateCallback = osh>\
+  widget=`get Widget thisLocalTarget`\
+  camera=`get $widget name`\
+  getCameraNodes $camera | delete -
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_157
+ type = XmPushButton
+ background = grey
+ labelString = Rot Y PI/2
+ activateCallback = osh>\
+  widget=`get Widget thisLocalTarget`\
+  camera=`get $widget name`\
+  rotateCamera $camera y 90. view
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_168
+ type = XmPushButton
+ background = grey
+ labelString = No blink
+ activateCallback = osh>\
+  widget=`get Widget thisLocalTarget`\
+  camera=`get $widget name`\
+  blinkCamera $camera stop
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_222
+ type = XmPushButton
+ background = grey
+ labelString = All pickable
+ activateCallback = osh>\
+  widget=`get Widget thisLocalTarget`\
+  camera=`get $widget name`\
+  getCameraNodes $camera | set - pickable 1
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_169
+ type = XmPushButton
+ background = grey
+ labelString = Write in 3D metafile
+ activateCallback = osh>\
+  widget=`get Widget thisLocalTarget`\
+  camera=`get $widget name`\
+  prompt='File name'\
+  fname=`ask $prompt out.odb`\
+  getCameraNodes $camera | save - $fname
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_263
+ type = XmSeparator
+ background = grey
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_164
+ type = XmPushButton
+ background = grey
+ labelString = Load .odb
+ activateCallback = osh> do Widget/XoCamera_load manage
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_165
+ type = XmPushButton
+ background = grey
+ labelString = Load frame
+ activateCallback = osh> \
+  widget=`get Widget thisLocalTarget`\
+  camera=`get $widget name`\
+  prompt='ONode name'\
+  name=`ask $prompt Wo_frame`\
+  prompt='Size in world coordinate'\
+  value=`ask $prompt 100.`\
+  do Go representFrame $name $value | viewNode - $camera
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_166
+ type = XmPushButton
+ background = grey
+ labelString = Load axis
+ activateCallback = osh> \
+  widget=`get Widget thisLocalTarget`\
+  camera=`get $widget name`\
+  prompt='ONode name'\
+  name=`ask $prompt Wo_axis`\
+  do Go representAxis $name $camera | viewNode - $camera
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_mv_rc
+ type = XmRadioBox
+ children = XoCamera_pointer_rotate XoCamera_pointer_translate XoCamera_pointer_scale 
+ background = grey
+ topAttachment = attach_widget
+ topWidget = XoCamera_182
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_pointer_rotate
+ type = XmToggleButton
+ background = grey
+ labelString = Rotate
+ valueChangedCallback = osh> setWidgetResource `get Widget thisLocalTarget` transformation rotate;do Widget/XoCamera_axe_rc map
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_pointer_translate
+ type = XmToggleButton
+ background = grey
+ labelString = Translate
+ valueChangedCallback = osh> setWidgetResource `get Widget thisLocalTarget` transformation translate;do Widget/XoCamera_axe_rc map
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_pointer_scale
+ type = XmToggleButton
+ background = grey
+ labelString = Scale
+ valueChangedCallback = osh> setWidgetResource `get Widget thisLocalTarget` transformation scale;do Widget/XoCamera_axe_rc unmap
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_reset
+ type = XmPushButton
+ background = grey
+ labelString = Reset
+ activateCallback = osh>\
+  widget=`get Widget thisLocalTarget`\
+  camera=`get $widget name`\
+  resetCamera $camera `getWidgetResource $widget transformedObject`
+ topAttachment = attach_widget
+ topWidget = XoCamera_mv_rc
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_what_rc
+ type = XmRadioBox
+ children = XoCamera_pointer_camera XoCamera_pointer_scene XoCamera_pointer_highlight
+ background = grey
+ topAttachment = attach_widget
+ topWidget = XoCamera_179
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_pointer_camera
+ type = XmToggleButton
+ background = grey
+ labelString = Camera
+ valueChangedCallback = osh> setWidgetResource `get Widget thisLocalTarget` transformedObject camera
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_pointer_scene
+ type = XmToggleButton
+ background = grey
+ labelString = Scene
+ valueChangedCallback = osh> setWidgetResource `get Widget thisLocalTarget` transformedObject scene
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_pointer_highlight
+ type = XmToggleButton
+ background = grey
+ labelString = Objs
+ valueChangedCallback = osh> setWidgetResource `get Widget thisLocalTarget` transformedObject highlight
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_axe_rc
+ type = XmRadioBox
+ children = XoCamera_pointer_xy XoCamera_pointer_z XoCamera_pointer_axis 
+ background = grey
+ topAttachment = attach_widget
+ topWidget = XoCamera_181
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_pointer_xy
+ type = XmToggleButton
+ background = grey
+ labelType = pixmap
+ labelPixmap = axexy.xbm
+ labelString = Up or -(Up v Dop)
+ valueChangedCallback = osh> setWidgetResource `get Widget thisLocalTarget` transformationAxis xy
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_pointer_z
+ type = XmToggleButton
+ background = grey
+ labelType = pixmap
+ labelPixmap = axez.xbm
+ labelString = -Dop
+ valueChangedCallback = osh> setWidgetResource `get Widget thisLocalTarget` transformationAxis z
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_pointer_axis
+ type = XmToggleButton
+ background = grey
+ labelString = Axis
+ valueChangedCallback = osh> setWidgetResource `get Widget thisLocalTarget` transformationAxis axis
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_pointer_sensitivity
+ type = XmScrollBar
+ background = grey
+ borderColor = grey
+ value = 23
+ minimum = 0
+ maximum = 100
+ showArrows = false
+ orientation = horizontal
+ valueChangedCallback = osh> setWidgetResource `get Widget thisLocalTarget` transformationFactor `get Widget thisValue`
+ topAttachment = attach_widget
+ bottomAttachment = attach_none
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = XoCamera_142
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_142
+ type = XmLabel
+ background = black
+ foreground = white
+ labelString = Sensitivity
+ topAttachment = attach_widget
+ bottomAttachment = attach_none
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = XoCamera_184
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_24
+ type = XmPushButton
+ background = grey
+ labelString = View highlighted
+ activateCallback = osh>\
+  ref=`thisWidget`\
+  widget=`grabWidgetName $ref`\
+  camera=`get $widget name`\
+  getCameraNodes $camera | collect ONode where highlight eq 1  | viewNode - $camera
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = XoCamera_337
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_337
+ type = XmPushButton
+ background = grey
+ labelString = Set as target
+ activateCallback = osh>\
+  ref=`thisWidget`\
+  set Widget target `grabWidgetName $ref`
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = XoCamera_pointer_sensitivity
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_177
+ type = XmPushButton
+ background = grey
+ labelString = XoCamera
+ createCallback = osh> setWidgetResource `thisWidget` height `getWidgetResource XoCamera_localTarget height`
+ activateCallback = osh>\
+  ref=`thisWidget`\
+  setWidgetResource XoCamera_localTarget value `grabWidgetName $ref`\
+  callWidgetCallbacks XoCamera_localTarget activateCallback
+ topAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_localTarget
+ type = XmText
+ background = wheat
+ topAttachment = attach_form
+ leftAttachment = attach_widget
+ rightAttachment = attach_form
+ leftWidget = XoCamera_177
+ activateCallback = osh>\
+   widget=`get Widget thisLocalTarget`\
+   isNotWidgetSubclass $widget XoCamera && echo 'Not an XoCamera.'\
+   isNotWidgetSubclass $widget XoCamera && exit\
+   #transformation\
+   transformation=`getWidgetResource $widget transformation`\
+   cmd='setWidgetResource XoCamera_pointer_scale set True;setWidgetResource XoCamera_pointer_rotate set False;setWidgetResource XoCamera_pointer_translate set False;unmapWidget XoCamera_axe_rc'\
+   test $transformation eq scale && osh $cmd\
+   cmd='setWidgetResource XoCamera_pointer_scale set False;setWidgetResource XoCamera_pointer_rotate set True;setWidgetResource XoCamera_pointer_translate set False;mapWidget XoCamera_axe_rc'\
+   test $transformation eq rotate && osh $cmd\
+   cmd='setWidgetResource XoCamera_pointer_scale set False;setWidgetResource XoCamera_pointer_rotate set False;setWidgetResource XoCamera_pointer_translate set True;mapWidget XoCamera_axe_rc'\
+   test $transformation eq translate && osh $cmd\
+   #transformedObject\
+   transformedObject=`getWidgetResource $widget transformedObject`\
+   cmd='setWidgetResource XoCamera_pointer_scene set True;setWidgetResource XoCamera_pointer_camera set False;setWidgetResource XoCamera_pointer_highlight set False'\
+   test $transformedObject eq scene && osh $cmd\
+   cmd='setWidgetResource XoCamera_pointer_scene set False;setWidgetResource XoCamera_pointer_camera set True;setWidgetResource XoCamera_pointer_highlight set False'\
+   test $transformedObject eq camera && osh $cmd\
+   cmd='setWidgetResource XoCamera_pointer_scene set False;setWidgetResource XoCamera_pointer_camera set False;setWidgetResource XoCamera_pointer_highlight set True'\
+   test $transformedObject eq highlight && osh $cmd\
+   #transformationAxis\
+   transformationAxis=`getWidgetResource $widget transformationAxis`\
+   cmd='setWidgetResource XoCamera_pointer_xy set True;setWidgetResource XoCamera_pointer_z set False;setWidgetResource XoCamera_pointer_axis set False'\
+   test $transformationAxis eq xy && osh $cmd\
+   cmd='setWidgetResource XoCamera_pointer_xy set False;setWidgetResource XoCamera_pointer_z set True;setWidgetResource XoCamera_pointer_axis set False'\
+   test $transformationAxis eq z && osh $cmd\
+   cmd='setWidgetResource XoCamera_pointer_xy set False;setWidgetResource XoCamera_pointer_z set False;setWidgetResource XoCamera_pointer_axis set True'\
+   test $transformationAxis eq axis && osh $cmd\
+   #transformationFactor\
+   setWidgetResource XoCamera_pointer_sensitivity value `getWidgetResource $widget transformationFactor`
+ targetChangedCallback = osh> callWidgetCallbacks `get Widget this` activateCallback
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_179
+ type = XmSeparator
+ background = lightgrey
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = XoCamera_reset
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_181
+ type = XmSeparator
+ background = lightgrey
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = XoCamera_what_rc
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_182
+ type = XmLabel
+ background = black
+ foreground = white
+ labelString = Ctrl/button1 modes
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = XoCamera_170
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_184
+ type = XmSeparator
+ background = lightgrey
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = XoCamera_axe_rc
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_load
+ type = XmFileSelectionDialog
+ dialogTitle = odb file
+ background = lightgrey
+ cancelCallback = osh> do `get Widget this` unmanage
+ okCallback = osh>\
+  do `get Widget this` unmanage\
+  widget=`get Widget thisLocalTarget`\
+  camera=`get $widget name`\
+  load `get Widget thisValue` | viewNode - $camera
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_186
+ type = XmFormDialog
+ children = XoCamera_185 XoCamera_187 
+ background  = lightgrey
+ dialogTitle = XoCamera getInfos
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_185
+ type = XmFrame
+ children = XoCamera_infos 
+ borderWidth = 3
+ borderColor = lightgrey
+ topAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ bottomAttachment = attach_widget
+ bottomWidget = XoCamera_187
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_infos
+ type = XmScrolledText
+ background = lightgrey
+ editMode = multi_line_edit
+ createCallback = osh> setWidgetTextSize `get Widget this` 5 20
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_187
+ type = XmPushButton
+ background = lightgrey
+ labelString = Cancel
+ activateCallback = osh> do `get Widget thisParent` unmanage
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ bottomAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_293
+ type = XmSelectionDialog
+ dialogTitle = Change colormap
+ background = grey
+ okCallback = osh> setWidgetResource `get Widget thisLocalTarget` virtualColormap `get Widget thisValue`
+end
+!----------------------------
+begin OWidget
+ name = XoCamera_prompt
+ type = XmPromptDialog
+end

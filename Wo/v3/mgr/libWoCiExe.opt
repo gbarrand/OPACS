@@ -1,0 +1,21 @@
+cibin:cis/share
+cibin:ciswitchess/share
+csetbin:csets/share
+csetbin:regs/share
+wobin:libwo/share
+xxbin:libxx/share
+cobin:libco/share
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!! X11R5 !!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+SYS$SHARE:DECW$XMULIBSHRR5/SHAREABLE
+SYS$SHARE:DECW$XTLIBSHRR5/SHAREABLE
+SYS$SHARE:DECW$XEXTLIBSHR/SHAREABLE
+SYS$SHARE:DECW$XLIBSHR/SHAREABLE
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!! X11R4 !!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!SYS$SHARE:DECW$XMULIBSHR/SHAREABLE
+!SYS$SHARE:DECW$XTSHR/SHAREABLE
+!SYS$SHARE:DECW$XEXTLIBSHR/SHAREABLE
+!SYS$SHARE:DECW$XLIBSHR/SHAREABLE

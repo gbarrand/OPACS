@@ -1,0 +1,73 @@
+/* +---------------------- Copyright notice -------------------------------+ */
+/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+/* |   Permission to use, copy, modify, and distribute this software       | */
+/* |   and its documentation for any purpose and without fee is hereby     | */
+/* |   granted, provided that the above copyright notice appear in all     | */
+/* |   copies and that both that copyright notice and this permission      | */
+/* |   notice appear in supporting documentation.  This software is        | */
+/* |   provided "as is" without express or implied warranty.               | */
+/* +---------------------- Copyright notice -------------------------------+ */
+#ifndef WoXaw_ic
+#define WoXaw_ic
+
+#ifdef HAS_XAW
+
+  OInterfaceAddPackage                     ("Xaw");
+
+  WoSetInitializeClassFunction             (XawInitializeClass);
+  OResourceAddGetCallbackDataFunction      (XawGetCallbackData);
+  OResourceAddConvertValueToStringFunction (XawConvertResourceValueToString);
+
+/*Not in all distrib.*/
+/*
+  OClassDeclareWidgetClass   ("Xaw/AsciiString"         ,asciiStringWidgetClass);
+  OClassDeclareWidgetClass   ("Xaw/AsciiDisk"           ,asciiDiskWidgetClass);   
+*/
+
+/*Not in all distrib.*/
+/*
+  OClassDeclareWidgetClass   ("Xaw/Clock"               ,clockWidgetClass);
+  OClassDeclareWidgetClass   ("Xaw/Logo"                ,logoWidgetClass);
+  OClassDeclareWidgetClass   ("Xaw/Mailbox"             ,mailboxWidgetClass);
+*/
+/*treeWidgetClass exists in libXaw and libpawlib where it is the Young widget. Crash on ULTRIX.*/
+/*
+  OClassDeclareWidgetClass   ("Xaw/Tree"                ,treeWidgetClass);
+*/
+
+  OClassDeclareWidgetClass   ("Xaw/AsciiText"           ,asciiTextWidgetClass);
+  OClassDeclareWidgetClass   ("Xaw/Box"                 ,boxWidgetClass);
+  OClassDeclareWidgetClass   ("Xaw/Command"             ,commandWidgetClass);
+  OClassDeclareWidgetClass   ("Xaw/Dialog"              ,dialogWidgetClass);
+  OClassDeclareWidgetClass   ("Xaw/Form"                ,formWidgetClass);
+  OClassDeclareWidgetClass   ("Xaw/Grip"                ,gripWidgetClass);
+  OClassDeclareWidgetClass   ("Xaw/Label"               ,labelWidgetClass);
+  OClassDeclareWidgetClass   ("Xaw/List"                ,listWidgetClass);
+  OClassDeclareWidgetClass   ("Xaw/MenuButton"          ,menuButtonWidgetClass);
+  OClassDeclareWidgetClass   ("Xaw/Paned"               ,panedWidgetClass);
+  OClassDeclareWidgetClass   ("Xaw/Panner"              ,pannerWidgetClass);
+  OClassDeclareWidgetClass   ("Xaw/Porthole"            ,portholeWidgetClass);
+  OClassDeclareWidgetClass   ("Xaw/Repeater"            ,repeaterWidgetClass);
+  OClassDeclareWidgetClass   ("Xaw/Scrollbar"           ,scrollbarWidgetClass);
+  OClassDeclareWidgetClass   ("Xaw/Simple"              ,simpleWidgetClass);
+  OClassDeclareWidgetClass   ("Xaw/SimpleMenu"          ,simpleMenuWidgetClass);
+  OClassDeclareWidgetClass   ("Xaw/StripChart"          ,stripChartWidgetClass);
+  OClassDeclareWidgetClass   ("Xaw/Text"                ,textWidgetClass);
+  OClassDeclareWidgetClass   ("Xaw/Toggle"              ,toggleWidgetClass);
+  OClassDeclareWidgetClass   ("Xaw/Viewport"            ,viewportWidgetClass);
+
+  OClassDeclareWidgetClass   ("Xaw/AsciiSink"           ,asciiSinkObjectClass);
+  OClassDeclareWidgetClass   ("Xaw/AsciiSrc"            ,asciiSrcObjectClass);
+  OClassDeclareWidgetClass   ("Xaw/Sme"                 ,smeObjectClass);
+  OClassDeclareWidgetClass   ("Xaw/SmeBSB"              ,smeBSBObjectClass);
+  OClassDeclareWidgetClass   ("Xaw/SmeLine"             ,smeLineObjectClass);
+  OClassDeclareWidgetClass   ("Xaw/TextSink"            ,textSinkObjectClass);
+  OClassDeclareWidgetClass   ("Xaw/TextSrc"             ,textSrcObjectClass);
+
+/*Xaw3d classes.*/
+  OClassDeclareWidgetClass   ("Xaw/VendorShellExt"      ,NULL);
+  OClassDeclareWidgetClass   ("Xaw/ThreeD"              ,NULL);
+
+#endif /*HAS_XAW*/
+
+#endif /*WoXaw_ic*/

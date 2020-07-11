@@ -1,0 +1,553 @@
+!/* +---------------------- Copyright notice -------------------------------+ */
+!/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+!/* |   Permission to use, copy, modify, and distribute this software       | */
+!/* |   and its documentation for any purpose and without fee is hereby     | */
+!/* |   granted, provided that the above copyright notice appear in all     | */
+!/* |   copies and that both that copyright notice and this permission      | */
+!/* |   notice appear in supporting documentation.  This software is        | */
+!/* |   provided "as is" without express or implied warranty.               | */
+!/* +---------------------- Copyright notice -------------------------------+ */
+!----------------------------
+begin OInterface
+ version = v3
+ prefix = XoPlotter_
+ packages = Xm Xo
+ resources = *XoPlotter_325*XmList.fontList:*courier*-r-*--14-*
+end
+!----------------------------
+begin OWidget
+ name = XoPlotter_palette
+ type = XmFormDialog
+ children = XoPlotter_localTarget XoPlotter_axis_update XoPlotter_cancel XoPlotter_227 XoPlotter_316 XoPlotter_317 XoPlotter_318 XoPlotter_layout XoPlotter_layout_pdm XoPlotter_bars XoPlotter_label_plottedObjects XoPlotter_plottedObjects XoPlotter_332 XoPlotter_336 XoPlotter_341 XoPlotter_340 XoPlotter_346 
+ autoUnmanage = False
+ dialogTitle = XoPlotter
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = XoPlotter_332
+ type = XmPushButton
+ activateCallback = osh>\
+  ref=`thisWidget`\
+  setWidgetResource XoPlotter_localTarget value `grabWidgetName $ref`\
+  callWidgetCallbacks XoPlotter_localTarget activateCallback
+ labelString = XoPlotter
+ background = grey
+ topAttachment = attach_form
+ leftAttachment = attach_form
+ createCallback = osh> setWidgetResource `thisWidget` height `getWidgetResource XoPlotter_localTarget height`
+end
+!----------------------------
+begin OWidget
+ name = XoPlotter_localTarget
+ type = XmText
+ background = wheat
+ topAttachment = attach_form
+ leftAttachment = attach_widget
+ rightAttachment = attach_form
+ leftWidget = XoPlotter_332
+ activateCallback = osh>\
+  localTarget=`get Widget thisLocalTarget`\
+  test $localTarget eq '' && exit\
+  isNotWidgetSubclass $localTarget XoPlotter && echo 'Not an XoPlotter.'\
+  isNotWidgetSubclass $localTarget XoPlotter && exit\
+  #XoPlotter_plottedObjects\
+  setWidgetResource XoPlotter_plottedObjects value `getWidgetResource $localTarget plottedObjects`\
+  #XoPlotter_layout\
+  setWidgetOption XoPlotter_layout `getWidgetResource $localTarget layout`\
+  #XoPlotter_bars\
+  setWidgetResource XoPlotter_bars set `getWidgetResource $localTarget barsVisible`\
+  axis=`getWidgetOption XoPlotter_axis_option`\
+  #XoPlotter_axis_high_txt\
+  res=`printf %sAxisMaximum $axis`\
+  value=`getWidgetResource $localTarget $res`\
+  setWidgetResource XoPlotter_axis_high_txt value $value\
+  #XoPlotter_axis_low_txt\
+  res=`printf %sAxisMinimum $axis`\
+  value=`getWidgetResource $localTarget $res`\
+  setWidgetResource XoPlotter_axis_low_txt value $value\
+  #XoPlotter_axis_num_txt\
+  res=`printf %sAxisNumberOfBins $axis`\
+  value=`getWidgetResource $localTarget $res`\
+  setWidgetResource XoPlotter_axis_num_txt value $value\
+  #XoPlotter_axis_auto\
+  res=`printf %sAxisAutomatic $axis`\
+  value=`getWidgetResource $localTarget $res`\
+  setWidgetResource XoPlotter_axis_auto set $value\
+  #XoPlotter_axis_log\
+  res=`printf %sAxisLogScale $axis`\
+  value=`getWidgetResource $localTarget $res`\
+  setWidgetResource XoPlotter_axis_log set $value
+ targetChangedCallback = osh> callWidgetCallbacks `get Widget this` activateCallback
+end
+!----------------------------
+begin OWidget
+ name = XoPlotter_axis_update
+ type = XmPushButton
+ labelString = Update axis
+ background = lightgrey
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topAttachment = attach_widget
+ topWidget = XoPlotter_axis_box
+ activateCallback = osh>\
+  localTarget=`get Widget thisLocalTarget`\
+  test $localTarget eq '' && exit\
+  axis=`getWidgetOption XoPlotter_axis_option`\
+  res=`printf %sAxisAutomatic $axis`\
+  isauto=`getWidgetResource $localTarget $res`\
+  #nbin\
+  value=`getWidgetResource XoPlotter_axis_num_txt value`\
+  res=`printf %sAxisNumberOfBins $axis`\
+  setAndMarkWidgetResource $localTarget $res $value\
+  #low\
+  value=`getWidgetResource XoPlotter_axis_low_txt value`\
+  res=`printf %sAxisMinimum $axis`\
+  test $isauto eq false && setAndMarkWidgetResource $localTarget $res $value\
+  #high\
+  value=`getWidgetResource XoPlotter_axis_high_txt value`\
+  res=`printf %sAxisMaximum $axis`\
+  test $isauto eq false && setAndMarkWidgetResource $localTarget $res $value\
+  callWidgetCallbacks XoPlotter_localTarget activateCallback
+end
+!----------------------------
+begin OWidget
+ name = XoPlotter_cancel
+ type = XmPushButton
+ activateCallback = osh> do `get Widget thisParent` unmanage
+ labelString = Cancel
+ background = lightgrey
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ bottomAttachment = attach_form
+ topAttachment = attach_widget
+ topWidget = XoPlotter_axis_update
+end
+!----------------------------
+begin OWidget
+ name = XoPlotter_227
+ type = XmPushButton
+ activateCallback = osh>\
+  localTarget=`get Widget thisLocalTarget`\
+  test $localTarget eq '' && exit\
+  plotter=`get $localTarget name`\
+  collect OPlotter where name eq $plotter | do - getInformations | setWidgetResource XoPlotter_325 listItems -\
+  do Widget/XoPlotter_325 manage
+ labelString = Selected bins
+ background = grey
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = XoPlotter_bars
+end
+!----------------------------
+begin OWidget
+ name = XoPlotter_316
+ type = XmPushButton
+ activateCallback = osh> \
+  localTarget=`get Widget thisLocalTarget`\
+  test $localTarget eq '' && exit\
+  magnifyPlot $localTarget back\
+  callWidgetCallbacks XoPlotter_localTarget activateCallback
+ labelString = Zoom out
+ background = grey
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = XoPlotter_317
+end
+!----------------------------
+begin OWidget
+ name = XoPlotter_317
+ type = XmPushButton
+ activateCallback = osh> \
+  localTarget=`get Widget thisLocalTarget`\
+  test $localTarget eq '' && exit\
+  magnifyPlot $localTarget\
+  callWidgetCallbacks XoPlotter_localTarget activateCallback
+ labelString = Zoom on collect
+ background = grey
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = XoPlotter_346
+end
+!----------------------------
+begin OWidget
+ name = XoPlotter_318
+ type = XmPushButton
+ activateCallback = osh> \
+  localTarget=`get Widget thisLocalTarget`\
+  test $localTarget eq '' && exit\
+  magnifyPlot $localTarget reset\
+  callWidgetCallbacks XoPlotter_localTarget activateCallback
+ labelString = Zoom reset
+ background = grey
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = XoPlotter_316
+end
+!----------------------------
+begin OWidget
+ name = XoPlotter_325
+ type = XmSelectionDialog
+ okCallback = osh> do `get Widget this` unmanage
+ applyCallback = osh> do `get Widget this` unmanage
+ cancelCallback = osh> do `get Widget this` unmanage
+ background = lightgrey
+ dialogTitle = Bins
+end
+!----------------------------
+begin OWidget
+ name = XoPlotter_label_plottedObjects
+ type = XmLabel
+ labelString = Plotted objects
+ foreground = white
+ background = black
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = XoPlotter_localTarget
+end
+!----------------------------
+begin OWidget
+ name = XoPlotter_plottedObjects
+ type = XmText
+ background = lightgrey
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = XoPlotter_label_plottedObjects
+ activateCallback = osh>\
+  value=`getWidgetResource XoPlotter_plottedObjects value`\
+  localTarget=`get Widget thisLocalTarget`\
+  test $localTarget eq '' && exit\
+  setAndMarkWidgetResource $localTarget plottedObjects $value\
+  updatePlot $localTarget now\
+  callWidgetCallbacks XoPlotter_localTarget activateCallback
+end
+!----------------------------
+begin OWidget
+ name = XoPlotter_layout
+ type = XmOptionMenu
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = XoPlotter_plottedObjects
+ labelString = Layout
+ subMenuId = XoPlotter_layout_pdm
+ background = grey
+end
+!----------------------------
+begin OWidget
+ name = XoPlotter_layout_pdm
+ type = XmPulldownMenu
+ children = XoPlotter_layout_xv XoPlotter_layout_xy XoPlotter_layout_xyv XoPlotter_layout_xyz
+ background = grey
+end
+!----------------------------
+begin OWidget
+ name = XoPlotter_layout_xv
+ type = XmPushButton
+ labelString = xv
+ activateCallback = osh>\
+  localTarget=`get Widget thisLocalTarget`\
+  test $localTarget eq '' && exit\
+  setAndMarkWidgetResource $localTarget layout xv
+end
+!----------------------------
+begin OWidget
+ name = XoPlotter_layout_xy
+ type = XmPushButton
+ labelString = xy
+ activateCallback = osh>\
+  localTarget=`get Widget thisLocalTarget`\
+  test $localTarget eq '' && exit\
+  setAndMarkWidgetResource $localTarget layout xy
+end
+!----------------------------
+begin OWidget
+ name = XoPlotter_layout_xyv
+ type = XmPushButton
+ labelString = xyv
+ activateCallback = osh>\
+  localTarget=`get Widget thisLocalTarget`\
+  test $localTarget eq '' && exit\
+  setAndMarkWidgetResource $localTarget layout xyv
+end
+!----------------------------
+begin OWidget
+ name = XoPlotter_layout_xyz
+ type = XmPushButton
+ labelString = xyz
+ activateCallback = osh>\
+  localTarget=`get Widget thisLocalTarget`\
+  test $localTarget eq '' && exit\
+  setAndMarkWidgetResource $localTarget layout xyz
+end
+!----------------------------
+begin OWidget
+ name = XoPlotter_bars
+ type = XmToggleButton
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = XoPlotter_layout
+ labelString = Bars
+ background = grey
+ valueChangedCallback = osh>\
+  localTarget=`get Widget thisLocalTarget`\
+  test $localTarget eq '' && exit\
+  value=`getWidgetResource XoPlotter_bars set`\
+  setAndMarkWidgetResource $localTarget barsVisible $value
+end
+!----------------------------
+begin OWidget
+ name = XoPlotter_336
+ type = XmPushButton
+ activateCallback = osh>\
+  localTarget=`get Widget thisLocalTarget`\
+  test $localTarget eq '' && exit\
+  setPlotLayout $localTarget
+ labelString = Set up camera
+ background = grey
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = XoPlotter_227
+end
+!----------------------------
+begin OWidget
+ name = XoPlotter_341
+ type = XmForm
+ children = XoPlotter_axis_box XoPlotter_axis_auto XoPlotter_axis_log XoPlotter_axis_option XoPlotter_axis_196 
+ background = grey
+ topAttachment = attach_widget
+ topWidget = XoPlotter_340
+ rightAttachment = attach_form
+ leftAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = XoPlotter_axis_box
+ type = XmForm
+ children = XoPlotter_axis_low_but XoPlotter_axis_low_txt XoPlotter_axis_high_but XoPlotter_axis_high_txt XoPlotter_axis_num_but XoPlotter_axis_num_txt 
+ background = grey
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = XoPlotter_axis_log
+end
+!----------------------------
+begin OWidget
+ name = XoPlotter_axis_num_but
+ type = XmLabel
+ labelString = Nbin:
+ background = grey
+ topAttachment = attach_position
+ bottomAttachment = attach_position
+ leftAttachment = attach_position
+ rightAttachment = attach_position
+ topPosition = 1
+ bottomPosition = 33
+ leftPosition = 1
+ rightPosition = 30
+ resizable = True
+end
+!----------------------------
+begin OWidget
+ name = XoPlotter_axis_num_txt
+ type = XmText
+ background = lightgrey
+ topAttachment = attach_position
+ bottomAttachment = attach_position
+ leftAttachment = attach_position
+ rightAttachment = attach_position
+ topPosition = 1
+ bottomPosition = 33
+ leftPosition = 31
+ rightPosition = 99
+ resizable = True
+end
+!----------------------------
+begin OWidget
+ name = XoPlotter_axis_low_but
+ type = XmLabel
+ labelString = Low:
+ background = grey
+ topAttachment = attach_position
+ bottomAttachment = attach_position
+ leftAttachment = attach_position
+ rightAttachment = attach_position
+ topPosition = 33
+ bottomPosition = 66
+ leftPosition = 1
+ rightPosition = 30
+ resizable = True
+end
+!----------------------------
+begin OWidget
+ name = XoPlotter_axis_low_txt
+ type = XmText
+ background = lightgrey
+ topAttachment = attach_position
+ bottomAttachment = attach_position
+ leftAttachment = attach_position
+ rightAttachment = attach_position
+ topPosition = 33
+ bottomPosition = 66
+ leftPosition = 31
+ rightPosition = 99
+ resizable = True
+end
+!----------------------------
+begin OWidget
+ name = XoPlotter_axis_high_but
+ type = XmLabel
+ labelString = High:
+ background = grey
+ topAttachment = attach_position
+ bottomAttachment = attach_position
+ leftAttachment = attach_position
+ rightAttachment = attach_position
+ topPosition = 66
+ bottomPosition = 99
+ leftPosition = 1
+ rightPosition = 30
+ resizable = True
+end
+!----------------------------
+begin OWidget
+ name = XoPlotter_axis_high_txt
+ type = XmText
+ background = lightgrey
+ topAttachment = attach_position
+ bottomAttachment = attach_position
+ leftAttachment = attach_position
+ rightAttachment = attach_position
+ topPosition = 66
+ bottomPosition = 99
+ leftPosition = 31
+ rightPosition = 99
+ resizable = True
+end
+!----------------------------
+begin OWidget
+ name = XoPlotter_axis_auto
+ type = XmToggleButton
+ valueChangedCallback = osh>\
+  localTarget=`get Widget thisLocalTarget`\
+  test $localTarget eq '' && exit\
+  value=`getWidgetResource XoPlotter_axis_auto set`\
+  axis=`getWidgetOption XoPlotter_axis_option`\
+  res=`printf %sAxisAutomatic $axis`\
+  setAndMarkWidgetResource $localTarget $res $value\
+  res=`printf %sAxisMinimum $axis`\
+  do $localTarget markResource $res\
+  res=`printf %sAxisMaximum $axis`\
+  do $localTarget markResource $res\
+  callWidgetCallbacks XoPlotter_localTarget activateCallback
+ labelString = Automatic
+ background = grey
+ topAttachment = attach_widget
+ bottomAttachment = attach_none
+ leftAttachment = attach_form
+ rightAttachment = attach_none
+ topWidget = XoPlotter_axis_option
+ bottomPosition = 0
+end
+!----------------------------
+begin OWidget
+ name = XoPlotter_axis_log
+ type = XmToggleButton
+ valueChangedCallback = osh>\
+  localTarget=`get Widget thisLocalTarget`\
+  test $localTarget eq '' && exit\
+  value=`getWidgetResource XoPlotter_axis_log set`\
+  axis=`getWidgetOption XoPlotter_axis_option`\
+  res=`printf %sAxisLogScale $axis`\
+  setAndMarkWidgetResource $localTarget $res $value\
+  callWidgetCallbacks XoPlotter_localTarget activateCallback
+ labelString = Log scale
+ background = grey
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_none
+ topWidget = XoPlotter_axis_auto
+end
+!----------------------------
+begin OWidget
+ name = XoPlotter_axis_option
+ type = XmOptionMenu
+ topAttachment = attach_form
+ bottomAttachment = attach_none
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ labelString = Axis
+ subMenuId = XoPlotter_axis_196
+ background = grey
+end
+!----------------------------
+begin OWidget
+ name = XoPlotter_axis_196
+ type = XmPulldownMenu
+ children = XoPlotter_axis_X XoPlotter_axis_Y XoPlotter_axis_Z XoPlotter_axis_V 
+ background = grey
+end
+!----------------------------
+begin OWidget
+ name = XoPlotter_axis_X
+ type = XmPushButton
+ activateCallback = osh> callWidgetCallbacks XoPlotter_localTarget activateCallback
+ labelString = x
+ background = grey
+end
+!----------------------------
+begin OWidget
+ name = XoPlotter_axis_Y
+ type = XmPushButton
+ activateCallback = osh> callWidgetCallbacks XoPlotter_localTarget activateCallback
+ labelString = y
+ background = grey
+end
+!----------------------------
+begin OWidget
+ name = XoPlotter_axis_Z
+ type = XmPushButton
+ activateCallback = osh> callWidgetCallbacks XoPlotter_localTarget activateCallback
+ labelString = z
+ background = grey
+end
+!----------------------------
+begin OWidget
+ name = XoPlotter_axis_V
+ type = XmPushButton
+ activateCallback = osh> callWidgetCallbacks XoPlotter_localTarget activateCallback
+ labelString = v
+ background = grey
+end
+!----------------------------
+begin OWidget
+ name = XoPlotter_340
+ type = XmLabel
+ labelString = Axes
+ foreground = white
+ background = black
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = XoPlotter_318
+end
+!----------------------------
+begin OWidget
+ name = XoPlotter_346
+ type = XmLabel
+ labelString = Tuple zoom
+ foreground = white
+ background = black
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = XoPlotter_336
+end

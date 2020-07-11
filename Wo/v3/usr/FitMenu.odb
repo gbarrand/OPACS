@@ -1,0 +1,68 @@
+!----------------------------
+begin OInterface
+ prefix = FitMenu_
+ packages = Xm 
+end
+!----------------------------
+begin OWidget
+ name = FitMenu_casc
+ type = XmCascadeButton
+ labelString = Fit
+ subMenuId = FitMenu_pdm
+end
+!----------------------------
+begin OWidget
+ name = FitMenu_pdm
+ type = XmPulldownMenu
+ children = FitMenu_none FitMenu_gauss FitMenu_breit FitMenu_exponential FitMenu_polynomial
+end
+!----------------------------
+begin OWidget
+ name = FitMenu_none
+ type = XmPushButton
+ labelString = None
+ activateCallback = osh> setWidgetResource `targetWidget` fitType none
+end
+!----------------------------
+begin OWidget
+ name = FitMenu_gauss
+ type = XmPushButton
+ labelString = Gaussian
+ activateCallback = osh>\
+  setWidgetResource `targetWidget` fitType none\
+  setWidgetResource `targetWidget` fitType gaussian
+end
+!----------------------------
+begin OWidget
+ name = FitMenu_breit
+ type = XmPushButton
+ labelString = Breit Wigner
+ activateCallback = osh>\
+  setWidgetResource `targetWidget` fitType none\
+  setWidgetResource `targetWidget` fitType breit_wigner
+end
+!----------------------------
+begin OWidget
+ name = FitMenu_exponential
+ type = XmPushButton
+ labelString = Exponential
+ activateCallback = osh>\
+  setWidgetResource `targetWidget` fitType none\
+  setWidgetResource `targetWidget` fitType exponential
+end
+!----------------------------
+begin OWidget
+ name = FitMenu_polynomial
+ type = XmPushButton
+ labelString = Polynomial
+ activateCallback = osh>\
+  setWidgetResource `targetWidget` fitType none\
+  setWidgetResource `targetWidget` fitType polynomial
+end
+
+
+
+
+
+
+

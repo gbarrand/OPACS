@@ -1,0 +1,51 @@
+!----------------------------
+begin OInterface
+ version = v3
+ prefix = OFuncT_
+ parent = WoTest_form
+ packages = Xm Xo
+end
+!----------------------------
+begin OWidget
+ name = OFuncT_panel
+ type = XmBulletinBoard
+ children = OFuncT_384 OFuncT_385 
+ background = dimgrey
+ topAttachment = attach_form
+ bottomAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = OFuncT_384
+ type = XoPlotter
+ x = 19
+ y = 25
+ width = 227
+ height = 215
+ functions = (1. - pow(sin(x),2.))/(2.+sin(x))
+ xAxisMinimum = 0
+ xAxisMaximum = 10
+end
+!----------------------------
+begin OWidget
+ name = OFuncT_385
+ type = XoPlotter
+ x = 256
+ y = 53
+ width = 214
+ height = 238
+ buffering = double
+ depthTreatment = zbuffer
+ layout = xyv
+ functionContext = color green
+ functionDimension = 2
+ functions = x*sin(x)*y*sin(y)
+ xAxisNumberOfBins = 40
+ xAxisMinimum = -10
+ xAxisMaximum = 10
+ yAxisNumberOfBins = 40
+ yAxisMinimum = -10
+ yAxisMaximum = 10
+end

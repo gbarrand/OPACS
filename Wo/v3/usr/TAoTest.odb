@@ -1,0 +1,48 @@
+!----------------------------
+begin OInterface
+ prefix = TAoTest_
+ parent = MainPanel
+end
+!----------------------------
+begin OWidget
+ name = TAoTest_grid
+ type = XmForm
+ background = dimgrey
+ topAttachment = attach_form
+ bottomAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ fractionBase = 1000
+ children = TAoTest_2_1 TAoTest_1_1
+end
+!----------------------------
+begin OWidget
+ name = TAoTest_1_1
+ type = XoPlotter
+ topAttachment = attach_position
+ topPosition = 2
+ bottomAttachment = attach_position
+ bottomPosition = 498
+ leftAttachment = attach_position
+ leftPosition = 2
+ rightAttachment = attach_position
+ rightPosition = 998
+ plottedObjects = TAo_histo\nTAo_histo_2
+ histogramContext = modeling solid color red
+ secondHistogramContext = modeling solid color green
+end
+!----------------------------
+begin OWidget
+ name = TAoTest_2_1
+ type = XoPlotter
+ topAttachment = attach_position
+ topPosition = 502
+ bottomAttachment = attach_position
+ bottomPosition = 998
+ leftAttachment = attach_position
+ leftPosition = 2
+ rightAttachment = attach_position
+ rightPosition = 998
+ plottedObjects = TAo_histo
+ userCallback = osh> echo 'User callback executed'
+end

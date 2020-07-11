@@ -1,0 +1,156 @@
+!/* +---------------------- Copyright notice -------------------------------+ */
+!/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+!/* |   Permission to use, copy, modify, and distribute this software       | */
+!/* |   and its documentation for any purpose and without fee is hereby     | */
+!/* |   granted, provided that the above copyright notice appear in all     | */
+!/* |   copies and that both that copyright notice and this permission      | */
+!/* |   notice appear in supporting documentation.  This software is        | */
+!/* |   provided "as is" without express or implied warranty.               | */
+!/* +---------------------- Copyright notice -------------------------------+ */
+!----------------------------
+begin OInterface
+ version = v3
+ prefix = CompForm_
+ packages = Xm
+end
+!----------------------------
+begin OWidget
+ name = CompForm_palette
+ type = XmFormDialog
+ children = CompForm_0_label CompForm_0_text CompForm_1_label CompForm_1_text CompForm_2_label CompForm_2_text CompForm_3_label CompForm_3_text CompForm_4_button CompForm_hide 
+ autoUnmanage = false
+ dialogTitle = Form of
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = CompForm_0_label
+ type = XmPushButton
+ createCallback = osh> setWidgetResource `thisWidget` height `getWidgetResource CompForm_0_text height`
+ labelString = Parent
+ background = lightgrey
+ leftAttachment = attach_form
+ topAttachment = attach_form
+ rightAttachment = attach_position
+ rightPosition = 40
+ activateCallback = osh>\
+  ref=`thisWidget`\
+  setWidgetResource CompForm_0_text value `grabWidgetName $ref`
+end
+!----------------------------
+begin OWidget
+ name = CompForm_0_text
+ type = XmText
+ rightAttachment = attach_form
+ topAttachment = attach_form
+ leftAttachment = attach_widget
+ leftWidget = CompForm_0_label
+ background = wheat
+end
+!----------------------------
+begin OWidget
+ name = CompForm_1_label
+ type = XmLabel
+ createCallback = osh> setWidgetResource `thisWidget` height `getWidgetResource CompForm_1_text height`
+ labelString = Rows
+ background = lightgrey
+ leftAttachment = attach_form
+ topAttachment = attach_widget
+ topWidget = CompForm_0_text
+ rightAttachment = attach_position
+ rightPosition = 40
+end
+!----------------------------
+begin OWidget
+ name = CompForm_1_text
+ type = XmText
+ rightAttachment = attach_form
+ topAttachment = attach_widget
+ topWidget = CompForm_0_text
+ leftAttachment = attach_widget
+ leftWidget = CompForm_1_label
+ value = 1
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = CompForm_2_label
+ type = XmLabel
+ createCallback = osh> setWidgetResource `thisWidget` height `getWidgetResource CompForm_2_text height`
+ labelString = Columns
+ background = lightgrey
+ leftAttachment = attach_form
+ topAttachment = attach_widget
+ topWidget = CompForm_1_text
+ rightAttachment = attach_position
+ rightPosition = 40
+end
+!----------------------------
+begin OWidget
+ name = CompForm_2_text
+ type = XmText
+ rightAttachment = attach_form
+ topAttachment = attach_widget
+ topWidget = CompForm_1_text
+ leftAttachment = attach_widget
+ leftWidget = CompForm_2_label
+ value = 1
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = CompForm_3_label
+ type = XmLabel
+ createCallback = osh> setWidgetResource `thisWidget` height `getWidgetResource CompForm_3_text height`
+ labelString = Widget type
+ background = lightgrey
+ leftAttachment = attach_form
+ topAttachment = attach_widget
+ topWidget = CompForm_2_text
+ rightAttachment = attach_position
+ rightPosition = 40
+end
+!----------------------------
+begin OWidget
+ name = CompForm_3_text
+ type = XmText
+ rightAttachment = attach_form
+ topAttachment = attach_widget
+ topWidget = CompForm_2_text
+ leftAttachment = attach_widget
+ leftWidget = CompForm_3_label
+ value = XmPushButton
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = CompForm_4_button
+ type = XmPushButton
+ labelString = Create
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topAttachment = attach_widget
+ topWidget = CompForm_3_text
+ background = lightgrey
+ activateCallback = osh>\
+  parent=`getWidgetResource CompForm_0_text value`\
+  rows=`getWidgetResource CompForm_1_text value`\
+  cols=`getWidgetResource CompForm_2_text value`\
+  type=`getWidgetResource CompForm_3_text value`\
+  widget=`createCompoundWidget $parent form $type $rows $cols`\
+  do $widget move `get Widget grabbedX` `get Widget grabbedY`\
+  do $widget markResource x\
+  do $widget markResource y
+end
+!----------------------------
+begin OWidget
+ name = CompForm_hide
+ type = XmPushButton
+ rightAttachment = attach_form
+ leftAttachment = attach_form
+ topAttachment = attach_widget
+ topWidget = CompForm_4_button
+ labelString = Cancel
+ background = lightgrey
+ activateCallback = osh> unmanageWidget `get Widget thisParent`
+end

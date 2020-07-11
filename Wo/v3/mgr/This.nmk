@@ -1,0 +1,514 @@
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#  File produced by the Co/omake tool
+# using file Make.odb.
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!include macros.nmk
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#  The soft linked packages has been taken
+# from the command line option '-has'.
+# It had the value :
+#    X11 Xext Xt Xmu Xm WoXm WoGL WoXo WoHTML
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+HAS_CPPFLAGS = \
+ $(Wo_CPPFLAGS)\
+ $(X11_CPPFLAGS)\
+ $(Xext_CPPFLAGS)\
+ $(Xt_CPPFLAGS)\
+ $(Xmu_CPPFLAGS)\
+ $(Xm_CPPFLAGS)\
+ $(WoXm_CPPFLAGS)\
+ $(WoGL_CPPFLAGS)\
+ $(WoXo_CPPFLAGS)\
+ $(WoHTML_CPPFLAGS)
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+all   :: mkdir
+
+clean ::
+	if exist $(bin)\*.obj del $(bin)\*.obj
+	if exist $(bin)\*.exe del $(bin)\*.exe
+	if exist $(bin)\*.class del $(bin)\*.class
+	if exist $(bin)\*.lib del $(bin)\*.lib
+	if exist $(bin)\*.dll del $(bin)\*.dll
+	if exist $(bin)\*.exp del $(bin)\*.exp
+	if exist $(bin)\*.pdb del $(bin)\*.pdb
+	if exist $(bin)\*.ilk del $(bin)\*.ilk
+rmlib ::
+	if exist $(bin)\*.lib del $(bin)\*.lib
+rmo   ::
+	if exist $(bin)\*.obj del $(bin)\*.obj
+rmexe ::
+	if exist $(bin)\*.exe del $(bin)\*.exe
+
+	if exist $(bin)\*.class del $(bin)\*.class
+mkdir :
+	@if not exist $(bin) mkdir $(bin)
+
+libWo_target = $(bin)\libWo.lib
+libWoXm_target = $(bin)\libWoXm.lib
+libWoGL_target = $(bin)\libWoGL.lib
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+all :: mkdir \
+$(libWo_target) \
+$(libWoXm_target) \
+$(libWoGL_target) \
+$(bin)\oshow.exe \
+$(bin)\onew.exe 
+	@echo "Wo : all ok." 
+
+libs :: mkdir \
+$(libWo_target) \
+$(libWoXm_target) \
+$(libWoGL_target) 
+	@echo "Wo : libs ok." 
+
+apps :: mkdir \
+$(bin)\oshow.exe \
+$(bin)\onew.exe \
+$(bin)\oiv.exe \
+$(bin)\oshWo.exe \
+$(bin)\WoT.exe \
+$(bin)\CiT.exe \
+$(bin)\NoHT.exe \
+$(bin)\tclT.exe \
+$(bin)\ouiToodb.exe \
+$(bin)\ovoid.exe \
+$(bin)\jo.class \
+$(bin)\jolet.class \
+$(bin)\JavaT.class \
+$(bin)\wof77t.exe 
+	@echo "Wo : apps ok." 
+#--------------------------------------------
+rmexeo :
+	if exist $(bin)\oshow.obj del $(bin)\oshow.obj
+	if exist $(bin)\onew.obj del $(bin)\onew.obj
+	if exist $(bin)\oiv.obj del $(bin)\oiv.obj
+	if exist $(bin)\oshWo.obj del $(bin)\oshWo.obj
+	if exist $(bin)\WoT.obj del $(bin)\WoT.obj
+	if exist $(bin)\CiT.obj del $(bin)\CiT.obj
+	if exist $(bin)\NoHT.obj del $(bin)\NoHT.obj
+	if exist $(bin)\tclT.obj del $(bin)\tclT.obj
+	if exist $(bin)\ouiToodb.obj del $(bin)\ouiToodb.obj
+	if exist $(bin)\ovoid.obj del $(bin)\ovoid.obj
+	if exist $(bin)\wof77t.obj del $(bin)\wof77t.obj
+#--------------------------------------------
+oshow : $(bin)\oshow.exe
+	@echo "Wo : oshow ok."
+onew : $(bin)\onew.exe
+	@echo "Wo : onew ok."
+oiv : $(bin)\oiv.exe
+	@echo "Wo : oiv ok."
+oshWo : $(bin)\oshWo.exe
+	@echo "Wo : oshWo ok."
+WoT : $(bin)\WoT.exe
+	@echo "Wo : WoT ok."
+CiT : $(bin)\CiT.exe
+	@echo "Wo : CiT ok."
+NoHT : $(bin)\NoHT.exe
+	@echo "Wo : NoHT ok."
+tclT : $(bin)\tclT.exe
+	@echo "Wo : tclT ok."
+ouiToodb : $(bin)\ouiToodb.exe
+	@echo "Wo : ouiToodb ok."
+ovoid : $(bin)\ovoid.exe
+	@echo "Wo : ovoid ok."
+jo : $(bin)\jo.class
+	@echo "Wo : jo ok."
+jolet : $(bin)\jolet.class
+	@echo "Wo : jolet ok."
+JavaT : $(bin)\JavaT.class
+	@echo "Wo : JavaT ok."
+wof77t : $(bin)\wof77t.exe
+	@echo "Wo : wof77t ok."
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#--------------------------------------------
+$(bin)\oshow.exe : $(bin)\oshow.obj \
+$(libWoGL_target) \
+$(libWoXm_target) \
+$(libWo_target) 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\oshow.exe $(bin)\oshow.obj \
+$(libWoGL) \
+$(libXo) \
+$(libhtmlw) \
+$(libWoXm) \
+$(libXm) \
+$(libWo) \
+$(libXx) \
+$(libXmu) \
+$(libXt) \
+$(libGo) \
+$(libGLX) \
+$(libGLU) \
+$(libGL) \
+$(libXext) \
+$(libX11) \
+$(libHo) \
+$(libCo) \
+$(libwww) \
+$(libm) \
+$(CCLDEND) 
+
+$(bin)\oshow.obj   : $(app)\oshow.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\oshow.obj $(app)\oshow.c
+#--------------------------------------------
+$(bin)\onew.exe : $(bin)\onew.obj \
+$(libWoGL_target) \
+$(libWoXm_target) \
+$(libWo_target) 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\onew.exe $(bin)\onew.obj \
+$(libWoGL) \
+$(libXo) \
+$(libhtmlw) \
+$(libWoXm) \
+$(libXm) \
+$(libWo) \
+$(libXx) \
+$(libXmu) \
+$(libXt) \
+$(libGo) \
+$(libGLX) \
+$(libGLU) \
+$(libGL) \
+$(libXext) \
+$(libX11) \
+$(libHo) \
+$(libCo) \
+$(libwww) \
+$(libm) \
+$(CCLDEND) 
+
+$(bin)\onew.obj   : $(app)\onew.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\onew.obj $(app)\onew.c
+#--------------------------------------------
+$(bin)\oiv.exe : $(bin)\oiv.obj \
+$(libWoGL_target) \
+$(libWoXm_target) \
+$(libWo_target) 
+	$(CXXLD) $(CXXLDFLAGS) $(CCLDO)$(bin)\oiv.exe $(bin)\oiv.obj \
+$(libWoGL) \
+$(libXo) \
+$(libhtmlw) \
+$(libWoXm) \
+$(libXm) \
+$(libWo) \
+$(libXx) \
+$(libXmu) \
+$(libXt) \
+$(libGo) \
+$(libGLX) \
+$(libGLU) \
+$(libGL) \
+$(libXext) \
+$(libX11) \
+$(libHo) \
+$(libCo) \
+$(libwww) \
+$(libm) \
+$(CXXLDEND) 
+
+$(bin)\oiv.obj   : $(app)\oiv.cxx
+	$(CXX) $(CXXFLAGS) $(APP_CXXFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\oiv.obj /Tp$(app)\oiv.cxx
+#--------------------------------------------
+$(bin)\oshWo.exe : $(bin)\oshWo.obj \
+$(libWoGL_target) \
+$(libWoXm_target) \
+$(libWo_target) 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\oshWo.exe $(bin)\oshWo.obj \
+$(libWoGL) \
+$(libXo) \
+$(libhtmlw) \
+$(libWoXm) \
+$(libXm) \
+$(libWo) \
+$(libXx) \
+$(libXmu) \
+$(libXt) \
+$(libGo) \
+$(libGLX) \
+$(libGLU) \
+$(libGL) \
+$(libXext) \
+$(libX11) \
+$(libHo) \
+$(libCo) \
+$(libwww) \
+$(libm) \
+$(CCLDEND) 
+
+$(bin)\oshWo.obj   : $(app)\oshWo.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\oshWo.obj $(app)\oshWo.c
+#--------------------------------------------
+$(bin)\WoT.exe : $(bin)\WoT.obj \
+$(libWoGL_target) \
+$(libWoXm_target) \
+$(libWo_target) 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\WoT.exe $(bin)\WoT.obj \
+$(libWoGL) \
+$(libXo) \
+$(libhtmlw) \
+$(libWoXm) \
+$(libXm) \
+$(libWo) \
+$(libXx) \
+$(libXmu) \
+$(libXt) \
+$(libGo) \
+$(libGLX) \
+$(libGLU) \
+$(libGL) \
+$(libXext) \
+$(libX11) \
+$(libHo) \
+$(libCo) \
+$(libwww) \
+$(libm) \
+$(CCLDEND) 
+
+$(bin)\WoT.obj   : $(app)\WoT.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\WoT.obj $(app)\WoT.c
+#--------------------------------------------
+$(bin)\CiT.exe : $(bin)\CiT.obj 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\CiT.exe $(bin)\CiT.obj \
+$(libGo) \
+$(libCo) \
+$(libm) \
+$(CCLDEND) 
+
+$(bin)\CiT.obj   : $(app)\CiT.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\CiT.obj $(app)\CiT.c
+#--------------------------------------------
+$(bin)\NoHT.exe : $(bin)\NoHT.obj 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\NoHT.exe $(bin)\NoHT.obj \
+$(CCLDEND) 
+
+$(bin)\NoHT.obj   : $(app)\NoHT.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\NoHT.obj $(app)\NoHT.c
+#--------------------------------------------
+$(bin)\tclT.exe : $(bin)\tclT.obj 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\tclT.exe $(bin)\tclT.obj \
+$(libCo) \
+$(libm) \
+$(CCLDEND) 
+
+$(bin)\tclT.obj   : $(app)\tclT.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\tclT.obj $(app)\tclT.c
+#--------------------------------------------
+$(bin)\ouiToodb.exe : $(bin)\ouiToodb.obj \
+$(libWo_target) 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\ouiToodb.exe $(bin)\ouiToodb.obj \
+$(libWo) \
+$(libXx) \
+$(libXmu) \
+$(libXt) \
+$(libXext) \
+$(libX11) \
+$(libCo) \
+$(libm) \
+$(CCLDEND) 
+
+$(bin)\ouiToodb.obj   : $(app)\ouiToodb.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\ouiToodb.obj $(app)\ouiToodb.c
+#--------------------------------------------
+$(bin)\ovoid.exe : $(bin)\ovoid.obj \
+$(libWo_target) 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\ovoid.exe $(bin)\ovoid.obj \
+$(libWo) \
+$(libXx) \
+$(libXmu) \
+$(libXt) \
+$(libXext) \
+$(libX11) \
+$(libCo) \
+$(libm) \
+$(CCLDEND) 
+
+$(bin)\ovoid.obj   : $(app)\ovoid.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\ovoid.obj $(app)\ovoid.c
+#--------------------------------------------
+$(bin)\jo.class : $(app)\jo.java
+	javac $(app)\jo.java
+	copy $(app)\jo.class $(bin)\.
+	del $(app)\jo.class
+#--------------------------------------------
+$(bin)\jolet.class : $(app)\jolet.java
+	javac $(app)\jolet.java
+	copy $(app)\jolet.class $(bin)\.
+	del $(app)\jolet.class
+#--------------------------------------------
+$(bin)\JavaT.class : $(app)\JavaT.java
+	javac $(app)\JavaT.java
+	copy $(app)\JavaT.class $(bin)\.
+	del $(app)\JavaT.class
+#--------------------------------------------
+$(bin)\wof77t.exe : $(bin)\wof77t.obj \
+$(bin)\woinit.obj \
+$(libWoGL_target) \
+$(libWoXm_target) \
+$(libWo_target) 
+	$(F77LD) $(F77LDFLAGS) $(CCLDO)$(bin)\wof77t.exe $(bin)\wof77t.obj \
+$(bin)\woinit.obj \
+$(libWoGL) \
+$(libXo) \
+$(libhtmlw) \
+$(libWoXm) \
+$(libXm) \
+$(libWo) \
+$(libXx) \
+$(libXmu) \
+$(libXt) \
+$(libGo) \
+$(libGLX) \
+$(libGLU) \
+$(libGL) \
+$(libXext) \
+$(libX11) \
+$(libHo) \
+$(libCo) \
+$(libwww) \
+$(libm) \
+$(F77LDEND) 
+
+$(bin)\wof77t.obj   : $(app)\wof77t.f
+	$(F77) $(F77FLAGS) /c Fo$(bin)\wof77t.obj $(app)\wof77t.f
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# libraries 
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#--------------------------------------------
+
+$(bin)\libWo.lib : \
+$(bin)\WoF77.obj \
+$(bin)\WoCommands.obj \
+$(bin)\WoTypes.obj \
+$(bin)\Wo.obj \
+$(bin)\OInterface.obj \
+$(bin)\OPiece.obj \
+$(bin)\OWidget.obj \
+$(bin)\OClass.obj \
+$(bin)\OPart.obj \
+$(bin)\OInterpreter.obj \
+$(bin)\OCyclic.obj \
+$(bin)\XtwTools.obj \
+$(bin)\OResource.obj \
+$(bin)\OEvent.obj \
+$(bin)\OTrace.obj \
+$(bin)\WoBinds.obj \
+$(bin)\X11Binds.obj 
+	if exist $(bin)\libWo.lib del $(bin)\libWo.lib 
+	lib.exe @<<
+/nologo /out:$(bin)\libWo.lib
+$(bin)\WoF77.obj
+$(bin)\WoCommands.obj
+$(bin)\WoTypes.obj
+$(bin)\Wo.obj
+$(bin)\OInterface.obj
+$(bin)\OPiece.obj
+$(bin)\OWidget.obj
+$(bin)\OClass.obj
+$(bin)\OPart.obj
+$(bin)\OInterpreter.obj
+$(bin)\OCyclic.obj
+$(bin)\XtwTools.obj
+$(bin)\OResource.obj
+$(bin)\OEvent.obj
+$(bin)\OTrace.obj
+$(bin)\WoBinds.obj
+$(bin)\X11Binds.obj
+<<
+#--------------------------------------------
+
+$(bin)\libWoXm.lib : \
+$(bin)\XmTools.obj \
+$(bin)\XmCommands.obj \
+$(bin)\XmBinds.obj \
+$(libWo_target) 
+	if exist $(bin)\libWoXm.lib del $(bin)\libWoXm.lib 
+	lib.exe @<<
+/nologo /out:$(bin)\libWoXm.lib
+$(bin)\XmTools.obj
+$(bin)\XmCommands.obj
+$(bin)\XmBinds.obj
+<<
+#--------------------------------------------
+
+$(bin)\libWoGL.lib : \
+$(bin)\GL_Binds.obj 
+	if exist $(bin)\libWoGL.lib del $(bin)\libWoGL.lib 
+	lib.exe @<<
+/nologo /out:$(bin)\libWoGL.lib
+$(bin)\GL_Binds.obj
+<<
+#--------------------------------------------
+# libWo dependencies 
+#--------------------------------------------
+$(bin)\WoF77.obj : $(src)\WoF77.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\WoF77.obj $(src)\WoF77.c
+
+$(bin)\WoCommands.obj : $(src)\WoCommands.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\WoCommands.obj $(src)\WoCommands.c
+
+$(bin)\WoTypes.obj : $(src)\WoTypes.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\WoTypes.obj $(src)\WoTypes.c
+
+$(bin)\Wo.obj : $(src)\Wo.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\Wo.obj $(src)\Wo.c
+
+$(bin)\OInterface.obj : $(src)\OInterface.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\OInterface.obj $(src)\OInterface.c
+
+$(bin)\OPiece.obj : $(src)\OPiece.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\OPiece.obj $(src)\OPiece.c
+
+$(bin)\OWidget.obj : $(src)\OWidget.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\OWidget.obj $(src)\OWidget.c
+
+$(bin)\OClass.obj : $(src)\OClass.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\OClass.obj $(src)\OClass.c
+
+$(bin)\OPart.obj : $(src)\OPart.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\OPart.obj $(src)\OPart.c
+
+$(bin)\OInterpreter.obj : $(src)\OInterpreter.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\OInterpreter.obj $(src)\OInterpreter.c
+
+$(bin)\OCyclic.obj : $(src)\OCyclic.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\OCyclic.obj $(src)\OCyclic.c
+
+$(bin)\XtwTools.obj : $(src)\XtwTools.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\XtwTools.obj $(src)\XtwTools.c
+
+$(bin)\OResource.obj : $(src)\OResource.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\OResource.obj $(src)\OResource.c
+
+$(bin)\OEvent.obj : $(src)\OEvent.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\OEvent.obj $(src)\OEvent.c
+
+$(bin)\OTrace.obj : $(src)\OTrace.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\OTrace.obj $(src)\OTrace.c
+
+$(bin)\WoBinds.obj : $(src)\WoBinds.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\WoBinds.obj $(src)\WoBinds.c
+
+$(bin)\X11Binds.obj : $(src)\X11Binds.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\X11Binds.obj $(src)\X11Binds.c
+
+#--------------------------------------------
+# libWoXm dependencies 
+#--------------------------------------------
+$(bin)\XmTools.obj : $(src)\XmTools.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\XmTools.obj $(src)\XmTools.c
+
+$(bin)\XmCommands.obj : $(src)\XmCommands.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\XmCommands.obj $(src)\XmCommands.c
+
+$(bin)\XmBinds.obj : $(src)\XmBinds.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\XmBinds.obj $(src)\XmBinds.c
+
+#--------------------------------------------
+# libWoGL dependencies 
+#--------------------------------------------
+$(bin)\GL_Binds.obj : $(src)\GL_Binds.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\GL_Binds.obj $(src)\GL_Binds.c
+
+$(bin)\woinit.obj : $(app)\woinit.c
+	$(CC) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\woinit.obj $(app)\woinit.c
+
+

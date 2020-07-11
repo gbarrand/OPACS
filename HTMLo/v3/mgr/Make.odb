@@ -1,0 +1,115 @@
+!/* +---------------------- Copyright notice -------------------------------+ */
+!/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+!/* |   Permission to use, copy, modify, and distribute this software       | */
+!/* |   and its documentation for any purpose and without fee is hereby     | */
+!/* |   granted, provided that the above copyright notice appear in all     | */
+!/* |   copies and that both that copyright notice and this permission      | */
+!/* |   notice appear in supporting documentation.  This software is        | */
+!/* |   provided "as is" without express or implied warranty.               | */
+!/* +---------------------- Copyright notice -------------------------------+ */
+!----------------------------
+begin Make
+  package = HTMLo
+  has = X11 Xext Xt Xmu Xm HTMLoXm
+!Xaw:
+!  has = X11 Xext Xt Xmu Xaw HTMLoXaw
+  libs = \
+HTMLo: libc libm\
+X11: libX11\
+Xext: libXext\
+Xt: libXt\
+Xmu: libXmu\
+Xm: libXm\
+Xaw: libXaw
+end
+!----------------------------
+begin OModule
+  name  = htmlT
+  type  = application
+  objs  = CFile
+  libs  = libHTMLo libXaw libXm libXmu libXt libXext libX11 libm
+end
+!----------------------------
+begin OModule
+  name  = libHTMLo
+  type  = so;NT=ar
+  libs  = libXaw libXm  libXmu libXt libXext libX11 libm libc 
+end
+!----------------------------
+begin OModule
+  name  = HTMLWidget
+  inLib = libHTMLo
+end
+!----------------------------
+begin OModule
+  name  = DrawingArea
+  inLib = libHTMLo
+end
+!----------------------------
+begin OModule
+  name  = HTMLformat
+  inLib = libHTMLo
+end
+!----------------------------
+begin OModule
+  name  = HTMLlists
+  inLib = libHTMLo
+end
+!----------------------------
+begin OModule
+  name  = HTMLPSformat
+  inLib = libHTMLo
+end
+!----------------------------
+begin OModule
+  name  = HTMLimages
+  inLib = libHTMLo
+end
+!----------------------------
+begin OModule
+  name  = HTMLparse
+  inLib = libHTMLo
+end
+!----------------------------
+begin OModule
+  name  = HTMLjot
+  inLib = libHTMLo
+end
+!----------------------------
+begin OModule
+  name  = HTMLtable
+  inLib = libHTMLo
+end
+!----------------------------
+begin OModule
+  name  = HTMLwidgets
+  inLib = libHTMLo
+end
+!----------------------------
+begin OModule
+  name  = list
+  inLib = libHTMLo
+end
+!----------------------------
+begin OModule
+  name  = medcut
+  inLib = libHTMLo
+end
+!----------------------------
+begin OModule
+  name  = gifread
+  inLib = libHTMLo
+end
+!----------------------------
+begin OModule
+  name  = xpmhash
+  inLib = libHTMLo
+end
+!----------------------------
+!----------------------------
+!----------------------------
+!----------------------------
+begin OModule
+  name  = CFile
+  inLib = none
+end

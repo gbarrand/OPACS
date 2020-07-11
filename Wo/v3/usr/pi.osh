@@ -1,0 +1,42 @@
+collect OHistogram | delete -
+
+#monte carlo
+create OHistogram name all_pi    dimension 1 xAxisNumberOfBins 10 xAxisMinimum 0. xAxisMaximum 1.
+create OHistogram name good_pi   dimension 1 xAxisNumberOfBins 10 xAxisMinimum 0. xAxisMaximum 1.
+create OHistogram name noise     dimension 1 xAxisNumberOfBins 10 xAxisMinimum 0. xAxisMaximum 1.
+create OHistogram name efficency dimension 1 xAxisNumberOfBins 10 xAxisMinimum 0. xAxisMaximum 1.
+#tous les pi 
+fillHistogramFromTuple all_pi pi_mc 'et1/45' 'p1>4'
+#load C interpreted cut functions 
+#doCiScript '#include <pi_cuts.ic>'
+doCiFile pi_cuts.ic
+#les pi selectionnes
+fillHistogramFromTuple good_pi pi_mc 'et1/45' cut_good_pi
+# efficency
+operateHistograms efficency good_pi all_pi div
+fillHistogramFromTuple noise   pi_mc 'et1/45' cut_noise
+
+
+#data
+create OHistogram name pis             dimension 1 xAxisNumberOfBins 10 xAxisMinimum 0. xAxisMaximum 1.
+create OHistogram name pis_minus_noise dimension 1 xAxisNumberOfBins 10 xAxisMinimum 0. xAxisMaximum 1.
+create OHistogram name result          dimension 1 xAxisNumberOfBins 10 xAxisMinimum 0. xAxisMaximum 1.
+#distribution brute
+fillHistogramFromTuple pis pi_data 'et1/45' cut_raw
+#we substract noise
+operateHistograms pis_minus_noise pis noise sub
+#we correct the efficency
+operateHistograms result pis_minus_noise efficency div
+fitHistogram result polynomial
+
+# Update plots
+setWidgetResource  pi_grid_1_1 plottedObjects ''
+setWidgetResource  pi_grid_1_1 plottedObjects all_pi
+setWidgetResource  pi_grid_1_2 plottedObjects ''
+setWidgetResource  pi_grid_1_2 plottedObjects good_pi
+setWidgetResource  pi_grid_2_1 plottedObjects ''
+setWidgetResource  pi_grid_2_1 plottedObjects efficency
+setWidgetResource  pi_grid_2_2 plottedObjects ''
+setWidgetResource  pi_grid_2_2 plottedObjects noise
+setWidgetResource  pi_grid_1_3 plottedObjects ''
+setWidgetResource  pi_grid_1_3 plottedObjects result

@@ -1,0 +1,208 @@
+!/* +---------------------- Copyright notice -------------------------------+ */
+!/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+!/* |   Permission to use, copy, modify, and distribute this software       | */
+!/* |   and its documentation for any purpose and without fee is hereby     | */
+!/* |   granted, provided that the above copyright notice appear in all     | */
+!/* |   copies and that both that copyright notice and this permission      | */
+!/* |   notice appear in supporting documentation.  This software is        | */
+!/* |   provided "as is" without express or implied warranty.               | */
+!/* +---------------------- Copyright notice -------------------------------+ */
+!----------------------------
+begin OInterface
+ version = v3
+ prefix = Grid_
+ packages = Xm
+end
+!----------------------------
+begin OWidget
+ name = Grid_palette
+ type = XmFormDialog
+ children = Grid_hide Grid_0_label Grid_0_text Grid_1_label Grid_1_text Grid_3_label Grid_3_text Grid_5_label Grid_5_text Grid_2_button Grid_4_option Grid_4_pull 
+ autoUnmanage = false
+ dialogTitle = Grid
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = Grid_hide
+ type = XmPushButton
+ rightAttachment = attach_form
+ leftAttachment = attach_form
+ topAttachment = attach_widget
+ topWidget = Grid_4_option
+ labelString = Cancel
+ background = lightgrey
+ activateCallback = osh> unmanageWidget `get Widget thisParent`
+end
+!----------------------------
+begin OWidget
+ name = Grid_0_label
+ type = XmLabel
+ createCallback = osh> setWidgetResource `thisWidget` height `getWidgetResource Grid_0_text height`
+ labelString = Rows
+ background = lightgrey
+ leftAttachment = attach_form
+ topAttachment = attach_form
+ rightAttachment = attach_position
+ rightPosition = 40
+end
+!----------------------------
+begin OWidget
+ name = Grid_0_text
+ type = XmText
+ rightAttachment = attach_form
+ topAttachment = attach_form
+ leftAttachment = attach_widget
+ leftWidget = Grid_0_label
+ value = 1
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = Grid_1_label
+ type = XmLabel
+ createCallback = osh> setWidgetResource `thisWidget` height `getWidgetResource Grid_1_text height`
+ labelString = Columns
+ background = lightgrey
+ leftAttachment = attach_form
+ topAttachment = attach_widget
+ topWidget = Grid_0_text
+ rightAttachment = attach_position
+ rightPosition = 40
+end
+!----------------------------
+begin OWidget
+ name = Grid_1_text
+ type = XmText
+ rightAttachment = attach_form
+ topAttachment = attach_widget
+ topWidget = Grid_0_text
+ leftAttachment = attach_widget
+ leftWidget = Grid_1_label
+ value = 1
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = Grid_3_label
+ type = XmLabel
+ createCallback = osh> setWidgetResource `thisWidget` height `getWidgetResource Grid_3_text height`
+ labelString = Class
+ background = lightgrey
+ leftAttachment = attach_form
+ topAttachment = attach_widget
+ topWidget = Grid_1_text
+ rightAttachment = attach_position
+ rightPosition = 40
+end
+!----------------------------
+begin OWidget
+ name = Grid_3_text
+ type = XmText
+ rightAttachment = attach_form
+ topAttachment = attach_widget
+ topWidget = Grid_1_text
+ leftAttachment = attach_widget
+ leftWidget = Grid_3_label
+ value = XoCamera
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = Grid_5_label
+ type = XmPushButton
+ createCallback = osh> setWidgetResource `thisWidget` height `getWidgetResource Grid_5_text height`
+ labelString = Parent(XmForm)
+ background = lightgrey
+ leftAttachment = attach_form
+ topAttachment = attach_widget
+ topWidget = Grid_3_text
+ rightAttachment = attach_position
+ rightPosition = 40
+ activateCallback = osh>\
+  ref=`thisWidget`\
+  setWidgetResource Grid_5_text value `grabWidgetName $ref`
+end
+!----------------------------
+begin OWidget
+ name = Grid_5_text
+ type = XmText
+ rightAttachment = attach_form
+ topAttachment = attach_widget
+ topWidget = Grid_3_text
+ leftAttachment = attach_widget
+ leftWidget = Grid_5_label
+ value = user_grid
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = Grid_2_button
+ type = XmPushButton
+ labelString = Apply
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topAttachment = attach_widget
+ topWidget = Grid_5_text
+ background = lightgrey
+ activateCallback = &osh>\
+  parent=`getWidgetResource Grid_5_text value`\
+  isNotWidgetSubclass $parent XmForm && echo 'Parent not an XmForm.'\
+  isNotWidgetSubclass $parent XmForm && exit\
+  collect Widget where name eq $parent | get - children | delete -\
+  type=`getWidgetResource Grid_3_text value`\
+  rows=`getWidgetResource Grid_0_text value` `getWidgetResource Grid_1_text value`\
+  cols=`getWidgetResource Grid_1_text value`\
+  buildWidgetGrid $parent $type $rows $cols\
+  string=`printf '%s_1_1' $parent`\
+  set Widget target $string\
+  isCommand reset_grid && reset_grid
+end
+!----------------------------
+begin OWidget
+ name = Grid_4_option
+ type = XmOptionMenu
+ labelString = Apply also
+ subMenuId = Grid_4_pull
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topAttachment = attach_widget
+ topWidget = Grid_2_button
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = Grid_4_pull
+ type = XmPulldownMenu
+ children = Grid_4_option_1 Grid_4_option_2 
+end
+!----------------------------
+begin OWidget
+ name = Grid_4_option_1
+ type = XmPushButton
+ labelString = 2 x 2
+ activateCallback = &osh>\
+  parent=`getWidgetResource Grid_5_text value`\
+  isNotWidgetSubclass $parent XmForm && echo 'Parent not an XmForm.'\
+  isNotWidgetSubclass $parent XmForm && exit\
+  collect Widget where name eq $parent | get - children | delete -\
+  buildWidgetGrid $parent `getWidgetResource Grid_3_text value` 2 2\
+  string=`printf '%s_1_1' $parent`\
+  set Widget target $string\
+  isCommand reset_grid && reset_grid
+end
+!----------------------------
+begin OWidget
+ name = Grid_4_option_2
+ type = XmPushButton
+ labelString = 4 x 4
+ activateCallback = &osh>\
+  parent=`getWidgetResource Grid_5_text value`\
+  isNotWidgetSubclass $parent XmForm && echo 'Parent not an XmForm.'\
+  isNotWidgetSubclass $parent XmForm && exit\
+  collect Widget where name eq $parent | get - children | delete -\
+  buildWidgetGrid $parent `getWidgetResource Grid_3_text value` 4 4\
+  string=`printf '%s_1_1' $parent`\
+  set Widget target $string\
+  isCommand reset_grid && reset_grid
+end

@@ -1,0 +1,13 @@
+begin OLUT
+ name         = my_lut
+ type         = identity
+ size         = 65535 
+ minimum      = 100
+ maximum      = 1000
+ numberOfBins = 14
+end
+begin OMatrix33
+ name   = my_mtxi33
+ values = 1 0 0 0 1 0 0 0 1
+ scale  = 1
+end

@@ -1,0 +1,315 @@
+!----------------------------
+begin OInterface
+ version = v3
+ prefix = opixmap_
+ packages = Xm
+end
+!----------------------------
+begin OWidget
+ name = opixmap_shell
+ type = TopLevelShell
+ children = opixmap_form 
+ geometry = 400x300+0+0
+ title = opixmap
+end
+!----------------------------
+begin OWidget
+ name = opixmap_form
+ type = XmForm
+ children = opixmap_menubar opixmap_bb
+end
+!----------------------------
+begin OWidget
+ name = opixmap_menubar
+ type = XmMenuBar
+! children = Wo_casc<Wo.odb Wo_pull<Wo.odb opixmap_file_casc opixmap_file_pdm opixmap_edit_casc opixmap_edit_pdm
+ children = opixmap_file_casc opixmap_file_pdm opixmap_edit_casc opixmap_edit_pdm
+ background = lightgrey
+ shadowThickness = 4
+ topShadowColor = white
+ bottomShadowColor = black
+ topAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = opixmap_file_casc
+ type = XmCascadeButton
+ background = lightgrey
+ labelString = File
+ subMenuId = opixmap_file_pdm
+end
+!----------------------------
+begin OWidget
+ name = opixmap_file_pdm
+ type = XmPulldownMenu
+ children = opixmap_open opixmap_capture opixmap_rotate opixmap_save_gif opixmap_save_ps opixmap_view_gif opixmap_view_ps opixmap_images opixmap_quit
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = opixmap_open
+ type = XmPushButton
+ background = lightgrey
+ labelString = Open GIF...
+ activateCallback = osh> do Widget/opixmap_open_dialog manage
+end
+!----------------------------
+begin OWidget
+ name = opixmap_open_dialog
+ type = XmFileSelectionDialog
+ dialogTitle = GIF file
+ okCallback = osh> setWidgetResource opixmap_image dataFile `get Widget thisValue`;do `get Widget this` unmanage
+ cancelCallback = osh> do `get Widget this` unmanage
+end
+!----------------------------
+begin OWidget
+ name = opixmap_capture
+ type = XmPushButton
+ background = lightgrey
+ labelString = Capture
+ activateCallback = osh>\
+  set  Widget/opixmap_image cursor watch\
+  saveRootWindowPixmap `thisWidget` gif out.gif\
+  setWidgetResource opixmap_image dataFile ""\
+  setWidgetResource opixmap_image dataFile out.gif\
+  rm out.gif\
+  set  Widget/opixmap_image cursor default
+end
+!----------------------------
+begin OWidget
+ name = opixmap_rotate
+ type = XmPushButton
+ background = lightgrey
+ labelString = Rotate
+ activateCallback = osh>\
+  set Widget/opixmap_image cursor watch\
+  createRotatedImage rotated out\
+  saveImage rotated out.gif\
+  setWidgetResource opixmap_image dataFile ""\
+  setWidgetResource opixmap_image dataFile out.gif\
+  rm out.gif\
+  delete OImage/rotated\
+  set  Widget/opixmap_image cursor default
+end
+!----------------------------
+begin OWidget
+ name = opixmap_images
+ type = XmPushButton
+ background = lightgrey
+ labelString = Images
+ activateCallback = osh> collect OImage | dump -
+end
+!----------------------------
+begin OWidget
+ name = opixmap_save_gif
+ type = XmPushButton
+ background = lightgrey
+ labelString = Save out.gif
+ activateCallback = osh>\
+  set  Widget/opixmap_image cursor watch\
+  saveWidgetPixmap opixmap_image gif out.gif\
+  set  Widget/opixmap_image cursor default
+end
+!----------------------------
+begin OWidget
+ name = opixmap_save_ps
+ type = XmPushButton
+ background = lightgrey
+ labelString = Save out.ps
+ activateCallback = osh>\
+  set  Widget/opixmap_image cursor watch\
+  saveWidgetPixmap opixmap_image ps out.ps\
+  set  Widget/opixmap_image cursor default
+end
+!----------------------------
+begin OWidget
+ name = opixmap_view_gif
+ type = XmPushButton
+ background = lightgrey
+ labelString = xv out.gif
+ activateCallback = sys> xv out.gif &
+end
+!----------------------------
+begin OWidget
+ name = opixmap_view_ps
+ type = XmPushButton
+ background = lightgrey
+ labelString = ghostview out.ps
+ activateCallback = sys> ghostview -back white -fore black  out.ps &
+end
+!----------------------------
+begin OWidget
+ name = opixmap_quit
+ type = XmPushButton
+ background = lightgrey
+ labelString = Quit
+ activateCallback = osh> do Wo sendExit
+end
+!----------------------------
+begin OWidget
+ name = opixmap_edit_casc
+ type = XmCascadeButton
+ background = lightgrey
+ labelString = Edit
+ subMenuId = opixmap_edit_pdm
+end
+!----------------------------
+begin OWidget
+ name = opixmap_edit_pdm
+ type = XmPulldownMenu
+ background = lightgrey
+ children = opixmap_add_text opixmap_shape opixmap_show_font opixmap_to_greek opixmap_to_latin opixmap_delete
+end
+!----------------------------
+begin OWidget
+ name = opixmap_add_text
+ type = XmPushButton
+ background = lightgrey
+ labelString = Add text
+ activateCallback = osh>\
+  string=`ask 'Give text' ''`\
+  ref=`thisWidget`\
+  parent=`grabWidgetName $ref`\
+  label=`create Widget parent $parent type XoLabel`\
+  setWidgetResource $label foreground white\
+  setWidgetResource $label label $string\
+  oid=`printf 'Widget/%s' $label`\
+  do $oid move `get Widget grabbedX` `get Widget grabbedY`
+end
+!----------------------------
+begin OWidget
+ name = opixmap_shape
+ type = XmPushButton
+ background = lightgrey
+ labelString = Transparent
+ activateCallback = osh>\
+  ref=`thisWidget`\
+  widget=`grabWidgetName $ref`\
+  set $widget shape widget
+end
+!----------------------------
+begin OWidget
+ name = opixmap_to_greek
+ type = XmPushButton
+ background = lightgrey
+ labelString = To greek
+ activateCallback = osh>\
+  ref=`thisWidget`\
+  widget=`grabWidgetName $ref`\
+  setWidgetResource $widget font -adobe-symbol-medium-r-normal--34-240-100-100-p-191-adobe-fontspecific
+end
+!----------------------------
+begin OWidget
+ name = opixmap_to_latin
+ type = XmPushButton
+ background = lightgrey
+ labelString = To latin
+ activateCallback = osh>\
+  ref=`thisWidget`\
+  widget=`grabWidgetName $ref`\
+  setWidgetResource $widget font -adobe-courier-medium-r-normal--34-240-100-100-m-200-iso8859-1
+end
+!----------------------------
+begin OWidget
+ name = opixmap_show_font
+ type = XmPushButton
+ background = lightgrey
+ labelString = Show font
+ activateCallback = osh> do Widget/opixmap_show_font_dialog manage
+end
+!----------------------------
+begin OWidget
+ name = opixmap_delete
+ type = XmPushButton
+ background = lightgrey
+ labelString = Destroy text
+ activateCallback = osh>\
+  ref=`thisWidget`\
+  widget=`grabWidgetName $ref`\
+  name=`get $widget name`\
+  collect Widget where name eq $name | delete -
+end
+!----------------------------
+begin OWidget
+ name = opixmap_bb
+ type = XmForm
+ children = opixmap_image
+ background = grey
+ topAttachment = attach_widget
+ bottomAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = opixmap_menubar
+end
+!----------------------------
+begin OWidget
+ name = opixmap_image
+ type = XoImage
+ background = white
+ topAttachment = attach_form
+ bottomAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ virtualColormap = ocolormap_X
+end
+!----------------------------
+begin OWidget
+ name = opixmap_show_font_dialog
+ type = XmFormDialog
+ autoUnmanage = False
+ background = lightgrey
+ dialogTitle = Show font
+ children = opixmap_abcd opixmap_abcd_symbol opixmap_ABCD opixmap_ABCD_symbol
+end
+!----------------------------
+begin OWidget
+ name = opixmap_abcd
+ type = XoLabel
+ background = lightgrey
+ label = abcdefghijklmnopqrstuvwxyz
+ font  = -adobe-courier-medium-r-normal--34-240-100-100-m-200-iso8859-1
+ topAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = opixmap_abcd_symbol
+ type = XoLabel
+ background = white
+ label = abcdefghijklmnopqrstuvwxyz
+ font  = -adobe-symbol-medium-r-normal--34-240-100-100-p-191-adobe-fontspecific
+ topAttachment = attach_widget
+ topWidget     = opixmap_abcd
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = opixmap_ABCD
+ type = XoLabel
+ background = lightgrey
+ label = ABCDEFGHIJKLMNOPQRSTUVWXYZ
+ font  = -adobe-courier-medium-r-normal--34-240-100-100-m-200-iso8859-1
+ topAttachment = attach_widget
+ topWidget     = opixmap_abcd_symbol
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = opixmap_ABCD_symbol
+ type = XoLabel
+ background = white
+ label = ABCDEFGHIJKLMNOPQRSTUVWXYZ
+ font  = -adobe-symbol-medium-r-normal--34-240-100-100-p-191-adobe-fontspecific
+ topAttachment = attach_widget
+ topWidget     = opixmap_ABCD
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ bottomAttachment = attach_form
+end
+
+

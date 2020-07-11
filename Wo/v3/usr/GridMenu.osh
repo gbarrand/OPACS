@@ -1,0 +1,17 @@
+#
+# An XmText widget named StoreGridName should exists
+#
+grid=`getWidgetResource StoreGridName value`
+test $grid eq '' && echo 'No grid name given'
+test $grid eq '' && exit
+first=`get $grid managedChildren | getLine - last`
+do_target=`getWidgetResource GridMenu_all set`
+test $do_target eq 'true'  && widget=`get Widget target`
+test $do_target eq 'false' && widget=`echo $first`
+value=`getWidgetResource $widget $resource`
+test $value eq 'true'  && new_value='false'
+test $value eq 'false' && new_value='true'
+test $do_target eq 'true' && setWidgetResource `get Widget target` $resource $new_value
+test $do_target eq 'true' && exit
+get $grid managedChildren | setWidgetResource - $resource $new_value
+

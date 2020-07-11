@@ -1,0 +1,269 @@
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#  File produced by the Co/omake tool
+# using file Make.odb.
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+HAS_CPPFLAGS = \
+ $(W3o_CPPFLAGS)
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+all   :: mkdir
+
+clean ::
+	if exist $(bin)\*.obj del $(bin)\*.obj
+	if exist $(bin)\*.exe del $(bin)\*.exe
+	if exist $(bin)\*.lib del $(bin)\*.lib
+	if exist $(bin)\*.dll del $(bin)\*.dll
+	if exist $(bin)\*.exp del $(bin)\*.exp
+	if exist $(bin)\*.pdb del $(bin)\*.pdb
+rmlib ::
+	if exist $(bin)\*.lib del $(bin)\*.lib
+rmo   ::
+	if exist $(bin)\*.obj del $(bin)\*.obj
+rmexe ::
+	if exist $(bin)\*.exe del $(bin)\*.exe
+
+mkdir :
+	@if not exist $(bin) mkdir $(bin)
+
+libW3o_target = $(bin)\libW3o.lib
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+all :: mkdir \
+$(libW3o_target) 
+	@echo "W3o : all ok." 
+
+libs :: mkdir \
+$(libW3o_target) 
+	@echo "W3o : libs ok." 
+
+apps :: mkdir \
+$(bin)\W3oT.exe 
+	@echo "W3o : apps ok." 
+#--------------------------------------------
+rmexeo :
+	if exist $(bin)\W3oT.obj del $(bin)\W3oT.obj
+#--------------------------------------------
+W3oT : $(bin)\W3oT.exe
+	@echo "W3o : W3oT ok."
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#--------------------------------------------
+$(bin)\W3oT.exe : $(bin)\W3oT.obj \
+$(libW3o_target) 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\W3oT.exe $(bin)\W3oT.obj \
+$(libW3o) \
+$(CCLDEND) 
+
+$(bin)\W3oT.obj   : $(app)\W3oT.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\W3oT.obj $(app)\W3oT.c
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# libraries 
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#--------------------------------------------
+
+$(bin)\libW3o.lib : \
+$(bin)\HTAABrow.obj \
+$(bin)\HTAAUtil.obj \
+$(bin)\HTAccess.obj \
+$(bin)\HTAlert.obj \
+$(bin)\HTAnchor.obj \
+$(bin)\HTAssoc.obj \
+$(bin)\HTAtom.obj \
+$(bin)\HTChunk.obj \
+$(bin)\HTCompressed.obj \
+$(bin)\HTFTP.obj \
+$(bin)\HTFWriter.obj \
+$(bin)\HTFile.obj \
+$(bin)\HTFormat.obj \
+$(bin)\HTGopher.obj \
+$(bin)\HTIcon.obj \
+$(bin)\HTInit.obj \
+$(bin)\HTList.obj \
+$(bin)\HTMIME.obj \
+$(bin)\HTMLNew.obj \
+$(bin)\HTMLDTD.obj \
+$(bin)\HTMLGen.obj \
+$(bin)\HTMosaicHTML.obj \
+$(bin)\HTNews.obj \
+$(bin)\HTParse.obj \
+$(bin)\HTPlain.obj \
+$(bin)\HTSort.obj \
+$(bin)\HTString.obj \
+$(bin)\HTTCP.obj \
+$(bin)\HTTP.obj \
+$(bin)\HTTelnet.obj \
+$(bin)\HTUU.obj \
+$(bin)\HTWAIS.obj \
+$(bin)\HTWSRC.obj \
+$(bin)\HTWriter.obj \
+$(bin)\SGML.obj \
+$(bin)\HTMailto.obj \
+$(bin)\kcms.obj \
+$(bin)\moHText.obj \
+$(bin)\momo.obj \
+$(bin)\ioctl.obj 
+	if exist $(bin)\libW3o.lib del $(bin)\libW3o.lib 
+	lib.exe @<<
+/nologo /out:$(bin)\libW3o.lib
+$(bin)\HTAABrow.obj
+$(bin)\HTAAUtil.obj
+$(bin)\HTAccess.obj
+$(bin)\HTAlert.obj
+$(bin)\HTAnchor.obj
+$(bin)\HTAssoc.obj
+$(bin)\HTAtom.obj
+$(bin)\HTChunk.obj
+$(bin)\HTCompressed.obj
+$(bin)\HTFTP.obj
+$(bin)\HTFWriter.obj
+$(bin)\HTFile.obj
+$(bin)\HTFormat.obj
+$(bin)\HTGopher.obj
+$(bin)\HTIcon.obj
+$(bin)\HTInit.obj
+$(bin)\HTList.obj
+$(bin)\HTMIME.obj
+$(bin)\HTMLNew.obj
+$(bin)\HTMLDTD.obj
+$(bin)\HTMLGen.obj
+$(bin)\HTMosaicHTML.obj
+$(bin)\HTNews.obj
+$(bin)\HTParse.obj
+$(bin)\HTPlain.obj
+$(bin)\HTSort.obj
+$(bin)\HTString.obj
+$(bin)\HTTCP.obj
+$(bin)\HTTP.obj
+$(bin)\HTTelnet.obj
+$(bin)\HTUU.obj
+$(bin)\HTWAIS.obj
+$(bin)\HTWSRC.obj
+$(bin)\HTWriter.obj
+$(bin)\SGML.obj
+$(bin)\HTMailto.obj
+$(bin)\kcms.obj
+$(bin)\moHText.obj
+$(bin)\momo.obj
+$(bin)\ioctl.obj
+<<
+#--------------------------------------------
+# libW3o dependencies 
+#--------------------------------------------
+$(bin)\HTAABrow.obj : $(src)\HTAABrow.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\HTAABrow.obj $(src)\HTAABrow.c
+
+$(bin)\HTAAUtil.obj : $(src)\HTAAUtil.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\HTAAUtil.obj $(src)\HTAAUtil.c
+
+$(bin)\HTAccess.obj : $(src)\HTAccess.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\HTAccess.obj $(src)\HTAccess.c
+
+$(bin)\HTAlert.obj : $(src)\HTAlert.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\HTAlert.obj $(src)\HTAlert.c
+
+$(bin)\HTAnchor.obj : $(src)\HTAnchor.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\HTAnchor.obj $(src)\HTAnchor.c
+
+$(bin)\HTAssoc.obj : $(src)\HTAssoc.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\HTAssoc.obj $(src)\HTAssoc.c
+
+$(bin)\HTAtom.obj : $(src)\HTAtom.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\HTAtom.obj $(src)\HTAtom.c
+
+$(bin)\HTChunk.obj : $(src)\HTChunk.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\HTChunk.obj $(src)\HTChunk.c
+
+$(bin)\HTCompressed.obj : $(src)\HTCompressed.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\HTCompressed.obj $(src)\HTCompressed.c
+
+$(bin)\HTFTP.obj : $(src)\HTFTP.c
+	$(CC) $(CCNOTANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\HTFTP.obj $(src)\HTFTP.c
+
+$(bin)\HTFWriter.obj : $(src)\HTFWriter.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\HTFWriter.obj $(src)\HTFWriter.c
+
+$(bin)\HTFile.obj : $(src)\HTFile.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\HTFile.obj $(src)\HTFile.c
+
+$(bin)\HTFormat.obj : $(src)\HTFormat.c
+	$(CC) $(CCNOTANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\HTFormat.obj $(src)\HTFormat.c
+
+$(bin)\HTGopher.obj : $(src)\HTGopher.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\HTGopher.obj $(src)\HTGopher.c
+
+$(bin)\HTIcon.obj : $(src)\HTIcon.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\HTIcon.obj $(src)\HTIcon.c
+
+$(bin)\HTInit.obj : $(src)\HTInit.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\HTInit.obj $(src)\HTInit.c
+
+$(bin)\HTList.obj : $(src)\HTList.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\HTList.obj $(src)\HTList.c
+
+$(bin)\HTMIME.obj : $(src)\HTMIME.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\HTMIME.obj $(src)\HTMIME.c
+
+$(bin)\HTMLNew.obj : $(src)\HTMLNew.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\HTMLNew.obj $(src)\HTMLNew.c
+
+$(bin)\HTMLDTD.obj : $(src)\HTMLDTD.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\HTMLDTD.obj $(src)\HTMLDTD.c
+
+$(bin)\HTMLGen.obj : $(src)\HTMLGen.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\HTMLGen.obj $(src)\HTMLGen.c
+
+$(bin)\HTMosaicHTML.obj : $(src)\HTMosaicHTML.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\HTMosaicHTML.obj $(src)\HTMosaicHTML.c
+
+$(bin)\HTNews.obj : $(src)\HTNews.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\HTNews.obj $(src)\HTNews.c
+
+$(bin)\HTParse.obj : $(src)\HTParse.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\HTParse.obj $(src)\HTParse.c
+
+$(bin)\HTPlain.obj : $(src)\HTPlain.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\HTPlain.obj $(src)\HTPlain.c
+
+$(bin)\HTSort.obj : $(src)\HTSort.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\HTSort.obj $(src)\HTSort.c
+
+$(bin)\HTString.obj : $(src)\HTString.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\HTString.obj $(src)\HTString.c
+
+$(bin)\HTTCP.obj : $(src)\HTTCP.c
+	$(CC) $(CCNOTANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\HTTCP.obj $(src)\HTTCP.c
+
+$(bin)\HTTP.obj : $(src)\HTTP.c
+	$(CC) $(CCNOTANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\HTTP.obj $(src)\HTTP.c
+
+$(bin)\HTTelnet.obj : $(src)\HTTelnet.c
+	$(CC) $(CCNOTANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\HTTelnet.obj $(src)\HTTelnet.c
+
+$(bin)\HTUU.obj : $(src)\HTUU.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\HTUU.obj $(src)\HTUU.c
+
+$(bin)\HTWAIS.obj : $(src)\HTWAIS.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\HTWAIS.obj $(src)\HTWAIS.c
+
+$(bin)\HTWSRC.obj : $(src)\HTWSRC.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\HTWSRC.obj $(src)\HTWSRC.c
+
+$(bin)\HTWriter.obj : $(src)\HTWriter.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\HTWriter.obj $(src)\HTWriter.c
+
+$(bin)\SGML.obj : $(src)\SGML.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\SGML.obj $(src)\SGML.c
+
+$(bin)\HTMailto.obj : $(src)\HTMailto.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\HTMailto.obj $(src)\HTMailto.c
+
+$(bin)\kcms.obj : $(src)\kcms.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\kcms.obj $(src)\kcms.c
+
+$(bin)\moHText.obj : $(src)\moHText.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\moHText.obj $(src)\moHText.c
+
+$(bin)\momo.obj : $(src)\momo.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\momo.obj $(src)\momo.c
+
+$(bin)\ioctl.obj : $(src)\ioctl.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\ioctl.obj $(src)\ioctl.c
+
+

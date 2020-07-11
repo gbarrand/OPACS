@@ -1,0 +1,138 @@
+!/* +---------------------- Copyright notice -------------------------------+ */
+!/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+!/* |   Permission to use, copy, modify, and distribute this software       | */
+!/* |   and its documentation for any purpose and without fee is hereby     | */
+!/* |   granted, provided that the above copyright notice appear in all     | */
+!/* |   copies and that both that copyright notice and this permission      | */
+!/* |   notice appear in supporting documentation.  This software is        | */
+!/* |   provided "as is" without express or implied warranty.               | */
+!/* +---------------------- Copyright notice -------------------------------+ */
+!----------------------------
+begin OInterface
+ version = v3
+ prefix = Vis3d_
+ packages = Xm
+end
+!----------------------------
+begin OWidget
+ name = Vis3d_casc
+ type = XmCascadeButton
+ background = lightgrey
+ labelString = View 3D
+ subMenuId = Vis3d_pull
+end
+!----------------------------
+begin OWidget
+ name = Vis3d_pull
+ type = XmPulldownMenu
+ children = Vis3d_39 Vis3d_24 Vis3d_25 Vis3d_26 Vis3d_27 Vis3d_53 Vis3d_57 Vis3d_48 Vis3d_52 Vis3d_50 Vis3d_51 Vis3d_30 Vis3d_28 Vis3d_29 
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = Vis3d_39
+ type = XmPushButton
+ labelString = Next zone is target
+ activateCallback = osh> widget=`get Widget target`;set Widget target `get $widget nextBrother`
+end
+!----------------------------
+begin OWidget
+ name = Vis3d_24
+ type = XmPushButton
+ labelString = Side
+ activateCallback = osh>\
+  camera=`targetCamera`\
+  resetCamera $camera ;rotateCamera $camera y 90.
+end
+!----------------------------
+begin OWidget
+ name = Vis3d_25
+ type = XmPushButton
+ labelString = Up
+ activateCallback = osh>\
+  camera=`targetCamera`\
+  resetCamera $camera;rotateCamera $camera x 90.
+end
+!----------------------------
+begin OWidget
+ name = Vis3d_26
+ type = XmPushButton
+ labelString = Front
+ activateCallback = osh>\
+  widget=`get Widget target`\
+  camera=`get $widget name`\
+  resetCamera `targetCamera`
+end
+!----------------------------
+begin OWidget
+ name = Vis3d_27
+ type = XmPushButton
+ labelString = 3D
+ activateCallback = osh>\
+  camera=`targetCamera`\
+  resetCamera $camera;scaleCamera $camera 0.8;rotateCamera $camera y 45.;rotateCamera $camera x 45.
+end
+!----------------------------
+begin OWidget
+ name = Vis3d_53
+ type = XmPushButton
+ labelString = Erase frame
+ activateCallback = osh>\
+  camera=`targetCamera`\
+  getCameraNodes $camera | collect ONode where name eq FRAME | delete -
+end
+!----------------------------
+begin OWidget
+ name = Vis3d_57
+ type = XmSeparator
+end
+!----------------------------
+begin OWidget
+ name = Vis3d_48
+ type = XmPushButton
+ labelString = Shell view
+ activateCallback = osh> do Widget/shell_view_panel manage;set Widget target Widget/shell_view
+end
+!----------------------------
+begin OWidget
+ name = Vis3d_52
+ type = XmSeparator
+end
+!----------------------------
+begin OWidget
+ name = Vis3d_50
+ type = XmPushButton
+ labelString = Black back
+ activateCallback = osh>\
+  setWidgetResource `get Widget target` background black\
+  setWidgetResource `get Widget target` backgroundColor black
+end
+!----------------------------
+begin OWidget
+ name = Vis3d_51
+ type = XmPushButton
+ labelString = White back
+ activateCallback = osh>\
+  setWidgetResource `get Widget target` background white\
+  setWidgetResource `get Widget target` backgroundColor white
+end
+!----------------------------
+begin OWidget
+ name = Vis3d_30
+ type = XmSeparator
+end
+!----------------------------
+begin OWidget
+ name = Vis3d_28
+ type = XmPushButton
+ labelString = Attributs
+! activateCallback = osh> load OContext.odb| realize -;do Widget/OContext_palette manage;do Widget/OContext_palette_popup raise
+ activateCallback = osh> load oatb.odb  | realize -;manageWidget oatb_palette;raiseWidget oatb_palette_popup
+end
+!----------------------------
+begin OWidget
+ name = Vis3d_29
+ type = XmPushButton
+ labelString = Clear
+ activateCallback = osh> getCameraNodes `targetCamera` | delete -
+end

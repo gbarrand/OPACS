@@ -1,0 +1,330 @@
+!/* +---------------------- Copyright notice -------------------------------+ */
+!/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+!/* |   Permission to use, copy, modify, and distribute this software       | */
+!/* |   and its documentation for any purpose and without fee is hereby     | */
+!/* |   granted, provided that the above copyright notice appear in all     | */
+!/* |   copies and that both that copyright notice and this permission      | */
+!/* |   notice appear in supporting documentation.  This software is        | */
+!/* |   provided "as is" without express or implied warranty.               | */
+!/* +---------------------- Copyright notice -------------------------------+ */
+!----------------------------
+begin OInterface
+ version = v3
+ prefix = oatb_
+ packages = Xm Xo
+end
+!----------------------------
+begin OWidget
+ name = oatb_palette
+ type = XmFormDialog
+ children = oatb_grab oatb_localTarget oatb_lineStyle oatb_192 oatb_195 oatb_196 oatb_199 oatb_200 oatb_203 oatb_204 oatb_cancel oatb_223 oatb_224 
+ background = lightgrey
+ autoUnmanage = false
+ dialogTitle = Nodes attributes
+end
+!----------------------------
+begin OWidget
+ name = oatb_grab
+ type = XmPushButton
+ background = grey
+ labelString = XoCamera
+ createCallback = osh> setWidgetResource `thisWidget` height `getWidgetResource oatb_localTarget height`
+ activateCallback = osh>\
+  ref=`thisWidget`\
+  setWidgetResource oatb_localTarget value `grabWidgetName $ref`\
+  callWidgetCallbacks oatb_localTarget activateCallback
+ topAttachment  = attach_form
+ leftAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = oatb_localTarget
+ type = XmText
+ background = wheat
+ topAttachment = attach_form
+ leftAttachment = attach_widget
+ rightAttachment = attach_form
+ leftWidget = oatb_grab
+ activateCallback = osh>\
+  widget=`get Widget thisLocalTarget`\
+  colormap=`getWidgetResource $widget virtualColormap`\
+  setWidgetResource oatb_223 virtualColormap $colormap
+end
+!----------------------------
+begin OWidget
+ name = oatb_lineStyle
+ type = XmOptionMenu
+ labelString = Line style
+ subMenuId = oatb_192
+ background = lightgrey
+ topAttachment = attach_widget
+ topWidget = oatb_localTarget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = oatb_192
+ type = XmPulldownMenu
+ children = oatb_225 oatb_226 oatb_227 oatb_228 
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = oatb_195
+ type = XmOptionMenu
+ labelString = Marker style
+ subMenuId = oatb_196
+ background = lightgrey
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = oatb_lineStyle
+end
+!----------------------------
+begin OWidget
+ name = oatb_196
+ type = XmPulldownMenu
+ children = oatb_229 oatb_230 oatb_231 oatb_232 oatb_233 oatb_234 
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = oatb_199
+ type = XmOptionMenu
+ labelString = Area style
+ subMenuId = oatb_200
+ background = lightgrey
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = oatb_195
+end
+!----------------------------
+begin OWidget
+ name = oatb_200
+ type = XmPulldownMenu
+ children = oatb_235 oatb_236 oatb_237 
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = oatb_203
+ type = XmPushButton
+ createCallback = osh> setWidgetResource `thisWidget` height `getWidgetResource oatb_204 height`
+ activateCallback = osh>\
+   widget=`get Widget thisLocalTarget`\
+   test $widget eq '' && exit\
+   camera=`get $widget name`\
+   value=`getWidgetResource oatb_204 value`\
+   getCameraNodes $camera | collect ONode where highlight eq 1 | set - lineWidth $value
+ labelString = Line width
+ background = lightgrey
+ topAttachment = attach_widget
+ topWidget = oatb_199
+ leftAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = oatb_204
+ type = XmText
+ createCallback = osh> setWidgetResource `get Widget this` value 1
+ activateCallback = osh>\
+   widget=`get Widget thisLocalTarget`\
+   test $widget eq '' && exit\
+   camera=`get $widget name`\
+   value=`getWidgetResource oatb_204 value`\
+   getCameraNodes $camera | collect ONode where highlight eq 1 | set - lineWidth $value
+ background = lightgrey
+ topAttachment = attach_widget
+ topWidget = oatb_199
+ leftAttachment = attach_widget
+ rightAttachment = attach_form
+ leftWidget = oatb_203
+end
+!----------------------------
+begin OWidget
+ name = oatb_cancel
+ type = XmPushButton
+ activateCallback = osh> unmanageWidget `get Widget thisParent`
+ labelString = Cancel
+ background = lightgrey
+ bottomAttachment = attach_form
+ rightAttachment = attach_form
+ leftAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = oatb_224
+ type = XmLabel
+ labelString = Click left button in a color box
+ background = black
+ foreground = white
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = oatb_204
+end
+!----------------------------
+begin OWidget
+ name = oatb_223
+ type = XoColormap
+ background = black
+ width = 300
+ height = 304
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ bottomAttachment = attach_widget
+ bottomWidget = oatb_cancel
+ topAttachment = attach_widget
+ topWidget = oatb_224
+ selectCallback = osh>\
+   widget=`get Widget thisLocalTarget`\
+   test $widget eq '' && exit\
+   camera=`get $widget name`\
+   value=`getWidgetResource oatb_223 selectedColor`\
+   getCameraNodes $camera | collect ONode where highlight eq 1 | set - color $value
+end
+!----------------------------
+begin OWidget
+ name = oatb_225
+ type = XmPushButton
+ labelString = solid
+ activateCallback = osh>\
+   widget=`get Widget thisLocalTarget`\
+   test $widget eq '' && exit\
+   camera=`get $widget name`\
+   getCameraNodes $camera | collect ONode where highlight eq 1 | set - lineStyle solid
+end
+!----------------------------
+begin OWidget
+ name = oatb_226
+ type = XmPushButton
+ labelString = dashed
+ activateCallback = osh>\
+   widget=`get Widget thisLocalTarget`\
+   test $widget eq '' && exit\
+   camera=`get $widget name`\
+   getCameraNodes $camera | collect ONode where highlight eq 1 | set - lineStyle dashed
+end
+!----------------------------
+begin OWidget
+ name = oatb_227
+ type = XmPushButton
+ labelString = dotted
+ activateCallback = osh>\
+   widget=`get Widget thisLocalTarget`\
+   test $widget eq '' && exit\
+   camera=`get $widget name`\
+   getCameraNodes $camera | collect ONode where highlight eq 1 | set - lineStyle dotted
+end
+!----------------------------
+begin OWidget
+ name = oatb_228
+ type = XmPushButton
+ labelString = dash_dotted
+ activateCallback = osh>\
+   widget=`get Widget thisLocalTarget`\
+   test $widget eq '' && exit\
+   camera=`get $widget name`\
+   getCameraNodes $camera | collect ONode where highlight eq 1 | set - lineStyle dash_dotted
+end
+!----------------------------
+begin OWidget
+ name = oatb_229
+ type = XmPushButton
+ labelString = dot
+ activateCallback = osh>\
+   widget=`get Widget thisLocalTarget`\
+   test $widget eq '' && exit\
+   camera=`get $widget name`\
+   getCameraNodes $camera | collect ONode where highlight eq 1 | set - markerStyle dot
+end
+!----------------------------
+begin OWidget
+ name = oatb_230
+ type = XmPushButton
+ labelString = plus
+ activateCallback = osh>\
+   widget=`get Widget thisLocalTarget`\
+   test $widget eq '' && exit\
+   camera=`get $widget name`\
+   getCameraNodes $camera | collect ONode where highlight eq 1 | set - markerStyle plus
+end
+!----------------------------
+begin OWidget
+ name = oatb_231
+ type = XmPushButton
+ labelString = asterisk
+ activateCallback = osh>\
+   widget=`get Widget thisLocalTarget`\
+   test $widget eq '' && exit\
+   camera=`get $widget name`\
+   getCameraNodes $camera | collect ONode where highlight eq 1 | set - markerStyle asterisk
+end
+!----------------------------
+begin OWidget
+ name = oatb_232
+ type = XmPushButton
+ labelString = circle
+ activateCallback = osh>\
+   widget=`get Widget thisLocalTarget`\
+   test $widget eq '' && exit\
+   camera=`get $widget name`\
+   getCameraNodes $camera | collect ONode where highlight eq 1 | set - markerStyle circle
+end
+!----------------------------
+begin OWidget
+ name = oatb_233
+ type = XmPushButton
+ labelString = cross
+ activateCallback = osh>\
+   widget=`get Widget thisLocalTarget`\
+   test $widget eq '' && exit\
+   camera=`get $widget name`\
+   getCameraNodes $camera | collect ONode where highlight eq 1 | set - markerStyle cross
+end
+!----------------------------
+begin OWidget
+ name = oatb_234
+ type = XmPushButton
+ labelString = star
+ activateCallback = osh>\
+   widget=`get Widget thisLocalTarget`\
+   test $widget eq '' && exit\
+   camera=`get $widget name`\
+   getCameraNodes $camera | collect ONode where highlight eq 1 | set - markerStyle star
+end
+!----------------------------
+begin OWidget
+ name = oatb_235
+ type = XmPushButton
+ labelString = solid
+ activateCallback = osh>\
+   widget=`get Widget thisLocalTarget`\
+   test $widget eq '' && exit\
+   camera=`get $widget name`\
+   getCameraNodes $camera | collect ONode where highlight eq 1 | set - areaStyle solid
+end
+!----------------------------
+begin OWidget
+ name = oatb_236
+ type = XmPushButton
+ labelString = hatched
+ activateCallback = osh>\
+   widget=`get Widget thisLocalTarget`\
+   test $widget eq '' && exit\
+   camera=`get $widget name`\
+   getCameraNodes $camera | collect ONode where highlight eq 1 | set - areaStyle hatched
+end
+!----------------------------
+begin OWidget
+ name = oatb_237
+ type = XmPushButton
+ labelString = checker
+ activateCallback = osh>\
+   widget=`get Widget thisLocalTarget`\
+   test $widget eq '' && exit\
+   camera=`get $widget name`\
+   getCameraNodes $camera | collect ONode where highlight eq 1 | set - areaStyle checker
+end

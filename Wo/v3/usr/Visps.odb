@@ -1,0 +1,345 @@
+!/* +---------------------- Copyright notice -------------------------------+ */
+!/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+!/* |   Permission to use, copy, modify, and distribute this software       | */
+!/* |   and its documentation for any purpose and without fee is hereby     | */
+!/* |   granted, provided that the above copyright notice appear in all     | */
+!/* |   copies and that both that copyright notice and this permission      | */
+!/* |   notice appear in supporting documentation.  This software is        | */
+!/* |   provided "as is" without express or implied warranty.               | */
+!/* +---------------------- Copyright notice -------------------------------+ */
+!----------------------------
+begin OInterface
+ version = v3
+ prefix = Visps_
+end
+!----------------------------
+begin OWidget
+ name = Visps_palette
+ type = XmFormDialog
+ children = Visps_1 Visps_23 Visps_25 Visps_file Visps_27 Visps_51 Visps_52 Visps_34 Visps_orientation Visps_orientation_pull Visps_38 Visps_39 Visps_43 Visps_44 Visps_45 Visps_46 Visps_47 Visps_48 Visps_49 Visps_50 
+ dialogTitle = Postscript
+ background = lightgrey
+ autoUnmanage = False
+end
+!----------------------------
+begin OWidget
+ name = Visps_1
+ type = XmRowColumn
+ children = Visps_22 Visps_20 Visps_21
+ background = lightgrey
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = Visps_20
+ type = XmPushButton
+ activateCallback = osh>\
+  set CPS backgroundDrawn `getWidgetResource Visps_35 set`\
+  set CPS colorScheme     `getWidgetOption   Visps_51`\
+  set CPS fileName        `getWidgetResource Visps_file value`\
+  set CPS orientation     `getWidgetOption   Visps_orientation`\
+  set CPS lineWidth       `getWidgetResource Visps_44   value`\
+  set CPS bitsPerPixel    `getWidgetOption Visps_38`\
+  set `get Widget this` cursor watch\
+  do `get Widget target` putPageInPS\
+  set `get Widget this` cursor default
+ labelString = target in metafile
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = Visps_21
+ type = XmPushButton
+ activateCallback = osh>\
+  set CPS backgroundDrawn `getWidgetResource Visps_35 set`\
+  set CPS colorScheme     `getWidgetOption   Visps_51`\
+  set CPS fileName        `getWidgetResource Visps_file value`\
+  set CPS orientation     `getWidgetOption   Visps_orientation`\
+  set CPS lineWidth       `getWidgetResource Visps_44   value`\
+  set CPS bitsPerPixel    `getWidgetOption Visps_38`\
+  set `get Widget this` cursor watch\
+  isValid Widget/user_panel && do Widget/user_panel putPageInPS\
+  isValid Widget/user_grid  && do Widget/user_grid  putPageInPS\
+  if isValid Widget/StoreGridName\
+  then\
+   grid=`getWidgetResource StoreGridName value`\
+   isValid $grid && do $grid putPageInPS\
+  fi\
+  set `get Widget this` cursor default
+ labelString = panel in metafile
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = Visps_22
+ type = XmPushButton
+ activateCallback = osh> do CPS close
+ labelString = Metafile close
+ background = grey
+end
+!----------------------------
+begin OWidget
+ name = Visps_23
+ type = XmPushButton
+ activateCallback = osh> do `get Widget thisParent` unmanage
+ labelString = Cancel
+ background = lightgrey
+ topAttachment = attach_widget
+ leftAttachment = attach_widget
+ rightAttachment = attach_form
+ topWidget = Visps_50
+end
+!----------------------------
+begin OWidget
+ name = Visps_25
+ type = XmLabel
+ labelString = parameters
+ foreground = white
+ background = black
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = Visps_1
+end
+!----------------------------
+begin OWidget
+ name = Visps_file
+ type = XmText
+ createCallback = osh> setWidgetResource `get Widget this` value out.ps
+ background = lightgrey
+ topAttachment = attach_widget
+ leftAttachment = attach_widget
+ rightAttachment = attach_form
+ topWidget = Visps_25
+ leftWidget = Visps_27
+end
+!----------------------------
+begin OWidget
+ name = Visps_27
+ type = XmLabel
+ labelString = File
+ background = lightgrey
+ topAttachment = attach_widget
+ topWidget = Visps_25
+end
+!----------------------------
+begin OWidget
+ name = Visps_51
+ type = XmOptionMenu
+ subMenuId = Visps_52
+ labelString = shade
+ topAttachment = attach_widget
+ topWidget = Visps_47
+ background = lightgrey
+ rightAttachment = attach_form
+ leftAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = Visps_52
+ type = XmPulldownMenu
+ children = Visps_53 Visps_54 Visps_55 
+end
+!----------------------------
+begin OWidget
+ name = Visps_53
+ type = XmPushButton
+ labelString = color
+end
+!----------------------------
+begin OWidget
+ name = Visps_54
+ type = XmPushButton
+ labelString = grey
+end
+!----------------------------
+begin OWidget
+ name = Visps_55
+ type = XmPushButton
+ labelString = bw
+end
+!----------------------------
+begin OWidget
+ name = Visps_orientation
+ type = XmOptionMenu
+ subMenuId = Visps_orientation_pull
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topAttachment = attach_widget
+ topWidget = Visps_45
+ background = lightgrey
+ labelString = Orientation
+ createCallback = osh> setWidgetOption `get Widget this` portrait
+end
+!----------------------------
+begin OWidget
+ name = Visps_orientation_pull
+ type = XmPulldownMenu
+ children = Visps_orientation_portrait Visps_orientation_landscape
+end
+!----------------------------
+begin OWidget
+ name = Visps_orientation_portrait
+ type = XmPushButton
+ labelString = portrait
+end
+!----------------------------
+begin OWidget
+ name = Visps_orientation_landscape
+ type = XmPushButton
+ labelString = landscape
+end
+!----------------------------
+begin OWidget
+ name = Visps_34
+ type = XmRadioBox
+ children = Visps_35 Visps_36 
+ x = 0
+ y = 403
+ width = 115
+ background = lightgrey
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_none
+ topWidget = Visps_46
+end
+!----------------------------
+begin OWidget
+ name = Visps_35
+ type = XmToggleButton
+ createCallback = osh> setWidgetResource `get Widget this` set 1
+ labelString = print back
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = Visps_36
+ type = XmToggleButton
+ labelString = no back
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = Visps_38
+ type = XmOptionMenu
+ subMenuId = Visps_39
+ labelString = #bit/pixel
+ topAttachment = attach_widget
+ topWidget = Visps_34
+ background = lightgrey
+ rightAttachment = attach_form
+ leftAttachment = attach_widget
+end
+!----------------------------
+begin OWidget
+ name = Visps_39
+ type = XmPulldownMenu
+ children = Visps_40 Visps_41 Visps_42 
+end
+!----------------------------
+begin OWidget
+ name = Visps_40
+ type = XmPushButton
+ labelString = 2
+end
+!----------------------------
+begin OWidget
+ name = Visps_41
+ type = XmPushButton
+ labelString = 4
+end
+!----------------------------
+begin OWidget
+ name = Visps_42
+ type = XmPushButton
+ labelString = 8
+end
+!----------------------------
+begin OWidget
+ name = Visps_43
+ type = XmLabel
+ labelString = Line width
+ background = lightgrey
+ topAttachment = attach_widget
+ topWidget = Visps_38
+ leftAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = Visps_44
+ type = XmText
+ createCallback = osh> setWidgetResource `get Widget this` value -1
+ background = lightgrey
+ topAttachment = attach_widget
+ rightAttachment = attach_form
+ leftAttachment = attach_widget
+ topWidget = Visps_38
+ leftWidget = Visps_43
+end
+!----------------------------
+begin OWidget
+ name = Visps_45
+ type = XmSeparator
+ background = lightgrey
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = Visps_51
+end
+!----------------------------
+begin OWidget
+ name = Visps_46
+ type = XmSeparator
+ background = lightgrey
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = Visps_orientation
+end
+!----------------------------
+begin OWidget
+ name = Visps_47
+ type = XmSeparator
+ background = lightgrey
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = Visps_file
+end
+!----------------------------
+begin OWidget
+ name = Visps_48
+ type = XmLabel
+ labelString = Print command
+ foreground = white
+ background = black
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = Visps_44
+end
+!----------------------------
+begin OWidget
+ name = Visps_49
+ type = XmPushButton
+ labelString = Apply
+ background = lightgrey
+ topAttachment = attach_widget
+ topWidget = Visps_48
+ activateCallback = osh> spawn `getWidgetResource Visps_50 value`
+end
+!----------------------------
+begin OWidget
+ name = Visps_50
+ type = XmText
+ createCallback = osh> setWidgetResource `get Widget this` value 'ghostview -back white -fore black  out.ps &'
+ activateCallback = osh> spawn `get Widget thisValue`
+ background = lightgrey
+ topAttachment = attach_widget
+ leftAttachment = attach_widget
+ rightAttachment = attach_form
+ topWidget = Visps_48
+ leftWidget = Visps_49
+end
+

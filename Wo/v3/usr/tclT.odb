@@ -1,0 +1,40 @@
+!/* +---------------------- Copyright notice -------------------------------+ */
+!/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+!/* |   Permission to use, copy, modify, and distribute this software       | */
+!/* |   and its documentation for any purpose and without fee is hereby     | */
+!/* |   granted, provided that the above copyright notice appear in all     | */
+!/* |   copies and that both that copyright notice and this permission      | */
+!/* |   notice appear in supporting documentation.  This software is        | */
+!/* |   provided "as is" without express or implied warranty.               | */
+!/* +---------------------- Copyright notice -------------------------------+ */
+!----------------------------
+begin OInterface
+ version = v3
+ prefix = tclT_
+ parent = WoTest_form
+ packages = Xm
+end
+!----------------------------
+begin OWidget
+ name = tclT_panel
+ type = XmBulletinBoard
+ children = tclT_1 
+ background = dimgrey
+ topAttachment = attach_form
+ bottomAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = tclT_1
+ type = XmPushButton
+ x = 29
+ y = 12
+ width = 221
+ height = 46
+ labelString = Exec a tcl script
+ activateCallback = tcl>\
+puts "Line 1"\
+puts "Line 2"
+end

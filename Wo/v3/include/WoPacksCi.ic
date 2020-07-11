@@ -1,0 +1,76 @@
+/* +---------------------- Copyright notice -------------------------------+ */
+/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+/* |   Permission to use, copy, modify, and distribute this software       | */
+/* |   and its documentation for any purpose and without fee is hereby     | */
+/* |   granted, provided that the above copyright notice appear in all     | */
+/* |   copies and that both that copyright notice and this permission      | */
+/* |   notice appear in supporting documentation.  This software is        | */
+/* |   provided "as is" without express or implied warranty.               | */
+/* +---------------------- Copyright notice -------------------------------+ */
+#ifndef WoPacksCi_ic
+#define WoPacksCi_ic
+
+#ifdef HAS_CI
+
+/*For libc, Ci, X11, Co, Xx, Wo BindClass done in OCi.c*/
+
+#ifdef HAS_XM
+  CiSetPrintFunction     ((CiRoutine)XmConsolePrintV);
+#include <XmBind.ic>
+  CiDo                   ("#define HAS_XM");
+#endif /*HAS_XM*/
+
+#ifdef HAS_XO
+
+#include <XoBind.ic>
+#include <HoBind.ic>
+#include <GoBind.ic>
+#include <GL_Bind.ic>
+  CiDo                   ("#define HAS_XO");
+  OStatementSetFunctions (/*Declare Ci to Ho/OStatement */
+ (void(*)())CiParserStartup
+,(void(*)())CiVariableGetReference
+,(void(*)())CiTextCompile
+,(void(*)())CiVariableDelete
+,(void(*)())CiVariableGetValue
+,(void(*)())CiValuePSet
+,(void(*)())CiValueCastToDouble
+,(void(*)())CiStatementExecute
+,(void(*)())CiFunctionGetBind
+,(void(*)())CiSymbolGetReference
+,(void(*)())CiStatementDelete
+,(void(*)())CiFunctionSwitchNew
+,(void(*)())CiDo
+,(void(*)())CiFunctionBind
+,(void(*)())CiParserCleanup
+,(void(*)())CiPathNew
+,(void(*)())CiParserDeclareErrorHandler
+,(void(*)())CiBindClass
+,(void(*)())CiSetPrintFunction
+,(void(*)())CiBindmath
+,(void(*)())CiBindstdarg
+,(void(*)())CiBindstdio
+,(void(*)())CiBindstdlib
+,(void(*)())CiBindstring
+,(void(*)())CiBindtime
+,(void(*)())CiBindCi
+);
+#endif /*HAS_XO*/
+
+#ifdef HAS_XZ
+#include <XzBind.ic>
+  CiDo ("#define HAS_XZ");
+#endif /*HAS_XZ*/
+
+#ifdef HAS_G3O
+#include <G3oBind.ic>
+  CiDo   ("#define HAS_G3O");
+#endif /*HAS_G3O*/
+
+#endif /*HAS_CI*/
+
+#endif /*WoPacksCi_ic*/
+
+
+
+

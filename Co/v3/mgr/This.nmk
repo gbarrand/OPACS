@@ -1,0 +1,614 @@
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#  File produced by the Co/omake tool
+# using file Make.odb.
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+HAS_CPPFLAGS = \
+ $(Co_CPPFLAGS)
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+all   :: mkdir
+
+clean ::
+	if exist $(bin)\*.obj del $(bin)\*.obj
+	if exist $(bin)\*.exe del $(bin)\*.exe
+	if exist $(bin)\*.lib del $(bin)\*.lib
+	if exist $(bin)\*.dll del $(bin)\*.dll
+	if exist $(bin)\*.exp del $(bin)\*.exp
+	if exist $(bin)\*.pdb del $(bin)\*.pdb
+rmlib ::
+	if exist $(bin)\*.lib del $(bin)\*.lib
+rmo   ::
+	if exist $(bin)\*.obj del $(bin)\*.obj
+rmexe ::
+	if exist $(bin)\*.exe del $(bin)\*.exe
+
+mkdir :
+	@if not exist $(bin) mkdir $(bin)
+
+libCo_target = $(bin)\libCo.$(lib_or_dll)
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+all :: mkdir \
+$(bin)\mapana.exe \
+$(libCo_target) \
+$(bin)\omake.exe \
+$(bin)\CoT.exe \
+$(bin)\oshCo.exe \
+$(bin)\opatch.exe 
+	@echo "Co : all ok." 
+
+libs :: mkdir \
+$(libCo_target) 
+	@echo "Co : libs ok." 
+
+apps :: mkdir \
+$(bin)\omake.exe \
+$(bin)\CoT.exe \
+$(bin)\oshCo.exe \
+$(bin)\mapana.exe \
+$(bin)\opatch.exe \
+$(bin)\oupper.exe \
+$(bin)\ohtxTohtml.exe \
+$(bin)\odoc.exe \
+$(bin)\stdargT.exe \
+$(bin)\CDefineT.exe \
+$(bin)\OBatchT.exe \
+$(bin)\CFITST.exe \
+$(bin)\GIF_To_PS.exe \
+$(bin)\CGIFT.exe \
+$(bin)\CLibraryT.exe \
+$(bin)\COptionT.exe \
+$(bin)\NoHT.exe 
+	@echo "Co : apps ok." 
+#--------------------------------------------
+rmexeo :
+	if exist $(bin)\omake.obj del $(bin)\omake.obj
+	if exist $(bin)\CoT.obj del $(bin)\CoT.obj
+	if exist $(bin)\oshCo.obj del $(bin)\oshCo.obj
+	if exist $(bin)\mapana.obj del $(bin)\mapana.obj
+	if exist $(bin)\opatch.obj del $(bin)\opatch.obj
+	if exist $(bin)\oupper.obj del $(bin)\oupper.obj
+	if exist $(bin)\ohtxTohtml.obj del $(bin)\ohtxTohtml.obj
+	if exist $(bin)\odoc.obj del $(bin)\odoc.obj
+	if exist $(bin)\stdargT.obj del $(bin)\stdargT.obj
+	if exist $(bin)\CDefineT.obj del $(bin)\CDefineT.obj
+	if exist $(bin)\OBatchT.obj del $(bin)\OBatchT.obj
+	if exist $(bin)\CFITST.obj del $(bin)\CFITST.obj
+	if exist $(bin)\GIF_To_PS.obj del $(bin)\GIF_To_PS.obj
+	if exist $(bin)\CGIFT.obj del $(bin)\CGIFT.obj
+	if exist $(bin)\CLibraryT.obj del $(bin)\CLibraryT.obj
+	if exist $(bin)\COptionT.obj del $(bin)\COptionT.obj
+	if exist $(bin)\NoHT.obj del $(bin)\NoHT.obj
+#--------------------------------------------
+omake : $(bin)\omake.exe
+	@echo "Co : omake ok."
+CoT : $(bin)\CoT.exe
+	@echo "Co : CoT ok."
+oshCo : $(bin)\oshCo.exe
+	@echo "Co : oshCo ok."
+mapana : $(bin)\mapana.exe
+	@echo "Co : mapana ok."
+opatch : $(bin)\opatch.exe
+	@echo "Co : opatch ok."
+oupper : $(bin)\oupper.exe
+	@echo "Co : oupper ok."
+ohtxTohtml : $(bin)\ohtxTohtml.exe
+	@echo "Co : ohtxTohtml ok."
+odoc : $(bin)\odoc.exe
+	@echo "Co : odoc ok."
+stdargT : $(bin)\stdargT.exe
+	@echo "Co : stdargT ok."
+CDefineT : $(bin)\CDefineT.exe
+	@echo "Co : CDefineT ok."
+OBatchT : $(bin)\OBatchT.exe
+	@echo "Co : OBatchT ok."
+CFITST : $(bin)\CFITST.exe
+	@echo "Co : CFITST ok."
+GIF_To_PS : $(bin)\GIF_To_PS.exe
+	@echo "Co : GIF_To_PS ok."
+CGIFT : $(bin)\CGIFT.exe
+	@echo "Co : CGIFT ok."
+CLibraryT : $(bin)\CLibraryT.exe
+	@echo "Co : CLibraryT ok."
+COptionT : $(bin)\COptionT.exe
+	@echo "Co : COptionT ok."
+NoHT : $(bin)\NoHT.exe
+	@echo "Co : NoHT ok."
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#--------------------------------------------
+$(bin)\omake.exe : $(bin)\omake.obj \
+$(libCo_target) 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\omake.exe $(bin)\omake.obj \
+$(libCo) \
+$(libm) \
+$(CCLDEND) 
+
+$(bin)\omake.obj   : $(app)\omake.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\omake.obj $(app)\omake.c
+#--------------------------------------------
+$(bin)\CoT.exe : $(bin)\CoT.obj \
+$(libCo_target) 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\CoT.exe $(bin)\CoT.obj \
+$(libCo) \
+$(libm) \
+$(CCLDEND) 
+
+$(bin)\CoT.obj   : $(app)\CoT.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\CoT.obj $(app)\CoT.c
+#--------------------------------------------
+$(bin)\oshCo.exe : $(bin)\oshCo.obj \
+$(libCo_target) 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\oshCo.exe $(bin)\oshCo.obj \
+$(libCo) \
+$(libm) \
+$(CCLDEND) 
+
+$(bin)\oshCo.obj   : $(app)\oshCo.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\oshCo.obj $(app)\oshCo.c
+#--------------------------------------------
+$(bin)\mapana.exe : $(bin)\mapana.obj 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\mapana.exe $(bin)\mapana.obj \
+$(CCLDEND) 
+
+$(bin)\mapana.obj   : $(app)\mapana.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\mapana.obj $(app)\mapana.c
+#--------------------------------------------
+$(bin)\opatch.exe : $(bin)\opatch.obj \
+$(libCo_target) 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\opatch.exe $(bin)\opatch.obj \
+$(libCo) \
+$(libm) \
+$(CCLDEND) 
+
+$(bin)\opatch.obj   : $(app)\opatch.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\opatch.obj $(app)\opatch.c
+#--------------------------------------------
+$(bin)\oupper.exe : $(bin)\oupper.obj 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\oupper.exe $(bin)\oupper.obj \
+$(CCLDEND) 
+
+$(bin)\oupper.obj   : $(app)\oupper.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\oupper.obj $(app)\oupper.c
+#--------------------------------------------
+$(bin)\ohtxTohtml.exe : $(bin)\ohtxTohtml.obj \
+$(libCo_target) 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\ohtxTohtml.exe $(bin)\ohtxTohtml.obj \
+$(libCo) \
+$(libm) \
+$(CCLDEND) 
+
+$(bin)\ohtxTohtml.obj   : $(app)\ohtxTohtml.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\ohtxTohtml.obj $(app)\ohtxTohtml.c
+#--------------------------------------------
+$(bin)\odoc.exe : $(bin)\odoc.obj \
+$(libCo_target) 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\odoc.exe $(bin)\odoc.obj \
+$(libCo) \
+$(libm) \
+$(CCLDEND) 
+
+$(bin)\odoc.obj   : $(app)\odoc.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\odoc.obj $(app)\odoc.c
+#--------------------------------------------
+$(bin)\stdargT.exe : $(bin)\stdargT.obj 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\stdargT.exe $(bin)\stdargT.obj \
+$(CCLDEND) 
+
+$(bin)\stdargT.obj   : $(app)\stdargT.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\stdargT.obj $(app)\stdargT.c
+#--------------------------------------------
+$(bin)\CDefineT.exe : $(bin)\CDefineT.obj 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\CDefineT.exe $(bin)\CDefineT.obj \
+$(CCLDEND) 
+
+$(bin)\CDefineT.obj   : $(app)\CDefineT.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\CDefineT.obj $(app)\CDefineT.c
+#--------------------------------------------
+$(bin)\OBatchT.exe : $(bin)\OBatchT.obj \
+$(libCo_target) 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\OBatchT.exe $(bin)\OBatchT.obj \
+$(libCo) \
+$(libm) \
+$(CCLDEND) 
+
+$(bin)\OBatchT.obj   : $(app)\OBatchT.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\OBatchT.obj $(app)\OBatchT.c
+#--------------------------------------------
+$(bin)\CFITST.exe : $(bin)\CFITST.obj \
+$(libCo_target) 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\CFITST.exe $(bin)\CFITST.obj \
+$(libCo) \
+$(libm) \
+$(CCLDEND) 
+
+$(bin)\CFITST.obj   : $(app)\CFITST.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\CFITST.obj $(app)\CFITST.c
+#--------------------------------------------
+$(bin)\GIF_To_PS.exe : $(bin)\GIF_To_PS.obj \
+$(libCo_target) 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\GIF_To_PS.exe $(bin)\GIF_To_PS.obj \
+$(libCo) \
+$(libm) \
+$(CCLDEND) 
+
+$(bin)\GIF_To_PS.obj   : $(app)\GIF_To_PS.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\GIF_To_PS.obj $(app)\GIF_To_PS.c
+#--------------------------------------------
+$(bin)\CGIFT.exe : $(bin)\CGIFT.obj \
+$(libCo_target) 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\CGIFT.exe $(bin)\CGIFT.obj \
+$(libCo) \
+$(libm) \
+$(CCLDEND) 
+
+$(bin)\CGIFT.obj   : $(app)\CGIFT.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\CGIFT.obj $(app)\CGIFT.c
+#--------------------------------------------
+$(bin)\CLibraryT.exe : $(bin)\CLibraryT.obj \
+$(libCo_target) 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\CLibraryT.exe $(bin)\CLibraryT.obj \
+$(libCo) \
+$(libm) \
+$(CCLDEND) 
+
+$(bin)\CLibraryT.obj   : $(app)\CLibraryT.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\CLibraryT.obj $(app)\CLibraryT.c
+#--------------------------------------------
+$(bin)\COptionT.exe : $(bin)\COptionT.obj \
+$(libCo_target) 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\COptionT.exe $(bin)\COptionT.obj \
+$(libCo) \
+$(libm) \
+$(CCLDEND) 
+
+$(bin)\COptionT.obj   : $(app)\COptionT.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\COptionT.obj $(app)\COptionT.c
+#--------------------------------------------
+$(bin)\NoHT.exe : $(bin)\NoHT.obj 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\NoHT.exe $(bin)\NoHT.obj \
+$(CCLDEND) 
+
+$(bin)\NoHT.obj   : $(app)\NoHT.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\NoHT.obj $(app)\NoHT.c
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# libraries 
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#--------------------------------------------
+$(bin)\libCo.dll : \
+$(bin)\CoCommands.obj \
+$(bin)\CManager.obj \
+$(bin)\OModule.obj \
+$(bin)\OTouch.obj \
+$(bin)\CoTypes.obj \
+$(bin)\OType.obj \
+$(bin)\OProperty.obj \
+$(bin)\OProcedureL.obj \
+$(bin)\OProcedure.obj \
+$(bin)\OProcess.obj \
+$(bin)\OHandle.obj \
+$(bin)\OShell.obj \
+$(bin)\OCommand.obj \
+$(bin)\OMatrix.obj \
+$(bin)\OMatrix33.obj \
+$(bin)\OLUT.obj \
+$(bin)\CoF77.obj \
+$(bin)\OBatch.obj \
+$(bin)\FString.obj \
+$(bin)\OHTML.obj \
+$(bin)\OColor.obj \
+$(bin)\CFITS.obj \
+$(bin)\CPS.obj \
+$(bin)\CGIF.obj \
+$(bin)\CTIFF.obj \
+$(bin)\CXPM.obj \
+$(bin)\CFile.obj \
+$(bin)\CStream.obj \
+$(bin)\CText.obj \
+$(bin)\CString.obj \
+$(bin)\CCharacter.obj \
+$(bin)\CColor.obj \
+$(bin)\CMath.obj \
+$(bin)\CVector.obj \
+$(bin)\CList.obj \
+$(bin)\CLibrary.obj \
+$(bin)\CMemory.obj \
+$(bin)\COption.obj \
+$(bin)\CError.obj \
+$(bin)\CPrinter.obj \
+$(bin)\CTime.obj \
+$(bin)\CJPEG.obj \
+$(bin)\CImageshort.obj \
+$(bin)\CSystem.obj \
+$(bin)\CBatch.obj \
+$(bin)\CoBinds.obj 
+	if exist $(bin)\libCo.lib del $(bin)\libCo.lib 
+	if exist $(bin)\libCo.exp del $(bin)\libCo.exp 
+	lib.exe $(LIBFLAGS) /def:$(mgr)\libCo.def /out:$(bin)\libCo.lib
+	if exist $(bin)\libCo.dll del $(bin)\libCo.dll 
+	$(LINK32) $(LINK32FLAGS) /out:$(bin)\libCo.dll $(bin)\libCo.exp \
+$(bin)\CoCommands.obj \
+$(bin)\CManager.obj \
+$(bin)\OModule.obj \
+$(bin)\OTouch.obj \
+$(bin)\CoTypes.obj \
+$(bin)\OType.obj \
+$(bin)\OProperty.obj \
+$(bin)\OProcedureL.obj \
+$(bin)\OProcedure.obj \
+$(bin)\OProcess.obj \
+$(bin)\OHandle.obj \
+$(bin)\OShell.obj \
+$(bin)\OCommand.obj \
+$(bin)\OMatrix.obj \
+$(bin)\OMatrix33.obj \
+$(bin)\OLUT.obj \
+$(bin)\CoF77.obj \
+$(bin)\OBatch.obj \
+$(bin)\FString.obj \
+$(bin)\OHTML.obj \
+$(bin)\OColor.obj \
+$(bin)\CFITS.obj \
+$(bin)\CPS.obj \
+$(bin)\CGIF.obj \
+$(bin)\CTIFF.obj \
+$(bin)\CXPM.obj \
+$(bin)\CFile.obj \
+$(bin)\CStream.obj \
+$(bin)\CText.obj \
+$(bin)\CString.obj \
+$(bin)\CCharacter.obj \
+$(bin)\CColor.obj \
+$(bin)\CMath.obj \
+$(bin)\CVector.obj \
+$(bin)\CList.obj \
+$(bin)\CLibrary.obj \
+$(bin)\CMemory.obj \
+$(bin)\COption.obj \
+$(bin)\CError.obj \
+$(bin)\CPrinter.obj \
+$(bin)\CTime.obj \
+$(bin)\CJPEG.obj \
+$(bin)\CImageshort.obj \
+$(bin)\CSystem.obj \
+$(bin)\CBatch.obj \
+$(bin)\CoBinds.obj \
+$(libm) \
+$(libc) 
+
+$(bin)\libCo.lib : \
+$(bin)\CoCommands.obj \
+$(bin)\CManager.obj \
+$(bin)\OModule.obj \
+$(bin)\OTouch.obj \
+$(bin)\CoTypes.obj \
+$(bin)\OType.obj \
+$(bin)\OProperty.obj \
+$(bin)\OProcedureL.obj \
+$(bin)\OProcedure.obj \
+$(bin)\OProcess.obj \
+$(bin)\OHandle.obj \
+$(bin)\OShell.obj \
+$(bin)\OCommand.obj \
+$(bin)\OMatrix.obj \
+$(bin)\OMatrix33.obj \
+$(bin)\OLUT.obj \
+$(bin)\CoF77.obj \
+$(bin)\OBatch.obj \
+$(bin)\FString.obj \
+$(bin)\OHTML.obj \
+$(bin)\OColor.obj \
+$(bin)\CFITS.obj \
+$(bin)\CPS.obj \
+$(bin)\CGIF.obj \
+$(bin)\CTIFF.obj \
+$(bin)\CXPM.obj \
+$(bin)\CFile.obj \
+$(bin)\CStream.obj \
+$(bin)\CText.obj \
+$(bin)\CString.obj \
+$(bin)\CCharacter.obj \
+$(bin)\CColor.obj \
+$(bin)\CMath.obj \
+$(bin)\CVector.obj \
+$(bin)\CList.obj \
+$(bin)\CLibrary.obj \
+$(bin)\CMemory.obj \
+$(bin)\COption.obj \
+$(bin)\CError.obj \
+$(bin)\CPrinter.obj \
+$(bin)\CTime.obj \
+$(bin)\CJPEG.obj \
+$(bin)\CImageshort.obj \
+$(bin)\CSystem.obj \
+$(bin)\CBatch.obj \
+$(bin)\CoBinds.obj 
+	if exist $(bin)\libCo.lib del $(bin)\libCo.lib 
+	lib.exe @<<
+/nologo /out:$(bin)\libCo.lib
+$(bin)\CoCommands.obj
+$(bin)\CManager.obj
+$(bin)\OModule.obj
+$(bin)\OTouch.obj
+$(bin)\CoTypes.obj
+$(bin)\OType.obj
+$(bin)\OProperty.obj
+$(bin)\OProcedureL.obj
+$(bin)\OProcedure.obj
+$(bin)\OProcess.obj
+$(bin)\OHandle.obj
+$(bin)\OShell.obj
+$(bin)\OCommand.obj
+$(bin)\OMatrix.obj
+$(bin)\OMatrix33.obj
+$(bin)\OLUT.obj
+$(bin)\CoF77.obj
+$(bin)\OBatch.obj
+$(bin)\FString.obj
+$(bin)\OHTML.obj
+$(bin)\OColor.obj
+$(bin)\CFITS.obj
+$(bin)\CPS.obj
+$(bin)\CGIF.obj
+$(bin)\CTIFF.obj
+$(bin)\CXPM.obj
+$(bin)\CFile.obj
+$(bin)\CStream.obj
+$(bin)\CText.obj
+$(bin)\CString.obj
+$(bin)\CCharacter.obj
+$(bin)\CColor.obj
+$(bin)\CMath.obj
+$(bin)\CVector.obj
+$(bin)\CList.obj
+$(bin)\CLibrary.obj
+$(bin)\CMemory.obj
+$(bin)\COption.obj
+$(bin)\CError.obj
+$(bin)\CPrinter.obj
+$(bin)\CTime.obj
+$(bin)\CJPEG.obj
+$(bin)\CImageshort.obj
+$(bin)\CSystem.obj
+$(bin)\CBatch.obj
+$(bin)\CoBinds.obj
+<<
+#--------------------------------------------
+# libCo dependencies 
+#--------------------------------------------
+$(bin)\CoCommands.obj : $(src)\CoCommands.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\CoCommands.obj $(src)\CoCommands.c
+
+$(bin)\CManager.obj : $(src)\CManager.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\CManager.obj $(src)\CManager.c
+
+$(bin)\OModule.obj : $(src)\OModule.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\OModule.obj $(src)\OModule.c
+
+$(bin)\OTouch.obj : $(src)\OTouch.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\OTouch.obj $(src)\OTouch.c
+
+$(bin)\CoTypes.obj : $(src)\CoTypes.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\CoTypes.obj $(src)\CoTypes.c
+
+$(bin)\OType.obj : $(src)\OType.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\OType.obj $(src)\OType.c
+
+$(bin)\OProperty.obj : $(src)\OProperty.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\OProperty.obj $(src)\OProperty.c
+
+$(bin)\OProcedureL.obj : $(src)\OProcedureL.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\OProcedureL.obj $(src)\OProcedureL.c
+
+$(bin)\OProcedure.obj : $(src)\OProcedure.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\OProcedure.obj $(src)\OProcedure.c
+
+$(bin)\OProcess.obj : $(src)\OProcess.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\OProcess.obj $(src)\OProcess.c
+
+$(bin)\OHandle.obj : $(src)\OHandle.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\OHandle.obj $(src)\OHandle.c
+
+$(bin)\OShell.obj : $(src)\OShell.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\OShell.obj $(src)\OShell.c
+
+$(bin)\OCommand.obj : $(src)\OCommand.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\OCommand.obj $(src)\OCommand.c
+
+$(bin)\OMatrix.obj : $(src)\OMatrix.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\OMatrix.obj $(src)\OMatrix.c
+
+$(bin)\OMatrix33.obj : $(src)\OMatrix33.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\OMatrix33.obj $(src)\OMatrix33.c
+
+$(bin)\OLUT.obj : $(src)\OLUT.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\OLUT.obj $(src)\OLUT.c
+
+$(bin)\CoF77.obj : $(src)\CoF77.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\CoF77.obj $(src)\CoF77.c
+
+$(bin)\OBatch.obj : $(src)\OBatch.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\OBatch.obj $(src)\OBatch.c
+
+$(bin)\FString.obj : $(src)\FString.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\FString.obj $(src)\FString.c
+
+$(bin)\OHTML.obj : $(src)\OHTML.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\OHTML.obj $(src)\OHTML.c
+
+$(bin)\OColor.obj : $(src)\OColor.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\OColor.obj $(src)\OColor.c
+
+$(bin)\CFITS.obj : $(src)\CFITS.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\CFITS.obj $(src)\CFITS.c
+
+$(bin)\CPS.obj : $(src)\CPS.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\CPS.obj $(src)\CPS.c
+
+$(bin)\CGIF.obj : $(src)\CGIF.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\CGIF.obj $(src)\CGIF.c
+
+$(bin)\CTIFF.obj : $(src)\CTIFF.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\CTIFF.obj $(src)\CTIFF.c
+
+$(bin)\CXPM.obj : $(src)\CXPM.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\CXPM.obj $(src)\CXPM.c
+
+$(bin)\CFile.obj : $(src)\CFile.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\CFile.obj $(src)\CFile.c
+
+$(bin)\CStream.obj : $(src)\CStream.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\CStream.obj $(src)\CStream.c
+
+$(bin)\CText.obj : $(src)\CText.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\CText.obj $(src)\CText.c
+
+$(bin)\CString.obj : $(src)\CString.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\CString.obj $(src)\CString.c
+
+$(bin)\CCharacter.obj : $(src)\CCharacter.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\CCharacter.obj $(src)\CCharacter.c
+
+$(bin)\CColor.obj : $(src)\CColor.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\CColor.obj $(src)\CColor.c
+
+$(bin)\CMath.obj : $(src)\CMath.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\CMath.obj $(src)\CMath.c
+
+$(bin)\CVector.obj : $(src)\CVector.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\CVector.obj $(src)\CVector.c
+
+$(bin)\CList.obj : $(src)\CList.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\CList.obj $(src)\CList.c
+
+$(bin)\CLibrary.obj : $(src)\CLibrary.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\CLibrary.obj $(src)\CLibrary.c
+
+$(bin)\CMemory.obj : $(src)\CMemory.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\CMemory.obj $(src)\CMemory.c
+
+$(bin)\COption.obj : $(src)\COption.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\COption.obj $(src)\COption.c
+
+$(bin)\CError.obj : $(src)\CError.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\CError.obj $(src)\CError.c
+
+$(bin)\CPrinter.obj : $(src)\CPrinter.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\CPrinter.obj $(src)\CPrinter.c
+
+$(bin)\CTime.obj : $(src)\CTime.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\CTime.obj $(src)\CTime.c
+
+$(bin)\CJPEG.obj : $(src)\CJPEG.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\CJPEG.obj $(src)\CJPEG.c
+
+$(bin)\CImageshort.obj : $(src)\CImageshort.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\CImageshort.obj $(src)\CImageshort.c
+
+$(bin)\CSystem.obj : $(src)\CSystem.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\CSystem.obj $(src)\CSystem.c
+
+$(bin)\CBatch.obj : $(src)\CBatch.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\CBatch.obj $(src)\CBatch.c
+
+$(bin)\CoBinds.obj : $(src)\CoBinds.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\CoBinds.obj $(src)\CoBinds.c
+
+

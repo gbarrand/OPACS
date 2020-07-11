@@ -1,0 +1,14 @@
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!! for htmlT !!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+*whtml.width                 :400
+*whtml.height                :500
+*whtml*background            :grey
+*whtml.View.background       :grey
+*whtml.anchorUnderlines      :1
+*whtml.verticalScrollOnRight :True
+*whtml.header1Font           : -adobe-times-bold-r-normal-*-34-*-*-*-*-*-*-*
+*whtml.header2Font           : -adobe-times-bold-r-normal-*-25-*-*-*-*-*-*-*
+*whtml.header5Font           : -adobe-times-bold-r-normal-*-14-*-*-*-*-*-*-*
+*whtml.header6Font           : -adobe-times-bold-r-normal-*-11-*-*-*-*-*-*-*
+*whtml.listingFont           : -adobe-times-bold-r-normal-*-11-*-*-*-*-*-*-*

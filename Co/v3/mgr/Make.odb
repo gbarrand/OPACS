@@ -1,0 +1,371 @@
+!/* +---------------------- Copyright notice -------------------------------+ */
+!/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+!/* |   Permission to use, copy, modify, and distribute this software       | */
+!/* |   and its documentation for any purpose and without fee is hereby     | */
+!/* |   granted, provided that the above copyright notice appear in all     | */
+!/* |   copies and that both that copyright notice and this permission      | */
+!/* |   notice appear in supporting documentation.  This software is        | */
+!/* |   provided "as is" without express or implied warranty.               | */
+!/* +---------------------- Copyright notice -------------------------------+ */
+!----------------------------
+begin Make
+  package = Co
+  libs    = Co: libc libm 
+end
+!----------------------------
+!----------------------------
+!----------------------------
+begin OModule
+  name   = omake
+  type   = application
+  libs   = libCo libm
+end
+!----------------------------
+begin OModule
+  name   = CoT
+  type   = application
+  libs   = libCo libm
+end
+!----------------------------
+begin OModule
+  name   = oshCo
+  type   = application
+  libs   = libCo libm
+end
+!----------------------------
+begin OModule
+  name       = mapana
+  type       = application
+  beforeLibraries = true
+end
+!----------------------------
+begin OModule
+  name   = opatch
+  type   = application
+  libs   = libCo libm
+end
+!----------------------------
+!----------------------------
+begin OModule
+  name   = oupper
+  type   = application
+  distributed = no
+end
+!----------------------------
+begin OModule
+  name = ohtxTohtml
+  type = application
+  libs = libCo libm
+  distributed = no
+end
+!----------------------------
+begin OModule
+  name   = odoc
+  type   = application
+  libs   = libCo libm
+  distributed = no
+end
+!----------------------------
+begin OModule
+  name   = stdargT
+  type   = application
+  distributed = no
+end
+!----------------------------
+begin OModule
+  name   = CDefineT
+  type   = application
+  distributed = no
+end
+!----------------------------
+begin OModule
+  name   = OBatchT
+  type   = application
+  libs   = libCo libm
+  distributed = no
+end
+!----------------------------
+begin OModule
+  name   = CFITST
+  type   = application
+  libs   = libCo libm
+  distributed = no
+end
+!----------------------------
+begin OModule
+  name   = GIF_To_PS
+  type   = application
+  libs   = libCo libm
+  distributed = no
+end
+!----------------------------
+begin OModule
+  name   = CGIFT
+  type   = application
+  libs   = libCo libm
+  distributed = no
+end
+!----------------------------
+begin OModule
+  name   = CLibraryT
+  type   = application
+  libs   = libCo libm
+  distributed = no
+end
+!----------------------------
+begin OModule
+  name   = COptionT
+  type   = application
+  libs   = libCo libm
+  distributed = no
+end
+!----------------------------
+begin OModule
+  name   = NoHT
+  type   = application
+  distributed = no
+end
+!----------------------------
+!----------------------------
+!----------------------------
+!----------------------------
+begin OModule
+  name   = libCo
+  type   = so
+  libs   = libm libc 
+end
+!----------------------------
+!----------------------------
+!----------------------------
+!----------------------------
+begin OModule
+  name  = CoCommands
+  inLib = libCo
+end
+!----------------------------
+begin OModule
+  name  = CManager
+  inLib = libCo
+end
+!----------------------------
+begin OModule
+  name  = OModule
+  inLib = libCo
+end
+!----------------------------
+begin OModule
+  name  = OTouch
+  inLib = libCo
+end
+!----------------------------
+begin OModule
+  name  = CoTypes
+  inLib = libCo
+end
+!----------------------------
+begin OModule
+  name  = OType
+  inLib = libCo
+end
+!----------------------------
+begin OModule
+  name  = OProperty
+  inLib = libCo
+end
+!----------------------------
+begin OModule
+  name  = OProcedureL
+  inLib = libCo
+end
+!----------------------------
+begin OModule
+  name  = OProcedure
+  inLib = libCo
+end
+!----------------------------
+begin OModule
+  name  = OProcess
+  inLib = libCo
+end
+!----------------------------
+begin OModule
+  name  = OHandle
+  inLib = libCo
+end
+!----------------------------
+begin OModule
+  name  = OShell
+  inLib = libCo
+end
+!----------------------------
+begin OModule
+  name  = OCommand
+  inLib = libCo
+end
+!----------------------------
+begin OModule
+  name  = OMatrix
+  inLib = libCo
+end
+!----------------------------
+begin OModule
+  name  = OMatrix33
+  inLib = libCo
+end
+!----------------------------
+begin OModule
+  name  = OLUT
+  inLib = libCo
+end
+!----------------------------
+begin OModule
+  name  = CoF77
+  inLib = libCo
+end
+!----------------------------
+begin OModule
+  name    = OBatch
+  inLib   = libCo
+end
+!----------------------------
+begin OModule
+  name    = FString
+  inLib   = libCo
+end
+!----------------------------
+begin OModule
+  name  = OHTML
+  inLib = libCo
+end
+!----------------------------
+begin OModule
+  name  = OColor
+  inLib = libCo
+end
+!----------------------------
+begin OModule
+  name  = CFITS
+  inLib = libCo
+end
+!----------------------------
+begin OModule
+  name  = CPS
+  inLib = libCo
+end
+!----------------------------
+begin OModule
+  name  = CGIF
+  inLib = libCo
+end
+!----------------------------
+begin OModule
+  name  = CTIFF
+  inLib = libCo
+end
+!----------------------------
+begin OModule
+  name  = CXPM
+  inLib = libCo
+end
+!----------------------------
+begin OModule
+  name  = CFile
+  inLib = libCo
+end
+!----------------------------
+begin OModule
+  name  = CStream
+  inLib = libCo
+end
+!----------------------------
+begin OModule
+  name  = CText
+  inLib = libCo
+end
+!----------------------------
+begin OModule
+  name  = CString
+  inLib = libCo
+end
+!----------------------------
+begin OModule
+  name  = CCharacter
+  inLib = libCo
+end
+!----------------------------
+begin OModule
+  name  = CColor
+  inLib = libCo
+end
+!----------------------------
+begin OModule
+  name  = CMath
+  inLib = libCo
+end
+!----------------------------
+begin OModule
+  name  = CVector
+  inLib = libCo
+end
+!----------------------------
+begin OModule
+  name  = CList
+  inLib = libCo
+end
+!----------------------------
+begin OModule
+  name  = CLibrary
+  inLib = libCo
+end
+!----------------------------
+begin OModule
+  name  = CMemory
+  inLib = libCo
+end
+!----------------------------
+begin OModule
+  name  = COption
+  inLib = libCo
+end
+!----------------------------
+begin OModule
+  name  = CError
+  inLib = libCo
+end
+!----------------------------
+begin OModule
+  name  = CPrinter
+  inLib = libCo
+end
+!----------------------------
+begin OModule
+  name  = CTime
+  inLib = libCo
+end
+!----------------------------
+begin OModule
+  name  = CJPEG
+  inLib = libCo
+end
+!----------------------------
+begin OModule
+  name  = CImageshort
+  inLib = libCo
+end
+!----------------------------
+begin OModule
+  name  = CSystem
+  inLib = libCo
+end
+!----------------------------
+begin OModule
+  name  = CBatch
+  inLib = libCo
+end
+!----------------------------
+!-- Ci ----------------------
+!----------------------------
+begin OModule
+  name      = CoBinds
+  inLib     = libCo
+end

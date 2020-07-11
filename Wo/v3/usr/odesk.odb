@@ -1,0 +1,211 @@
+!----------------------------
+begin OInterface
+ version = v3
+ prefix = odesk_
+end
+!----------------------------
+begin OWidget
+ name = odesk_1
+ type = XmFormDialog
+ children = odesk_4 
+ dialogTitle = Wo desk
+ createCallback = osh> manageWidget `get Widget this`
+end
+!----------------------------
+begin OWidget
+ name = odesk_4
+ type = XmMenuBar
+ children = odesk_5 odesk_12 odesk_13 odesk_6 odesk_40 odesk_41 odesk_VMS_casc odesk_VMS_pdm Wo_casc<Wo.odb Wo_pull<Wo.odb
+ background = lightgrey
+ shadowThickness = 4
+ topShadowColor = white
+ bottomShadowColor = black
+ topAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = odesk_5
+ type = XmCascadeButton
+ background = lightgrey
+ labelString = Xapps
+ subMenuId = odesk_6
+end
+!----------------------------
+begin OWidget
+ name = odesk_12
+ type = XmCascadeButton
+ labelString = Oapps
+ subMenuId = odesk_13
+end
+!----------------------------
+begin OWidget
+ name = odesk_13
+ type = XmPulldownMenu
+ children = odesk_WoTest odesk_ocapture
+end
+!----------------------------
+begin OWidget
+ name = odesk_WoTest
+ type = XmPushButton
+ labelString = WoTest
+ activateCallback = sys> WoT.exe -show WoTest.odb &
+end
+!----------------------------
+begin OWidget
+ name = odesk_ocapture
+ type = XmPushButton
+ labelString = Capture screen
+ activateCallback = sys> WoT.exe -show ocapture.odb &
+end
+!----------------------------
+begin OWidget
+ name = odesk_6
+ type = XmPulldownMenu
+ children = odesk_bitmap odesk_mosaic odesk_xkill odesk_30 odesk_39 odesk_43
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = odesk_bitmap
+ type = XmPushButton
+ labelString = asa:bitmap
+ activateCallback = osh> spawn UNIX sh asa /usr/bin/X11/bitmap
+end
+!----------------------------
+begin OWidget
+ name = odesk_mosaic
+ type = XmPushButton
+ labelString = asa:xmosaic
+ activateCallback = osh> spawn UNIX sh asa /usr/local/bin/xmosaic
+end
+!----------------------------
+begin OWidget
+ name = odesk_xkill
+ type = XmPushButton
+ labelString = asa:xkill
+ activateCallback = osh> spawn UNIX sh asa /usr/bin/X11/xkill
+end
+!----------------------------
+begin OWidget
+ name = odesk_30
+ type = XmPushButton
+ labelString = asa:xclock
+ activateCallback = osh> spawn UNIX sh asa /usr/bin/X11/xclock
+end
+!----------------------------
+begin OWidget
+ name = odesk_39
+ type = XmPushButton
+ labelString = asa:xarchie
+ activateCallback = osh> spawn UNIX sh asa /usr/local/bin/xarchie
+end
+!----------------------------
+begin OWidget
+ name = odesk_43
+ type = XmPushButton
+ labelString = asa:xv
+ activateCallback = osh> spawn UNIX sh asa /usr/local/bin/xv.3.0
+end
+!----------------------------
+begin OWidget
+ name = odesk_40
+ type = XmCascadeButton
+ background = lightgrey
+ labelString = apps
+ subMenuId = odesk_41
+end
+!----------------------------
+begin OWidget
+ name = odesk_41
+ type = XmPulldownMenu
+ children = odesk_paw odesk_ux3_dxterm odesk_asa_dxterm odesk_mwm odesk_CDE  odesk_HPVUE 
+end
+!----------------------------
+begin OWidget
+ name = odesk_paw
+ type = XmPushButton
+ labelString = asa:paw++
+ activateCallback = osh> spawn UNIX sh asa /cern/pro/bin/paw++
+end
+!----------------------------
+begin OWidget
+ name = odesk_CDE
+ type = XmPushButton
+ labelString = asa:CDE
+ activateCallback = osh> spawn UNIX sh asa /usr/dt/bin/dtsession
+end
+!----------------------------
+begin OWidget
+ name = odesk_HPVUE
+ type = XmPushButton
+ labelString = hp3:HPVUE
+ activateCallback = osh> spawn UNIX sh hp3 /usr/lib/X11/vue/Vuelogin/Xsession
+end
+!----------------------------
+begin OWidget
+ name = odesk_mwm
+ type = XmPushButton
+ labelString = ux3:mwm
+ activateCallback = osh> spawn UNIX sh ux3 /usr/bin/mwm
+end
+!----------------------------
+begin OWidget
+ name = odesk_ux3_dxterm
+ type = XmPushButton
+ labelString = ux3:dxterm
+ activateCallback = osh> spawn UNIX sh ux3 '/usr/bin/dxterm -ls'
+end
+!----------------------------
+begin OWidget
+ name = odesk_asa_dxterm
+ type = XmPushButton
+ labelString = asa:dxterm
+ activateCallback = osh> spawn UNIX sh ux3 '/usr/bin/X11/dxterm -ls'
+end
+!----------------------------
+begin OWidget
+ name = odesk_VMS_casc
+ type = XmCascadeButton
+ background = lightgrey
+ labelString = VMS
+ subMenuId = odesk_VMS_pdm
+end
+!----------------------------
+begin OWidget
+ name = odesk_VMS_pdm
+ type = XmPulldownMenu
+ children = odesk_VMS_mail odesk_VMS_term odesk_VMS_book odesk_VMS_view 
+end
+!----------------------------
+begin OWidget
+ name = odesk_VMS_mail
+ type = XmPushButton
+ labelString = axs:mail
+ activateCallback = osh> spawn VMS UCX `askPassword 'axs password'` axs 'run sys$system:decw$mail'
+! activateCallback = osh> spawn VMS DECNET  lalasa lalaxs 'run sys$system:decw$mail'
+end
+!----------------------------
+begin OWidget
+ name = odesk_VMS_term
+ type = XmPushButton
+ labelString = axs:terminal
+ activateCallback = osh> spawn VMS UCX `askPassword 'axs password'`  axs 'create/terminal/detached'
+end
+!----------------------------
+begin OWidget
+ name = odesk_VMS_book
+ type = XmPushButton
+ labelString = axs:bookreader
+ activateCallback = osh> spawn VMS UCX `askPassword 'axs password'` axs 'run sys$sytem:decw$bookreader'
+end
+!----------------------------
+begin OWidget
+ name = odesk_VMS_view
+ type = XmPushButton
+ labelString = axs:view
+ activateCallback = osh> spawn VMS UCX `askPassword 'axs password'` axs 'view/format=ps/inter=decw'
+end
+
+

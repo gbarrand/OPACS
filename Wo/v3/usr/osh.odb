@@ -1,0 +1,76 @@
+!/* +---------------------- Copyright notice -------------------------------+ */
+!/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+!/* |   Permission to use, copy, modify, and distribute this software       | */
+!/* |   and its documentation for any purpose and without fee is hereby     | */
+!/* |   granted, provided that the above copyright notice appear in all     | */
+!/* |   copies and that both that copyright notice and this permission      | */
+!/* |   notice appear in supporting documentation.  This software is        | */
+!/* |   provided "as is" without express or implied warranty.               | */
+!/* +---------------------- Copyright notice -------------------------------+ */
+!----------------------------
+begin OInterface
+ version = v3
+ prefix = osh_
+ packages = Xm 
+end
+!----------------------------
+begin OWidget
+ name = osh_palette
+ type = XmFormDialog
+ children = osh_global osh_cmd osh_cancel osh_help 
+ autoUnmanage = false
+ dialogTitle = osh
+end
+!----------------------------
+begin OWidget
+ name = osh_global
+ type = XmToggleButton
+ labelString = Global
+ valueChangedCallback = osh>\
+  value=`getWidgetResource osh_global set`\
+  echo $value\
+  if test $value eq true\
+  then\
+   setWidgetResource osh_cmd commandEnteredCallback 'osh> .osh `get Widget thisValue`'\
+  else\
+   setWidgetResource osh_cmd commandEnteredCallback 'osh> osh `get Widget thisValue`'\
+  fi
+ topAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = osh_cmd
+ type = XmCommand
+ promptString = Commands
+ commandEnteredCallback = osh> osh `get Widget thisValue`
+ topAttachment = attach_widget
+ topWidget = osh_global
+ bottomAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ bottomWidget = osh_cancel
+end
+!----------------------------
+begin OWidget
+ name = osh_cancel
+ type = XmPushButton
+ labelString = Cancel
+ activateCallback = osh> unmanageWidget `get Widget thisParent`
+ bottomAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_position
+ rightPosition = 50
+end
+!----------------------------
+begin OWidget
+ name = osh_help
+ type = XmPushButton
+ labelString = Help
+ activateCallback = osh> help 'Commands cmds.ohtx'
+ bottomAttachment = attach_form
+ leftAttachment = attach_position
+ rightAttachment = attach_form
+ leftPosition = 50
+end

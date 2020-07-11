@@ -1,0 +1,92 @@
+!----------------------------
+begin OInterface
+ prefix = TAoGauss_
+ parent = MainPanel
+end
+!----------------------------
+begin OWidget
+ name = TAoGauss_grid
+ type = XmForm
+ background = dimgrey
+ topAttachment = attach_form
+ bottomAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ fractionBase = 1000
+ children = TAoGauss_4_1 TAoGauss_3_1 TAoGauss_2_1 TAoGauss_1_1
+ createCallback = osh>\
+  isValid OTuple/gauss && exit\
+  load gauss.otu | empty
+end
+!----------------------------
+begin OWidget
+ name = TAoGauss_1_1
+ type = XoPlotter
+ topAttachment = attach_position
+ topPosition = 2
+ bottomAttachment = attach_position
+ bottomPosition = 248
+ leftAttachment = attach_position
+ leftPosition = 2
+ rightAttachment = attach_position
+ rightPosition = 998
+ plottedObjects = gauss
+ xAxisBinding = x
+ xAxisNumberOfBins = 100
+end
+!----------------------------
+begin OWidget
+ name = TAoGauss_2_1
+ type = XoPlotter
+ topAttachment = attach_position
+ topPosition = 252
+ bottomAttachment = attach_position
+ bottomPosition = 498
+ leftAttachment = attach_position
+ leftPosition = 2
+ rightAttachment = attach_position
+ rightPosition = 998
+ numberOfBoundColumns = 2
+ xAxisBinding = x
+ yAxisBinding = y
+ plottedObjects = gauss
+end
+!----------------------------
+begin OWidget
+ name = TAoGauss_3_1
+ type = XoPlotter
+ topAttachment = attach_position
+ topPosition = 502
+ bottomAttachment = attach_position
+ bottomPosition = 748
+ leftAttachment = attach_position
+ leftPosition = 2
+ rightAttachment = attach_position
+ rightPosition = 998
+ numberOfBoundColumns = 2
+ xAxisBinding = x
+ yAxisBinding = y
+ plottedObjects = gauss
+ layout = xyv
+ histogramContext = color grey painting shadow
+end
+!----------------------------
+begin OWidget
+ name = TAoGauss_4_1
+ type = XoPlotter
+ topAttachment = attach_position
+ topPosition = 752
+ bottomAttachment = attach_position
+ bottomPosition = 998
+ leftAttachment = attach_position
+ leftPosition = 2
+ rightAttachment = attach_position
+ rightPosition = 998
+ numberOfBoundColumns = 2
+ xAxisBinding = x
+ yAxisBinding = y
+ plottedObjects = gauss
+! layout = xyv
+ xyModeling = color
+ valueColorMapping = black 10 cyan 50 green 100 orange 200 blue 300 pink 400 red
+end

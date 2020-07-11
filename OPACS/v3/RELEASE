@@ -1,0 +1,99 @@
+26/09/1997: v3r1
+---------- 
+ Go : DAWN
+ Xo : DAWN
+ Wo : onew application.
+
+02/10/1997: v3r2
+----------
+ Wo : JAVA.
+      XoCamProj.odb.
+ Go : SpecialProjection VPLOT, FISHEYE.
+      marker size 1 to 7.
+      GoAddPAW_StringToNode, GoAddDiamondToNode, GoAddRectangleToNode.
+      rotateNode, addStringToNode.
+      OContextmap class.
+
+03/10/1997: v3r3
+----------
+ Wo  : Application ojava renamed jo.
+
+
+13/10/1997: v3r4
+----------
+ Co  : CManager.c : /bin/rm *.class.
+       OProperty.c : instances in Lk list.
+       CoTypes.c : declare type OProperty.
+       OProcess + collect : OProcessIsPipeActive.
+       collect where ... and ...
+ W3o : app/W3oT.c. 
+ Ho  : OHistogramFill[One,Two]Dimensional : protect This==NULL.
+ Xo  : osh command getWWW. 
+       DAWN in XoPlotter popup menu.
+       XoPlotter : layout xyv and xyModeling color.
+ Go  : osh command addHTML_PageToNode.
+ G4o : OHistogram.
+ Wo  : og4Wo.odb.
+       og4.odb, G4oRun[Begin, End].osh : OHistogram. 
+       XoCamT.odb : exa of getWWW command usage.
+       Plotter.odb palette. 
+       OType.odb : types/instances/properties.
+       JavaT.java
+
+
+14/10/1997: v3r5
+----------
+ *   : Config.mk, Makefile : put a space between macros so
+       that "gmake" and also "make" command works.
+ *   : IRIX portage.
+ Wo  : .osh command.
+       osh.odb : add global toggle button.
+
+
+23/04/1998: v3r7
+----------
+ *     : Co/CManager.c,macros.mms. For mms APP_CPPINCLUDES macro.
+ Co    : OMatrixMultiplyMatrices.
+ Go    : use of OMatrixMultiplyMatrices.
+ Go    : ONodeSetCameraAligned.
+         OShape.
+ GLo   : usr/include/GL : remove gldef.h. 
+ Wo    : GL_Binds.c : remove reference to gldef.h.
+ Xo    : glXChooseVisual : For single buffer, if 
+         glXChooseVisual fail try attribut list of double buffer.
+ Xo    : XoPlotter : layout XYV and XYZ use ONodeSetCameraAligned.
+         XoPlotter : Center popup menu item.
+ Xo    : OImage.c : bug fixing. Set get_pixel, put_pixel in case bits_per_pixel = 8.
+         XoImage.c : bug fixing. split CImageshortGetLUT (OImageGetSizeAndBytes...).
+ Xo    : Use OShapeString.
+ OPACS : setup files : remove G4 things.
+ Co    : mgr/Config.mk : remove G4 things.
+ Wo    : remove G4o things.
+
+
+15/02/1999: v3r8
+----------
+ Wo    : usr/Xm.xrm : default font is helvetica-bold-r.
+         usr/Wo.odb : in Wo menu, no pixmap by default. 
+ Wo    : TAo, XmCommand/creteGridFile command.
+ Ho    : app/gauss.c, usr/gauss.otu.
+ Co    : omake, treat mkdir on : all, libs, apps.
+ Co    : omake, target for each libs.
+ Ho    : fillRandom property.
+ Xo    : XoPlotter : PLOTTER_STATS do not compell borderSize to 0.
+ Co, Xx, Wo : move some typedef under extern C to be able to compile with KCC.
+ Co/W3o/HTMLo/Config.mk : IRIX64, Linux add _POSIX_C_SOURCE, _BSD_SOURCE.
+ setup.csh, setup.sh : Michel Jaffre corrections.
+
+
+19/02/1999: v3r9
+----------
+ Co/Config.mk,  Xo : lesstif problem. If lesstif use Xaw for 
+	XoCamera, XoPlotter popup.
+ 
+09/06/1999: v3r10
+----------
+ G3o/ogeant.f/ogkind : call gopmar if only one point in the track.
+ G3o/GEANT.c, GEANT.h : GEANT_SetInitialized. 
+ [Co, W3o, HTMLo]/mgr/Config.mk : SunOS.
+ Co/src/OModule.cc : .cxx by default.

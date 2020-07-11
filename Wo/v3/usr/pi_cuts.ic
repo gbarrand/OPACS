@@ -1,0 +1,67 @@
+#include <OCut.h>
+int cut_good_pi ()
+{
+  double* row;
+  int     coln;
+  double  p1,et1,e1;
+  int     clustern,n1;
+  row     = OCutGetCurrentRow (&coln);
+  /*"clustern" "p1" "et1" "e1" "n1"*/
+  clustern = (int)row[0];
+  p1       = row[1];
+  et1      = row[2];
+  e1       = row[3];
+  n1       = (int)row[4];
+  if( ( (e1/et1<0.05) || 
+        (e1/et1<0.6 && clustern>5)
+      ) && (p1>4)
+    )
+    return 1;
+  else 
+    return 0; 
+
+}
+int cut_noise ()
+{
+  double* row;
+  int     coln;
+  double  p1,et1,e1;
+  int     clustern,n1;
+  row     = OCutGetCurrentRow (&coln);
+  /*"clustern" "p1" "et1" "e1" "n1"*/
+  clustern = row[0];
+  p1       = row[1];
+  et1      = row[2];
+  e1       = row[3];
+  n1       = row[4];
+  if( ( (e1/et1<0.05) || 
+        (e1/et1<0.6 && clustern>5)
+      ) && (p1<4)
+    )
+    return 1;
+  else 
+    return 0; 
+
+}
+int cut_raw ()
+{
+  double* row;
+  int     coln;
+  double  p1,et1,e1;
+  int     clustern,n1;
+  row     = OCutGetCurrentRow (&coln);
+  /*"clustern" "p1" "et1" "e1" "n1"*/
+  clustern = row[0];
+  p1       = row[1];
+  et1      = row[2];
+  e1       = row[3];
+  n1       = row[4];
+  if( ( (e1/et1<0.05) || 
+        (e1/et1<0.6 && clustern>5)
+      ) 
+    )
+    return 1;
+  else 
+    return 0; 
+
+}

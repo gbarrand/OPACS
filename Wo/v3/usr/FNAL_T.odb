@@ -1,0 +1,105 @@
+!/* +---------------------- Copyright notice -------------------------------+ */
+!/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+!/* |   Permission to use, copy, modify, and distribute this software       | */
+!/* |   and its documentation for any purpose and without fee is hereby     | */
+!/* |   granted, provided that the above copyright notice appear in all     | */
+!/* |   copies and that both that copyright notice and this permission      | */
+!/* |   notice appear in supporting documentation.  This software is        | */
+!/* |   provided "as is" without express or implied warranty.               | */
+!/* +---------------------- Copyright notice -------------------------------+ */
+!----------------------------
+begin OInterface
+ version = v3
+ prefix = FNAL_T_
+ parent = WoTest_form
+ packages = Xm FNAL
+end
+!----------------------------
+begin OWidget
+ name = FNAL_T_panel
+ type = XmBulletinBoard
+ children = FNAL_T_2DHist FNAL_T_H1D FNAL_T_Curves FNAL_T_Scat FNAL_T_Scat3D FNAL_T_Cell FNAL_T_XY
+ background = dimgrey
+ topAttachment = attach_form
+ bottomAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = FNAL_T_2DHist
+ type = 2DHist
+ background = white
+ createCallback = osh> FNAL_example `thisWidget`
+ width = 300
+ height = 300
+ x = 10
+ y = 10 
+end
+!----------------------------
+begin OWidget
+ name = FNAL_T_H1D
+ type = H1D
+ background = white
+ createCallback = osh> FNAL_example `thisWidget`
+ width = 300
+ height = 300
+ x = 20
+ y = 20 
+end
+!----------------------------
+begin OWidget
+ name = FNAL_T_Curves
+ type = Curves
+ background = white
+ createCallback = osh> FNAL_example `thisWidget`
+ width = 300
+ height = 300
+ x = 30
+ y = 30 
+end
+!----------------------------
+begin OWidget
+ name = FNAL_T_Scat
+ type = Scat
+ background = white
+ createCallback = osh> FNAL_example `thisWidget`
+ width = 300
+ height = 300
+ x = 40
+ y = 40 
+end
+!----------------------------
+begin OWidget
+ name = FNAL_T_Scat3D
+ type = Scat3D
+ background = white
+ createCallback = osh> FNAL_example `thisWidget`
+ width = 300
+ height = 300
+ x = 50
+ y = 50 
+end
+!----------------------------
+begin OWidget
+ name = FNAL_T_Cell
+ type = Cell
+ background = white
+ createCallback = osh> FNAL_example `thisWidget`
+ width = 300
+ height = 300
+ x = 60
+ y = 60 
+end
+!----------------------------
+begin OWidget
+ name = FNAL_T_XY
+ type = XY
+ background = white
+ createCallback = osh> FNAL_example `thisWidget`
+ width = 300
+ height = 300
+ x = 70
+ y = 70 
+end
+

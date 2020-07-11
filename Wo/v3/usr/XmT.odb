@@ -1,0 +1,169 @@
+!/* +---------------------- Copyright notice -------------------------------+ */
+!/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+!/* |   Permission to use, copy, modify, and distribute this software       | */
+!/* |   and its documentation for any purpose and without fee is hereby     | */
+!/* |   granted, provided that the above copyright notice appear in all     | */
+!/* |   copies and that both that copyright notice and this permission      | */
+!/* |   notice appear in supporting documentation.  This software is        | */
+!/* |   provided "as is" without express or implied warranty.               | */
+!/* +---------------------- Copyright notice -------------------------------+ */
+!----------------------------
+begin OInterface
+ version  = v3
+ prefix  = XmT_
+ parent   = WoTest_form
+ packages = Xm
+end
+!----------------------------
+begin OWidget
+ name = XmT_panel
+ type = XmBulletinBoard
+ children = XmT_ask XmT_gadget XmT_option XmT_text XmT_48 XmT_50 XmT_move XmT_option_pull XmT_moved_dialog
+ background = dimgrey
+ topAttachment = attach_form
+ bottomAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = XmT_ask
+ type = XmPushButton
+ x = 16
+ y = 9
+ labelString = Test blocking dialogs
+ activateCallback = osh>\
+warn    'This is a warning'\
+ask     'Enter string' hello\
+askPassword 'Password'\
+askText     'Text' 'line 1\nline 2\nline 3'\
+askText     'Text' 'line 1\nline 2\nline 3' 5 20\
+askList     'List' 'line 2\nline 1\nline 3'\
+askList     'List' 'line 2\nline 1\nline 3' true
+end
+!----------------------------
+begin OWidget
+ name = XmT_gadget
+ type = XmPushButtonGadget
+ x = 10
+ y = 100
+ labelString = XmT_gadget:Gadget
+ activateCallback = osh> printf XmPushButtonGadget:%s `get Widget this`
+end
+!----------------------------
+begin OWidget
+ name = XmT_option
+ type = XmOptionMenu
+ x = 22
+ y = 54
+ width = 273
+ height = 44
+ labelString = Dimension
+ subMenuId = XmT_option_pull
+ menuHistory = XmT_option_2
+end
+!----------------------------
+begin OWidget
+ name = XmT_text
+ type = XmText
+ createCallback = osh> setWidgetTextSize `get Widget this` 3 10
+ x = 10
+ y = 139
+ value = ligne 1\
+ligne 2\
+ligne 3\
+ligne 4
+ editMode = multi_line_edit
+end
+!----------------------------
+begin OWidget
+ name = XmT_48
+ type = XmFrame
+ children = XmT_49 
+ x = 129
+ y = 141
+ width = 131
+ height = 89
+ borderWidth = 3
+ borderColor = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = XmT_49
+ type = XmScrolledText
+ createCallback = osh>\
+  widget=`get Widget this`\
+  setWidgetTextSize $widget 3 10\
+  cat motif.txt | setWidgetResource $widget value -
+ editMode = multi_line_edit
+end
+!----------------------------
+begin OWidget
+ name = XmT_50
+ type = XmFrame
+ children = XmT_51 
+ x = 10
+ y = 216
+ width = 110
+ height = 133
+ borderWidth = 3
+ borderColor = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = XmT_51
+ type = XmScrolledList
+ createCallback = osh>\
+  widget=`get Widget this`\
+  cat motif.txt | setWidgetResource $widget items -\
+  #TC detect a pb in setting items resource\
+  #setWidgetResource $widget items 'aaa'
+ visibleItemCount = 4
+ selectionPolicy = single_select
+ listSizePolicy = variable
+ scrollBarDisplayPolicy = static
+end
+!----------------------------
+begin OWidget
+ name = XmT_move
+ type = XmPushButton
+ createCallback = osh> do `get Widget this` move 200 50;do `get Widget this` changeSize 200 50
+ x = 200
+ y = 50
+ labelString = move/mapWidget dialog
+ activateCallback = osh> setWidgetPosition XmT_moved_dialog_popup 800 30;manageWidget XmT_moved_dialog
+end
+!----------------------------
+begin OWidget
+ name = XmT_option_pull
+ type = XmPulldownMenu
+ children = XmT_option_1 XmT_option_2 
+end
+!----------------------------
+begin OWidget
+ name = XmT_option_1
+ type = XmPushButton
+ labelString = 1
+end
+!----------------------------
+begin OWidget
+ name = XmT_option_2
+ type = XmPushButton
+ labelString = 2
+end
+!----------------------------
+begin OWidget
+ name = XmT_moved_dialog
+ type = XmFormDialog
+ dialogTitle = Moved dialog
+ children = XmT_moved_button
+ defaultPosition = false
+end
+!----------------------------
+begin OWidget
+ name = XmT_moved_button
+ type = XmPushButton
+ labelString = Moved button
+ width = 400
+ height = 400
+end

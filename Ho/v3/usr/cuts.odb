@@ -1,0 +1,5 @@
+begin OCut
+  name = my_cut
+  script =  VAR1 gt 4;VAR1 lt 6.
+!  script =  VAR1 > 4;VAR1 < 6.
+end

@@ -1,0 +1,252 @@
+!/* +---------------------- Copyright notice -------------------------------+ */
+!/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+!/* |   Permission to use, copy, modify, and distribute this software       | */
+!/* |   and its documentation for any purpose and without fee is hereby     | */
+!/* |   granted, provided that the above copyright notice appear in all     | */
+!/* |   copies and that both that copyright notice and this permission      | */
+!/* |   notice appear in supporting documentation.  This software is        | */
+!/* |   provided "as is" without express or implied warranty.               | */
+!/* +---------------------- Copyright notice -------------------------------+ */
+!----------------------------
+begin OInterface
+ version = v3
+ prefix = HFile_
+ packages = Xm
+end
+!----------------------------
+begin OWidget
+ name = HFile_palette
+ type = XmFormDialog
+ children = HFile_16 HFile_17 HFile_18 HFile_27 HFile_update HFile_21 HFile_22 HFile_24 HFile_25 HFile_29 HFile_34 HFile_35 HFile_30 HFile_14 
+ x = 397
+ y = 215
+ autoUnmanage = false
+ dialogTitle = HFile
+ createCallback = osh> callWidgetCallbacks HFile_update activateCallback
+end
+!----------------------------
+begin OWidget
+ name = HFile_17
+ type = XmPushButton
+ labelString = Open HBOOK rz file...
+ activateCallback = osh> do Widget/HFile_14 manage
+ topAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = HFile_18
+ type = XmFrame
+ children = HFile_19 
+ borderWidth = 3
+ borderColor = lightgrey
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = HFile_update
+end
+!----------------------------
+begin OWidget
+ name = HFile_19
+ type = XmScrolledList
+ visibleItemCount = 4
+ selectionPolicy = single_select
+ listSizePolicy = constant
+ scrollBarDisplayPolicy = static
+ singleSelectionCallback = osh> \
+  string=`get Widget thisValue`\
+  set HBook directory $string;\
+  do HBook bringDirectoryInMemory\
+  callWidgetCallbacks HFile_update activateCallback
+end
+!----------------------------
+begin OWidget
+ name = HFile_27
+ type = XmText
+ background = lightgrey
+ activateCallback = osh> \
+  widget=`get Widget this`\
+  ok='callWidgetCallbacks HFile_update activateCallback;exit'\
+  set HBook directory `getWidgetResource $widget value` && osh $ok\
+  setWidgetResource HFile_19 items ''\
+  setWidgetResource HFile_23 items ''
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = HFile_35
+end
+!----------------------------
+begin OWidget
+ name = HFile_update
+ type = XmPushButton
+ background = black
+ foreground = white
+ labelString = Sub directories
+ activateCallback = osh>\
+  setWidgetResource HFile_27 value `get HBook directory`\
+  #Get subdirs\
+  string=`get HBook directories`\
+  setWidgetResource HFile_19 items $string\
+  #Get objects\
+  string=`get HBook objects`\
+  setWidgetResource HFile_23 items $string
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = HFile_29
+end
+!----------------------------
+begin OWidget
+ name = HFile_21
+ type = XmLabel
+ background = black
+ foreground = white
+ labelString = Hists, Tuples
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = HFile_18
+end
+!----------------------------
+begin OWidget
+ name = HFile_22
+ type = XmFrame
+ children = HFile_23 
+ borderWidth = 3
+ borderColor = lightgrey
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topAttachment = attach_widget
+ topWidget = HFile_21
+ bottomAttachment = attach_widget
+ bottomWidget = HFile_25
+end
+!----------------------------
+begin OWidget
+ name = HFile_23
+ type = XmScrolledList
+ width = 244
+ height = 225
+ visibleItemCount = 9
+ selectionPolicy = single_select
+ listSizePolicy = constant
+ scrollBarDisplayPolicy = static
+ singleSelectionCallback = osh>\
+  widget=`getWidgetResource HFile_25 value | prependString - 'Widget/'`\
+  test $widget eq '' && exit\
+  label=`get Widget thisValue`\
+  label=`replaceStringPart $label '(' ' ' | getStringWord - 1`\
+  class=`get $widget class`\
+  # Case widget is an XzPlotter\
+  test $class eq XzPlotter && hplot $widget 1or2 $label\
+  # Case widget is an XoPlotter\
+  spwd=`get HBook directory`\
+  string=`printf '%s/%d' $spwd $label`\
+  test $class eq XoPlotter && setWidgetResource $widget plottedObjects $string\
+  isValid Widget/XoPlotter_localTarget  && callWidgetCallbacks XoPlotter_localTarget activateCallback\
+  isValid Widget/Tuple_localTarget      && callWidgetCallbacks Tuple_localTarget  activateCallback
+end
+!----------------------------
+begin OWidget
+ name = HFile_24
+ type = XmPushButton
+ labelString = Plotter
+ createCallback = osh> setWidgetResource `thisWidget` height `getWidgetResource HFile_25 height`
+ activateCallback = osh>\
+  ref=`thisWidget`\
+  setWidgetResource HFile_25 value `grabWidgetName $ref`
+ leftAttachment = attach_form
+ bottomAttachment = attach_widget
+ bottomWidget = HFile_16
+end
+!----------------------------
+begin OWidget
+ name = HFile_25
+ type = XmText
+ background = wheat
+ leftAttachment = attach_widget
+ rightAttachment = attach_form
+ leftWidget = HFile_24
+ bottomAttachment = attach_widget
+ bottomWidget = HFile_16
+end
+!----------------------------
+begin OWidget
+ name = HFile_29
+ type = XmPushButton
+ labelString = Up
+ activateCallback = osh> \
+  string=`getWidgetResource HFile_27 value | replaceStringPart - '//' ''`\
+  setWidgetResource HFile_27 value ''\
+  setWidgetResource HFile_23 items ''\
+  list=`collect HFile | get - name`\
+  setWidgetResource HFile_19 items $list\
+  isValid HFile/$string && exit\
+  set HBook directory ..\
+  callWidgetCallbacks HFile_update activateCallback
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = HFile_30
+end
+!----------------------------
+begin OWidget
+ name = HFile_34
+ type = XmPushButton
+ labelString = Map section
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = HFile_17
+ activateCallback = osh> load `ask 'Global section' HGS` hbook
+end
+!----------------------------
+begin OWidget
+ name = HFile_35
+ type = XmPushButton
+ labelString = Automatic refresh
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = HFile_34
+ activateCallback = osh> orz_cyclic
+end
+!----------------------------
+begin OWidget
+ name = HFile_30
+ type = XmPushButton
+ labelString = Close
+ activateCallback = osh>\
+  string=`getWidgetResource HFile_27 value | replaceStringPart - '//' ''`\
+  collect HFile where name eq $string | delete -\
+  set HBook directory ..\
+  callWidgetCallbacks HFile_update activateCallback
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = HFile_27
+end
+!----------------------------
+begin OWidget
+ name = HFile_14
+ type = XmFileSelectionDialog
+ dialogTitle = HBOOK file
+ cancelCallback = osh> do `get Widget this` unmanage
+ okCallback = osh>\
+  do `get Widget this` unmanage\
+  load `get Widget thisValue` hbook\
+  callWidgetCallbacks HFile_update activateCallback
+ dirMask = *.rz
+end
+!----------------------------
+begin OWidget
+ name = HFile_16
+ type = XmPushButton
+ background = lightgrey
+ labelString = Cancel
+ activateCallback = osh> do `get Widget thisParent` unmanage
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ bottomAttachment = attach_form
+end

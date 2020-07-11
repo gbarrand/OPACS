@@ -1,0 +1,89 @@
+#/* +---------------------- Copyright notice -------------------------------+ */
+#/* | Copyright (C) 1995, Guy Barrand, LAL Orsay. (barrand@lalcls.in2p3.fr) | */
+#/* |   Permission to use, copy, modify, and distribute this software       | */
+#/* |   and its documentation for any purpose and without fee is hereby     | */
+#/* |   granted, provided that the above copyright notice appear in all     | */
+#/* |   copies and that both that copyright notice and this permission      | */
+#/* |   notice appear in supporting documentation.  This software is        | */
+#/* |   provided "as is" without express or implied warranty.               | */
+#/* +---------------------- Copyright notice -------------------------------+ */
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# Examples :
+#  UNIX> make OSF1
+#  UNIX> make OSF1 target=all
+#  UNIX> make OSF1 target=clean
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+default :
+	@echo "  Type one of the following :"
+	@echo "    nmake /f NMakefile NT "
+	@echo " to build optimized code."
+	@echo "    nmake /f NMakefile NTD "
+	@echo " to build code for debugging."
+	@echo "  If none of the above 'config' matches you environment,"
+	@echo " edit the Co/v3/mgr/Config.nmk file."
+
+# Za : ANSI compiler.
+# Linking with X11 needs :
+#  LINK32FLAGS : /NODEFAULTLIB:libc.lib msvcrt.lib
+#  CCLDFLAGS   : /NODEFAULTLIB:libc.lib
+#  CCLDEND     : msvcrt.lib
+# Building DLL failed on Xo on the xxxWidgetClass symbols.
+#  lib_or_dll=dll
+# /D_DLL so that things in ctype.h could be found in msvcrt.lib.
+NT : This_needed
+	@set CONFIG=NT
+	@nmake /nologo /f This.nmk $(t) $(target)\
+lib_or_dll=dll\
+CC=cl.exe\
+CFLAGS="/nologo /O2 /DNT /D_DLL"\
+CCANSI="/Za"\
+CCNOTANSI="/Zp"\
+CCLD="link.exe"\
+CCLDO="/out:"\
+CCLDFLAGS="/nologo /NODEFAULTLIB:libc.lib"\
+CCLDEND="msvcrt.lib wsock32.lib"\
+LIBFLAGS="/nologo"\
+LINK32="link.exe"\
+LINK32FLAGS="/nologo /dll /NODEFAULTLIB:libc.lib msvcrt.lib"\
+X11_CPPFLAGS="/I d:\dxsdk\include"\
+Xext_CPPFLAGS="/I d:\dxsdk\include\X11\extensions"\
+Xmu_CPPFLAGS="/I d:\dxsdk\include\X11"\
+Xt_CPPFLAGS=""\
+Xaw_CPPFLAGS=""\
+Xm_CPPFLAGS=""\
+libX11="d:\dxsdk\lib\x86\X11.lib"\
+libXext=""\
+libXt="d:\dxsdk\lib\x86\Xt.lib"\
+libXmu="d:\dxsdk\lib\x86\Xmu.lib"\
+libXaw="d:\dxsdk\lib\x86\Xaw.lib"\
+libXm="d:\dxsdk\lib\x86\Xm.lib"\
+$(This_macros)
+
+NTD : This_needed
+	@set CONFIG=NTD
+	@nmake /nologo /f This.nmk $(t) $(target)\
+lib_or_dll=lib\
+CC=cl.exe\
+CFLAGS="/nologo /Od /DNT /D_DLL"\
+CCANSI="/Za"\
+CCNOTANSI="/Zp"\
+CCLD="link.exe"\
+CCLDO="/out:"\
+CCLDFLAGS="/nologo /DEBUG /NODEFAULTLIB:libc.lib"\
+CCLDEND="msvcrt.lib wsock32.lib"\
+X11_CPPFLAGS="/I d:\dxsdk\include"\
+Xext_CPPFLAGS="/I d:\dxsdk\include\X11\extensions"\
+Xmu_CPPFLAGS="/I d:\dxsdk\include\X11"\
+Xt_CPPFLAGS=""\
+Xaw_CPPFLAGS=""\
+Xm_CPPFLAGS=""\
+libX11="d:\dxsdk\lib\x86\X11.lib"\
+libXext=""\
+libXt="d:\dxsdk\lib\x86\Xt.lib"\
+libXmu="d:\dxsdk\lib\x86\Xmu.lib"\
+libXaw="d:\dxsdk\lib\x86\Xaw.lib"\
+libXm="d:\dxsdk\lib\x86\Xm.lib"\
+$(This_macros)
+

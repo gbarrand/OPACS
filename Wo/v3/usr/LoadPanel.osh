@@ -1,0 +1,35 @@
+#
+#  Due to the destroy command,
+# this script should be executed in background.
+# This script assumes that at the end of load file
+# command all plotters are created.
+#  The fileName variable is needed.
+#  An XmText widget StoreFileName must be present.
+#  An XmText widget StoreGridParent must be present.
+#
+panel=`getWidgetResource StoreGridParent value`
+unmapWidget $panel
+isValid OCyclic/cyclic_refresh && do OCyclic/cyclic_refresh stop
+#
+# Destroying old panel.
+#
+string=`getWidgetResource StoreFileName value`
+odb=''
+test $string ne '' && odb=`collect OInterface where dataBaseName eq $string`
+test $odb ne '' && destroy $odb
+#
+# New panel.
+#
+grid=`echo $fileName | removeLastStringWord - '.'`
+grid=`printf 'Widget/%s_grid' $grid`
+load $fileName | realize -
+isValid $grid && raiseWidget $grid
+first=`get $grid managedChildren | getLine - last`
+set Widget target $first
+get $grid managedChildren | callWidgetCallbacks - userCallback
+cancelGoRefresh
+mapWidget $panel
+isValid OCyclic/cyclic_refresh && do OCyclic/cyclic_refresh start
+setWidgetResource StoreFileName value $fileName
+setWidgetResource StoreGridName value $grid
+

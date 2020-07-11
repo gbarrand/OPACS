@@ -1,0 +1,231 @@
+!----------------------------
+begin OInterface
+ prefix = GridMenu_
+ packages = Xm 
+end
+!----------------------------
+begin OWidget
+ name = GridMenu_casc
+ type = XmCascadeButton
+ labelString = Options
+ subMenuId = GridMenu_pdm
+end
+!----------------------------
+begin OWidget
+ name = GridMenu_pdm
+ type = XmPulldownMenu
+ children = GridMenu_next GridMenu_all GridMenu_plotter GridMenu_show_bins GridMenu_sep_1 GridMenu_stat GridMenu_grid GridMenu_back GridMenu_bars GridMenu_log GridMenu_text_mag GridMenu_edges GridMenu_xy_casc GridMenu_xy_pdm
+end
+!----------------------------
+begin OWidget
+ name = GridMenu_next
+ type = XmPushButton
+ labelString = Next zone is target
+ activateCallback = osh> widget=`get Widget target`;set Widget target `get $widget nextBrother`
+end
+!----------------------------
+begin OWidget
+ name = GridMenu_all
+ type = XmToggleButton
+ labelString = Target/All
+end
+!----------------------------
+begin OWidget
+ name = GridMenu_plotter
+ type = XmToggleButton
+ labelString = XoPlotter/XzPlotter
+ valueChangedCallback = .osh>\
+  value=`echo $plotterType`\
+  test $value eq 'XzPlotter' && plotterType='XoPlotter'\
+  test $value eq 'XoPlotter' && plotterType='XzPlotter'
+end
+!----------------------------
+begin OWidget
+ name = GridMenu_stat
+ type = XmPushButton
+ labelString = Show/hide stats
+ activateCallback = osh>resource=statisticsVisible;. GridMenu.osh
+end
+!----------------------------
+begin OWidget
+ name = GridMenu_log
+ type = XmPushButton
+ labelString = Log scale on/off
+ activateCallback = osh>resource=vAxisLogScale;. GridMenu.osh
+end
+!----------------------------
+begin OWidget
+ name = GridMenu_grid
+ type = XmPushButton
+ labelString = Show/hide grid
+ activateCallback = osh>resource=gridsVisible;. GridMenu.osh
+end
+!----------------------------
+begin OWidget
+ name = GridMenu_bars
+ type = XmPushButton
+ labelString = Show/hide bars
+ activateCallback = osh>resource=barsVisible;. GridMenu.osh
+end
+!----------------------------
+begin OWidget
+ name = GridMenu_back
+ type = XmPushButton
+ labelString = Show/hide walls
+ activateCallback = osh>resource=wallsVisible;. GridMenu.osh
+end
+!----------------------------
+begin OWidget
+ name = GridMenu_text_mag
+ type = XmPushButton
+ labelString = Magnify text on/off
+ activateCallback = osh>\
+  resource=textScale\
+  grid=`getWidgetResource StoreGridName value`\
+  test $grid eq '' && exit\
+  first=`get $grid managedChildren | getLine - last`\
+  do_target=`getWidgetResource GridMenu_all set`\
+  test $do_target eq 'true'  && widget=`get Widget target`\
+  test $do_target eq 'false' && widget=`echo $first`\
+  value=`getWidgetResource $widget $resource`\
+  test $value eq '2'  && new_value='1.'\
+  test $value eq '2.' && new_value='1.'\
+  test $value eq '1'  && new_value='2.'\
+  test $value eq '1.' && new_value='2.'\
+  test $do_target eq 'true' && setWidgetResource `get Widget target` $resource $new_value\
+  test $do_target eq 'true' && exit\
+  get $grid managedChildren | setWidgetResource - $resource $new_value
+end
+!----------------------------
+begin OWidget
+ name = GridMenu_show_bins
+ type = XmPushButton
+ labelString = Show selected bins
+ activateCallback = osh>\
+  widget=`get Widget target`\
+  plotter=`getWidgetPlotter $widget`\
+  string=`do $plotter getInformations`\
+  manageWidget GridMenu_bins\
+  raiseWidget GridMenu_bins_popup\
+  setWidgetResource GridMenu_bins listItems $string
+end
+!----------------------------
+begin OWidget
+ name = GridMenu_bins
+ type = XmSelectionDialog
+ dialogTitle = bins
+ autoUnmanage = false
+ okLabelString = Put in out.txt
+ applyLabelString = 
+ okCallback = osh>\
+  list=`getWidgetResource GridMenu_bins listItems`\
+  echo $list > out.txt
+ cancelCallback = osh> unmanageWidget GridMenu_bins
+end
+!----------------------------
+begin OWidget
+ name = GridMenu_sep_1
+ type = XmSeparator
+end
+!----------------------------
+begin OWidget
+ name = GridMenu_edges
+ type = XmPushButton
+ labelString = Show/hide edges
+ activateCallback = osh>resource=edgesVisible;. GridMenu.osh
+end
+!----------------------------
+begin OWidget
+ name = GridMenu_xy_casc
+ type = XmCascadeButton
+ labelString = XY modeling
+ subMenuId = GridMenu_xy_pdm
+end
+!----------------------------
+begin OWidget
+ name = GridMenu_xy_pdm
+ type = XmPulldownMenu
+ children = GridMenu_xy_random GridMenu_xy_box GridMenu_xy_contour GridMenu_xy_color GridMenu_xy_text GridMenu_xy_character GridMenu_xy_arrow GridMenu_xy_sep GridMenu_xy_lego GridMenu_xy_lego_colored GridMenu_xy_surface GridMenu_xy_surface_colored
+end
+!----------------------------
+begin OWidget
+ name = GridMenu_xy_random
+ type = XmPushButton
+ labelString = Random
+ activateCallback = osh>value=random;. GridXY.osh
+end
+!----------------------------
+begin OWidget
+ name = GridMenu_xy_box
+ type = XmPushButton
+ labelString = Box
+ activateCallback = osh>value=box;. GridXY.osh
+end
+!----------------------------
+begin OWidget
+ name = GridMenu_xy_contour
+ type = XmPushButton
+ labelString = Contour
+ activateCallback = osh>value=contour;. GridXY.osh
+end
+!----------------------------
+begin OWidget
+ name = GridMenu_xy_color
+ type = XmPushButton
+ labelString = Color
+ activateCallback = osh>value=color;. GridXY.osh
+end
+!----------------------------
+begin OWidget
+ name = GridMenu_xy_text
+ type = XmPushButton
+ labelString = Text
+ activateCallback = osh>value=text;. GridXY.osh
+end
+!----------------------------
+begin OWidget
+ name = GridMenu_xy_character
+ type = XmPushButton
+ labelString = Character
+ activateCallback = osh>value=character;. GridXY.osh
+end
+!----------------------------
+begin OWidget
+ name = GridMenu_xy_arrow
+ type = XmPushButton
+ labelString = Arrow
+ activateCallback = osh>value=arrow;. GridXY.osh
+end
+!----------------------------
+begin OWidget
+ name = GridMenu_xy_sep
+ type = XmSeparator
+end
+!----------------------------
+begin OWidget
+ name = GridMenu_xy_lego
+ type = XmPushButton
+ labelString = Lego
+ activateCallback = osh>value=lego;. GridXY.osh
+end
+!----------------------------
+begin OWidget
+ name = GridMenu_xy_lego_colored
+ type = XmPushButton
+ labelString = Lego colored
+ activateCallback = osh>value=lego2;. GridXY.osh
+end
+!----------------------------
+begin OWidget
+ name = GridMenu_xy_surface
+ type = XmPushButton
+ labelString = Surface
+ activateCallback = osh>value=surface;. GridXY.osh
+end
+!----------------------------
+begin OWidget
+ name = GridMenu_xy_surface_colored
+ type = XmPushButton
+ labelString = Surface colored
+ activateCallback = osh>value=surface_colored;. GridXY.osh
+end

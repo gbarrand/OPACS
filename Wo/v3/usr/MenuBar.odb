@@ -1,0 +1,335 @@
+!/* +---------------------- Copyright notice -------------------------------+ */
+!/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+!/* |   Permission to use, copy, modify, and distribute this software       | */
+!/* |   and its documentation for any purpose and without fee is hereby     | */
+!/* |   granted, provided that the above copyright notice appear in all     | */
+!/* |   copies and that both that copyright notice and this permission      | */
+!/* |   notice appear in supporting documentation.  This software is        | */
+!/* |   provided "as is" without express or implied warranty.               | */
+!/* +---------------------- Copyright notice -------------------------------+ */
+!----------------------------
+begin OInterface
+ version = v3
+ prefix = MenuBar_
+ packages = Xm
+end
+!----------------------------
+begin OWidget
+ name = MenuBar_palette
+ type = XmFormDialog
+ children = MenuBar_1 MenuBar_localTarget MenuBar_221 MenuBar_name MenuBar_label_cascs MenuBar_label_buttons MenuBar_frame_cascs MenuBar_frame_buttons MenuBar_createMenu MenuBar_deleteMenu MenuBar_create MenuBar_editResource MenuBar_delete MenuBar_comment MenuBar_cancel
+ autoUnmanage = False
+ dialogTitle = Edit menu bar
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = MenuBar_1
+ type = XmPushButton
+ labelString = MenuBar
+ background = grey
+ topAttachment = attach_form
+ leftAttachment = attach_form
+ createCallback = osh> setWidgetResource `thisWidget` height `getWidgetResource MenuBar_localTarget height`
+ activateCallback = osh>\
+  ref=`thisWidget`\
+  widget=`grabWidget $ref`\
+  if test `get $widget type` ne XmMenuBar\
+  then\
+    echo 'Not a menu bar.'\
+    exit\
+  fi\
+  setWidgetResource MenuBar_localTarget value `get $widget name`\
+  callWidgetCallbacks MenuBar_localTarget activateCallback
+end
+!----------------------------
+begin OWidget
+ name = MenuBar_localTarget
+ type = XmText
+ background = wheat
+ rightAttachment = attach_form
+ topAttachment = attach_form
+ leftAttachment = attach_widget
+ leftWidget = MenuBar_1
+ activateCallback = osh> \
+  string=`getWidgetResource MenuBar_localTarget value`\
+  widget=`printf 'Widget/%s' $string`\
+  if test `get $widget type` ne XmMenuBar\
+  then\
+    echo 'Not a menu bar.'\
+    exit\
+  fi\
+  get $widget children | do - getResource labelString | setWidgetResource MenuBar_cascs items -
+end
+!----------------------------
+begin OWidget
+ name = MenuBar_221
+ type = XmLabel
+ labelString = Widget name
+ background = black
+ foreground = white
+ topAttachment = attach_widget
+ topWidget = MenuBar_localTarget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = MenuBar_name
+ type = XmText
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = MenuBar_221
+ createCallback = osh> setWidgetResource `thisWidget` value Xxx
+end
+!----------------------------
+begin OWidget
+ name = MenuBar_label_cascs
+ type = XmLabel
+ labelString = Pulldown menus
+ background = black
+ foreground = white
+ topAttachment = attach_widget
+ topWidget = MenuBar_name
+ leftAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = MenuBar_label_buttons
+ type = XmLabel
+ labelString = Buttons
+ background = black
+ foreground = white
+ topAttachment = attach_widget
+ topWidget = MenuBar_name
+ rightAttachment = attach_form
+ leftAttachment = attach_widget
+ leftWidget = MenuBar_label_cascs
+end
+!----------------------------
+begin OWidget
+ name = MenuBar_frame_cascs
+ type = XmFrame
+ children = MenuBar_cascs 
+ topAttachment = attach_widget
+ topWidget = MenuBar_label_cascs
+ leftAttachment = attach_form
+ rightAttachment = attach_opposite_widget
+ rightWidget = MenuBar_label_cascs
+ bottomAttachment = attach_widget
+ bottomWidget = MenuBar_createMenu
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = MenuBar_frame_buttons
+ type = XmFrame
+ children = MenuBar_buttons
+ topAttachment = attach_widget
+ topWidget = MenuBar_label_buttons
+ rightAttachment = attach_form
+ leftAttachment = attach_widget
+ leftWidget = MenuBar_frame_cascs
+ bottomAttachment = attach_widget
+ bottomWidget = MenuBar_createMenu
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = MenuBar_cascs
+ type = XmScrolledList
+ visibleItemCount = 5
+ selectionPolicy = single_select
+ scrollBarDisplayPolicy = static
+ background = lightgrey
+ listSizePolicy = constant
+ singleSelectionCallback = osh>\
+  menubar=`getWidgetResource MenuBar_localTarget value`\
+  string=`getWidgetResource MenuBar_cascs selectedItems`\
+  test $string eq '' && exit \
+  widget=`findWidget labelString $string $menubar`\
+  string=`getWidgetResource $widget subMenuId`\
+  widget=`printf 'Widget/%s' $string`\
+  setWidgetResource MenuBar_buttons items ''\
+  get $widget children | collect Widget where type ne XmSeparator |  do - getResource labelString | setWidgetResource MenuBar_buttons items -
+end
+!----------------------------
+begin OWidget
+ name = MenuBar_buttons
+ type = XmScrolledList
+ visibleItemCount = 5
+ selectionPolicy = single_select
+ scrollBarDisplayPolicy = static
+ background = lightgrey
+ listSizePolicy = constant
+ singleSelectionCallback = osh>\
+  menubar=`getWidgetResource MenuBar_localTarget value`\
+  string=`getWidgetResource MenuBar_cascs selectedItems`\
+  test $string eq '' && exit \
+  widget=`findWidget labelString $string $menubar`\
+  string=`getWidgetResource $widget subMenuId`\
+  parent=`printf 'Widget/%s' $string`\
+  string=`getWidgetResource MenuBar_buttons selectedItems`\
+  test $string eq '' && exit \
+  widget=`findWidget labelString $string $parent`\
+  comment=`get $widget name`\
+  setWidgetResource MenuBar_comment value $comment
+end
+!----------------------------
+begin OWidget
+ name = MenuBar_createMenu
+ type = XmPushButton
+ labelString = Create menu
+ background = lightgrey
+ bottomAttachment = attach_widget
+ bottomWidget = MenuBar_deleteMenu
+ topAttachment = attach_none
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ activateCallback = osh>\
+  parent=`getWidgetResource MenuBar_localTarget value`\
+  name=`getWidgetResource MenuBar_name value`\
+  string=`printf 'Widget/%s' $name`\
+  comment=`printf 'Widget %s already exists.' $name`\
+  isValid $string && echo $comment\
+  isValid $string && setWidgetResource MenuBar_comment value $comment\
+  isValid $string && exit\
+  cascade=`create Widget name $name parent $parent type XmCascadeButton markFile true`\
+  pulldown=`create Widget parent $parent type XmPulldownMenu markFile true`\
+  setAndMarkWidgetResource $cascade subMenuId $pulldown\
+  callWidgetCallbacks MenuBar_localTarget activateCallback
+end
+!----------------------------
+begin OWidget
+ name = MenuBar_deleteMenu
+ type = XmPushButton
+ labelString = Delete menu
+ background = lightgrey
+ bottomAttachment = attach_widget
+ bottomWidget = MenuBar_create
+ topAttachment = attach_none
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ activateCallback = &osh>\
+  menubar=`getWidgetResource MenuBar_localTarget value`\
+  string=`getWidgetResource MenuBar_cascs selectedItems`\
+  test $string eq '' && exit \
+  casc=`findWidget labelString $string $menubar`\
+  string=`getWidgetResource $casc subMenuId`\
+  pdm=`printf 'Widget/%s' $string`\
+  do $casc markFile\
+  do `get $casc parent` markFile\
+  delete $casc\
+  do $pdm markFile\
+  do `get $pdm parent` markFile\
+  delete $pdm\
+  callWidgetCallbacks MenuBar_localTarget activateCallback
+end
+!----------------------------
+begin OWidget
+ name = MenuBar_create
+ type = XmPushButton
+ labelString = Add a button
+ bottomAttachment = attach_widget
+ bottomWidget = MenuBar_editResource
+ topAttachment = attach_none
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ activateCallback = osh>\
+  menubar=`getWidgetResource MenuBar_localTarget value`\
+  string=`getWidgetResource MenuBar_cascs selectedItems`\
+  test $string eq '' && exit \
+  widget=`findWidget labelString $string $menubar`\
+  string=`getWidgetResource $widget subMenuId`\
+  parent=`printf 'Widget/%s' $string`\
+  type='XmPushButton'\
+  name=`getWidgetResource MenuBar_name value`\
+  string=`printf 'Widget/%s' $name`\
+  comment=`printf 'Widget %s already exists.' $name`\
+  isValid $string && echo $comment\
+  isValid $string && setWidgetResource MenuBar_comment value $comment\
+  isValid $string && exit\
+  string=`printf 'OClass/%s' $name`\
+  comment=`printf 'Widget name %s cannot be a widget type.' $name`\
+  isValid $string && echo $comment\
+  isValid $string && setWidgetResource MenuBar_comment value $comment\
+  isValid $string && exit\
+  widget=`create Widget name $name parent $parent type $type markFile true`\
+  do $widget map\
+  name=`get $widget name`\
+  string=`printf '%s created' $name`\
+  setWidgetResource MenuBar_comment value $string\
+  callWidgetCallbacks MenuBar_cascs singleSelectionCallback
+end
+!----------------------------
+begin OWidget
+ name = MenuBar_editResource
+ type = XmPushButton
+ bottomAttachment = attach_widget
+ bottomWidget = MenuBar_delete
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ background = lightgrey
+ labelString = Edit resource
+ activateCallback = &osh>\
+  load ResEd.odb | realize -; manageWidget ResEd_palette;raiseWidget ResEd_palette_popup\
+  menubar=`getWidgetResource MenuBar_localTarget value`\
+  string=`getWidgetResource MenuBar_cascs selectedItems`\
+  test $string eq '' && exit \
+  widget=`findWidget labelString $string $menubar`\
+  string=`getWidgetResource $widget subMenuId`\
+  parent=`printf 'Widget/%s' $string`\
+  string=`getWidgetResource MenuBar_buttons selectedItems`\
+  test $string eq '' && exit \
+  oid=`findWidget labelString $string $parent`\
+  test $oid eq '' && exit \
+  setWidgetResource ResEd_localTarget value `get $oid name`\
+  callWidgetCallbacks Widget/ResEd_localTarget activateCallback
+end
+!----------------------------
+begin OWidget
+ name = MenuBar_delete
+ type = XmPushButton
+ bottomAttachment = attach_widget
+ bottomWidget = MenuBar_comment
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ background = lightgrey
+ labelString = Delete button
+ activateCallback = &osh>\
+  menubar=`getWidgetResource MenuBar_localTarget value`\
+  string=`getWidgetResource MenuBar_cascs selectedItems`\
+  test $string eq '' && exit \
+  widget=`findWidget labelString $string $menubar`\
+  string=`getWidgetResource $widget subMenuId`\
+  parent=`printf 'Widget/%s' $string`\
+  string=`getWidgetResource MenuBar_buttons selectedItems`\
+  test $string eq '' && exit \
+  oid=`findWidget labelString $string $parent`\
+  do $oid markFile\
+  do `get $oid parent` markFile\
+  delete $oid\
+  callWidgetCallbacks MenuBar_cascs singleSelectionCallback
+end
+!----------------------------
+begin OWidget
+ name = MenuBar_comment
+ type = XmText
+ bottomAttachment = attach_widget
+ bottomWidget = MenuBar_cancel
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = MenuBar_cancel
+ type = XmPushButton
+ activateCallback = osh> do `get Widget thisParent` unmanage
+ labelString = Cancel
+ background = lightgrey
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ bottomAttachment = attach_form
+end

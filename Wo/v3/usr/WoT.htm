@@ -1,0 +1,155 @@
+<TITLE>example</TITLE>
+<!***************************************************************************>
+<A NAME="example" ><H3>example</H3></A>
+<!***************************************************************************>
+<P>
+  Version 3
+<P>
+<!--------------------------------------------------------------------------->
+<P>Other documentation
+<UL>
+<LI><A HREF="#The_Wo_tool">The Wo tool</A>
+<LI><A HREF="#Author_addresses">Author addresses</A>
+<LI><A HREF="#WidgetT_33">OWidgetT 33</A>
+<LI><A HREF="#WidgetT_25">OWidgetT 25</A>
+<LI><A HREF="#WidgetT_41">OWidgetT 41</A>
+<LI><A HREF="#WidgetT_36">OWidgetT 36</A>
+</UL>
+<HR>
+<!***************************************************************************>
+<A NAME="The_Wo_tool" ><H3>The Wo tool</H3></A>
+<!***************************************************************************>
+  The WoT.exe program, which is itself a Wo application,
+ allows to:
+<UL>
+<LI> build a template for a new application.
+<LI> visualize and modify the interface of an existing 
+   application without starting this application. 
+<LI> get various help and informations.
+</UL>
+<P>
+  The command syntax for the WoT tool has the form:
+<PRE>
+    SYS> WoT [-option [parameters]]
+</PRE>
+<P>
+  To create a new Wo application (myapp), type:
+<PRE> 
+    SYS> WoT -application myapp
+</PRE>
+  The tool will create:
+<PRE>
+    . myapp.c : main C program.
+    . myapp.odb : the principal resource file.
+    . myapp.htm : on-line documentation for myapp.
+    . Makefile : UNIX makefile to build myapp.exe.
+    . descrip.mms : VMS MMS file to build myapp.exe.
+</PRE>
+  To visualize the interface contained in myapp.odb, type:
+<PRE>
+    SYS> WoT -show myapp.odb
+</PRE>
+  For example, a sum up of Wo features could be seen with:
+<PRE>
+    SYS> WoT -show WoTest.odb
+</PRE>
+<P>
+  You can give X11 options after -show:
+<PRE>
+    SYS> WoT -show WoTest.odb -xrm "*borderWidth:5"
+</PRE>
+<P>
+  You can dump, in the Wo console, some help topic with:
+<PRE>
+    SYS> WoT -topic "file#topic"
+    SYS> WoT -topic "Wo.htm"
+</PRE>
+ The topic locator follow WWW URL syntax: <file>[#<topic>].
+ If topic is omitted, first one in file is taken.
+ LaTeX file (.tex) of a topic could be produced with:
+<PRE>
+    SYS> WoT -latex "Wo.htm" 
+        --> Wo.tex
+    SYS> WoT -latex "myapp.htm"
+        --> myapp.tex
+</PRE>
+ The production of postscript files from latex files is
+ site dependent; contact site manager to do it.
+<P>
+  To show Wo version:
+<PRE>
+    SYS> WoT -version
+</PRE>
+<P>
+  To have addresses for WoT bug report:
+<PRE>
+    SYS> WoT -author
+</PRE>
+
+  Various tracing mode could be enabled with
+ the "-trace" option:
+<PRE>
+    SYS> WoT -trace widget -show WoTest.odb
+      dump created and destroyed widgets.
+    SYS> WoT -trace resource -show WoTest.odb
+      dump resource informations.
+    SYS> WoT -trace event -show WoTest.odb
+      dump main loop actions.
+    SYS> WoT -trace start -show WoTest.odb
+      dump user interface startup elapsed time.
+</PRE>
+<HR>
+<!***************************************************************************>
+<A NAME="Author_addresses" ><H3>Author addresses</H3></A>
+<!***************************************************************************>
+  Bug reports and constructive comments could be mailed to:
+<P>
+<PRE>
+    Guy Barrand
+    LAL
+    Centre d'Orsay
+    Batiment 200
+    91405 ORSAY
+    France
+</PRE>
+<UL>
+<LI> internet: barrand@lal.in2p3.fr  
+<LI> bitnet:   barrand@frlal51 
+<LI> decnet:   lalcls::barrand 
+</UL>
+<HR>
+<!***************************************************************************>
+<A NAME="WidgetT_33" ><H3>OWidgetT 33</H3></A>
+<!***************************************************************************>
+<P>
+  Example of widget with an 
+<UL>
+<LI> eventHandler on EnterWindow events.
+<LI> createCallback declaring an event handler on 
+   LeaveWindow events.
+</UL>
+<P>
+<HR>
+<!***************************************************************************>
+<A NAME="WidgetT_25" ><H3>OWidgetT 25</H3></A>
+<!***************************************************************************>
+<P>
+  Example of button with an  X bitmap as label.
+<P>
+<HR>
+<!***************************************************************************>
+<A NAME="WidgetT_41" ><H3>OWidgetT 41</H3></A>
+<!***************************************************************************>
+<P>
+  Example of button with an X pixmap as label.
+<P>
+<HR>
+<!***************************************************************************>
+<A NAME="WidgetT_36" ><H3>OWidgetT 36</H3></A>
+<!***************************************************************************>
+<P>
+  Example of button with a destroyCallback.
+ Drag and dropped on trash will trigger it's destroy 
+ callback.
+<P>
+<HR>

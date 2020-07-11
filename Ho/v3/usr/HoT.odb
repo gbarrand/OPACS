@@ -1,0 +1,33 @@
+!!!!!!!!!!!!!!!!!
+begin OHistogram
+ name      = histo_1
+ dimension = 1
+ title     = acc
+ xAxisNumberOfBins = 10
+ xAxisMinimum      = 0.
+ xAxisMaximum      = 501.
+ bins      = 1\
+2\
+3\
+4\
+5\
+6\
+7\
+8\
+9\
+10
+end
+!!!!!!!!!!!!!!!!!
+begin OHistogram
+ name      = 12
+ dimension = 1
+ title     = acc
+ xAxisNumberOfBins = 5
+ xAxisMinimum      = 0.
+ xAxisMaximum      = 501.
+end
+!!!!!!!!!!!!!!!!!
+begin OCut
+ name   = my_cut
+ script = VAR1 > 4;VAR1<6.
+end

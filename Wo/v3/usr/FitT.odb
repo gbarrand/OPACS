@@ -1,0 +1,50 @@
+!----------------------------
+begin OInterface
+ version = v3
+ prefix = FitT_
+ parent = WoTest_form
+ packages = Xm Xo Xz
+ createCallback = osh>\
+  isNotValid HFile/phan && load phan.rz hfile\
+  isNotValid OTuple/naine && load naine.odb | get - name
+end
+!----------------------------
+begin OWidget
+ name = FitT_panel
+ type = XmBulletinBoard
+ children = FitT_fit_gauss FitT_fit_rz
+ background = dimgrey
+ topAttachment = attach_form
+ bottomAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = FitT_fit_gauss
+ type = XoPlotter
+ x = 10
+ y = 10
+ width = 300
+ height = 300
+ gridsVisible = false
+ histogramContext = color forestgreen modeling solid
+ plottedObjects = naine
+ xAxisBinding = VAR4
+ fitType = gaussian
+end
+!----------------------------
+begin OWidget
+ name = FitT_fit_rz
+ type = XoPlotter
+ x = 320
+ y = 50
+ width = 300
+ height = 300
+ gridsVisible = false
+ histogramContext = color forestgreen modeling solid
+ plottedObjects = 14
+! fitType = breit_wigner
+ fitType = gaussian
+end
+

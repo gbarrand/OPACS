@@ -1,0 +1,70 @@
+/* +---------------------- Copyright notice -------------------------------+ */
+/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+/* |   Permission to use, copy, modify, and distribute this software       | */
+/* |   and its documentation for any purpose and without fee is hereby     | */
+/* |   granted, provided that the above copyright notice appear in all     | */
+/* |   copies and that both that copyright notice and this permission      | */
+/* |   notice appear in supporting documentation.  This software is        | */
+/* |   provided "as is" without express or implied warranty.               | */
+/* +---------------------- Copyright notice -------------------------------+ */
+#ifndef WoXo_ic
+#define WoXo_ic
+
+#ifdef HAS_XO
+
+  GoAddCommands  (WoGetShellInterpreter());
+  XoAddCommands  (WoGetShellInterpreter());
+
+  OInterfaceAddPackage           ("Xo");
+  WoSetInitializeClassFunction   (XoInitializeClass);
+
+ {OClass                         oclass;
+
+  oclass                         = OClassDeclareWidgetClass     ("Xo/XoCamera",xoCameraWidgetClass);
+  OClassSetPS_Function           (oclass,XoCameraPutSceneInPS_Stream);
+  OClassSetTargetChangedFunction (oclass,XoCameraBecomeTarget);
+  OClassSetClearClassFunction    (oclass,XoCameraClearClass);
+  OResourceAddGetOptionsFunction (XoCameraGetResourceOptions);
+  OClassDeclareCompoundWidget    ("Xo/XoFrame"             ,XoCreateFrame,xoCameraWidgetClass);
+  OClassDeclareCompoundWidget    ("Xo/XoRule"              ,XoCreateRule ,xoCameraWidgetClass);
+
+
+  oclass                         = OClassDeclareWidgetClass     ("Xo/XoImage" ,xoImageWidgetClass);
+  OClassSetPS_Function           (oclass,XoImagePutPixmapInPS_Stream);
+  OClassSetClearClassFunction    (oclass,XoImageClearClass);
+
+
+  oclass                         = OClassDeclareWidgetClass     ("Xo/XoGraph" ,xoGraphWidgetClass);
+  OClassSetPS_Function           (oclass,XWidgetPutFrameInPS_Stream);
+  OResourceAddGetOptionsFunction (XoGraphGetResourceOptions);
+
+  oclass                         = OClassDeclareWidgetClass     ("Xo/XoHelp"  ,xoHelpWidgetClass);
+  OClassSetClearClassFunction    (oclass,XoHelpClearClass);
+
+  oclass                         = OClassDeclareWidgetClass     ("Xo/XoRheostat"  ,xoRheostatWidgetClass);
+
+  oclass                         = OClassDeclareWidgetClass     ("Xo/XoColormap"  ,xoColormapWidgetClass);
+  OClassSetClearClassFunction    (oclass,XoColormapClearClass);
+  OClassDeclareCompoundWidget    ("Xo/XoColormapDialog"    ,XoCreateColormapDialog,xoColormapWidgetClass);
+
+  oclass                         = OClassDeclareWidgetClass     ("Xo/XoLabel" ,xoLabelWidgetClass);
+
+  oclass                         = OClassDeclareWidgetClass     ("Xo/XoEyes"  ,xoEyesWidgetClass);
+
+  HoAddCommands                  (WoGetShellInterpreter());
+  oclass                         = OClassDeclareWidgetClass     ("Xo/XoPlotter"  ,xoPlotterWidgetClass);
+  OClassSetPS_Function           (oclass,XoCameraPutSceneInPS_Stream);
+  OClassSetTargetChangedFunction (oclass,XoCameraBecomeTarget);
+  OClassSetClearClassFunction    (oclass,XoPlotterClearClass);
+  OResourceAddGetOptionsFunction (XoPlotterGetResourceOptions);
+
+  oclass                         = OClassDeclareWidgetClass     ("Xo/XoMosaic",xoMosaicWidgetClass);
+ }
+
+  XoGraphSetIsValidWidgetFunction   (XWidgetIsValid);
+
+  GoLoadColormapX             (); /*Done also in XoCamera InitializeClass, but it is not reexecuted if full restart.*/
+  GoLoadColormapGradient      (); 
+#endif /*HAS_XO*/
+
+#endif /*WoXo_ic*/

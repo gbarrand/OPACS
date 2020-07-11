@@ -1,0 +1,269 @@
+!----------------------------
+begin OInterface
+ prefix = odev_
+ packages = Xm
+end
+!----------------------------
+begin OWidget
+ name = odev_palette
+ type = TopLevelShell
+ children = odev_form
+ geometry = 400x700+0+0
+ title = "o" packages development
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = odev_form
+ type = XmForm
+ background = lightgrey
+ children = odev_menubar odev_466 odev_option odev_option_pdm odev_name odev_frame odev_clear odev_label odev_sys
+end
+!----------------------------
+begin OWidget
+ name = odev_menubar
+ type = XmMenuBar
+ background = lightgrey
+! children = odev_casc odev_pdm
+ children = Wo_casc<Wo.odb Wo_pull<Wo.odb odev_casc odev_pdm
+ topAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = odev_casc
+ type = XmCascadeButton
+ background = lightgrey
+ labelString = Actions
+ subMenuId = odev_pdm
+end
+!----------------------------
+begin OWidget
+ name = odev_pdm
+ type = XmPulldownMenu
+ children = odev_ls_src odev_make odev_cancel
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = odev_466
+ type = XmLabel
+ labelString = Package name
+ background = black
+ foreground = white
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = odev_menubar
+end
+!----------------------------
+begin OWidget
+ name = odev_option
+ type = XmOptionMenu
+ background = lightgrey
+ borderColor = lightgrey
+ labelString = Package
+ subMenuId = odev_option_pdm
+ menuHistory = odev_set_Co
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = odev_466
+end
+!----------------------------
+begin OWidget
+ name = odev_option_pdm
+ type = XmPulldownMenu
+ children = odev_set_Co odev_set_W3o odev_set_HTMLo odev_set_Ho odev_set_GLo odev_set_Go odev_set_Xx odev_set_Xo odev_set_Xz odev_set_G3o odev_set_Wo
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = odev_set_Co
+ type = XmPushButton
+ background = lightgrey
+ labelString = Co v3
+ activateCallback = osh> setWidgetResource odev_name value 'Co v3'
+end
+!----------------------------
+begin OWidget
+ name = odev_set_W3o
+ type = XmPushButton
+ background = lightgrey
+ labelString = W3o v3
+ activateCallback = osh> setWidgetResource odev_name value 'W3o v3'
+end
+!----------------------------
+begin OWidget
+ name = odev_set_HTMLo
+ type = XmPushButton
+ background = lightgrey
+ labelString = HTMLo v3
+ activateCallback = osh> setWidgetResource odev_name value 'HTMLo v3'
+end
+!----------------------------
+begin OWidget
+ name = odev_set_Ho
+ type = XmPushButton
+ background = lightgrey
+ labelString = Ho v3
+ activateCallback = osh> setWidgetResource odev_name value 'Ho v3'
+end
+!----------------------------
+begin OWidget
+ name = odev_set_GLo
+ type = XmPushButton
+ background = lightgrey
+ labelString = GLo v3
+ activateCallback = osh> setWidgetResource odev_name value 'GLo v3'
+end
+!----------------------------
+begin OWidget
+ name = odev_set_Go
+ type = XmPushButton
+ background = lightgrey
+ labelString = Go v3
+ activateCallback = osh> setWidgetResource odev_name value 'Go v3'
+end
+!----------------------------
+begin OWidget
+ name = odev_set_Xx
+ type = XmPushButton
+ background = lightgrey
+ labelString = Xx v3
+ activateCallback = osh> setWidgetResource odev_name value 'Xx v3'
+end
+!----------------------------
+begin OWidget
+ name = odev_set_Xo
+ type = XmPushButton
+ background = lightgrey
+ labelString = Xo v3
+ activateCallback = osh> setWidgetResource odev_name value 'Xo v3'
+end
+!----------------------------
+begin OWidget
+ name = odev_set_Xz
+ type = XmPushButton
+ background = lightgrey
+ labelString = Xz v3
+ activateCallback = osh> setWidgetResource odev_name value 'Xz v3'
+end
+!----------------------------
+begin OWidget
+ name = odev_set_G3o
+ type = XmPushButton
+ background = lightgrey
+ labelString = G3o v3
+ activateCallback = osh> setWidgetResource odev_name value 'G3o v3'
+end
+!----------------------------
+begin OWidget
+ name = odev_set_Wo
+ type = XmPushButton
+ background = lightgrey
+ labelString = Wo v3
+ activateCallback = osh> setWidgetResource odev_name value 'Wo v3'
+end
+!----------------------------
+begin OWidget
+ name = odev_name
+ type = XmText
+ background = lightgrey
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = odev_option
+ createCallback = osh> setWidgetResource odev_name value 'Co v3'
+end
+!----------------------------
+begin OWidget
+ name = odev_ls_src
+ type = XmPushButton
+ background = lightgrey
+ labelString = ls src
+ activateCallback = osh>\
+  string=`getWidgetResource odev_name value`\
+  package=`getStringWord $string 1`\
+  version=`getStringWord $string 2`\
+  string=`printf 'cd /lal/%s/%s/src;ls' $package $version`\
+  spawnShellScript $string odev_out
+end
+!----------------------------
+begin OWidget
+ name = odev_make
+ type = XmPushButton
+ background = lightgrey
+ labelString = make
+ activateCallback = osh>\
+  string=`getWidgetResource odev_name value`\
+  package=`getStringWord $string 1`\
+  version=`getStringWord $string 2`\
+  string=`printf 'cd /lal/%s/%s/mgr;make' $package $version`\
+  spawnShellScript $string  odev_out
+end
+!----------------------------
+begin OWidget
+ name = odev_frame
+ type = XmFrame
+ children = odev_out
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ bottomAttachment = attach_widget
+ topWidget = odev_name
+ bottomWidget = odev_clear
+end
+!----------------------------
+begin OWidget
+ name = odev_out
+ type = XmScrolledText
+ editMode = multi_line_edit
+ editable = true
+ background = black
+ foreground = white
+end
+!----------------------------
+begin OWidget
+ name = odev_clear
+ type = XmPushButton
+ labelString = Clear
+ activateCallback = osh> setWidgetResource odev_out value ''
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ bottomAttachment = attach_widget
+ bottomWidget = odev_label
+end
+!----------------------------
+begin OWidget
+ name = odev_label
+ type = XmLabel
+ labelString = Commands to system
+ background = black
+ foreground = white
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ bottomAttachment = attach_widget
+ bottomWidget = odev_sys
+ topWidget = odev_make
+end
+!----------------------------
+begin OWidget
+ name = odev_sys
+ type = XmCommand
+ background = lightgrey
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ bottomAttachment = attach_form
+ historyVisibleItemCount = 3
+ commandEnteredCallback = osh> spawnShellScript `get Widget thisValue`  odev_out
+end
+!----------------------------
+begin OWidget
+ name = odev_cancel
+ type = XmPushButton
+ activateCallback = osh> do Wo sendExit
+ labelString = Quit
+ background = lightgrey
+end

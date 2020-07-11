@@ -1,0 +1,237 @@
+!/* +---------------------- Copyright notice -------------------------------+ */
+!/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+!/* |   Permission to use, copy, modify, and distribute this software       | */
+!/* |   and its documentation for any purpose and without fee is hereby     | */
+!/* |   granted, provided that the above copyright notice appear in all     | */
+!/* |   copies and that both that copyright notice and this permission      | */
+!/* |   notice appear in supporting documentation.  This software is        | */
+!/* |   provided "as is" without express or implied warranty.               | */
+!/* +---------------------- Copyright notice -------------------------------+ */
+!----------------------------
+begin Make
+  package = W3o
+  libs = W3o: libc libm
+end
+!----------------------------
+!----------------------------
+!----------------------------
+begin OModule
+  name = W3oT
+  type = application
+  libs = libW3o
+  distributed = no
+end
+!----------------------------
+!----------------------------
+!----------------------------
+begin OModule
+  name  = libW3o
+  type  = so;NT=ar
+  libs  = libm libc
+end
+!----------------------------
+begin OModule
+  name  = HTAABrow
+  inLib = libW3o
+end
+!----------------------------
+begin OModule
+  name  = HTAAUtil
+  inLib = libW3o
+end
+!----------------------------
+begin OModule
+  name  = HTAccess
+  inLib = libW3o
+end
+!----------------------------
+begin OModule
+  name  = HTAlert
+  inLib = libW3o
+end
+!----------------------------
+begin OModule
+  name  = HTAnchor
+  inLib = libW3o
+end
+!----------------------------
+begin OModule
+  name  = HTAssoc
+  inLib = libW3o
+end
+!----------------------------
+begin OModule
+  name  = HTAtom
+  inLib = libW3o
+end
+!----------------------------
+begin OModule
+  name  = HTChunk
+  inLib = libW3o
+end
+!----------------------------
+begin OModule
+  name  = HTCompressed
+  inLib = libW3o
+end
+!----------------------------
+begin OModule
+  name   = HTFTP
+  inLib  = libW3o
+  isANSI = no
+end
+!----------------------------
+begin OModule
+  name  = HTFWriter
+  inLib = libW3o
+end
+!----------------------------
+begin OModule
+  name  = HTFile
+  inLib = libW3o
+end
+!----------------------------
+begin OModule
+  name   = HTFormat
+  inLib  = libW3o
+  isANSI = no
+end
+!----------------------------
+begin OModule
+  name  = HTGopher
+  inLib = libW3o
+end
+!----------------------------
+begin OModule
+  name  = HTIcon
+  inLib = libW3o
+end
+!----------------------------
+begin OModule
+  name  = HTInit
+  inLib = libW3o
+end
+!----------------------------
+begin OModule
+  name  = HTList
+  inLib = libW3o
+end
+!----------------------------
+begin OModule
+  name  = HTMIME
+  inLib = libW3o
+end
+!----------------------------
+begin OModule
+  name  = HTMLNew
+  inLib = libW3o
+end
+!----------------------------
+begin OModule
+  name  = HTMLDTD
+  inLib = libW3o
+end
+!----------------------------
+begin OModule
+  name  = HTMLGen
+  inLib = libW3o
+end
+!----------------------------
+begin OModule
+  name  = HTMosaicHTML
+  inLib = libW3o
+end
+!----------------------------
+begin OModule
+  name  = HTNews
+  inLib = libW3o
+end
+!----------------------------
+begin OModule
+  name  = HTParse
+  inLib = libW3o
+end
+!----------------------------
+begin OModule
+  name  = HTPlain
+  inLib = libW3o
+end
+!----------------------------
+begin OModule
+  name  = HTSort
+  inLib = libW3o
+end
+!----------------------------
+begin OModule
+  name  = HTString
+  inLib = libW3o
+end
+!----------------------------
+begin OModule
+  name   = HTTCP
+  inLib  = libW3o
+  isANSI = no
+end
+!----------------------------
+begin OModule
+  name  = HTTP
+  inLib = libW3o
+  isANSI = no
+end
+!----------------------------
+begin OModule
+  name  = HTTelnet
+  inLib = libW3o
+  isANSI = no
+end
+!----------------------------
+begin OModule
+  name  = HTUU
+  inLib = libW3o
+end
+!----------------------------
+begin OModule
+  name  = HTWAIS
+  inLib = libW3o
+end
+!----------------------------
+begin OModule
+  name  = HTWSRC
+  inLib = libW3o
+end
+!----------------------------
+begin OModule
+  name  = HTWriter
+  inLib = libW3o
+end
+!----------------------------
+begin OModule
+  name  = SGML
+  inLib = libW3o
+end
+!----------------------------
+begin OModule
+  name  = HTMailto
+  inLib = libW3o
+end
+!----------------------------
+begin OModule
+  name  = kcms
+  inLib = libW3o
+end
+!----------------------------
+begin OModule
+  name  = moHText
+  inLib = libW3o
+end
+!----------------------------
+begin OModule
+  name  = momo
+  inLib = libW3o
+end
+!----------------------------
+begin OModule
+  name  = ioctl
+  inLib = libW3o
+end
+

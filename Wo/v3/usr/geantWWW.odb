@@ -1,0 +1,107 @@
+!/* +---------------------- Copyright notice -------------------------------+ */
+!/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+!/* |   Permission to use, copy, modify, and distribute this software       | */
+!/* |   and its documentation for any purpose and without fee is hereby     | */
+!/* |   granted, provided that the above copyright notice appear in all     | */
+!/* |   copies and that both that copyright notice and this permission      | */
+!/* |   notice appear in supporting documentation.  This software is        | */
+!/* |   provided "as is" without express or implied warranty.               | */
+!/* +---------------------- Copyright notice -------------------------------+ */
+!----------------------------
+begin OInterface
+ version = v3
+ prefix = geant_
+ packages = Xm
+end
+!----------------------------
+begin OWidget
+ name = geant_palette
+ type = XmFormDialog
+ children = geant_7 geant_11 geant_10 geant_atbs geant_14 geant_12 
+ autoUnmanage = False
+ dialogTitle = GEANT
+end
+!----------------------------
+begin OWidget
+ name = geant_7
+ type = XmPushButton
+ labelString = Update list
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topAttachment = attach_form
+ activateCallback = osh> collect VOLU | get - name | setWidgetResource geant_list items -
+end
+!----------------------------
+begin OWidget
+ name = geant_11
+ type = XmFrame
+ children = geant_list 
+ topAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ bottomAttachment = attach_widget
+ bottomWidget = geant_10
+ topAttachment = attach_widget
+ topWidget = geant_7
+end
+!----------------------------
+begin OWidget
+ name = geant_list
+ type = XmScrolledList
+ background = lightgrey
+ visibleItemCount = 5
+ selectionPolicy = single_select
+ scrollBarDisplayPolicy = static
+end
+!----------------------------
+begin OWidget
+ name = geant_10
+ type = XmPushButton
+ labelString = Erase
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ bottomAttachment = attach_widget
+ bottomWidget = geant_12
+ activateCallback = osh>\
+  widget=`get Widget target`\
+  camera=`get $widget name`\
+  name=`getWidgetResource geant_list selectedItems`\
+  string=`collect VOLU where name eq $name`\
+  getCameraNodes $camera | collect ONode where name eq $string | delete - 
+end
+!----------------------------
+begin OWidget
+ name = geant_12
+ type = XmPushButton
+ labelString = Draw
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ bottomAttachment = attach_widget
+ bottomWidget = geant_atbs
+ activateCallback = osh>\
+  widget=`get Widget target`\
+  camera=`get $widget name`\
+  collect VOLU where name eq `getWidgetResource geant_list selectedItems` | represent -  | viewNode - $camera
+end
+!----------------------------
+begin OWidget
+ name = geant_atbs
+ type = XmPushButton
+ labelString = Atbs
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ bottomAttachment = attach_widget
+ bottomWidget = geant_14
+ labelString = Attributs
+ activateCallback = osh> load OContext.odb| realize -;do Widget/OContext_palette manage;do Widget/OContext_palette_popup raise
+end
+!----------------------------
+begin OWidget
+ name = geant_14
+ type = XmPushButton
+ labelString = Cancel
+ activateCallback = osh> do `get Widget thisParent` unmanage
+ bottomAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end

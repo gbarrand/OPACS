@@ -1,0 +1,69 @@
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!! Shadow aspect !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Wo*topShadowColor                  :white
+Wo*bottomShadowColor               :black
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Wo*keyboardFocusPolicy              :pointer
+Wo*highlightOnEnter                 :True
+Wo*highlightThickness               :2
+Wo*highlightColor                   :Red
+Wo*fontList                         :-*-helvetica-bold-r-*-*-*-120-*-*-*-*-iso8859-1
+Wo*XmText.fontList                  :*courier*-r-*--14-*
+Wo*XmFrame.borderWidth              :4
+Wo*XmScale.borderWidth              :3
+Wo*XmBulletinBoard.width            :100
+Wo*XmBulletinBoard.height           :100
+Wo*XmLabel.highlightOnEnter         :False
+Wo*XmScrollBar.borderWidth          :3
+Wo*XmRowColumn.marginWidth          :3
+Wo*XmRowColumn.marginHeight         :3
+Wo*XmDrawingArea.background         :Black
+Wo*XmDrawingArea.foreground         :White
+Wo*XmDrawingArea.borderWidth        :3
+Wo*XmScrolledWindow.scrollingPolicy :automatic
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!! xmterm config  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+xmtermSHELL.title                        :Wo console
+!xmtermSHELL.geometry                     :600x300-0+0
+xmtermSHELL.geometry                     :-0+0
+xmtermSHELL*topShadowColor               :white
+xmtermSHELL*bottomShadowColor            :black
+xmtermSHELL*SHELL_TEXT_FORM*background   :lightgrey
+xmtermSHELL*SHELL_TEXT_HIDE.labelString  :Iconify
+xmtermSHELL*SHELL_TEXT_CLEAR.labelString :Clear
+xmtermSHELL*SHELL_TEXT_END.labelString   :Close application
+xmtermSHELL*xmterm.editMode              :multi_line_edit
+xmtermSHELL*xmterm.rows                  :6
+xmtermSHELL*xmterm.columns               :20
+xmtermSHELL*xmterm.fontList              :*courier*-r-*--14-*
+xmtermSHELL*fontList                     :-*-helvetica-bold-r-*-*-*-120-*-*-*-*-iso8859-1
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Wo*xmask_password.dialogTitle           :Password
+Wo*xmask_prompt*background              :lightgrey
+Wo*xmask_prompt.listVisibleItemCount    :0
+Wo*xmask_prompt.dialogTitle             :Ask
+Wo*xmask_yesno*background             :limegreen
+Wo*xmask_yesno.dialogTitle            :Yes/No
+Wo*xmask_yesno.okLabelString          :Yes
+Wo*xmask_yesno.cancelLabelString      :No
+Wo*xmask_list*background              :lightgrey
+Wo*xmask_list.dialogTitle             :Ask list
+Wo*xmask_caution*background           :red
+Wo*xmask_caution.dialogTitle          :Caution
+Wo*xmask_text*background              :lightgrey
+Wo*xmask_text.dialogTitle             :Ask text
+Wo*xmask_text_cancel.labelString      :Cancel
+Wo*xmask_text_ok.labelString          :Ok
+Wo*xmask_text_text.editMode           :multi_line_edit
+Wo*xmask_password*background          :lightgrey
+Wo*xmask_ballon*background            :white
+Wo*xmask_ballon_label.fontList        :*courier*-r-*--14-*
+Wo*xmask_file.dialogTitle             :Ask file
+
+
+
+

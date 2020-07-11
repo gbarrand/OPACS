@@ -1,0 +1,144 @@
+*xoShellT.title            :XoT
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!! for XoImageT !!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+*xoImageT.width                  :300
+*xoImageT.height                 :300
+*xoImageT.background             :grey
+*xoImageT.dataFile               :toucan.gif
+!*xoImageT.dataFile               :stars.fits
+!*xoImageT.virtualColormap        :ocolormap_16_grey
+*IMAGE_PIXEL.width             :150
+*IMAGE_PIXEL.mappedWhenManaged :False
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!! for XoCameraT !!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+*xoCameraT.width           :400
+*xoCameraT.height          :600
+*xoCameraT.background      :black
+*xoCameraT.highlightContext :color white
+*xoCameraT.projection  :perspective
+!*xoCameraT.buffering   :double
+*xoCameraT.depthTreatment   :zbuffer
+*xoCameraT.transformation   :rotate
+!*xoCameraT.blackAndWhite   :1
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!! for XoColormapT !!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+*xoColormapT.width          :500
+*xoColormapT.height         :500
+*xoColormapT.background     :black
+!*xoColormapT.valueColorMapping:black 1000 red 34000 blue
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!! for XoRheostatT !!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+*xoRheostatT.width          :300
+*xoRheostatT.height         :300
+*xoRheostatT.background     :lightgrey
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!! for XoGraphT !!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+*xoGraphT.background       :white
+*xoGraphT.foreground       :red
+*xoGraphT.lineWidth        :4
+*xoGraphT.linkColor        :blue
+!*xoGraphT.linkingPolicy      :bottom_to_top_direct
+*xoGraphT.linkingPolicy      :bottom_to_top_nice
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!! for XoPlotterT !!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!*xoPlotterT.depthTreatment     :zbuffer
+*xoPlotterT.backgroundColor    :62
+!*xoPlotterT.aspectRatio        :true
+*xoPlotterT.gridsVisible       :true
+*xoPlotterT.highlightContext   :color 63
+*xoPlotterT.plottedObjects     :naine
+*xoPlotterT.cuts               :VAR1>4.;VAR1<6.
+*xoPlotterT.xAxisAutomatic     :false
+*xoPlotterT.xAxisMinimum       :2.5
+*xoPlotterT.xAxisMaximum       :7.5
+*xoPlotterT.vAxisTitle         :Bin values
+*xoPlotterT.functions          :1./sin(2.*x)\n1./(1.+cos(x))
+!*xoPlotterT.functions          :CMathGetGauss(x,30.,5.,3.)
+1./sin(2.*x)\n1./(1.+cos(x))
+!*xoPlotterT.functions          :sin(2.*x)\n(1.+cos(x))
+!*xoPlotterT.titlePosition      :down
+*xoPlotterT.PLOTTER_STATS.background :white
+!*xoPlotterT.valueColorMapping : black 10 cyan 20 green 30 orange 40 blue 50 pink 70 red
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!! for XoMosaicT !!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!*xoMosaicT.homeDocument          :http://www.lal.in2p3.fr/LALHomePage.html
+*xoMosaicT.homeDocument          :http://www.lal.in2p3.fr/OPACS
+!*xoMosaicT.controlsVisible          :False
+*xoMosaicT.width                      :400
+*xoMosaicT.height                     :500
+*xoMosaicT.html*background            :grey
+*xoMosaicT.html.View.background       :grey
+*xoMosaicT.html.anchorUnderlines      :1
+*xoMosaicT.html.verticalScrollOnRight :True
+*xoMosaicT.html.header1Font           : -adobe-times-bold-r-normal-*-34-*-*-*-*-*-*-*
+*xoMosaicT.html.header2Font           : -adobe-times-bold-r-normal-*-25-*-*-*-*-*-*-*
+*xoMosaicT.html.header5Font           : -adobe-times-bold-r-normal-*-14-*-*-*-*-*-*-*
+*xoMosaicT.html.header6Font           : -adobe-times-bold-r-normal-*-11-*-*-*-*-*-*-*
+*xoMosaicT.html.listingFont           : -adobe-times-bold-r-normal-*-11-*-*-*-*-*-*-*
+! Controls
+*xoMosaicT.background               :lightgrey
+*xoMosaicT.track.background         :lightgrey
+! Xaw version
+*xoMosaicT.back.label               :Back
+! Xm  version
+*xoMosaicT.back.labelString         :Back
+*xoMosaicT.back.shadowThickness     :4
+*xoMosaicT.back.topShadowColor      :white
+*xoMosaicT.back.bottomShadowColor   :black
+*xoMosaicT.back.highlightThickness  :0
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!! for XoHelpT !!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+*xoHelpT*background               :lightgrey
+*xoHelpT.width                    :500
+*xoHelpT.height                   :600
+*HELP_LABEL.background            :lightgrey
+! Xm
+*HELP_LABEL.labelString           :Sub topics
+*HELP_BACK.labelString            :Go back
+*HELP_TEXT.rows                   :24
+*HELP_TEXT.columns                :80
+*HELP_TEXT.editMode               :multi_line_edit
+*HELP_TEXT.editable               :False
+*HELP_LIST.visibleItemCount       :5
+*HELP_LIST.selectionPolicy        :single_select
+*HELP_LIST.scrollBarDisplayPolicy :static
+! Xaw
+*HELP_LABEL.label                 :Sub topics
+*HELP_BACK.label                  :Go back
+!*HELP_LIST.defaultColumns         :1
+!*HELP_LIST.forceColumns           :True
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!! for XoHelpT !!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+*xoLabelT.background              :yellow
+*xoLabelT.doubleBuffer            :True
+*xoLabelT.font                    :-adobe-times-bold-r-normal-*-34-*-*-*-*-*-*-*
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!! for htmlT !!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+*htmlT.width                 :400
+*htmlT.height                :500
+*htmlT*background            :grey
+*htmlT.View.background       :grey
+*htmlT.anchorUnderlines      :1
+*htmlT.verticalScrollOnRight :True
+*htmlT.header1Font           : -adobe-times-bold-r-normal-*-34-*-*-*-*-*-*-*
+*htmlT.header2Font           : -adobe-times-bold-r-normal-*-25-*-*-*-*-*-*-*
+*htmlT.header5Font           : -adobe-times-bold-r-normal-*-14-*-*-*-*-*-*-*
+*htmlT.header6Font           : -adobe-times-bold-r-normal-*-11-*-*-*-*-*-*-*
+*htmlT.listingFont           : -adobe-times-bold-r-normal-*-11-*-*-*-*-*-*-*
+*htmlT.supSubFont            : -adobe-times-bold-r-normal-*-11-*-*-*-*-*-*-*
+
+
+
+
+
+

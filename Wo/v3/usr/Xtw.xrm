@@ -1,0 +1,8 @@
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Wo*foreground                      :black
+Wo*background                      :lightgrey
+Wo*borderColor                     :lightgrey
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Wo*ApplicationShell.geometry        :100x100+0+0
+Wo*TopLevelShell.geometry           :100x100+0+0

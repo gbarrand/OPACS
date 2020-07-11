@@ -1,0 +1,46 @@
+/* +---------------------- Copyright notice -------------------------------+ */
+/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+/* |   Permission to use, copy, modify, and distribute this software       | */
+/* |   and its documentation for any purpose and without fee is hereby     | */
+/* |   granted, provided that the above copyright notice appear in all     | */
+/* |   copies and that both that copyright notice and this permission      | */
+/* |   notice appear in supporting documentation.  This software is        | */
+/* |   provided "as is" without express or implied warranty.               | */
+/* +---------------------- Copyright notice -------------------------------+ */
+#ifndef WoCi_ic
+#define WoCi_ic
+
+#ifdef HAS_CI
+
+  CiParserStartup         ();  /*So that CiBindClass of WoXxx.ic works.*/
+
+  CiBindClass             ("CiBindmath"      ,(CiRoutine)CiBindmath);
+  CiBindClass             ("CiBindstdarg"    ,(CiRoutine)CiBindstdarg);
+  CiBindClass             ("CiBindstdlib"    ,(CiRoutine)CiBindstdlib);
+  CiBindClass             ("CiBindstdio"     ,(CiRoutine)CiBindstdio);
+  CiBindClass             ("CiBindstring"    ,(CiRoutine)CiBindstring);
+  CiBindClass             ("CiBindtime"      ,(CiRoutine)CiBindtime);
+  CiBindClass             ("CiBindCi"        ,(CiRoutine)CiBindCi);
+
+  CiBindClass             ("CiBindXlib"      ,(CiRoutine)CiBindXlib);
+  CiBindClass             ("CiBindXutil"     ,(CiRoutine)CiBindXutil);
+  CiBindClass             ("CiBindXresource" ,(CiRoutine)CiBindXresource);
+  CiBindClass             ("CiBindIntrinsic" ,(CiRoutine)CiBindIntrinsic);
+  CiBindClass             ("CiBindShell"     ,(CiRoutine)CiBindShell);
+  CiBindClass             ("CiBindVendor"    ,(CiRoutine)CiBindVendor);
+
+#include <CoBind.ic>
+#include <XxBind.ic>
+#include <WoBind.ic>
+
+  CiDo                    ("#include <CiWo.h>");
+
+/*Wo*/
+  OInterfaceAddPackage    ("Ci");
+  OInterpreterCreate      ("Ci",OCiExecuteScript,OCiClearClass,OCiVerifySyntax,OCiGenerateCallback);
+  CiAddCommands           (WoGetShellInterpreter());
+  WoAddClearClassFunction (OCiSetSTD_Print);
+
+#endif /*HAS_CI*/
+
+#endif /*WoCi_ic*/

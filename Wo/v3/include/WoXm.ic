@@ -1,0 +1,108 @@
+/* +---------------------- Copyright notice -------------------------------+ */
+/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+/* |   Permission to use, copy, modify, and distribute this software       | */
+/* |   and its documentation for any purpose and without fee is hereby     | */
+/* |   granted, provided that the above copyright notice appear in all     | */
+/* |   copies and that both that copyright notice and this permission      | */
+/* |   notice appear in supporting documentation.  This software is        | */
+/* |   provided "as is" without express or implied warranty.               | */
+/* +---------------------- Copyright notice -------------------------------+ */
+#ifndef WoXm_ic
+#define WoXm_ic
+
+#ifdef HAS_XM
+
+/*Set Co*/
+  CBatchSetAskPasswordFunction      (XmDialogAskForBufferedPassword);
+  CPrinterSetPutFunction            (XmConsolePrint);
+  CPrinterSetPutV_Function          (XmConsolePrintV);
+  WoAddClearClassFunction           (XmConsoleDestroy);
+			     
+/*Set XWidget*/
+  XWidgetSetMapFunction             (XmMapWidget);
+  XWidgetSetCallbackEventFunction   (XmGetCallbackEvent);
+  XWidgetSetUnmapFunction           (XmUnmapWidget);
+  XxSetTreatInputFunction           (XmTextAppendString);
+
+  XmConsoleSetExitFunction          ((XmVisitWidgetFunction)WoSendExit);
+  XmDialogSetLocalLoopFunction      (WoWaitClientMessage);
+  XmDialogSetGetFirstShellFunction  (OWidgetGetFirstShell);
+  XmAddCommands                     (WoGetShellInterpreter());
+
+/*Set Wo*/
+  OInterfaceAddPackage             ("Xm");
+
+  WoSetExitFunction                         ((WoVoidFunction)ExitWo);
+  WoSetInitializeClassFunction              (XmInitializeClass);
+  OResourceAddGetOptionsFunction            (XmGetResourceOptions);
+  OResourceAddConvertValueToStringFunction  (XmConvertResourceValueToString);
+  OResourceAddConvertStringToChangeFunction (XmConvertStringToResourceChange);
+  OResourceAddGetCallbackDataFunction       (XmGetCallbackData);
+
+
+/*OClassDeclareWidgetClass ("Xm/protocol"              ,xmProtocolObjectClass); Not on all system.*/
+
+/* MOTIF classes */
+ {OClass oclass;
+  OClassDeclareWidgetClass ("Xm/XmArrowButton"         ,xmArrowButtonWidgetClass);
+  OClassDeclareWidgetClass ("Xm/XmArrowButtonGadget"   ,xmArrowButtonGadgetClass);
+  OClassDeclareWidgetClass ("Xm/XmCascadeButton"       ,xmCascadeButtonWidgetClass);
+  OClassDeclareWidgetClass ("Xm/XmCascadeButtonGadget" ,xmCascadeButtonGadgetClass);
+  OClassDeclareWidgetClass ("Xm/XmDrawnButton"         ,xmDrawnButtonWidgetClass);
+  OClassDeclareWidgetClass ("Xm/XmFileSelectionBox"    ,xmFileSelectionBoxWidgetClass);
+  oclass = OClassDeclareWidgetClass ("Xm/XmBulletinBoard"       ,xmBulletinBoardWidgetClass);
+  OClassSetPS_Function     (oclass,XWidgetPutFrameInPS_Stream);
+  OClassDeclareWidgetClass ("Xm/XmDialogShell"         ,xmDialogShellWidgetClass);
+  OClassDeclareWidgetClass ("Xm/XmDrawingArea"         ,xmDrawingAreaWidgetClass);
+  oclass = OClassDeclareWidgetClass ("Xm/XmForm"                ,xmFormWidgetClass);
+  OClassSetPS_Function     (oclass,XWidgetPutFrameInPS_Stream);
+  OClassDeclareWidgetClass ("Xm/XmFrame"               ,xmFrameWidgetClass);
+  OClassDeclareWidgetClass ("Xm/XmMainWindow"          ,xmMainWindowWidgetClass);
+  OClassDeclareWidgetClass ("Xm/XmMenuShell"           ,xmMenuShellWidgetClass);
+  OClassDeclareWidgetClass ("Xm/XmPanedWindow"         ,xmPanedWindowWidgetClass);
+  oclass = OClassDeclareWidgetClass ("Xm/XmRowColumn"           ,xmRowColumnWidgetClass);
+  OClassSetPS_Function     (oclass,XWidgetPutFrameInPS_Stream);
+  OClassDeclareWidgetClass ("Xm/XmScale"               ,xmScaleWidgetClass);
+  OClassDeclareWidgetClass ("Xm/XmScrolledWindow"      ,xmScrolledWindowWidgetClass);
+  OClassDeclareWidgetClass ("Xm/XmCommand"             ,xmCommandWidgetClass);
+  OClassDeclareWidgetClass ("Xm/XmLabel"               ,xmLabelWidgetClass);
+  OClassDeclareWidgetClass ("Xm/XmLabelGadget"         ,xmLabelGadgetClass);
+  OClassDeclareWidgetClass ("Xm/XmList"                ,xmListWidgetClass);
+  OClassDeclareWidgetClass ("Xm/XmMessageBox"          ,xmMessageBoxWidgetClass);
+  OClassDeclareWidgetClass ("Xm/XmPushButton"          ,xmPushButtonWidgetClass);
+  OClassDeclareWidgetClass ("Xm/XmPushButtonGadget"    ,xmPushButtonGadgetClass);
+  OClassDeclareWidgetClass ("Xm/XmSash"                ,xmSashWidgetClass);
+  OClassDeclareWidgetClass ("Xm/XmScrollBar"           ,xmScrollBarWidgetClass);
+  OClassDeclareWidgetClass ("Xm/XmSelectionBox"        ,xmSelectionBoxWidgetClass);
+  OClassDeclareWidgetClass ("Xm/XmSeparatorGadget"     ,xmSeparatorGadgetClass);
+  OClassDeclareWidgetClass ("Xm/XmSeparator"           ,xmSeparatorWidgetClass);
+  oclass = OClassDeclareWidgetClass ("Xm/XmText"                ,xmTextWidgetClass);
+  OClassSetClearClassFunction  (oclass,XmClearClass);
+  OClassDeclareWidgetClass ("Xm/XmTextField"           ,xmTextFieldWidgetClass);
+  OClassDeclareWidgetClass ("Xm/XmToggleButton"        ,xmToggleButtonWidgetClass);
+  OClassDeclareWidgetClass ("Xm/XmToggleButtonGadget"  ,xmToggleButtonGadgetClass);}
+
+/* MOTIF compound types (not corresponding to a class) */
+  OClassDeclareCompoundWidget ("Xm/XmFileSelectionDialog" ,XmCreateFileSelectionDialog ,xmFileSelectionBoxWidgetClass);
+  OClassDeclareCompoundWidget ("Xm/XmFormDialog"          ,XmCreateFormDialog          ,xmFormWidgetClass);
+  OClassDeclareCompoundWidget ("Xm/XmBulletinBoardDialog" ,XmCreateBulletinBoardDialog ,xmBulletinBoardWidgetClass);
+  OClassDeclareCompoundWidget ("Xm/XmInformationDialog"   ,XmCreateInformationDialog   ,xmMessageBoxWidgetClass);
+  OClassDeclareCompoundWidget ("Xm/XmMessageDialog"       ,XmCreateMessageDialog       ,xmMessageBoxWidgetClass);
+  OClassDeclareCompoundWidget ("Xm/XmErrorDialog"         ,XmCreateErrorDialog         ,xmMessageBoxWidgetClass);
+  OClassDeclareCompoundWidget ("Xm/XmQuestionDialog"      ,XmCreateQuestionDialog      ,xmMessageBoxWidgetClass);
+  OClassDeclareCompoundWidget ("Xm/XmWarningDialog"       ,XmCreateWarningDialog       ,xmMessageBoxWidgetClass);
+  OClassDeclareCompoundWidget ("Xm/XmWorkingDialog"       ,XmCreateWorkingDialog       ,xmMessageBoxWidgetClass);
+  OClassDeclareCompoundWidget ("Xm/XmPromptDialog"        ,XmCreatePromptDialog        ,xmSelectionBoxWidgetClass);
+  OClassDeclareCompoundWidget ("Xm/XmSelectionDialog"     ,XmCreateSelectionDialog     ,xmSelectionBoxWidgetClass);
+  OClassDeclareCompoundWidget ("Xm/XmPulldownMenu"        ,XmCreatePulldownMenu        ,xmRowColumnWidgetClass);
+  OClassDeclareCompoundWidget ("Xm/XmMenuBar"             ,XmCreateMenuBar             ,xmRowColumnWidgetClass);
+  OClassDeclareCompoundWidget ("Xm/XmOptionMenu"          ,XmCreateOptionMenu          ,xmRowColumnWidgetClass);
+  OClassDeclareCompoundWidget ("Xm/XmRadioBox"            ,XmCreateRadioBox            ,xmRowColumnWidgetClass);
+  OClassDeclareCompoundWidget ("Xm/XmScrolledList"        ,XmCreateScrolledList        ,xmListWidgetClass);
+  OClassDeclareCompoundWidget ("Xm/XmScrolledText"        ,XmCreateScrolledText        ,xmTextWidgetClass);
+
+  OClassDeclareCompoundWidget ("Xm/XmPopupMenu"           ,XmCreatePopupMenu           ,xmRowColumnWidgetClass);
+
+#endif /*HAS_XM*/
+
+#endif /*WoXm_ic*/

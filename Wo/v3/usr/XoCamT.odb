@@ -1,0 +1,200 @@
+!----------------------------
+begin OInterface
+ version = v3
+ prefix = XoCameraT_
+ parent = WoTest_form
+ packages = Xm Xo 
+ createCallback = osh> load Standard.odb | empty
+end
+!----------------------------
+begin OWidget
+ name = XoCameraT_panel
+ type = XmBulletinBoard
+ children = XoCameraT_button XoCameraT_tpc XoCameraT_tpc_2 XoCameraT_ecal XoCameraT_paste XoCameraT_doCube XoCameraT_cube XoCameraT_do_contextmap XoCameraT_contextmap XoCameraT_www_button XoCameraT_www
+ background = dimgrey
+ topAttachment = attach_form
+ bottomAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = XoCameraT_button
+ type = XmPushButton
+ labelString = Rotate tpc
+ activateCallback = osh> callWidgetCallbacks XoCameraT_tpc userCallback
+end
+!----------------------------
+begin OWidget
+ name = XoCameraT_tpc
+ type = XoCamera
+ createCallback = osh>\
+  widget=`get Widget this`\
+  camera=`get $widget name`\
+  load atpc.odb | viewNode - $camera
+ x = 23
+ y = 50
+ width = 170
+ height = 130
+ borderColor = white
+ userCallback = osh> rotateCamera XoCameraT_tpc x 1.
+ backgroundColor = lightblue
+ highlightContext = color green lineWidth 4
+ transformationSensitiveWidgets = XoCameraT_tpc_2
+ viewLimits = -400 400
+ viewPoint = 0 0 400
+ buffering = double
+ depthTreatment = zbuffer
+ collectCallback = osh>\
+  widget=`get Widget this`\
+  camera=`get $widget name`\
+  getCameraNodes $camera | collect ONode where highlight eq 1 | get - name
+end
+!----------------------------
+begin OWidget
+ name = XoCameraT_tpc_2
+ type = XoCamera
+ x = 190
+ y = 18
+ width = 157
+ height = 139
+ borderColor = white
+ windowShape = oval
+ backgroundColor = lightgrey
+ highlightContext = color red lineWidth 4
+ referenceCamera = XoCameraT_tpc
+ viewLimits = -400 400
+ upVector = 1 0 0
+ viewPoint = 0 400 0
+ transformation = rotate
+ receiveTransformCallback = osh> copyCameraMatrix `getWidgetCamera XoCameraT_tpc` `getWidgetCamera XoCameraT_tpc_2`
+end
+!----------------------------
+begin OWidget
+ name = XoCameraT_ecal
+ type = XoCamera
+ createCallback = osh>\
+  widget=`get Widget this`\
+  camera=`get $widget name`\
+  rotateCamera $camera x -70.\
+  load aevt.odb | viewNode - $camera\
+  load aecal.odb | viewNode - $camera\
+  collect ONode where name eq J_* | delete -\
+  collect ONode where name eq ECEA_* | delete -\
+  collect ONode where name eq ECBL_0_1_2 | delete -\
+  collect ONode where name eq ECBL_0_12_2 | delete -
+ x = 18
+ y = 185
+ width = 200
+ height = 150
+ borderColor = black
+ backgroundColor = white
+ highlightContext = color red lineWidth 4
+ edgeColor = black
+ viewLimits = -400 400
+ projection = perspective
+! upVector = 1 0 0
+ viewPoint = 0 400 0
+ projectionAngle = 30
+ buffering = double
+ depthTreatment = zbuffer
+ transformation = rotate
+ collectCallback = osh>\
+  widget=`get Widget this`\
+  camera=`get $widget name`\
+  getCameraNodes $camera | collect ONode where highlight eq 1 | get - name
+end
+!----------------------------
+begin OWidget
+ name = XoCameraT_paste
+ type = XoCamera
+ x = 205
+ y = 187
+ width = 172
+ height = 140
+ borderColor = white
+ virtualColormap = ocolormap_STD
+ backgroundColor = white
+ highlightContext = color blue
+ viewLimits = -400 400
+ viewPoint = 0 0 400
+ collectCallback = osh>\
+  widget=`get Widget this`\
+  camera=`get $widget name`\
+  getCameraNodes $camera | collect ONode where highlight eq 1 | get - name
+end
+!----------------------------
+begin OWidget
+ name = XoCameraT_doCube
+ type = XmPushButton
+ x = 404
+ y = 26
+ labelString = Cube in XoCamera
+ activateCallback = osh>\
+  node=`create ONode name Cube`\
+  set OContext color yellow lineStyle solid\
+  addPrimitiveToNode $node lines    0.5 -0.5  0.5 0.5  0.5  0.5 -0.5 0.5  0.5 -0.5 -0.5  0.5  0.5 -0.5  0.5\
+  addPrimitiveToNode $node lines    0.5 -0.5 -0.5 0.5  0.5 -0.5 -0.5 0.5 -0.5 -0.5 -0.5 -0.5  0.5 -0.5 -0.5\
+  addPrimitiveToNode $node segments 0.5 -0.5  0.5 0.5 -0.5 -0.5  0.5 0.5  0.5  0.5  0.5 -0.5 -0.5  0.5  0.5 -0.5  0.5 -0.5 -0.5 -0.5  0.5 -0.5 -0.5 -0.5\
+  viewNode $node XoCameraT_cube\
+  node=`create ONode name Line_aligned cameraAligned 1`\
+  set OContext color green lineStyle solid\
+  addPrimitiveToNode $node lines    0.5 0.5  0.5 1.5  0.5  0.5\
+  addPrimitiveToNode $node lines    0.5 0.5  0.5 0.5  1.5  0.5\
+  addPrimitiveToNode $node lines    0.5 0.5  0.5 0.5  0.5  1.5\
+  viewNode $node XoCameraT_cube
+end
+!----------------------------
+begin OWidget
+ name = XoCameraT_cube
+ type = XoCamera
+ x = 412
+ y = 60
+ width = 170
+ height = 130
+end
+!----------------------------
+begin OWidget
+ name = XoCameraT_do_contextmap
+ type = XmPushButton
+ x = 404
+ y = 200
+ labelString = OContextmap
+ activateCallback = osh>\
+  load OContextmapT.odb | empty\
+  #collect OContextmap | dump -\
+  node=`represent OContextmap/Marker`\
+  viewNode $node XoCameraT_contextmap
+end
+!----------------------------
+begin OWidget
+ name = XoCameraT_contextmap
+ type = XoCamera
+ x = 412
+ y = 260
+ width = 170
+ height = 130
+ viewLimits = -100 100
+end
+!----------------------------
+begin OWidget
+ name = XoCameraT_www_button
+ type = XmPushButton
+ x = 604
+ y = 26
+ labelString = www
+ activateCallback = osh>\
+  node=`create ONode name www`\
+  getWWW http://www.lal.in2p3.fr/OPACS/v3/welcome.html | addHTML_PageToNode $node  - 0 0 0\
+  viewNode $node XoCameraT_www
+end
+!----------------------------
+begin OWidget
+ name = XoCameraT_www
+ type = XoCamera
+ x = 612
+ y = 60
+ width = 170
+ height = 130
+ viewLimits = -100 100
+end

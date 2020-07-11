@@ -1,0 +1,7 @@
+grid=`getWidgetResource StoreGridName value`
+test $grid eq '' && echo 'No grid name given'
+test $grid eq '' && exit
+do_target=`getWidgetResource GridMenu_all set`
+test $do_target eq 'true' && setWidgetResource `get Widget target` xyModeling $value
+test $do_target eq 'true' && exit
+get $grid managedChildren | setWidgetResource - xyModeling $value

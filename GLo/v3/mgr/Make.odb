@@ -1,0 +1,118 @@
+!/* +---------------------- Copyright notice -------------------------------+ */
+!/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+!/* |   Permission to use, copy, modify, and distribute this software       | */
+!/* |   and its documentation for any purpose and without fee is hereby     | */
+!/* |   granted, provided that the above copyright notice appear in all     | */
+!/* |   copies and that both that copyright notice and this permission      | */
+!/* |   notice appear in supporting documentation.  This software is        | */
+!/* |   provided "as is" without express or implied warranty.               | */
+!/* +---------------------- Copyright notice -------------------------------+ */
+!----------------------------
+begin Make
+  package = GLo
+  has     = X11
+  libs    = \
+X11: libX11\
+GLo: libc libm libCo libGLo libGLUo libGLXo libGLPSo
+end
+!----------------------------
+!----------------------------
+!----------------------------
+begin OModule
+  name  = glXT
+  type  = application
+  libs  = libGLXo  libGLUo libGLo libCo libX11 libm
+end
+!----------------------------
+begin OModule
+  name  = glPST
+  type  = application
+  libs  = libGLPSo libGLUo libGLo libCo libm
+end
+!----------------------------
+begin OModule
+  name  = NoHT
+  type  = application
+  distributed = no
+end
+!----------------------------
+!----------------------------
+!----------------------------
+begin OModule
+  name  = libGLo
+  type  = so;NT=ar
+  libs  = libCo libm libc
+end
+!----------------------------
+begin OModule
+  name  = libGLUo
+  type  = so;NT=ar
+  libs  = libGLo libCo libm libc
+end
+!----------------------------
+begin OModule
+  name  = libGLXo
+  type  = so;NT=ar
+  libs  = libGLo libCo libX11 libm libc 
+end
+!----------------------------
+begin OModule
+  name  = libGLPSo
+  type  = so;NT=ar
+  libs  = libGLo libCo libm libc
+end
+!----------------------------
+begin OModule
+  name  = gl
+  inLib = libGLo
+end
+!----------------------------
+begin OModule
+  name  = glList
+  inLib = libGLo
+end
+!----------------------------
+begin OModule
+  name  = glDriverZ
+  inLib = libGLo
+end
+!----------------------------
+begin OModule
+  name  = ZBuffer
+  inLib = libGLo
+end
+!----------------------------
+begin OModule
+  name  = ZPolygon
+  inLib = libGLo
+end
+!----------------------------
+!----------------------------
+!----------------------------
+!----------------------------
+begin OModule
+  name  = glu
+  inLib = libGLUo
+end
+!----------------------------
+begin OModule
+  name  = glx
+  inLib = libGLXo
+end
+!----------------------------
+begin OModule
+  name  = glDriverX
+  inLib = libGLXo
+end
+!----------------------------
+!----------------------------
+!----------------------------
+begin OModule
+  name  = glPS
+  inLib = libGLPSo
+end
+!----------------------------
+begin OModule
+  name  = glDriverPS
+  inLib = libGLPSo
+end

@@ -1,0 +1,52 @@
+!/* +---------------------- Copyright notice -------------------------------+ */
+!/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+!/* |   Permission to use, copy, modify, and distribute this software       | */
+!/* |   and its documentation for any purpose and without fee is hereby     | */
+!/* |   granted, provided that the above copyright notice appear in all     | */
+!/* |   copies and that both that copyright notice and this permission      | */
+!/* |   notice appear in supporting documentation.  This software is        | */
+!/* |   provided "as is" without express or implied warranty.               | */
+!/* +---------------------- Copyright notice -------------------------------+ */
+!----------------------------
+begin OInterface
+ version = v3
+ prefix = XzT_
+ parent = WoTest_form
+ packages = Xm Xz 
+end
+!----------------------------
+begin OWidget
+ name = XzT_panel
+ type = XmBulletinBoard
+ children = XzT_5 XzT_6 
+ background = dimgrey
+ topAttachment = attach_form
+ bottomAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = XzT_5
+ type = XzPlotter
+ x = 10
+ y = 54
+ width = 347
+ height = 219
+ background = grey
+end
+!----------------------------
+begin OWidget
+ name = XzT_6
+ type = XmPushButton
+ labelString = HPLOT histo #12
+ activateCallback = osh>\
+   isNotValid HFile/phan && load phan.rz hfile\
+   hplot XzT_5 clear\
+   hplot XzT_5 page_title 'Dummy global title'\
+   hplot XzT_5 parameter  GSIZ 0.6\
+   hplot XzT_5 option     NBOX\
+   hplot XzT_5 option     UTIT\
+   hplot XzT_5 hist       12\
+   hplot XzT_5 title      'Dummy title'
+end

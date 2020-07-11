@@ -1,0 +1,240 @@
+!/* +---------------------- Copyright notice -------------------------------+ */
+!/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+!/* |   Permission to use, copy, modify, and distribute this software       | */
+!/* |   and its documentation for any purpose and without fee is hereby     | */
+!/* |   granted, provided that the above copyright notice appear in all     | */
+!/* |   copies and that both that copyright notice and this permission      | */
+!/* |   notice appear in supporting documentation.  This software is        | */
+!/* |   provided "as is" without express or implied warranty.               | */
+!/* +---------------------- Copyright notice -------------------------------+ */
+!----------------------------
+begin OInterface
+ version = v3
+ prefix = Create_
+ packages = Xm
+end
+!----------------------------
+begin OWidget
+ name = Create_palette
+ type = XmFormDialog
+ children = Create_grab Create_localTarget Create_220 Create_221 Create_222 Create_223 Create_options Create_options_pdm Create_226 Create_225 Create_227 Create_228 
+ autoUnmanage = False
+ dialogTitle = New widget
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = Create_grab
+ type = XmPushButton
+ labelString = Parent
+ background = grey
+ topAttachment = attach_form
+ leftAttachment = attach_form
+ createCallback = osh> setWidgetResource `thisWidget` height `getWidgetResource Create_localTarget height`
+ activateCallback = osh> \
+  ref=`thisWidget`\
+  setWidgetResource Create_localTarget value `grabWidgetName $ref`\
+  collect OClass where group eq Xm | get - name | sort | setWidgetResource Create_224 items -\
+  setWidgetResource Create_options  menuHistory Create_Xm
+end
+!----------------------------
+begin OWidget
+ name = Create_localTarget
+ type = XmText
+ background = wheat
+ rightAttachment = attach_form
+ topAttachment = attach_form
+ leftAttachment = attach_widget
+ leftWidget = Create_grab
+end
+!----------------------------
+begin OWidget
+ name = Create_220
+ type = XmPushButton
+ activateCallback = osh> do `get Widget thisParent` unmanage
+ labelString = Cancel
+ background = lightgrey
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ bottomAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = Create_221
+ type = XmLabel
+ labelString = Widget name
+ background = black
+ foreground = white
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = Create_localTarget
+end
+!----------------------------
+begin OWidget
+ name = Create_222
+ type = XmText
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = Create_221
+end
+!----------------------------
+begin OWidget
+ name = Create_223
+ type = XmLabel
+ labelString = Widget type
+ background = black
+ foreground = white
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = Create_222
+end
+!----------------------------
+begin OWidget
+ name = Create_options
+ type = XmOptionMenu
+ background = lightgrey
+ borderColor = lightgrey
+ labelString = Set
+ subMenuId = Create_options_pdm
+ menuHistory = Create_Xm
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = Create_223
+end
+!----------------------------
+begin OWidget
+ name = Create_options_pdm
+ type = XmPulldownMenu
+ children = Create_Xm Create_Xo Create_Xaw Create_Xt Create_all
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = Create_Xm
+ type = XmPushButton
+ background = lightgrey
+ labelString = Xm
+ activateCallback = osh>\
+  collect OClass where group eq Xm | get - name | sort | setWidgetResource Create_224 items -
+end
+!----------------------------
+begin OWidget
+ name = Create_Xo
+ type = XmPushButton
+ background = lightgrey
+ labelString = Xo
+ activateCallback = osh>\
+  collect OClass where group eq Xo | get - name | sort | setWidgetResource Create_224 items -
+end
+!----------------------------
+begin OWidget
+ name = Create_Xaw
+ type = XmPushButton
+ background = lightgrey
+ labelString = Xaw
+ activateCallback = osh>\
+  collect OClass where group eq Xaw | get - name | sort | setWidgetResource Create_224 items -
+end
+!----------------------------
+begin OWidget
+ name = Create_all
+ type = XmPushButton
+ background = lightgrey
+ labelString = All
+ activateCallback = osh>\
+  collect OClass | get - name | sort | setWidgetResource Create_224 items -
+end
+!----------------------------
+begin OWidget
+ name = Create_Xt
+ type = XmPushButton
+ background = lightgrey
+ labelString = Xt
+ activateCallback = osh>\
+  collect OClass where group eq Xt | get - name | sort | setWidgetResource Create_224 items -
+end
+!----------------------------
+begin OWidget
+ name = Create_226
+ type = XmFrame
+ children = Create_224 
+ topAttachment = attach_widget
+ bottomAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = Create_options
+ bottomWidget = Create_225
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = Create_224
+ type = XmScrolledList
+ visibleItemCount = 5
+ selectionPolicy = single_select
+ scrollBarDisplayPolicy = static
+ background = lightgrey
+ listSizePolicy = constant
+end
+!----------------------------
+begin OWidget
+ name = Create_225
+ type = XmPushButton
+ bottomAttachment = attach_widget
+ bottomWidget = Create_227
+ labelString = Create widget
+ topAttachment = attach_none
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ activateCallback = osh>\
+  parent=`get Widget thisLocalTarget`\
+  type=`getWidgetResource Create_224 selectedItems`\
+  name=`getWidgetResource Create_222 value`\
+  string=`printf 'OClass/%s' $name`\
+  isValid $string && echo 'Widget name cannot be a widget type name'\
+  isValid $string && setWidgetResource Create_227 value 'Name cannot be a widget type name'\
+  isValid $string && exit\
+  widget=`create Widget name $name parent $parent type $type markFile true`\
+  test $widget eq '' && exit \
+  do $widget move `get Widget grabbedX` `get Widget grabbedY`\
+  do $widget markResource x\
+  do $widget markResource y\
+  do $widget map\
+  name=`get $widget name`\
+  string=`printf '%s created' $name`\
+  setWidgetResource Create_227 value $string
+end
+!----------------------------
+begin OWidget
+ name = Create_227
+ type = XmText
+ bottomAttachment = attach_widget
+ bottomWidget = Create_228
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = Create_228
+ type = XmPushButton
+ bottomAttachment = attach_widget
+ bottomWidget = Create_220
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ background = grey
+ activateCallback = osh>\
+  ref=`thisWidget`\
+  widget=`grabWidgetName $ref`\
+  oid=`printf 'Widget/%s' $widget`\
+  do $oid markFile\
+  do `get $oid parent` markFile\
+  delete $oid
+ labelString = Destroy
+ labelType = pixmap
+ labelPixmap = trash40.xbm
+end

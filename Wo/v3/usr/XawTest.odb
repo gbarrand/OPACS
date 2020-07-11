@@ -1,0 +1,230 @@
+!/* +---------------------- Copyright notice -------------------------------+ */
+!/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+!/* |   Permission to use, copy, modify, and distribute this software       | */
+!/* |   and its documentation for any purpose and without fee is hereby     | */
+!/* |   granted, provided that the above copyright notice appear in all     | */
+!/* |   copies and that both that copyright notice and this permission      | */
+!/* |   notice appear in supporting documentation.  This software is        | */
+!/* |   provided "as is" without express or implied warranty.               | */
+!/* +---------------------- Copyright notice -------------------------------+ */
+! UNIX> WoT.exe -show XawTest.odb
+!----------------------------
+begin OInterface
+ version = v3
+ prefix = XawT_
+ packages = Xaw 
+ resources = \
+Wo*XawT_AsciiText.AsciiSrc.string:hello\
+Wo*XawT_AsciiText.AsciiSrc.editType:edit\
+Wo*Viewport*Scrollbar.background:red
+end
+!----------------------------
+begin OWidget
+ name = XawT_top
+ type = TopLevelShell
+ children = XawT_panel
+ geometry = 400x450+0+0
+ title = Xaw examples
+end
+!----------------------------
+begin OWidget
+ name = XawT_panel
+ type = Viewport
+ forceBars = true
+ allowHoriz = true
+ allowVert = true
+ children = XawT_Paned
+end
+!----------------------------
+begin OWidget
+ name = XawT_Paned
+ type = Paned
+ children = XawT_AsciiText XawT_Box XawT_Command XawT_Form XawT_MenuButton XawT_Scrollbar XawT_StripChart  
+ background = dimgrey
+end
+!----------------------------
+begin OWidget
+ name = XawT_AsciiText
+ type = AsciiText
+end
+!----------------------------
+begin OWidget
+ name = XawT_Box
+ type = Box
+ children = XawT_Toggle_1 XawT_Toggle_2 XawT_Toggle_3 
+ background = maroon
+end
+!----------------------------
+begin OWidget
+ name = XawT_Toggle_1
+ type = Toggle
+ label = Toggle 1
+ callback = osh> echo 'Toggle 1';echo `get Widget thisValue`
+end
+!----------------------------
+begin OWidget
+ name = XawT_Toggle_2
+ type = Toggle
+ label = Toggle 2
+ radioGroup = XawT_Toggle_1
+ callback = osh> echo 'Toggle 2';echo `get Widget thisValue`
+ state = True
+end
+!----------------------------
+begin OWidget
+ name = XawT_Toggle_3
+ type = Toggle
+ label = Toggle 3
+ radioGroup = XawT_Toggle_2
+ callback = osh> echo 'Toggle 3';echo `get Widget thisValue`
+end
+!----------------------------
+begin OWidget
+ name = XawT_Command
+ type = Command
+ label = Command
+ callback = osh> do Widget/XawT_TransientShell popup
+end
+!----------------------------
+begin OWidget
+ name = XawT_TransientShell
+ type = TransientShell
+ children = XawT_Dialog
+ mappedWhenManaged = false
+ transientFor = WoTest_top
+end
+!----------------------------
+begin OWidget
+ name = XawT_Dialog
+ type = Dialog
+ background = blue
+ label = File name 
+ value = 
+ children = XawT_Dialog_Command
+end
+!----------------------------
+begin OWidget
+ name = XawT_Dialog_Command
+ type = Command
+ label = Ok
+ callback = osh> do Widget/XawT_TransientShell popdown;getWidgetResource XawT_Dialog value
+end
+!----------------------------
+begin OWidget
+ name = XawT_Form
+ type = Form
+ children = XawT_Label XawT_Repeater XawT_List XawT_Label_2
+end
+!----------------------------
+begin OWidget
+ name = XawT_Label
+ type = Label
+ bitmap = NeXT.xpm
+ left  = chainleft
+ top   = chaintop
+end
+!----------------------------
+begin OWidget
+ name = XawT_Repeater
+ type = Repeater
+ label = Repeater
+ fromHoriz = XawT_Label
+ right     = chainright
+ top       = chaintop
+ callback = osh> echo 'one more'
+end
+!----------------------------
+begin OWidget
+ name = XawT_List
+ type = List
+ fromVert   = XawT_Label
+ background = lightblue 
+ left       = chainleft
+ bottom     = chainbottom
+ right      = chainright
+ callback   = osh> echo `get Widget thisValue`;echo `thisValue index`
+ cursor     = boat
+ font       = -adobe-times-medium-r-normal--34-240-100-100-p-170-iso8859-1
+ forceColumns = True
+ defaultColumns = 1
+ list       = line 1\
+line 2\
+line 3
+end
+!----------------------------
+begin OWidget
+ name = XawT_Label_2
+ type = Label
+ label = Bottom-Right
+ background = yellow
+ bottom = chainbottom
+ right  = chainright
+ top    = chainbottom
+ left   = chainright
+end
+!----------------------------
+begin OWidget
+ name = XawT_MenuButton
+ type = MenuButton
+ label = MenuButton
+ menuName = XawT_SimpleMenu
+ children = XawT_SimpleMenu 
+end
+!----------------------------
+begin OWidget
+ name = XawT_SimpleMenu
+ type = SimpleMenu
+ children = XawT_SmeBSB_1 XawT_SmeLine XawT_SmeBSB_2 XawT_Sme XawT_SmeBSB_3
+ mappedWhenManaged = false
+ cursor = sb_left_arrow
+end
+!----------------------------
+begin OWidget
+ name = XawT_SmeBSB_1
+ type = SmeBSB
+ label = SmeBSB 1
+ callback = osh> echo 'SmeBSD 1'
+end
+!----------------------------
+begin OWidget
+ name = XawT_SmeLine
+ type = SmeLine
+end
+!----------------------------
+begin OWidget
+ name = XawT_SmeBSB_2
+ type = SmeBSB
+ label = SmeBSB 2
+ callback = osh> echo 'SmeBSB 2'
+end
+!----------------------------
+begin OWidget
+ name = XawT_Sme
+ type = Sme
+end
+!----------------------------
+begin OWidget
+ name = XawT_SmeBSB_3
+ type = SmeBSB
+ label = SmeBSB 3
+ callback = osh> echo 'SmeBSB 3'
+end
+!----------------------------
+begin OWidget
+ name = XawT_Scrollbar
+ type = Scrollbar
+ scrollProc = osh> echo scroll;echo `get Widget thisValue`
+ jumpProc = osh> echo jump;echo `thisValue jump`
+end
+!----------------------------
+begin OWidget
+ name = XawT_StripChart
+ type = StripChart
+ createCallback = osh>\
+  get CMath randomMaximum\
+  set CMath randomMaximum 0.5\
+  get CMath randomMaximum\
+  set CMath seed 345
+ getValue = osh> set Widget thisValue `get CMath random`
+ update = 3
+end

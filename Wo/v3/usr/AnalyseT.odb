@@ -1,0 +1,51 @@
+!----------------------------
+begin OInterface
+ version = v3
+ prefix = AnalyseT_
+ parent = WoTest_form
+ packages = Xm Xo
+ createCallback = osh>\
+  load cuts.odb | get - name\
+  isValid OTuple/naine && exit\
+  load naine.odb | get - name
+end
+!----------------------------
+begin OWidget
+ name = AnalyseT_panel
+ type = XmBulletinBoard
+ children = AnalyseT_cuts AnalyseT_oper
+ background = dimgrey
+ topAttachment = attach_form
+ bottomAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = AnalyseT_cuts
+ type = XoPlotter
+ x = 14
+ y = 147
+ width = 198
+ height = 218
+ histogramContext = color forestgreen modeling solid
+ plottedObjects = naine
+ cuts = my_cut
+end
+!----------------------------
+begin OWidget
+ name = AnalyseT_oper
+ type = XoPlotter
+ x = 234
+ y = 136
+ width = 427
+ height = 219
+ background = white
+ gridsVisible = false
+ histogramContext = color forestgreen modeling solid
+ xAxisBinding = VAR4 * VAR1
+!xAxisBinding = VAR4
+ cuts = VAR4 >= 90
+ statisticsVisible = false
+ plottedObjects = naine
+end

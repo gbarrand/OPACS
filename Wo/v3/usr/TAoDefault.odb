@@ -1,0 +1,39 @@
+!----------------------------
+begin OInterface
+ prefix = TAoDefault_
+ parent = MainPanel
+end
+!----------------------------
+begin OWidget
+ name = TAoDefault_grid
+ type = XmForm
+ children = TAoDefault_1_1 
+ background = dimgrey
+ topAttachment = attach_form
+ bottomAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ createCallback = osh>\
+  isValid OHistogram/TAo_histo && exit\
+  create OHistogram name TAo_histo dimension 1 xAxisNumberOfBins 50 xAxisMinimum -2 xAxisMaximum 2 | empty\
+  do OHistogram/TAo_histo fillRandom 500 gauss\
+  create OHistogram name TAo_histo_2 dimension 1 xAxisNumberOfBins 50 xAxisMinimum -2 xAxisMaximum 2. | empty\
+  do OHistogram/TAo_histo_2 fillRandom 1000 gauss
+end
+!----------------------------
+begin OWidget
+ name = TAoDefault_1_1
+ type = XoPlotter
+ background = dimgrey
+ topAttachment = attach_form
+ bottomAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ histogramContext = color dimgrey modeling solid
+ secondHistogramContext = color grey modeling solid
+ wallContext = color lightgrey modeling solid
+ plottedObjects = TAo_histo\nTAo_histo_2
+ vAxisAutomatic = false
+ vAxisMinimum = 0
+ vAxisMaximum = 40
+end

@@ -1,0 +1,245 @@
+!/* +---------------------- Copyright notice -------------------------------+ */
+!/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+!/* |   Permission to use, copy, modify, and distribute this software       | */
+!/* |   and its documentation for any purpose and without fee is hereby     | */
+!/* |   granted, provided that the above copyright notice appear in all     | */
+!/* |   copies and that both that copyright notice and this permission      | */
+!/* |   notice appear in supporting documentation.  This software is        | */
+!/* |   provided "as is" without express or implied warranty.               | */
+!/* +---------------------- Copyright notice -------------------------------+ */
+!----------------------------
+begin OInterface
+ version = v3
+ prefix = OType_
+end
+!----------------------------
+begin OWidget
+ name = OType_palette
+ type = XmFormDialog
+ children = OType_form_types OType_form_instances OType_form_properties OType_frame_value OType_dump OType_number OType_cancel
+ autoUnmanage = False
+ dialogTitle = Instances
+end
+!----------------------------
+begin OWidget
+ name = OType_form_types
+ type = XmForm
+ children = OType_label_types OType_frame_types 
+ topAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_position
+ rightPosition = 33
+ bottomAttachment = attach_widget
+ bottomWidget = OType_number
+end
+!----------------------------
+begin OWidget
+ name = OType_label_types
+ type = XmLabel
+ background = black
+ foreground = white
+ labelString = Types
+ topAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = OType_frame_types
+ type = XmFrame
+ children = OType_types 
+ topAttachment = attach_widget
+ topWidget = OType_label_types
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ bottomAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = OType_types
+ type = XmScrolledList
+ background = lightgrey
+ visibleItemCount = 10
+ selectionPolicy = single_select
+ scrollBarDisplayPolicy = static
+ listSizePolicy = constant
+ createCallback = osh> collect OType | get - name | sort | setWidgetResource OType_types items -
+ singleSelectionCallback = osh>\
+  type=`getWidgetResource OType_types selectedItems`\
+  oid=`printf 'OType/%s' $type`\
+  setWidgetResource OType_properties items ''\
+  setWidgetResource OType_properties selectedItems ''\
+  list=`get $oid properties | collect OProperty where isMethod eq false and isClass eq false | get - name`\
+  setWidgetResource OType_properties items $list\
+  setWidgetResource OType_instances items ''\
+  setWidgetResource OType_instances selectedItems ''\
+  list=`collect $type`\
+  setWidgetResource OType_instances items $list\
+  number=`collect $type | count`\
+  setWidgetResource OType_number labelString $number\
+  setWidgetResource OType_value value ''
+end
+!----------------------------
+begin OWidget
+ name = OType_form_instances
+ type = XmForm
+ children = OType_label_instances OType_frame_instances
+ topAttachment = attach_form
+ bottomAttachment = attach_widget
+ bottomWidget = OType_number
+ leftAttachment = attach_widget
+ leftWidget = OType_frame_types
+ rightAttachment = attach_position
+ rightPosition = 66
+end
+!----------------------------
+begin OWidget
+ name = OType_label_instances
+ type = XmLabel
+ background = black
+ foreground = white
+ labelString = Instances
+ topAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = OType_frame_instances
+ type = XmFrame
+ children = OType_instances
+ topAttachment = attach_widget
+ topWidget = OType_label_instances
+ bottomAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = OType_instances
+ type = XmScrolledList
+ background = lightgrey
+ visibleItemCount = 10
+ selectionPolicy = single_select
+ scrollBarDisplayPolicy = static
+ listSizePolicy = constant
+ singleSelectionCallback = osh>\
+  setWidgetResource OType_value value ''\
+  type=`getWidgetResource OType_types selectedItems`\
+  test $type eq '' && exit\
+  prop=`getWidgetResource OType_properties selectedItems`\
+  test $prop eq '' && exit\
+  instance=`getWidgetResource OType_instances selectedItems`\
+  test $instance eq '' && exit\
+  get $instance $prop | setWidgetResource OType_value value -
+end
+!----------------------------
+begin OWidget
+ name = OType_form_properties
+ type = XmForm
+ children = OType_label_properties OType_frame_properties
+ topAttachment = attach_form
+ leftAttachment = attach_widget
+ leftWidget = OType_form_instances
+ rightAttachment = attach_form
+ bottomAttachment = attach_widget
+ bottomWidget = OType_number
+end
+!----------------------------
+begin OWidget
+ name = OType_label_properties
+ type = XmLabel
+ background = black
+ foreground = white
+ labelString = Properties
+ topAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = OType_frame_properties
+ type = XmFrame
+ children = OType_properties
+ topAttachment = attach_widget
+ topWidget = OType_label_properties
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ bottomAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = OType_properties
+ type = XmScrolledList
+ background = lightgrey
+ visibleItemCount = 10
+ selectionPolicy = single_select
+ scrollBarDisplayPolicy = static
+ listSizePolicy = constant
+ singleSelectionCallback = osh>\
+  setWidgetResource OType_value value ''\
+  type=`getWidgetResource OType_types selectedItems`\
+  test $type eq '' && exit\
+  prop=`getWidgetResource OType_properties selectedItems`\
+  test $prop eq '' && exit\
+  instance=`getWidgetResource OType_instances selectedItems`\
+  test $instance eq '' && exit\
+  get $instance $prop | setWidgetResource OType_value value -
+end
+!----------------------------
+!----------------------------
+!----------------------------
+!----------------------------
+begin OWidget
+ name = OType_number
+ type = XmLabel
+ background = lightgrey
+ labelString = 0
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ bottomAttachment = attach_widget
+ bottomWidget = OType_dump
+end
+!----------------------------
+begin OWidget
+ name = OType_dump
+ type = XmPushButton
+ labelString = Dump instance
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ bottomAttachment = attach_widget
+ bottomWidget = OType_value
+ activateCallback = osh>\
+  type=`getWidgetResource OType_types selectedItems`\
+  test $type eq '' && exit\
+  instance=`getWidgetResource OType_instances selectedItems`\
+  test $instance eq '' && exit\
+  dump $instance
+end
+!----------------------------
+begin OWidget
+ name = OType_frame_value
+ type = XmFrame
+ children = OType_value
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ bottomAttachment = attach_widget
+ bottomWidget = OType_cancel
+end
+!----------------------------
+begin OWidget
+ name = OType_value
+ type = XmScrolledText
+ editMode = multi_line_edit
+ createCallback = osh> setWidgetTextSize OType_value 10 30
+end
+!----------------------------
+begin OWidget
+ name = OType_cancel
+ type = XmPushButton
+ labelString = Cancel
+ activateCallback = osh> do `get Widget thisParent` unmanage
+ bottomAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end

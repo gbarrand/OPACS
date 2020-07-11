@@ -1,0 +1,227 @@
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#  File produced by the Co/omake tool
+# using file Make.odb.
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+HAS_CPPFLAGS = \
+ $(Ho_CPPFLAGS)
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+all   :: mkdir
+
+clean ::
+	if exist $(bin)\*.obj del $(bin)\*.obj
+	if exist $(bin)\*.exe del $(bin)\*.exe
+	if exist $(bin)\*.lib del $(bin)\*.lib
+	if exist $(bin)\*.dll del $(bin)\*.dll
+	if exist $(bin)\*.exp del $(bin)\*.exp
+	if exist $(bin)\*.pdb del $(bin)\*.pdb
+rmlib ::
+	if exist $(bin)\*.lib del $(bin)\*.lib
+rmo   ::
+	if exist $(bin)\*.obj del $(bin)\*.obj
+rmexe ::
+	if exist $(bin)\*.exe del $(bin)\*.exe
+
+mkdir :
+	@if not exist $(bin) mkdir $(bin)
+
+libHo_target = $(bin)\libHo.$(lib_or_dll)
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+all :: mkdir \
+$(libHo_target) \
+$(bin)\oshHo.exe \
+$(bin)\HoT.exe 
+	@echo "Ho : all ok." 
+
+libs :: mkdir \
+$(libHo_target) 
+	@echo "Ho : libs ok." 
+
+apps :: mkdir \
+$(bin)\oshHo.exe \
+$(bin)\HoT.exe \
+$(bin)\gauss.exe \
+$(bin)\HoF77T.exe \
+$(bin)\NoHT.exe 
+	@echo "Ho : apps ok." 
+#--------------------------------------------
+rmexeo :
+	if exist $(bin)\oshHo.obj del $(bin)\oshHo.obj
+	if exist $(bin)\HoT.obj del $(bin)\HoT.obj
+	if exist $(bin)\gauss.obj del $(bin)\gauss.obj
+	if exist $(bin)\HoF77T.obj del $(bin)\HoF77T.obj
+	if exist $(bin)\NoHT.obj del $(bin)\NoHT.obj
+#--------------------------------------------
+oshHo : $(bin)\oshHo.exe
+	@echo "Ho : oshHo ok."
+HoT : $(bin)\HoT.exe
+	@echo "Ho : HoT ok."
+gauss : $(bin)\gauss.exe
+	@echo "Ho : gauss ok."
+HoF77T : $(bin)\HoF77T.exe
+	@echo "Ho : HoF77T ok."
+NoHT : $(bin)\NoHT.exe
+	@echo "Ho : NoHT ok."
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#--------------------------------------------
+$(bin)\oshHo.exe : $(bin)\oshHo.obj \
+$(libHo_target) 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\oshHo.exe $(bin)\oshHo.obj \
+$(libHo) \
+$(libCo) \
+$(libm) \
+$(CCLDEND) 
+
+$(bin)\oshHo.obj   : $(app)\oshHo.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\oshHo.obj $(app)\oshHo.c
+#--------------------------------------------
+$(bin)\HoT.exe : $(bin)\HoT.obj \
+$(libHo_target) 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\HoT.exe $(bin)\HoT.obj \
+$(libHo) \
+$(libCo) \
+$(libm) \
+$(CCLDEND) 
+
+$(bin)\HoT.obj   : $(app)\HoT.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\HoT.obj $(app)\HoT.c
+#--------------------------------------------
+$(bin)\gauss.exe : $(bin)\gauss.obj 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\gauss.exe $(bin)\gauss.obj \
+$(libCo) \
+$(libm) \
+$(CCLDEND) 
+
+$(bin)\gauss.obj   : $(app)\gauss.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\gauss.obj $(app)\gauss.c
+#--------------------------------------------
+$(bin)\HoF77T.exe : $(bin)\HoF77T.obj \
+$(libHo_target) 
+	$(F77LD) $(F77LDFLAGS) $(CCLDO)$(bin)\HoF77T.exe $(bin)\HoF77T.obj \
+$(libHo) \
+$(libCo) \
+$(libm) \
+$(F77LDEND) 
+
+$(bin)\HoF77T.obj   : $(app)\HoF77T.f
+	$(F77) $(F77FLAGS) /c Fo$(bin)\HoF77T.obj $(app)\HoF77T.f
+#--------------------------------------------
+$(bin)\NoHT.exe : $(bin)\NoHT.obj 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\NoHT.exe $(bin)\NoHT.obj \
+$(CCLDEND) 
+
+$(bin)\NoHT.obj   : $(app)\NoHT.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\NoHT.obj $(app)\NoHT.c
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# libraries 
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#--------------------------------------------
+$(bin)\libHo.dll : \
+$(bin)\HoCommands.obj \
+$(bin)\HoTypes.obj \
+$(bin)\Ho.obj \
+$(bin)\HoF77.obj \
+$(bin)\OTuple.obj \
+$(bin)\OCut.obj \
+$(bin)\OFunction.obj \
+$(bin)\OFit.obj \
+$(bin)\OHistogram.obj \
+$(bin)\OScatter.obj \
+$(bin)\OAxis.obj \
+$(bin)\OStatement.obj \
+$(bin)\HoBinds.obj 
+	if exist $(bin)\libHo.lib del $(bin)\libHo.lib 
+	if exist $(bin)\libHo.exp del $(bin)\libHo.exp 
+	lib.exe $(LIBFLAGS) /def:$(mgr)\libHo.def /out:$(bin)\libHo.lib
+	if exist $(bin)\libHo.dll del $(bin)\libHo.dll 
+	$(LINK32) $(LINK32FLAGS) /out:$(bin)\libHo.dll $(bin)\libHo.exp \
+$(bin)\HoCommands.obj \
+$(bin)\HoTypes.obj \
+$(bin)\Ho.obj \
+$(bin)\HoF77.obj \
+$(bin)\OTuple.obj \
+$(bin)\OCut.obj \
+$(bin)\OFunction.obj \
+$(bin)\OFit.obj \
+$(bin)\OHistogram.obj \
+$(bin)\OScatter.obj \
+$(bin)\OAxis.obj \
+$(bin)\OStatement.obj \
+$(bin)\HoBinds.obj \
+$(libCo) \
+$(libm) \
+$(libc) 
+
+$(bin)\libHo.lib : \
+$(bin)\HoCommands.obj \
+$(bin)\HoTypes.obj \
+$(bin)\Ho.obj \
+$(bin)\HoF77.obj \
+$(bin)\OTuple.obj \
+$(bin)\OCut.obj \
+$(bin)\OFunction.obj \
+$(bin)\OFit.obj \
+$(bin)\OHistogram.obj \
+$(bin)\OScatter.obj \
+$(bin)\OAxis.obj \
+$(bin)\OStatement.obj \
+$(bin)\HoBinds.obj 
+	if exist $(bin)\libHo.lib del $(bin)\libHo.lib 
+	lib.exe @<<
+/nologo /out:$(bin)\libHo.lib
+$(bin)\HoCommands.obj
+$(bin)\HoTypes.obj
+$(bin)\Ho.obj
+$(bin)\HoF77.obj
+$(bin)\OTuple.obj
+$(bin)\OCut.obj
+$(bin)\OFunction.obj
+$(bin)\OFit.obj
+$(bin)\OHistogram.obj
+$(bin)\OScatter.obj
+$(bin)\OAxis.obj
+$(bin)\OStatement.obj
+$(bin)\HoBinds.obj
+<<
+#--------------------------------------------
+# libHo dependencies 
+#--------------------------------------------
+$(bin)\HoCommands.obj : $(src)\HoCommands.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\HoCommands.obj $(src)\HoCommands.c
+
+$(bin)\HoTypes.obj : $(src)\HoTypes.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\HoTypes.obj $(src)\HoTypes.c
+
+$(bin)\Ho.obj : $(src)\Ho.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\Ho.obj $(src)\Ho.c
+
+$(bin)\HoF77.obj : $(src)\HoF77.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\HoF77.obj $(src)\HoF77.c
+
+$(bin)\OTuple.obj : $(src)\OTuple.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\OTuple.obj $(src)\OTuple.c
+
+$(bin)\OCut.obj : $(src)\OCut.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\OCut.obj $(src)\OCut.c
+
+$(bin)\OFunction.obj : $(src)\OFunction.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\OFunction.obj $(src)\OFunction.c
+
+$(bin)\OFit.obj : $(src)\OFit.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\OFit.obj $(src)\OFit.c
+
+$(bin)\OHistogram.obj : $(src)\OHistogram.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\OHistogram.obj $(src)\OHistogram.c
+
+$(bin)\OScatter.obj : $(src)\OScatter.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\OScatter.obj $(src)\OScatter.c
+
+$(bin)\OAxis.obj : $(src)\OAxis.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\OAxis.obj $(src)\OAxis.c
+
+$(bin)\OStatement.obj : $(src)\OStatement.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\OStatement.obj $(src)\OStatement.c
+
+$(bin)\HoBinds.obj : $(src)\HoBinds.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\HoBinds.obj $(src)\HoBinds.c
+
+

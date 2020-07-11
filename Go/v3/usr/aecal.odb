@@ -1,0 +1,6576 @@
+begin ONode
+ name = ECEA_0_1_2
+ highlight = 0
+ pickable = 1
+ colorIndex = 53
+ primitives = 1\
+2\
+3\
+4\
+5\
+6\
+7\
+8
+end
+begin OPrimitive
+ label = 1
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 54.4374\
+12.4893\
+303.25\
+54.4374\
+12.4893\
+252.74\
+53.5049\
+-16.0199\
+252.74\
+53.5049\
+-16.0199\
+303.25
+end
+begin OPrimitive
+ label = 2
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 233.891\
+-31.6201\
+252.74\
+235.458\
+16.2686\
+252.74\
+235.458\
+16.2686\
+303.25\
+233.891\
+-31.6201\
+303.25
+end
+begin OPrimitive
+ label = 3
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 53.5049\
+-16.0199\
+252.74\
+223.027\
+-67.4386\
+252.74\
+223.027\
+-67.4386\
+303.25\
+53.5049\
+-16.0199\
+303.25
+end
+begin OPrimitive
+ label = 4
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 226.957\
+52.7204\
+303.25\
+226.957\
+52.7204\
+252.74\
+54.4374\
+12.4893\
+252.74\
+54.4374\
+12.4893\
+303.25
+end
+begin OPrimitive
+ label = 5
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 6
+ points = 223.027\
+-67.4386\
+303.25\
+233.891\
+-31.6201\
+303.25\
+235.458\
+16.2686\
+303.25\
+226.957\
+52.7204\
+303.25\
+54.4374\
+12.4893\
+303.25\
+53.5049\
+-16.0199\
+303.25
+end
+begin OPrimitive
+ label = 6
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 6
+ points = 54.4374\
+12.4893\
+252.74\
+226.957\
+52.7204\
+252.74\
+235.458\
+16.2686\
+252.74\
+233.891\
+-31.6201\
+252.74\
+223.027\
+-67.4386\
+252.74\
+53.5049\
+-16.0199\
+252.74
+end
+begin OPrimitive
+ label = 7
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 223.027\
+-67.4386\
+252.74\
+233.891\
+-31.6201\
+252.74\
+233.891\
+-31.6201\
+303.25\
+223.027\
+-67.4386\
+303.25
+end
+begin OPrimitive
+ label = 8
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 235.458\
+16.2686\
+303.25\
+235.458\
+16.2686\
+252.74\
+226.957\
+52.7204\
+252.74\
+226.957\
+52.7204\
+303.25
+end
+begin ONode
+ name = ECEA_0_2_2
+ highlight = 0
+ pickable = 1
+ colorIndex = 53
+ primitives = 9\
+10\
+11\
+12\
+13\
+14\
+15\
+16
+end
+begin OPrimitive
+ label = 9
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 40.8995\
+38.0347\
+303.25\
+40.8995\
+38.0347\
+252.74\
+54.3465\
+12.8788\
+252.74\
+54.3465\
+12.8788\
+303.25
+end
+begin OPrimitive
+ label = 10
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 218.366\
+89.5618\
+252.74\
+195.778\
+131.818\
+252.74\
+195.778\
+131.818\
+303.25\
+218.366\
+89.5618\
+303.25
+end
+begin OPrimitive
+ label = 11
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 54.3465\
+12.8788\
+252.74\
+226.866\
+53.11\
+252.74\
+226.866\
+53.11\
+303.25\
+54.3465\
+12.8788\
+303.25
+end
+begin OPrimitive
+ label = 12
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 170.19\
+159.136\
+303.25\
+170.19\
+159.136\
+252.74\
+40.8995\
+38.0347\
+252.74\
+40.8995\
+38.0347\
+303.25
+end
+begin OPrimitive
+ label = 13
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 6
+ points = 226.866\
+53.11\
+303.25\
+218.366\
+89.5618\
+303.25\
+195.778\
+131.818\
+303.25\
+170.19\
+159.136\
+303.25\
+40.8995\
+38.0347\
+303.25\
+54.3465\
+12.8788\
+303.25
+end
+begin OPrimitive
+ label = 14
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 6
+ points = 40.8995\
+38.0347\
+252.74\
+170.19\
+159.136\
+252.74\
+195.778\
+131.818\
+252.74\
+218.366\
+89.5618\
+252.74\
+226.866\
+53.11\
+252.74\
+54.3465\
+12.8788\
+252.74
+end
+begin OPrimitive
+ label = 15
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 226.866\
+53.11\
+252.74\
+218.366\
+89.5618\
+252.74\
+218.366\
+89.5618\
+303.25\
+226.866\
+53.11\
+303.25
+end
+begin OPrimitive
+ label = 16
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 195.778\
+131.818\
+303.25\
+195.778\
+131.818\
+252.74\
+170.19\
+159.136\
+252.74\
+170.19\
+159.136\
+303.25
+end
+begin ONode
+ name = ECEA_0_3_2
+ highlight = 0
+ pickable = 1
+ colorIndex = 53
+ primitives = 17\
+18\
+19\
+20\
+21\
+22\
+23\
+24
+end
+begin OPrimitive
+ label = 17
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 16.4027\
+53.3888\
+303.25\
+16.4027\
+53.3888\
+252.74\
+40.626\
+38.3267\
+252.74\
+40.626\
+38.3267\
+303.25
+end
+begin OPrimitive
+ label = 18
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 144.329\
+186.746\
+252.74\
+103.64\
+212.047\
+252.74\
+103.64\
+212.047\
+303.25\
+144.329\
+186.746\
+303.25
+end
+begin OPrimitive
+ label = 19
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 40.626\
+38.3267\
+252.74\
+169.917\
+159.428\
+252.74\
+169.917\
+159.428\
+303.25\
+40.626\
+38.3267\
+303.25
+end
+begin OPrimitive
+ label = 20
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 67.8214\
+222.911\
+303.25\
+67.8214\
+222.911\
+252.74\
+16.4027\
+53.3888\
+252.74\
+16.4027\
+53.3888\
+303.25
+end
+begin OPrimitive
+ label = 21
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 6
+ points = 169.917\
+159.428\
+303.25\
+144.329\
+186.746\
+303.25\
+103.64\
+212.047\
+303.25\
+67.8214\
+222.911\
+303.25\
+16.4027\
+53.3888\
+303.25\
+40.626\
+38.3267\
+303.25
+end
+begin OPrimitive
+ label = 22
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 6
+ points = 16.4027\
+53.3888\
+252.74\
+67.8214\
+222.911\
+252.74\
+103.64\
+212.047\
+252.74\
+144.329\
+186.746\
+252.74\
+169.917\
+159.428\
+252.74\
+40.626\
+38.3267\
+252.74
+end
+begin OPrimitive
+ label = 23
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 169.917\
+159.428\
+252.74\
+144.329\
+186.746\
+252.74\
+144.329\
+186.746\
+303.25\
+169.917\
+159.428\
+303.25
+end
+begin OPrimitive
+ label = 24
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 103.64\
+212.047\
+303.25\
+103.64\
+212.047\
+252.74\
+67.8214\
+222.911\
+252.74\
+67.8214\
+222.911\
+303.25
+end
+begin ONode
+ name = ECEA_0_4_2
+ highlight = 0
+ pickable = 1
+ colorIndex = 53
+ primitives = 25\
+26\
+27\
+28\
+29\
+30\
+31\
+32
+end
+begin OPrimitive
+ label = 25
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -12.4893\
+54.4374\
+303.25\
+-12.4893\
+54.4374\
+252.74\
+16.0199\
+53.5049\
+252.74\
+16.0199\
+53.5049\
+303.25
+end
+begin OPrimitive
+ label = 26
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 31.6202\
+233.891\
+252.74\
+-16.2686\
+235.458\
+252.74\
+-16.2686\
+235.458\
+303.25\
+31.6202\
+233.891\
+303.25
+end
+begin OPrimitive
+ label = 27
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 16.0199\
+53.5049\
+252.74\
+67.4386\
+223.027\
+252.74\
+67.4386\
+223.027\
+303.25\
+16.0199\
+53.5049\
+303.25
+end
+begin OPrimitive
+ label = 28
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -52.7204\
+226.957\
+303.25\
+-52.7204\
+226.957\
+252.74\
+-12.4893\
+54.4374\
+252.74\
+-12.4893\
+54.4374\
+303.25
+end
+begin OPrimitive
+ label = 29
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 6
+ points = 67.4386\
+223.027\
+303.25\
+31.6202\
+233.891\
+303.25\
+-16.2686\
+235.458\
+303.25\
+-52.7204\
+226.957\
+303.25\
+-12.4893\
+54.4374\
+303.25\
+16.0199\
+53.5049\
+303.25
+end
+begin OPrimitive
+ label = 30
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 6
+ points = -12.4893\
+54.4374\
+252.74\
+-52.7204\
+226.957\
+252.74\
+-16.2686\
+235.458\
+252.74\
+31.6202\
+233.891\
+252.74\
+67.4386\
+223.027\
+252.74\
+16.0199\
+53.5049\
+252.74
+end
+begin OPrimitive
+ label = 31
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 67.4386\
+223.027\
+252.74\
+31.6202\
+233.891\
+252.74\
+31.6202\
+233.891\
+303.25\
+67.4386\
+223.027\
+303.25
+end
+begin OPrimitive
+ label = 32
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -16.2686\
+235.458\
+303.25\
+-16.2686\
+235.458\
+252.74\
+-52.7204\
+226.957\
+252.74\
+-52.7204\
+226.957\
+303.25
+end
+begin ONode
+ name = ECEA_0_5_2
+ highlight = 0
+ pickable = 1
+ colorIndex = 53
+ primitives = 33\
+34\
+35\
+36\
+37\
+38\
+39\
+40
+end
+begin OPrimitive
+ label = 33
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -38.0347\
+40.8995\
+303.25\
+-38.0347\
+40.8995\
+252.74\
+-12.8788\
+54.3465\
+252.74\
+-12.8788\
+54.3465\
+303.25
+end
+begin OPrimitive
+ label = 34
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -89.5618\
+218.366\
+252.74\
+-131.818\
+195.778\
+252.74\
+-131.818\
+195.778\
+303.25\
+-89.5618\
+218.366\
+303.25
+end
+begin OPrimitive
+ label = 35
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -12.8788\
+54.3465\
+252.74\
+-53.11\
+226.866\
+252.74\
+-53.11\
+226.866\
+303.25\
+-12.8788\
+54.3465\
+303.25
+end
+begin OPrimitive
+ label = 36
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -159.136\
+170.19\
+303.25\
+-159.136\
+170.19\
+252.74\
+-38.0347\
+40.8995\
+252.74\
+-38.0347\
+40.8995\
+303.25
+end
+begin OPrimitive
+ label = 37
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 6
+ points = -53.11\
+226.866\
+303.25\
+-89.5618\
+218.366\
+303.25\
+-131.818\
+195.778\
+303.25\
+-159.136\
+170.19\
+303.25\
+-38.0347\
+40.8995\
+303.25\
+-12.8788\
+54.3465\
+303.25
+end
+begin OPrimitive
+ label = 38
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 6
+ points = -38.0347\
+40.8995\
+252.74\
+-159.136\
+170.19\
+252.74\
+-131.818\
+195.778\
+252.74\
+-89.5618\
+218.366\
+252.74\
+-53.11\
+226.866\
+252.74\
+-12.8788\
+54.3465\
+252.74
+end
+begin OPrimitive
+ label = 39
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -53.11\
+226.866\
+252.74\
+-89.5618\
+218.366\
+252.74\
+-89.5618\
+218.366\
+303.25\
+-53.11\
+226.866\
+303.25
+end
+begin OPrimitive
+ label = 40
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -131.818\
+195.778\
+303.25\
+-131.818\
+195.778\
+252.74\
+-159.136\
+170.19\
+252.74\
+-159.136\
+170.19\
+303.25
+end
+begin ONode
+ name = ECEA_0_6_2
+ highlight = 0
+ pickable = 1
+ colorIndex = 53
+ primitives = 41\
+42\
+43\
+44\
+45\
+46\
+47\
+48
+end
+begin OPrimitive
+ label = 41
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -53.3888\
+16.4026\
+303.25\
+-53.3888\
+16.4026\
+252.74\
+-38.3267\
+40.626\
+252.74\
+-38.3267\
+40.626\
+303.25
+end
+begin OPrimitive
+ label = 42
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -186.746\
+144.329\
+252.74\
+-212.047\
+103.64\
+252.74\
+-212.047\
+103.64\
+303.25\
+-186.746\
+144.329\
+303.25
+end
+begin OPrimitive
+ label = 43
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -38.3267\
+40.626\
+252.74\
+-159.428\
+169.917\
+252.74\
+-159.428\
+169.917\
+303.25\
+-38.3267\
+40.626\
+303.25
+end
+begin OPrimitive
+ label = 44
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -222.911\
+67.8213\
+303.25\
+-222.911\
+67.8213\
+252.74\
+-53.3888\
+16.4026\
+252.74\
+-53.3888\
+16.4026\
+303.25
+end
+begin OPrimitive
+ label = 45
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 6
+ points = -159.428\
+169.917\
+303.25\
+-186.746\
+144.329\
+303.25\
+-212.047\
+103.64\
+303.25\
+-222.911\
+67.8213\
+303.25\
+-53.3888\
+16.4026\
+303.25\
+-38.3267\
+40.626\
+303.25
+end
+begin OPrimitive
+ label = 46
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 6
+ points = -53.3888\
+16.4026\
+252.74\
+-222.911\
+67.8213\
+252.74\
+-212.047\
+103.64\
+252.74\
+-186.746\
+144.329\
+252.74\
+-159.428\
+169.917\
+252.74\
+-38.3267\
+40.626\
+252.74
+end
+begin OPrimitive
+ label = 47
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -159.428\
+169.917\
+252.74\
+-186.746\
+144.329\
+252.74\
+-186.746\
+144.329\
+303.25\
+-159.428\
+169.917\
+303.25
+end
+begin OPrimitive
+ label = 48
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -212.047\
+103.64\
+303.25\
+-212.047\
+103.64\
+252.74\
+-222.911\
+67.8213\
+252.74\
+-222.911\
+67.8213\
+303.25
+end
+begin ONode
+ name = ECEA_0_7_2
+ highlight = 0
+ pickable = 1
+ colorIndex = 53
+ primitives = 49\
+50\
+51\
+52\
+53\
+54\
+55\
+56
+end
+begin OPrimitive
+ label = 49
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -54.4374\
+-12.4893\
+303.25\
+-54.4374\
+-12.4893\
+252.74\
+-53.5049\
+16.0199\
+252.74\
+-53.5049\
+16.0199\
+303.25
+end
+begin OPrimitive
+ label = 50
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -233.891\
+31.6201\
+252.74\
+-235.458\
+-16.2686\
+252.74\
+-235.458\
+-16.2686\
+303.25\
+-233.891\
+31.6201\
+303.25
+end
+begin OPrimitive
+ label = 51
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -53.5049\
+16.0199\
+252.74\
+-223.027\
+67.4385\
+252.74\
+-223.027\
+67.4385\
+303.25\
+-53.5049\
+16.0199\
+303.25
+end
+begin OPrimitive
+ label = 52
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -226.957\
+-52.7204\
+303.25\
+-226.957\
+-52.7204\
+252.74\
+-54.4374\
+-12.4893\
+252.74\
+-54.4374\
+-12.4893\
+303.25
+end
+begin OPrimitive
+ label = 53
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 6
+ points = -223.027\
+67.4385\
+303.25\
+-233.891\
+31.6201\
+303.25\
+-235.458\
+-16.2686\
+303.25\
+-226.957\
+-52.7204\
+303.25\
+-54.4374\
+-12.4893\
+303.25\
+-53.5049\
+16.0199\
+303.25
+end
+begin OPrimitive
+ label = 54
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 6
+ points = -54.4374\
+-12.4893\
+252.74\
+-226.957\
+-52.7204\
+252.74\
+-235.458\
+-16.2686\
+252.74\
+-233.891\
+31.6201\
+252.74\
+-223.027\
+67.4385\
+252.74\
+-53.5049\
+16.0199\
+252.74
+end
+begin OPrimitive
+ label = 55
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -223.027\
+67.4385\
+252.74\
+-233.891\
+31.6201\
+252.74\
+-233.891\
+31.6201\
+303.25\
+-223.027\
+67.4385\
+303.25
+end
+begin OPrimitive
+ label = 56
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -235.458\
+-16.2686\
+303.25\
+-235.458\
+-16.2686\
+252.74\
+-226.957\
+-52.7204\
+252.74\
+-226.957\
+-52.7204\
+303.25
+end
+begin ONode
+ name = ECEA_0_8_2
+ highlight = 0
+ pickable = 1
+ colorIndex = 53
+ primitives = 57\
+58\
+59\
+60\
+61\
+62\
+63\
+64
+end
+begin OPrimitive
+ label = 57
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -40.8995\
+-38.0347\
+303.25\
+-40.8995\
+-38.0347\
+252.74\
+-54.3465\
+-12.8788\
+252.74\
+-54.3465\
+-12.8788\
+303.25
+end
+begin OPrimitive
+ label = 58
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -218.366\
+-89.5618\
+252.74\
+-195.778\
+-131.818\
+252.74\
+-195.778\
+-131.818\
+303.25\
+-218.366\
+-89.5618\
+303.25
+end
+begin OPrimitive
+ label = 59
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -54.3465\
+-12.8788\
+252.74\
+-226.866\
+-53.11\
+252.74\
+-226.866\
+-53.11\
+303.25\
+-54.3465\
+-12.8788\
+303.25
+end
+begin OPrimitive
+ label = 60
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -170.19\
+-159.136\
+303.25\
+-170.19\
+-159.136\
+252.74\
+-40.8995\
+-38.0347\
+252.74\
+-40.8995\
+-38.0347\
+303.25
+end
+begin OPrimitive
+ label = 61
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 6
+ points = -226.866\
+-53.11\
+303.25\
+-218.366\
+-89.5618\
+303.25\
+-195.778\
+-131.818\
+303.25\
+-170.19\
+-159.136\
+303.25\
+-40.8995\
+-38.0347\
+303.25\
+-54.3465\
+-12.8788\
+303.25
+end
+begin OPrimitive
+ label = 62
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 6
+ points = -40.8995\
+-38.0347\
+252.74\
+-170.19\
+-159.136\
+252.74\
+-195.778\
+-131.818\
+252.74\
+-218.366\
+-89.5618\
+252.74\
+-226.866\
+-53.11\
+252.74\
+-54.3465\
+-12.8788\
+252.74
+end
+begin OPrimitive
+ label = 63
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -226.866\
+-53.11\
+252.74\
+-218.366\
+-89.5618\
+252.74\
+-218.366\
+-89.5618\
+303.25\
+-226.866\
+-53.11\
+303.25
+end
+begin OPrimitive
+ label = 64
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -195.778\
+-131.818\
+303.25\
+-195.778\
+-131.818\
+252.74\
+-170.19\
+-159.136\
+252.74\
+-170.19\
+-159.136\
+303.25
+end
+begin ONode
+ name = ECEA_0_9_2
+ highlight = 0
+ pickable = 1
+ colorIndex = 53
+ primitives = 65\
+66\
+67\
+68\
+69\
+70\
+71\
+72
+end
+begin OPrimitive
+ label = 65
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -16.4027\
+-53.3888\
+303.25\
+-16.4027\
+-53.3888\
+252.74\
+-40.6261\
+-38.3267\
+252.74\
+-40.6261\
+-38.3267\
+303.25
+end
+begin OPrimitive
+ label = 66
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -144.329\
+-186.746\
+252.74\
+-103.64\
+-212.047\
+252.74\
+-103.64\
+-212.047\
+303.25\
+-144.329\
+-186.746\
+303.25
+end
+begin OPrimitive
+ label = 67
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -40.6261\
+-38.3267\
+252.74\
+-169.917\
+-159.428\
+252.74\
+-169.917\
+-159.428\
+303.25\
+-40.6261\
+-38.3267\
+303.25
+end
+begin OPrimitive
+ label = 68
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -67.8214\
+-222.911\
+303.25\
+-67.8214\
+-222.911\
+252.74\
+-16.4027\
+-53.3888\
+252.74\
+-16.4027\
+-53.3888\
+303.25
+end
+begin OPrimitive
+ label = 69
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 6
+ points = -169.917\
+-159.428\
+303.25\
+-144.329\
+-186.746\
+303.25\
+-103.64\
+-212.047\
+303.25\
+-67.8214\
+-222.911\
+303.25\
+-16.4027\
+-53.3888\
+303.25\
+-40.6261\
+-38.3267\
+303.25
+end
+begin OPrimitive
+ label = 70
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 6
+ points = -16.4027\
+-53.3888\
+252.74\
+-67.8214\
+-222.911\
+252.74\
+-103.64\
+-212.047\
+252.74\
+-144.329\
+-186.746\
+252.74\
+-169.917\
+-159.428\
+252.74\
+-40.6261\
+-38.3267\
+252.74
+end
+begin OPrimitive
+ label = 71
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -169.917\
+-159.428\
+252.74\
+-144.329\
+-186.746\
+252.74\
+-144.329\
+-186.746\
+303.25\
+-169.917\
+-159.428\
+303.25
+end
+begin OPrimitive
+ label = 72
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -103.64\
+-212.047\
+303.25\
+-103.64\
+-212.047\
+252.74\
+-67.8214\
+-222.911\
+252.74\
+-67.8214\
+-222.911\
+303.25
+end
+begin ONode
+ name = ECEA_0_10_2
+ highlight = 0
+ pickable = 1
+ colorIndex = 53
+ primitives = 73\
+74\
+75\
+76\
+77\
+78\
+79\
+80
+end
+begin OPrimitive
+ label = 73
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 12.4893\
+-54.4374\
+303.25\
+12.4893\
+-54.4374\
+252.74\
+-16.0199\
+-53.5049\
+252.74\
+-16.0199\
+-53.5049\
+303.25
+end
+begin OPrimitive
+ label = 74
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -31.6201\
+-233.891\
+252.74\
+16.2686\
+-235.458\
+252.74\
+16.2686\
+-235.458\
+303.25\
+-31.6201\
+-233.891\
+303.25
+end
+begin OPrimitive
+ label = 75
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -16.0199\
+-53.5049\
+252.74\
+-67.4386\
+-223.027\
+252.74\
+-67.4386\
+-223.027\
+303.25\
+-16.0199\
+-53.5049\
+303.25
+end
+begin OPrimitive
+ label = 76
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 52.7204\
+-226.957\
+303.25\
+52.7204\
+-226.957\
+252.74\
+12.4893\
+-54.4374\
+252.74\
+12.4893\
+-54.4374\
+303.25
+end
+begin OPrimitive
+ label = 77
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 6
+ points = -67.4386\
+-223.027\
+303.25\
+-31.6201\
+-233.891\
+303.25\
+16.2686\
+-235.458\
+303.25\
+52.7204\
+-226.957\
+303.25\
+12.4893\
+-54.4374\
+303.25\
+-16.0199\
+-53.5049\
+303.25
+end
+begin OPrimitive
+ label = 78
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 6
+ points = 12.4893\
+-54.4374\
+252.74\
+52.7204\
+-226.957\
+252.74\
+16.2686\
+-235.458\
+252.74\
+-31.6201\
+-233.891\
+252.74\
+-67.4386\
+-223.027\
+252.74\
+-16.0199\
+-53.5049\
+252.74
+end
+begin OPrimitive
+ label = 79
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -67.4386\
+-223.027\
+252.74\
+-31.6201\
+-233.891\
+252.74\
+-31.6201\
+-233.891\
+303.25\
+-67.4386\
+-223.027\
+303.25
+end
+begin OPrimitive
+ label = 80
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 16.2686\
+-235.458\
+303.25\
+16.2686\
+-235.458\
+252.74\
+52.7204\
+-226.957\
+252.74\
+52.7204\
+-226.957\
+303.25
+end
+begin ONode
+ name = ECEA_0_11_2
+ highlight = 0
+ pickable = 1
+ colorIndex = 53
+ primitives = 81\
+82\
+83\
+84\
+85\
+86\
+87\
+88
+end
+begin OPrimitive
+ label = 81
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 38.0347\
+-40.8995\
+303.25\
+38.0347\
+-40.8995\
+252.74\
+12.8788\
+-54.3465\
+252.74\
+12.8788\
+-54.3465\
+303.25
+end
+begin OPrimitive
+ label = 82
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 89.5617\
+-218.366\
+252.74\
+131.818\
+-195.778\
+252.74\
+131.818\
+-195.778\
+303.25\
+89.5617\
+-218.366\
+303.25
+end
+begin OPrimitive
+ label = 83
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 12.8788\
+-54.3465\
+252.74\
+53.1099\
+-226.866\
+252.74\
+53.1099\
+-226.866\
+303.25\
+12.8788\
+-54.3465\
+303.25
+end
+begin OPrimitive
+ label = 84
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 159.136\
+-170.19\
+303.25\
+159.136\
+-170.19\
+252.74\
+38.0347\
+-40.8995\
+252.74\
+38.0347\
+-40.8995\
+303.25
+end
+begin OPrimitive
+ label = 85
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 6
+ points = 53.1099\
+-226.866\
+303.25\
+89.5617\
+-218.366\
+303.25\
+131.818\
+-195.778\
+303.25\
+159.136\
+-170.19\
+303.25\
+38.0347\
+-40.8995\
+303.25\
+12.8788\
+-54.3465\
+303.25
+end
+begin OPrimitive
+ label = 86
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 6
+ points = 38.0347\
+-40.8995\
+252.74\
+159.136\
+-170.19\
+252.74\
+131.818\
+-195.778\
+252.74\
+89.5617\
+-218.366\
+252.74\
+53.1099\
+-226.866\
+252.74\
+12.8788\
+-54.3465\
+252.74
+end
+begin OPrimitive
+ label = 87
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 53.1099\
+-226.866\
+252.74\
+89.5617\
+-218.366\
+252.74\
+89.5617\
+-218.366\
+303.25\
+53.1099\
+-226.866\
+303.25
+end
+begin OPrimitive
+ label = 88
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 131.818\
+-195.778\
+303.25\
+131.818\
+-195.778\
+252.74\
+159.136\
+-170.19\
+252.74\
+159.136\
+-170.19\
+303.25
+end
+begin ONode
+ name = ECEA_0_12_2
+ highlight = 0
+ pickable = 1
+ colorIndex = 53
+ primitives = 89\
+90\
+91\
+92\
+93\
+94\
+95\
+96
+end
+begin OPrimitive
+ label = 89
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 53.3888\
+-16.4026\
+303.25\
+53.3888\
+-16.4026\
+252.74\
+38.3267\
+-40.626\
+252.74\
+38.3267\
+-40.626\
+303.25
+end
+begin OPrimitive
+ label = 90
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 186.746\
+-144.329\
+252.74\
+212.047\
+-103.64\
+252.74\
+212.047\
+-103.64\
+303.25\
+186.746\
+-144.329\
+303.25
+end
+begin OPrimitive
+ label = 91
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 38.3267\
+-40.626\
+252.74\
+159.428\
+-169.917\
+252.74\
+159.428\
+-169.917\
+303.25\
+38.3267\
+-40.626\
+303.25
+end
+begin OPrimitive
+ label = 92
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 222.911\
+-67.8213\
+303.25\
+222.911\
+-67.8213\
+252.74\
+53.3888\
+-16.4026\
+252.74\
+53.3888\
+-16.4026\
+303.25
+end
+begin OPrimitive
+ label = 93
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 6
+ points = 159.428\
+-169.917\
+303.25\
+186.746\
+-144.329\
+303.25\
+212.047\
+-103.64\
+303.25\
+222.911\
+-67.8213\
+303.25\
+53.3888\
+-16.4026\
+303.25\
+38.3267\
+-40.626\
+303.25
+end
+begin OPrimitive
+ label = 94
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 6
+ points = 53.3888\
+-16.4026\
+252.74\
+222.911\
+-67.8213\
+252.74\
+212.047\
+-103.64\
+252.74\
+186.746\
+-144.329\
+252.74\
+159.428\
+-169.917\
+252.74\
+38.3267\
+-40.626\
+252.74
+end
+begin OPrimitive
+ label = 95
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 159.428\
+-169.917\
+252.74\
+186.746\
+-144.329\
+252.74\
+186.746\
+-144.329\
+303.25\
+159.428\
+-169.917\
+303.25
+end
+begin OPrimitive
+ label = 96
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 212.047\
+-103.64\
+303.25\
+212.047\
+-103.64\
+252.74\
+222.911\
+-67.8213\
+252.74\
+222.911\
+-67.8213\
+303.25
+end
+begin ONode
+ name = ECBL_0_1_2
+ highlight = 0
+ pickable = 1
+ colorIndex = 53
+ primitives = 97\
+98\
+99\
+100\
+101\
+102
+end
+begin OPrimitive
+ label = 97
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 168.693\
+89.8912\
+238.7\
+168.693\
+89.8912\
+-238.7\
+191.054\
+-5.99877\
+-238.7\
+191.054\
+-5.99877\
+238.7
+end
+begin OPrimitive
+ label = 98
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 237.348\
+-7.51291\
+-238.7\
+209.542\
+111.727\
+-238.7\
+209.542\
+111.727\
+238.7\
+237.348\
+-7.51291\
+238.7
+end
+begin OPrimitive
+ label = 99
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 191.054\
+-5.99877\
+-238.7\
+237.348\
+-7.51291\
+-238.7\
+237.348\
+-7.51291\
+238.7\
+191.054\
+-5.99877\
+238.7
+end
+begin OPrimitive
+ label = 100
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 209.542\
+111.727\
+238.7\
+209.542\
+111.727\
+-238.7\
+168.693\
+89.8912\
+-238.7\
+168.693\
+89.8912\
+238.7
+end
+begin OPrimitive
+ label = 101
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 237.348\
+-7.51291\
+238.7\
+209.542\
+111.727\
+238.7\
+168.693\
+89.8912\
+238.7\
+191.054\
+-5.99877\
+238.7
+end
+begin OPrimitive
+ label = 102
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 168.693\
+89.8912\
+-238.7\
+209.542\
+111.727\
+-238.7\
+237.348\
+-7.51291\
+-238.7\
+191.054\
+-5.99877\
+-238.7
+end
+begin ONode
+ name = ECBL_0_2_2
+ highlight = 0
+ pickable = 1
+ colorIndex = 53
+ primitives = 103\
+104\
+105\
+106\
+107\
+108
+end
+begin OPrimitive
+ label = 103
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 101.147\
+162.195\
+238.7\
+101.147\
+162.195\
+-238.7\
+168.458\
+90.3322\
+-238.7\
+168.458\
+90.3322\
+238.7
+end
+begin OPrimitive
+ label = 104
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 209.306\
+112.168\
+-238.7\
+125.605\
+201.529\
+-238.7\
+125.605\
+201.529\
+238.7\
+209.306\
+112.168\
+238.7
+end
+begin OPrimitive
+ label = 105
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 168.458\
+90.3322\
+-238.7\
+209.306\
+112.168\
+-238.7\
+209.306\
+112.168\
+238.7\
+168.458\
+90.3322\
+238.7
+end
+begin OPrimitive
+ label = 106
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 125.605\
+201.529\
+238.7\
+125.605\
+201.529\
+-238.7\
+101.147\
+162.195\
+-238.7\
+101.147\
+162.195\
+238.7
+end
+begin OPrimitive
+ label = 107
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 209.306\
+112.168\
+238.7\
+125.605\
+201.529\
+238.7\
+101.147\
+162.195\
+238.7\
+168.458\
+90.3322\
+238.7
+end
+begin OPrimitive
+ label = 108
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 101.147\
+162.195\
+-238.7\
+125.605\
+201.529\
+-238.7\
+209.306\
+112.168\
+-238.7\
+168.458\
+90.3322\
+-238.7
+end
+begin ONode
+ name = ECBL_0_3_2
+ highlight = 0
+ pickable = 1
+ colorIndex = 53
+ primitives = 109\
+110\
+111\
+112\
+113\
+114
+end
+begin OPrimitive
+ label = 109
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 6.49852\
+191.038\
+238.7\
+6.49852\
+191.038\
+-238.7\
+100.722\
+162.459\
+-238.7\
+100.722\
+162.459\
+238.7
+end
+begin OPrimitive
+ label = 110
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 125.18\
+201.793\
+-238.7\
+8.01266\
+237.332\
+-238.7\
+8.01266\
+237.332\
+238.7\
+125.18\
+201.793\
+238.7
+end
+begin OPrimitive
+ label = 111
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 100.722\
+162.459\
+-238.7\
+125.18\
+201.793\
+-238.7\
+125.18\
+201.793\
+238.7\
+100.722\
+162.459\
+238.7
+end
+begin OPrimitive
+ label = 112
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 8.01266\
+237.332\
+238.7\
+8.01266\
+237.332\
+-238.7\
+6.49852\
+191.038\
+-238.7\
+6.49852\
+191.038\
+238.7
+end
+begin OPrimitive
+ label = 113
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 125.18\
+201.793\
+238.7\
+8.01266\
+237.332\
+238.7\
+6.49852\
+191.038\
+238.7\
+100.722\
+162.459\
+238.7
+end
+begin OPrimitive
+ label = 114
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 6.49852\
+191.038\
+-238.7\
+8.01266\
+237.332\
+-238.7\
+125.18\
+201.793\
+-238.7\
+100.722\
+162.459\
+-238.7
+end
+begin ONode
+ name = ECBL_0_4_2
+ highlight = 0
+ pickable = 1
+ colorIndex = 53
+ primitives = 115\
+116\
+117\
+118\
+119\
+120
+end
+begin OPrimitive
+ label = 115
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -89.8912\
+168.693\
+238.7\
+-89.8912\
+168.693\
+-238.7\
+5.99878\
+191.054\
+-238.7\
+5.99878\
+191.054\
+238.7
+end
+begin OPrimitive
+ label = 116
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 7.51293\
+237.348\
+-238.7\
+-111.727\
+209.542\
+-238.7\
+-111.727\
+209.542\
+238.7\
+7.51293\
+237.348\
+238.7
+end
+begin OPrimitive
+ label = 117
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 5.99878\
+191.054\
+-238.7\
+7.51293\
+237.348\
+-238.7\
+7.51293\
+237.348\
+238.7\
+5.99878\
+191.054\
+238.7
+end
+begin OPrimitive
+ label = 118
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -111.727\
+209.542\
+238.7\
+-111.727\
+209.542\
+-238.7\
+-89.8912\
+168.693\
+-238.7\
+-89.8912\
+168.693\
+238.7
+end
+begin OPrimitive
+ label = 119
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 7.51293\
+237.348\
+238.7\
+-111.727\
+209.542\
+238.7\
+-89.8912\
+168.693\
+238.7\
+5.99878\
+191.054\
+238.7
+end
+begin OPrimitive
+ label = 120
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -89.8912\
+168.693\
+-238.7\
+-111.727\
+209.542\
+-238.7\
+7.51293\
+237.348\
+-238.7\
+5.99878\
+191.054\
+-238.7
+end
+begin ONode
+ name = ECBL_0_5_2
+ highlight = 0
+ pickable = 1
+ colorIndex = 53
+ primitives = 121\
+122\
+123\
+124\
+125\
+126
+end
+begin OPrimitive
+ label = 121
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -162.195\
+101.147\
+238.7\
+-162.195\
+101.147\
+-238.7\
+-90.3322\
+168.458\
+-238.7\
+-90.3322\
+168.458\
+238.7
+end
+begin OPrimitive
+ label = 122
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -112.168\
+209.306\
+-238.7\
+-201.529\
+125.605\
+-238.7\
+-201.529\
+125.605\
+238.7\
+-112.168\
+209.306\
+238.7
+end
+begin OPrimitive
+ label = 123
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -90.3322\
+168.458\
+-238.7\
+-112.168\
+209.306\
+-238.7\
+-112.168\
+209.306\
+238.7\
+-90.3322\
+168.458\
+238.7
+end
+begin OPrimitive
+ label = 124
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -201.529\
+125.605\
+238.7\
+-201.529\
+125.605\
+-238.7\
+-162.195\
+101.147\
+-238.7\
+-162.195\
+101.147\
+238.7
+end
+begin OPrimitive
+ label = 125
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -112.168\
+209.306\
+238.7\
+-201.529\
+125.605\
+238.7\
+-162.195\
+101.147\
+238.7\
+-90.3322\
+168.458\
+238.7
+end
+begin OPrimitive
+ label = 126
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -162.195\
+101.147\
+-238.7\
+-201.529\
+125.605\
+-238.7\
+-112.168\
+209.306\
+-238.7\
+-90.3322\
+168.458\
+-238.7
+end
+begin ONode
+ name = ECBL_0_6_2
+ highlight = 0
+ pickable = 1
+ colorIndex = 53
+ primitives = 127\
+128\
+129\
+130\
+131\
+132
+end
+begin OPrimitive
+ label = 127
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -191.038\
+6.49849\
+238.7\
+-191.038\
+6.49849\
+-238.7\
+-162.459\
+100.722\
+-238.7\
+-162.459\
+100.722\
+238.7
+end
+begin OPrimitive
+ label = 128
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -201.793\
+125.18\
+-238.7\
+-237.332\
+8.01263\
+-238.7\
+-237.332\
+8.01263\
+238.7\
+-201.793\
+125.18\
+238.7
+end
+begin OPrimitive
+ label = 129
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -162.459\
+100.722\
+-238.7\
+-201.793\
+125.18\
+-238.7\
+-201.793\
+125.18\
+238.7\
+-162.459\
+100.722\
+238.7
+end
+begin OPrimitive
+ label = 130
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -237.332\
+8.01263\
+238.7\
+-237.332\
+8.01263\
+-238.7\
+-191.038\
+6.49849\
+-238.7\
+-191.038\
+6.49849\
+238.7
+end
+begin OPrimitive
+ label = 131
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -201.793\
+125.18\
+238.7\
+-237.332\
+8.01263\
+238.7\
+-191.038\
+6.49849\
+238.7\
+-162.459\
+100.722\
+238.7
+end
+begin OPrimitive
+ label = 132
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -191.038\
+6.49849\
+-238.7\
+-237.332\
+8.01263\
+-238.7\
+-201.793\
+125.18\
+-238.7\
+-162.459\
+100.722\
+-238.7
+end
+begin ONode
+ name = ECBL_0_7_2
+ highlight = 0
+ pickable = 1
+ colorIndex = 53
+ primitives = 133\
+134\
+135\
+136\
+137\
+138
+end
+begin OPrimitive
+ label = 133
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -168.693\
+-89.8912\
+238.7\
+-168.693\
+-89.8912\
+-238.7\
+-191.054\
+5.99875\
+-238.7\
+-191.054\
+5.99875\
+238.7
+end
+begin OPrimitive
+ label = 134
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -237.348\
+7.51289\
+-238.7\
+-209.542\
+-111.727\
+-238.7\
+-209.542\
+-111.727\
+238.7\
+-237.348\
+7.51289\
+238.7
+end
+begin OPrimitive
+ label = 135
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -191.054\
+5.99875\
+-238.7\
+-237.348\
+7.51289\
+-238.7\
+-237.348\
+7.51289\
+238.7\
+-191.054\
+5.99875\
+238.7
+end
+begin OPrimitive
+ label = 136
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -209.542\
+-111.727\
+238.7\
+-209.542\
+-111.727\
+-238.7\
+-168.693\
+-89.8912\
+-238.7\
+-168.693\
+-89.8912\
+238.7
+end
+begin OPrimitive
+ label = 137
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -237.348\
+7.51289\
+238.7\
+-209.542\
+-111.727\
+238.7\
+-168.693\
+-89.8912\
+238.7\
+-191.054\
+5.99875\
+238.7
+end
+begin OPrimitive
+ label = 138
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -168.693\
+-89.8912\
+-238.7\
+-209.542\
+-111.727\
+-238.7\
+-237.348\
+7.51289\
+-238.7\
+-191.054\
+5.99875\
+-238.7
+end
+begin ONode
+ name = ECBL_0_8_2
+ highlight = 0
+ pickable = 1
+ colorIndex = 53
+ primitives = 139\
+140\
+141\
+142\
+143\
+144
+end
+begin OPrimitive
+ label = 139
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -101.147\
+-162.195\
+238.7\
+-101.147\
+-162.195\
+-238.7\
+-168.458\
+-90.3322\
+-238.7\
+-168.458\
+-90.3322\
+238.7
+end
+begin OPrimitive
+ label = 140
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -209.306\
+-112.168\
+-238.7\
+-125.605\
+-201.529\
+-238.7\
+-125.605\
+-201.529\
+238.7\
+-209.306\
+-112.168\
+238.7
+end
+begin OPrimitive
+ label = 141
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -168.458\
+-90.3322\
+-238.7\
+-209.306\
+-112.168\
+-238.7\
+-209.306\
+-112.168\
+238.7\
+-168.458\
+-90.3322\
+238.7
+end
+begin OPrimitive
+ label = 142
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -125.605\
+-201.529\
+238.7\
+-125.605\
+-201.529\
+-238.7\
+-101.147\
+-162.195\
+-238.7\
+-101.147\
+-162.195\
+238.7
+end
+begin OPrimitive
+ label = 143
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -209.306\
+-112.168\
+238.7\
+-125.605\
+-201.529\
+238.7\
+-101.147\
+-162.195\
+238.7\
+-168.458\
+-90.3322\
+238.7
+end
+begin OPrimitive
+ label = 144
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -101.147\
+-162.195\
+-238.7\
+-125.605\
+-201.529\
+-238.7\
+-209.306\
+-112.168\
+-238.7\
+-168.458\
+-90.3322\
+-238.7
+end
+begin ONode
+ name = ECBL_0_9_2
+ highlight = 0
+ pickable = 1
+ colorIndex = 53
+ primitives = 145\
+146\
+147\
+148\
+149\
+150
+end
+begin OPrimitive
+ label = 145
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -6.49855\
+-191.038\
+238.7\
+-6.49855\
+-191.038\
+-238.7\
+-100.722\
+-162.459\
+-238.7\
+-100.722\
+-162.459\
+238.7
+end
+begin OPrimitive
+ label = 146
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -125.18\
+-201.793\
+-238.7\
+-8.0127\
+-237.332\
+-238.7\
+-8.0127\
+-237.332\
+238.7\
+-125.18\
+-201.793\
+238.7
+end
+begin OPrimitive
+ label = 147
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -100.722\
+-162.459\
+-238.7\
+-125.18\
+-201.793\
+-238.7\
+-125.18\
+-201.793\
+238.7\
+-100.722\
+-162.459\
+238.7
+end
+begin OPrimitive
+ label = 148
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -8.0127\
+-237.332\
+238.7\
+-8.0127\
+-237.332\
+-238.7\
+-6.49855\
+-191.038\
+-238.7\
+-6.49855\
+-191.038\
+238.7
+end
+begin OPrimitive
+ label = 149
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -125.18\
+-201.793\
+238.7\
+-8.0127\
+-237.332\
+238.7\
+-6.49855\
+-191.038\
+238.7\
+-100.722\
+-162.459\
+238.7
+end
+begin OPrimitive
+ label = 150
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -6.49855\
+-191.038\
+-238.7\
+-8.0127\
+-237.332\
+-238.7\
+-125.18\
+-201.793\
+-238.7\
+-100.722\
+-162.459\
+-238.7
+end
+begin ONode
+ name = ECBL_0_10_2
+ highlight = 0
+ pickable = 1
+ colorIndex = 53
+ primitives = 151\
+152\
+153\
+154\
+155\
+156
+end
+begin OPrimitive
+ label = 151
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 89.8912\
+-168.693\
+238.7\
+89.8912\
+-168.693\
+-238.7\
+-5.99881\
+-191.054\
+-238.7\
+-5.99881\
+-191.054\
+238.7
+end
+begin OPrimitive
+ label = 152
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -7.51296\
+-237.348\
+-238.7\
+111.727\
+-209.542\
+-238.7\
+111.727\
+-209.542\
+238.7\
+-7.51296\
+-237.348\
+238.7
+end
+begin OPrimitive
+ label = 153
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -5.99881\
+-191.054\
+-238.7\
+-7.51296\
+-237.348\
+-238.7\
+-7.51296\
+-237.348\
+238.7\
+-5.99881\
+-191.054\
+238.7
+end
+begin OPrimitive
+ label = 154
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 111.727\
+-209.542\
+238.7\
+111.727\
+-209.542\
+-238.7\
+89.8912\
+-168.693\
+-238.7\
+89.8912\
+-168.693\
+238.7
+end
+begin OPrimitive
+ label = 155
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -7.51296\
+-237.348\
+238.7\
+111.727\
+-209.542\
+238.7\
+89.8912\
+-168.693\
+238.7\
+-5.99881\
+-191.054\
+238.7
+end
+begin OPrimitive
+ label = 156
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 89.8912\
+-168.693\
+-238.7\
+111.727\
+-209.542\
+-238.7\
+-7.51296\
+-237.348\
+-238.7\
+-5.99881\
+-191.054\
+-238.7
+end
+begin ONode
+ name = ECBL_0_11_2
+ highlight = 0
+ pickable = 1
+ colorIndex = 53
+ primitives = 157\
+158\
+159\
+160\
+161\
+162
+end
+begin OPrimitive
+ label = 157
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 162.195\
+-101.147\
+238.7\
+162.195\
+-101.147\
+-238.7\
+90.3321\
+-168.458\
+-238.7\
+90.3321\
+-168.458\
+238.7
+end
+begin OPrimitive
+ label = 158
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 112.168\
+-209.306\
+-238.7\
+201.529\
+-125.605\
+-238.7\
+201.529\
+-125.605\
+238.7\
+112.168\
+-209.306\
+238.7
+end
+begin OPrimitive
+ label = 159
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 90.3321\
+-168.458\
+-238.7\
+112.168\
+-209.306\
+-238.7\
+112.168\
+-209.306\
+238.7\
+90.3321\
+-168.458\
+238.7
+end
+begin OPrimitive
+ label = 160
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 201.529\
+-125.605\
+238.7\
+201.529\
+-125.605\
+-238.7\
+162.195\
+-101.147\
+-238.7\
+162.195\
+-101.147\
+238.7
+end
+begin OPrimitive
+ label = 161
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 112.168\
+-209.306\
+238.7\
+201.529\
+-125.605\
+238.7\
+162.195\
+-101.147\
+238.7\
+90.3321\
+-168.458\
+238.7
+end
+begin OPrimitive
+ label = 162
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 162.195\
+-101.147\
+-238.7\
+201.529\
+-125.605\
+-238.7\
+112.168\
+-209.306\
+-238.7\
+90.3321\
+-168.458\
+-238.7
+end
+begin ONode
+ name = ECBL_0_12_2
+ highlight = 0
+ pickable = 1
+ colorIndex = 53
+ primitives = 163\
+164\
+165\
+166\
+167\
+168
+end
+begin OPrimitive
+ label = 163
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 191.038\
+-6.49842\
+238.7\
+191.038\
+-6.49842\
+-238.7\
+162.459\
+-100.722\
+-238.7\
+162.459\
+-100.722\
+238.7
+end
+begin OPrimitive
+ label = 164
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 201.793\
+-125.18\
+-238.7\
+237.332\
+-8.01254\
+-238.7\
+237.332\
+-8.01254\
+238.7\
+201.793\
+-125.18\
+238.7
+end
+begin OPrimitive
+ label = 165
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 162.459\
+-100.722\
+-238.7\
+201.793\
+-125.18\
+-238.7\
+201.793\
+-125.18\
+238.7\
+162.459\
+-100.722\
+238.7
+end
+begin OPrimitive
+ label = 166
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 237.332\
+-8.01254\
+238.7\
+237.332\
+-8.01254\
+-238.7\
+191.038\
+-6.49842\
+-238.7\
+191.038\
+-6.49842\
+238.7
+end
+begin OPrimitive
+ label = 167
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 201.793\
+-125.18\
+238.7\
+237.332\
+-8.01254\
+238.7\
+191.038\
+-6.49842\
+238.7\
+162.459\
+-100.722\
+238.7
+end
+begin OPrimitive
+ label = 168
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 191.038\
+-6.49842\
+-238.7\
+237.332\
+-8.01254\
+-238.7\
+201.793\
+-125.18\
+-238.7\
+162.459\
+-100.722\
+-238.7
+end
+begin ONode
+ name = ECEB_0_1_2
+ highlight = 0
+ pickable = 1
+ colorIndex = 53
+ primitives = 169\
+170\
+171\
+172\
+173\
+174\
+175\
+176
+end
+begin OPrimitive
+ label = 169
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 53.5049\
+-16.0199\
+-303.25\
+53.5049\
+-16.0199\
+-252.74\
+54.4374\
+12.4893\
+-252.74\
+54.4374\
+12.4893\
+-303.25
+end
+begin OPrimitive
+ label = 170
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 235.458\
+16.2686\
+-252.74\
+233.891\
+-31.6201\
+-252.74\
+233.891\
+-31.6201\
+-303.25\
+235.458\
+16.2686\
+-303.25
+end
+begin OPrimitive
+ label = 171
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 54.4374\
+12.4893\
+-252.74\
+226.957\
+52.7204\
+-252.74\
+226.957\
+52.7204\
+-303.25\
+54.4374\
+12.4893\
+-303.25
+end
+begin OPrimitive
+ label = 172
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 223.027\
+-67.4386\
+-303.25\
+223.027\
+-67.4386\
+-252.74\
+53.5049\
+-16.0199\
+-252.74\
+53.5049\
+-16.0199\
+-303.25
+end
+begin OPrimitive
+ label = 173
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 6
+ points = 226.957\
+52.7204\
+-303.25\
+235.458\
+16.2686\
+-303.25\
+233.891\
+-31.6201\
+-303.25\
+223.027\
+-67.4386\
+-303.25\
+53.5049\
+-16.0199\
+-303.25\
+54.4374\
+12.4893\
+-303.25
+end
+begin OPrimitive
+ label = 174
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 6
+ points = 53.5049\
+-16.0199\
+-252.74\
+223.027\
+-67.4386\
+-252.74\
+233.891\
+-31.6201\
+-252.74\
+235.458\
+16.2686\
+-252.74\
+226.957\
+52.7204\
+-252.74\
+54.4374\
+12.4893\
+-252.74
+end
+begin OPrimitive
+ label = 175
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 226.957\
+52.7204\
+-252.74\
+235.458\
+16.2686\
+-252.74\
+235.458\
+16.2686\
+-303.25\
+226.957\
+52.7204\
+-303.25
+end
+begin OPrimitive
+ label = 176
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 233.891\
+-31.6201\
+-303.25\
+233.891\
+-31.6201\
+-252.74\
+223.027\
+-67.4386\
+-252.74\
+223.027\
+-67.4386\
+-303.25
+end
+begin ONode
+ name = ECEB_0_2_2
+ highlight = 0
+ pickable = 1
+ colorIndex = 53
+ primitives = 177\
+178\
+179\
+180\
+181\
+182\
+183\
+184
+end
+begin OPrimitive
+ label = 177
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 54.3465\
+12.8788\
+-303.25\
+54.3465\
+12.8788\
+-252.74\
+40.8995\
+38.0347\
+-252.74\
+40.8995\
+38.0347\
+-303.25
+end
+begin OPrimitive
+ label = 178
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 195.778\
+131.818\
+-252.74\
+218.366\
+89.5618\
+-252.74\
+218.366\
+89.5618\
+-303.25\
+195.778\
+131.818\
+-303.25
+end
+begin OPrimitive
+ label = 179
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 40.8995\
+38.0347\
+-252.74\
+170.19\
+159.136\
+-252.74\
+170.19\
+159.136\
+-303.25\
+40.8995\
+38.0347\
+-303.25
+end
+begin OPrimitive
+ label = 180
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 226.866\
+53.11\
+-303.25\
+226.866\
+53.11\
+-252.74\
+54.3465\
+12.8788\
+-252.74\
+54.3465\
+12.8788\
+-303.25
+end
+begin OPrimitive
+ label = 181
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 6
+ points = 170.19\
+159.136\
+-303.25\
+195.778\
+131.818\
+-303.25\
+218.366\
+89.5618\
+-303.25\
+226.866\
+53.11\
+-303.25\
+54.3465\
+12.8788\
+-303.25\
+40.8995\
+38.0347\
+-303.25
+end
+begin OPrimitive
+ label = 182
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 6
+ points = 54.3465\
+12.8788\
+-252.74\
+226.866\
+53.11\
+-252.74\
+218.366\
+89.5618\
+-252.74\
+195.778\
+131.818\
+-252.74\
+170.19\
+159.136\
+-252.74\
+40.8995\
+38.0347\
+-252.74
+end
+begin OPrimitive
+ label = 183
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 170.19\
+159.136\
+-252.74\
+195.778\
+131.818\
+-252.74\
+195.778\
+131.818\
+-303.25\
+170.19\
+159.136\
+-303.25
+end
+begin OPrimitive
+ label = 184
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 218.366\
+89.5618\
+-303.25\
+218.366\
+89.5618\
+-252.74\
+226.866\
+53.11\
+-252.74\
+226.866\
+53.11\
+-303.25
+end
+begin ONode
+ name = ECEB_0_3_2
+ highlight = 0
+ pickable = 1
+ colorIndex = 53
+ primitives = 185\
+186\
+187\
+188\
+189\
+190\
+191\
+192
+end
+begin OPrimitive
+ label = 185
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 40.626\
+38.3267\
+-303.25\
+40.626\
+38.3267\
+-252.74\
+16.4027\
+53.3888\
+-252.74\
+16.4027\
+53.3888\
+-303.25
+end
+begin OPrimitive
+ label = 186
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 103.64\
+212.047\
+-252.74\
+144.329\
+186.746\
+-252.74\
+144.329\
+186.746\
+-303.25\
+103.64\
+212.047\
+-303.25
+end
+begin OPrimitive
+ label = 187
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 16.4027\
+53.3888\
+-252.74\
+67.8214\
+222.911\
+-252.74\
+67.8214\
+222.911\
+-303.25\
+16.4027\
+53.3888\
+-303.25
+end
+begin OPrimitive
+ label = 188
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 169.917\
+159.428\
+-303.25\
+169.917\
+159.428\
+-252.74\
+40.626\
+38.3267\
+-252.74\
+40.626\
+38.3267\
+-303.25
+end
+begin OPrimitive
+ label = 189
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 6
+ points = 67.8214\
+222.911\
+-303.25\
+103.64\
+212.047\
+-303.25\
+144.329\
+186.746\
+-303.25\
+169.917\
+159.428\
+-303.25\
+40.626\
+38.3267\
+-303.25\
+16.4027\
+53.3888\
+-303.25
+end
+begin OPrimitive
+ label = 190
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 6
+ points = 40.626\
+38.3267\
+-252.74\
+169.917\
+159.428\
+-252.74\
+144.329\
+186.746\
+-252.74\
+103.64\
+212.047\
+-252.74\
+67.8214\
+222.911\
+-252.74\
+16.4027\
+53.3888\
+-252.74
+end
+begin OPrimitive
+ label = 191
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 67.8214\
+222.911\
+-252.74\
+103.64\
+212.047\
+-252.74\
+103.64\
+212.047\
+-303.25\
+67.8214\
+222.911\
+-303.25
+end
+begin OPrimitive
+ label = 192
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 144.329\
+186.746\
+-303.25\
+144.329\
+186.746\
+-252.74\
+169.917\
+159.428\
+-252.74\
+169.917\
+159.428\
+-303.25
+end
+begin ONode
+ name = ECEB_0_4_2
+ highlight = 0
+ pickable = 1
+ colorIndex = 53
+ primitives = 193\
+194\
+195\
+196\
+197\
+198\
+199\
+200
+end
+begin OPrimitive
+ label = 193
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 16.0199\
+53.5049\
+-303.25\
+16.0199\
+53.5049\
+-252.74\
+-12.4893\
+54.4374\
+-252.74\
+-12.4893\
+54.4374\
+-303.25
+end
+begin OPrimitive
+ label = 194
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -16.2686\
+235.458\
+-252.74\
+31.6202\
+233.891\
+-252.74\
+31.6202\
+233.891\
+-303.25\
+-16.2686\
+235.458\
+-303.25
+end
+begin OPrimitive
+ label = 195
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -12.4893\
+54.4374\
+-252.74\
+-52.7204\
+226.957\
+-252.74\
+-52.7204\
+226.957\
+-303.25\
+-12.4893\
+54.4374\
+-303.25
+end
+begin OPrimitive
+ label = 196
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 67.4386\
+223.027\
+-303.25\
+67.4386\
+223.027\
+-252.74\
+16.0199\
+53.5049\
+-252.74\
+16.0199\
+53.5049\
+-303.25
+end
+begin OPrimitive
+ label = 197
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 6
+ points = -52.7204\
+226.957\
+-303.25\
+-16.2686\
+235.458\
+-303.25\
+31.6202\
+233.891\
+-303.25\
+67.4386\
+223.027\
+-303.25\
+16.0199\
+53.5049\
+-303.25\
+-12.4893\
+54.4374\
+-303.25
+end
+begin OPrimitive
+ label = 198
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 6
+ points = 16.0199\
+53.5049\
+-252.74\
+67.4386\
+223.027\
+-252.74\
+31.6202\
+233.891\
+-252.74\
+-16.2686\
+235.458\
+-252.74\
+-52.7204\
+226.957\
+-252.74\
+-12.4893\
+54.4374\
+-252.74
+end
+begin OPrimitive
+ label = 199
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -52.7204\
+226.957\
+-252.74\
+-16.2686\
+235.458\
+-252.74\
+-16.2686\
+235.458\
+-303.25\
+-52.7204\
+226.957\
+-303.25
+end
+begin OPrimitive
+ label = 200
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 31.6202\
+233.891\
+-303.25\
+31.6202\
+233.891\
+-252.74\
+67.4386\
+223.027\
+-252.74\
+67.4386\
+223.027\
+-303.25
+end
+begin ONode
+ name = ECEB_0_5_2
+ highlight = 0
+ pickable = 1
+ colorIndex = 53
+ primitives = 201\
+202\
+203\
+204\
+205\
+206\
+207\
+208
+end
+begin OPrimitive
+ label = 201
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -12.8788\
+54.3465\
+-303.25\
+-12.8788\
+54.3465\
+-252.74\
+-38.0347\
+40.8995\
+-252.74\
+-38.0347\
+40.8995\
+-303.25
+end
+begin OPrimitive
+ label = 202
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -131.818\
+195.778\
+-252.74\
+-89.5618\
+218.366\
+-252.74\
+-89.5618\
+218.366\
+-303.25\
+-131.818\
+195.778\
+-303.25
+end
+begin OPrimitive
+ label = 203
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -38.0347\
+40.8995\
+-252.74\
+-159.136\
+170.19\
+-252.74\
+-159.136\
+170.19\
+-303.25\
+-38.0347\
+40.8995\
+-303.25
+end
+begin OPrimitive
+ label = 204
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -53.11\
+226.866\
+-303.25\
+-53.11\
+226.866\
+-252.74\
+-12.8788\
+54.3465\
+-252.74\
+-12.8788\
+54.3465\
+-303.25
+end
+begin OPrimitive
+ label = 205
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 6
+ points = -159.136\
+170.19\
+-303.25\
+-131.818\
+195.778\
+-303.25\
+-89.5618\
+218.366\
+-303.25\
+-53.11\
+226.866\
+-303.25\
+-12.8788\
+54.3465\
+-303.25\
+-38.0347\
+40.8995\
+-303.25
+end
+begin OPrimitive
+ label = 206
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 6
+ points = -12.8788\
+54.3465\
+-252.74\
+-53.11\
+226.866\
+-252.74\
+-89.5618\
+218.366\
+-252.74\
+-131.818\
+195.778\
+-252.74\
+-159.136\
+170.19\
+-252.74\
+-38.0347\
+40.8995\
+-252.74
+end
+begin OPrimitive
+ label = 207
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -159.136\
+170.19\
+-252.74\
+-131.818\
+195.778\
+-252.74\
+-131.818\
+195.778\
+-303.25\
+-159.136\
+170.19\
+-303.25
+end
+begin OPrimitive
+ label = 208
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -89.5618\
+218.366\
+-303.25\
+-89.5618\
+218.366\
+-252.74\
+-53.11\
+226.866\
+-252.74\
+-53.11\
+226.866\
+-303.25
+end
+begin ONode
+ name = ECEB_0_6_2
+ highlight = 0
+ pickable = 1
+ colorIndex = 53
+ primitives = 209\
+210\
+211\
+212\
+213\
+214\
+215\
+216
+end
+begin OPrimitive
+ label = 209
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -38.3267\
+40.626\
+-303.25\
+-38.3267\
+40.626\
+-252.74\
+-53.3888\
+16.4026\
+-252.74\
+-53.3888\
+16.4026\
+-303.25
+end
+begin OPrimitive
+ label = 210
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -212.047\
+103.64\
+-252.74\
+-186.746\
+144.329\
+-252.74\
+-186.746\
+144.329\
+-303.25\
+-212.047\
+103.64\
+-303.25
+end
+begin OPrimitive
+ label = 211
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -53.3888\
+16.4026\
+-252.74\
+-222.911\
+67.8213\
+-252.74\
+-222.911\
+67.8213\
+-303.25\
+-53.3888\
+16.4026\
+-303.25
+end
+begin OPrimitive
+ label = 212
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -159.428\
+169.917\
+-303.25\
+-159.428\
+169.917\
+-252.74\
+-38.3267\
+40.626\
+-252.74\
+-38.3267\
+40.626\
+-303.25
+end
+begin OPrimitive
+ label = 213
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 6
+ points = -222.911\
+67.8213\
+-303.25\
+-212.047\
+103.64\
+-303.25\
+-186.746\
+144.329\
+-303.25\
+-159.428\
+169.917\
+-303.25\
+-38.3267\
+40.626\
+-303.25\
+-53.3888\
+16.4026\
+-303.25
+end
+begin OPrimitive
+ label = 214
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 6
+ points = -38.3267\
+40.626\
+-252.74\
+-159.428\
+169.917\
+-252.74\
+-186.746\
+144.329\
+-252.74\
+-212.047\
+103.64\
+-252.74\
+-222.911\
+67.8213\
+-252.74\
+-53.3888\
+16.4026\
+-252.74
+end
+begin OPrimitive
+ label = 215
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -222.911\
+67.8213\
+-252.74\
+-212.047\
+103.64\
+-252.74\
+-212.047\
+103.64\
+-303.25\
+-222.911\
+67.8213\
+-303.25
+end
+begin OPrimitive
+ label = 216
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -186.746\
+144.329\
+-303.25\
+-186.746\
+144.329\
+-252.74\
+-159.428\
+169.917\
+-252.74\
+-159.428\
+169.917\
+-303.25
+end
+begin ONode
+ name = ECEB_0_7_2
+ highlight = 0
+ pickable = 1
+ colorIndex = 53
+ primitives = 217\
+218\
+219\
+220\
+221\
+222\
+223\
+224
+end
+begin OPrimitive
+ label = 217
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -53.5049\
+16.0199\
+-303.25\
+-53.5049\
+16.0199\
+-252.74\
+-54.4374\
+-12.4893\
+-252.74\
+-54.4374\
+-12.4893\
+-303.25
+end
+begin OPrimitive
+ label = 218
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -235.458\
+-16.2686\
+-252.74\
+-233.891\
+31.6201\
+-252.74\
+-233.891\
+31.6201\
+-303.25\
+-235.458\
+-16.2686\
+-303.25
+end
+begin OPrimitive
+ label = 219
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -54.4374\
+-12.4893\
+-252.74\
+-226.957\
+-52.7204\
+-252.74\
+-226.957\
+-52.7204\
+-303.25\
+-54.4374\
+-12.4893\
+-303.25
+end
+begin OPrimitive
+ label = 220
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -223.027\
+67.4385\
+-303.25\
+-223.027\
+67.4385\
+-252.74\
+-53.5049\
+16.0199\
+-252.74\
+-53.5049\
+16.0199\
+-303.25
+end
+begin OPrimitive
+ label = 221
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 6
+ points = -226.957\
+-52.7204\
+-303.25\
+-235.458\
+-16.2686\
+-303.25\
+-233.891\
+31.6201\
+-303.25\
+-223.027\
+67.4385\
+-303.25\
+-53.5049\
+16.0199\
+-303.25\
+-54.4374\
+-12.4893\
+-303.25
+end
+begin OPrimitive
+ label = 222
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 6
+ points = -53.5049\
+16.0199\
+-252.74\
+-223.027\
+67.4385\
+-252.74\
+-233.891\
+31.6201\
+-252.74\
+-235.458\
+-16.2686\
+-252.74\
+-226.957\
+-52.7204\
+-252.74\
+-54.4374\
+-12.4893\
+-252.74
+end
+begin OPrimitive
+ label = 223
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -226.957\
+-52.7204\
+-252.74\
+-235.458\
+-16.2686\
+-252.74\
+-235.458\
+-16.2686\
+-303.25\
+-226.957\
+-52.7204\
+-303.25
+end
+begin OPrimitive
+ label = 224
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -233.891\
+31.6201\
+-303.25\
+-233.891\
+31.6201\
+-252.74\
+-223.027\
+67.4385\
+-252.74\
+-223.027\
+67.4385\
+-303.25
+end
+begin ONode
+ name = ECEB_0_8_2
+ highlight = 0
+ pickable = 1
+ colorIndex = 53
+ primitives = 225\
+226\
+227\
+228\
+229\
+230\
+231\
+232
+end
+begin OPrimitive
+ label = 225
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -54.3465\
+-12.8788\
+-303.25\
+-54.3465\
+-12.8788\
+-252.74\
+-40.8995\
+-38.0347\
+-252.74\
+-40.8995\
+-38.0347\
+-303.25
+end
+begin OPrimitive
+ label = 226
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -195.778\
+-131.818\
+-252.74\
+-218.366\
+-89.5618\
+-252.74\
+-218.366\
+-89.5618\
+-303.25\
+-195.778\
+-131.818\
+-303.25
+end
+begin OPrimitive
+ label = 227
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -40.8995\
+-38.0347\
+-252.74\
+-170.19\
+-159.136\
+-252.74\
+-170.19\
+-159.136\
+-303.25\
+-40.8995\
+-38.0347\
+-303.25
+end
+begin OPrimitive
+ label = 228
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -226.866\
+-53.11\
+-303.25\
+-226.866\
+-53.11\
+-252.74\
+-54.3465\
+-12.8788\
+-252.74\
+-54.3465\
+-12.8788\
+-303.25
+end
+begin OPrimitive
+ label = 229
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 6
+ points = -170.19\
+-159.136\
+-303.25\
+-195.778\
+-131.818\
+-303.25\
+-218.366\
+-89.5618\
+-303.25\
+-226.866\
+-53.11\
+-303.25\
+-54.3465\
+-12.8788\
+-303.25\
+-40.8995\
+-38.0347\
+-303.25
+end
+begin OPrimitive
+ label = 230
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 6
+ points = -54.3465\
+-12.8788\
+-252.74\
+-226.866\
+-53.11\
+-252.74\
+-218.366\
+-89.5618\
+-252.74\
+-195.778\
+-131.818\
+-252.74\
+-170.19\
+-159.136\
+-252.74\
+-40.8995\
+-38.0347\
+-252.74
+end
+begin OPrimitive
+ label = 231
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -170.19\
+-159.136\
+-252.74\
+-195.778\
+-131.818\
+-252.74\
+-195.778\
+-131.818\
+-303.25\
+-170.19\
+-159.136\
+-303.25
+end
+begin OPrimitive
+ label = 232
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -218.366\
+-89.5618\
+-303.25\
+-218.366\
+-89.5618\
+-252.74\
+-226.866\
+-53.11\
+-252.74\
+-226.866\
+-53.11\
+-303.25
+end
+begin ONode
+ name = ECEB_0_9_2
+ highlight = 0
+ pickable = 1
+ colorIndex = 53
+ primitives = 233\
+234\
+235\
+236\
+237\
+238\
+239\
+240
+end
+begin OPrimitive
+ label = 233
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -40.6261\
+-38.3267\
+-303.25\
+-40.6261\
+-38.3267\
+-252.74\
+-16.4027\
+-53.3888\
+-252.74\
+-16.4027\
+-53.3888\
+-303.25
+end
+begin OPrimitive
+ label = 234
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -103.64\
+-212.047\
+-252.74\
+-144.329\
+-186.746\
+-252.74\
+-144.329\
+-186.746\
+-303.25\
+-103.64\
+-212.047\
+-303.25
+end
+begin OPrimitive
+ label = 235
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -16.4027\
+-53.3888\
+-252.74\
+-67.8214\
+-222.911\
+-252.74\
+-67.8214\
+-222.911\
+-303.25\
+-16.4027\
+-53.3888\
+-303.25
+end
+begin OPrimitive
+ label = 236
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -169.917\
+-159.428\
+-303.25\
+-169.917\
+-159.428\
+-252.74\
+-40.6261\
+-38.3267\
+-252.74\
+-40.6261\
+-38.3267\
+-303.25
+end
+begin OPrimitive
+ label = 237
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 6
+ points = -67.8214\
+-222.911\
+-303.25\
+-103.64\
+-212.047\
+-303.25\
+-144.329\
+-186.746\
+-303.25\
+-169.917\
+-159.428\
+-303.25\
+-40.6261\
+-38.3267\
+-303.25\
+-16.4027\
+-53.3888\
+-303.25
+end
+begin OPrimitive
+ label = 238
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 6
+ points = -40.6261\
+-38.3267\
+-252.74\
+-169.917\
+-159.428\
+-252.74\
+-144.329\
+-186.746\
+-252.74\
+-103.64\
+-212.047\
+-252.74\
+-67.8214\
+-222.911\
+-252.74\
+-16.4027\
+-53.3888\
+-252.74
+end
+begin OPrimitive
+ label = 239
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -67.8214\
+-222.911\
+-252.74\
+-103.64\
+-212.047\
+-252.74\
+-103.64\
+-212.047\
+-303.25\
+-67.8214\
+-222.911\
+-303.25
+end
+begin OPrimitive
+ label = 240
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -144.329\
+-186.746\
+-303.25\
+-144.329\
+-186.746\
+-252.74\
+-169.917\
+-159.428\
+-252.74\
+-169.917\
+-159.428\
+-303.25
+end
+begin ONode
+ name = ECEB_0_10_2
+ highlight = 0
+ pickable = 1
+ colorIndex = 53
+ primitives = 241\
+242\
+243\
+244\
+245\
+246\
+247\
+248
+end
+begin OPrimitive
+ label = 241
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -16.0199\
+-53.5049\
+-303.25\
+-16.0199\
+-53.5049\
+-252.74\
+12.4893\
+-54.4374\
+-252.74\
+12.4893\
+-54.4374\
+-303.25
+end
+begin OPrimitive
+ label = 242
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 16.2686\
+-235.458\
+-252.74\
+-31.6201\
+-233.891\
+-252.74\
+-31.6201\
+-233.891\
+-303.25\
+16.2686\
+-235.458\
+-303.25
+end
+begin OPrimitive
+ label = 243
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 12.4893\
+-54.4374\
+-252.74\
+52.7204\
+-226.957\
+-252.74\
+52.7204\
+-226.957\
+-303.25\
+12.4893\
+-54.4374\
+-303.25
+end
+begin OPrimitive
+ label = 244
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -67.4386\
+-223.027\
+-303.25\
+-67.4386\
+-223.027\
+-252.74\
+-16.0199\
+-53.5049\
+-252.74\
+-16.0199\
+-53.5049\
+-303.25
+end
+begin OPrimitive
+ label = 245
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 6
+ points = 52.7204\
+-226.957\
+-303.25\
+16.2686\
+-235.458\
+-303.25\
+-31.6201\
+-233.891\
+-303.25\
+-67.4386\
+-223.027\
+-303.25\
+-16.0199\
+-53.5049\
+-303.25\
+12.4893\
+-54.4374\
+-303.25
+end
+begin OPrimitive
+ label = 246
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 6
+ points = -16.0199\
+-53.5049\
+-252.74\
+-67.4386\
+-223.027\
+-252.74\
+-31.6201\
+-233.891\
+-252.74\
+16.2686\
+-235.458\
+-252.74\
+52.7204\
+-226.957\
+-252.74\
+12.4893\
+-54.4374\
+-252.74
+end
+begin OPrimitive
+ label = 247
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 52.7204\
+-226.957\
+-252.74\
+16.2686\
+-235.458\
+-252.74\
+16.2686\
+-235.458\
+-303.25\
+52.7204\
+-226.957\
+-303.25
+end
+begin OPrimitive
+ label = 248
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = -31.6201\
+-233.891\
+-303.25\
+-31.6201\
+-233.891\
+-252.74\
+-67.4386\
+-223.027\
+-252.74\
+-67.4386\
+-223.027\
+-303.25
+end
+begin ONode
+ name = ECEB_0_11_2
+ highlight = 0
+ pickable = 1
+ colorIndex = 53
+ primitives = 249\
+250\
+251\
+252\
+253\
+254\
+255\
+256
+end
+begin OPrimitive
+ label = 249
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 12.8788\
+-54.3465\
+-303.25\
+12.8788\
+-54.3465\
+-252.74\
+38.0347\
+-40.8995\
+-252.74\
+38.0347\
+-40.8995\
+-303.25
+end
+begin OPrimitive
+ label = 250
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 131.818\
+-195.778\
+-252.74\
+89.5617\
+-218.366\
+-252.74\
+89.5617\
+-218.366\
+-303.25\
+131.818\
+-195.778\
+-303.25
+end
+begin OPrimitive
+ label = 251
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 38.0347\
+-40.8995\
+-252.74\
+159.136\
+-170.19\
+-252.74\
+159.136\
+-170.19\
+-303.25\
+38.0347\
+-40.8995\
+-303.25
+end
+begin OPrimitive
+ label = 252
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 53.1099\
+-226.866\
+-303.25\
+53.1099\
+-226.866\
+-252.74\
+12.8788\
+-54.3465\
+-252.74\
+12.8788\
+-54.3465\
+-303.25
+end
+begin OPrimitive
+ label = 253
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 6
+ points = 159.136\
+-170.19\
+-303.25\
+131.818\
+-195.778\
+-303.25\
+89.5617\
+-218.366\
+-303.25\
+53.1099\
+-226.866\
+-303.25\
+12.8788\
+-54.3465\
+-303.25\
+38.0347\
+-40.8995\
+-303.25
+end
+begin OPrimitive
+ label = 254
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 6
+ points = 12.8788\
+-54.3465\
+-252.74\
+53.1099\
+-226.866\
+-252.74\
+89.5617\
+-218.366\
+-252.74\
+131.818\
+-195.778\
+-252.74\
+159.136\
+-170.19\
+-252.74\
+38.0347\
+-40.8995\
+-252.74
+end
+begin OPrimitive
+ label = 255
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 159.136\
+-170.19\
+-252.74\
+131.818\
+-195.778\
+-252.74\
+131.818\
+-195.778\
+-303.25\
+159.136\
+-170.19\
+-303.25
+end
+begin OPrimitive
+ label = 256
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 89.5617\
+-218.366\
+-303.25\
+89.5617\
+-218.366\
+-252.74\
+53.1099\
+-226.866\
+-252.74\
+53.1099\
+-226.866\
+-303.25
+end
+begin ONode
+ name = ECEB_0_12_2
+ highlight = 0
+ pickable = 1
+ colorIndex = 53
+ primitives = 257\
+258\
+259\
+260\
+261\
+262\
+263\
+264
+end
+begin OPrimitive
+ label = 257
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 38.3267\
+-40.626\
+-303.25\
+38.3267\
+-40.626\
+-252.74\
+53.3888\
+-16.4026\
+-252.74\
+53.3888\
+-16.4026\
+-303.25
+end
+begin OPrimitive
+ label = 258
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 212.047\
+-103.64\
+-252.74\
+186.746\
+-144.329\
+-252.74\
+186.746\
+-144.329\
+-303.25\
+212.047\
+-103.64\
+-303.25
+end
+begin OPrimitive
+ label = 259
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 53.3888\
+-16.4026\
+-252.74\
+222.911\
+-67.8213\
+-252.74\
+222.911\
+-67.8213\
+-303.25\
+53.3888\
+-16.4026\
+-303.25
+end
+begin OPrimitive
+ label = 260
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 159.428\
+-169.917\
+-303.25\
+159.428\
+-169.917\
+-252.74\
+38.3267\
+-40.626\
+-252.74\
+38.3267\
+-40.626\
+-303.25
+end
+begin OPrimitive
+ label = 261
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 6
+ points = 222.911\
+-67.8213\
+-303.25\
+212.047\
+-103.64\
+-303.25\
+186.746\
+-144.329\
+-303.25\
+159.428\
+-169.917\
+-303.25\
+38.3267\
+-40.626\
+-303.25\
+53.3888\
+-16.4026\
+-303.25
+end
+begin OPrimitive
+ label = 262
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 6
+ points = 38.3267\
+-40.626\
+-252.74\
+159.428\
+-169.917\
+-252.74\
+186.746\
+-144.329\
+-252.74\
+212.047\
+-103.64\
+-252.74\
+222.911\
+-67.8213\
+-252.74\
+53.3888\
+-16.4026\
+-252.74
+end
+begin OPrimitive
+ label = 263
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 222.911\
+-67.8213\
+-252.74\
+212.047\
+-103.64\
+-252.74\
+212.047\
+-103.64\
+-303.25\
+222.911\
+-67.8213\
+-303.25
+end
+begin OPrimitive
+ label = 264
+ type = polygon
+ colorIndex = 53
+ lineWidth = 1
+ lineStyle = solid
+ markerStyle = dot
+ areaStyle = solid
+ numberOfPoints = 4
+ points = 186.746\
+-144.329\
+-303.25\
+186.746\
+-144.329\
+-252.74\
+159.428\
+-169.917\
+-252.74\
+159.428\
+-169.917\
+-303.25
+end

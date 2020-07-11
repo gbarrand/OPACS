@@ -1,0 +1,304 @@
+!/* +---------------------- Copyright notice -------------------------------+ */
+!/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+!/* |   Permission to use, copy, modify, and distribute this software       | */
+!/* |   and its documentation for any purpose and without fee is hereby     | */
+!/* |   granted, provided that the above copyright notice appear in all     | */
+!/* |   copies and that both that copyright notice and this permission      | */
+!/* |   notice appear in supporting documentation.  This software is        | */
+!/* |   provided "as is" without express or implied warranty.               | */
+!/* +---------------------- Copyright notice -------------------------------+ */
+!----------------------------
+begin OInterface
+ version = v3
+ prefix = OTuple_
+ packages = Xm
+end
+!----------------------------
+begin OWidget
+ name = OTuple_palette
+ type = XmFormDialog
+ children = OTuple_12 OTuple_15 OTuple_224 OTuple_225 OTuple_update OTuple_reload OTuple_226 OTuple_231 OTuple_232 OTuple_234 OTuple_235 OTuple_240 OTuple_localTarget OTuple_241 
+ background = lightgrey
+ autoUnmanage = false
+ dialogTitle = Tuples
+end
+!----------------------------
+begin OWidget
+ name = OTuple_15
+ type = XmFrame
+ children = OTuple_infos 
+ background = grey
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = OTuple_226
+ bottomAttachment = attach_widget
+ bottomWidget = OTuple_231
+end
+!----------------------------
+begin OWidget
+ name = OTuple_infos
+ type = XmScrolledText
+ background = lightgrey
+ editMode = multi_line_edit
+ createCallback = osh> setWidgetTextSize `get Widget this` 4 10
+end
+!----------------------------
+begin OWidget
+ name = OTuple_224
+ type = XmPushButton
+ background = grey
+ labelString = Read ascii...
+ activateCallback = osh>\
+  do Widget/OTuple_load manage\
+  setWidgetResource OTuple_load okCallback 'osh> do `get Widget this` unmanage;load `get Widget thisValue` otu | get - name;callWidgetCallbacks OTuple_update activateCallback'
+ topAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = OTuple_225
+ type = XmPushButton
+ background = grey
+ labelString = Read rz...
+ activateCallback = osh> \
+  do Widget/OTuple_load manage\
+  setWidgetResource OTuple_load okCallback 'osh> do `get Widget this` unmanage;load `get Widget thisValue` rz | get - name;callWidgetCallbacks OTuple_update activateCallback'
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = OTuple_224
+end
+!----------------------------
+begin OWidget
+ name = OTuple_update
+ type = XmPushButton
+ background = grey
+ labelString = Update
+ activateCallback = osh>\
+   setWidgetResource OTuple_242 selectedItems ''\
+   setWidgetResource OTuple_242 items ''\
+   collect OTuple | get - name | setWidgetResource OTuple_242 items -
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = OTuple_225
+end
+!----------------------------
+begin OWidget
+ name = OTuple_reload
+ type = XmPushButton
+ background = grey
+ labelString = Reload
+ activateCallback = osh>\
+  tuple=`getWidgetResource OTuple_localTarget value`\
+  ident=`printf 'OTuple/%s' $tuple`\
+  file=`get $ident fileName`\
+  delete $ident;load $file\
+  callWidgetCallbacks OTuple_localTarget activateCallback
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = OTuple_localTarget
+end
+!----------------------------
+begin OWidget
+ name = OTuple_226
+ type = XmPushButton
+ background = grey
+ labelString = Dump all
+ activateCallback = osh>\
+  tuple=`getWidgetResource OTuple_localTarget value`\
+  dumpTuple $tuple
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = OTuple_reload
+end
+!----------------------------
+begin OWidget
+ name = OTuple_231
+ type = XmLabel
+ background = black
+ foreground = white
+ labelString = Columns
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ bottomAttachment = attach_widget
+ bottomWidget = OTuple_232
+end
+!----------------------------
+begin OWidget
+ name = OTuple_232
+ type = XmFrame
+ children = OTuple_233 
+ borderWidth = 3
+ borderColor = grey
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ bottomAttachment = attach_widget
+ bottomWidget = OTuple_235
+end
+!----------------------------
+begin OWidget
+ name = OTuple_233
+ type = XmScrolledList
+ background = lightgrey
+ visibleItemCount = 4
+ selectionPolicy = single_select
+ scrollBarDisplayPolicy = static
+end
+!----------------------------
+begin OWidget
+ name = OTuple_235
+ type = XmForm
+ children = OTuple_236 OTuple_237 OTuple_238 OTuple_239 
+ background = lightgrey
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ bottomAttachment = attach_widget
+ bottomWidget = OTuple_234
+end
+!----------------------------
+begin OWidget
+ name = OTuple_236
+ type = XmLabel
+ background = lightgrey
+ labelString = Row
+ topAttachment = attach_position
+ bottomAttachment = attach_position
+ leftAttachment = attach_position
+ rightAttachment = attach_position
+ topPosition = 1
+ bottomPosition = 49
+ leftPosition = 1
+ rightPosition = 30
+end
+!----------------------------
+begin OWidget
+ name = OTuple_237
+ type = XmText
+ background = lightgrey
+ topAttachment = attach_position
+ bottomAttachment = attach_position
+ leftAttachment = attach_position
+ rightAttachment = attach_position
+ topPosition = 1
+ bottomPosition = 49
+ leftPosition = 31
+ rightPosition = 99
+end
+!----------------------------
+begin OWidget
+ name = OTuple_238
+ type = XmLabel
+ background = lightgrey
+ labelString = Rows
+ topAttachment = attach_position
+ bottomAttachment = attach_position
+ leftAttachment = attach_position
+ rightAttachment = attach_position
+ topPosition = 50
+ bottomPosition = 98
+ leftPosition = 1
+ rightPosition = 30
+end
+!----------------------------
+begin OWidget
+ name = OTuple_239
+ type = XmText
+ background = lightgrey
+ topAttachment = attach_position
+ bottomAttachment = attach_position
+ leftAttachment = attach_position
+ rightAttachment = attach_position
+ topPosition = 50
+ bottomPosition = 98
+ leftPosition = 31
+ rightPosition = 99
+end
+!----------------------------
+begin OWidget
+ name = OTuple_240
+ type = XmPushButton
+end
+!----------------------------
+begin OWidget
+ name = OTuple_localTarget
+ type = XmText
+ background = lightgrey
+ activateCallback = osh>\
+  tuple=`getWidgetResource OTuple_localTarget value`\
+  #OTuple_infos\
+  string=`collect OTuple where name eq $tuple | do - getInformations`\
+  setWidgetResource OTuple_infos value $string\
+  #OTuple_233\
+  string=`collect OTuple where name eq $tuple | get - labels `\
+  setWidgetResource OTuple_233 items $string
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = OTuple_241
+end
+!----------------------------
+begin OWidget
+ name = OTuple_241
+ type = XmFrame
+ children = OTuple_242 
+ borderWidth = 3
+ background = lightgrey
+ borderColor = lightgrey
+ topAttachment = attach_widget
+ topWidget = OTuple_update
+ rightAttachment = attach_form
+ leftAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = OTuple_242
+ type = XmScrolledList
+ visibleItemCount = 4
+ selectionPolicy = single_select
+ scrollBarDisplayPolicy = static
+ createCallback = osh> collect OTuple | get - name | setWidgetResource OTuple_242 items -
+ singleSelectionCallback = osh>\
+  setWidgetResource OTuple_localTarget value `get Widget thisValue`\
+  callWidgetCallbacks OTuple_localTarget activateCallback
+end
+!----------------------------
+begin OWidget
+ name = OTuple_load
+ type = XmFileSelectionDialog
+ background = lightgrey
+ cancelCallback = osh> do `get Widget this` unmanage
+ dialogTitle = OTuple load
+end
+!----------------------------
+begin OWidget
+ name = OTuple_234
+ type = XmPushButton
+ background = grey
+ labelString = Dump
+ activateCallback = osh>\
+  tuple=`getWidgetResource OTuple_localTarget value`\
+  col=`getWidgetResource OTuple_233 selectedItems`\
+  row=`getWidgetResource OTuple_237 value`\
+  rows=`getWidgetResource OTuple_239 value`\
+  dumpTuple $tuple $row $rows $col 1
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ bottomAttachment = attach_widget
+ bottomWidget = OTuple_12
+end
+!----------------------------
+begin OWidget
+ name = OTuple_12
+ type = XmPushButton
+ background = lightgrey
+ labelString = Cancel
+ activateCallback = osh> do `get Widget thisParent` unmanage
+ bottomAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end

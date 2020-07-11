@@ -1,0 +1,181 @@
+!----------------------------
+begin OInterface
+ prefix = WidgetT_
+ parent  = WoTest_form
+end
+!----------------------------
+begin OWidget
+ name = WidgetT_panel
+ type = XmBulletinBoard
+ children = WidgetT_23 WidgetT_25 WidgetT_41 WidgetT_32 WidgetT_33 WidgetT_36 WidgetT_43 WidgetT_44 WidgetT_46 WidgetT_47 
+ width = 384
+ height = 342
+ background = dimgrey
+ topAttachment = attach_form
+ bottomAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = WidgetT_23
+ type = XmForm
+ children = WidgetT_24 
+ x = 11
+ y = 236
+ width = 57
+ height = 48
+ background = lightgrey
+ shadowThickness = 5
+end
+!----------------------------
+begin OWidget
+ name = WidgetT_24
+ type = XmPushButton
+ createCallback = osh>\
+  printf 'WidgetT_24:createCallback script that add a callback:%ld' 2222\
+  do `get Widget this` addCallback activateCallback 'osh> echo hello'
+ background = pink
+ labelString = Wo
+ activateCallback = osh>\
+  setWidgetResource `get Widget this` background green\
+  setWidgetResource `get Widget this` borderWidth 10
+ topAttachment = attach_form
+ bottomAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topOffset = 5
+ bottomOffset = 5
+ leftOffset = 5
+ rightOffset = 5
+end
+!----------------------------
+begin OWidget
+ name = WidgetT_25
+ type = XmPushButton
+ createCallback = osh> set `get Widget this` shape labelPixmap
+ x = 188
+ y = 50
+ borderWidth = 5
+ background = black
+ helpCallback = osh>\
+  widget=`get Widget this`\
+  name=`get $widget name`\
+  string=`printf 'WoT.htm#%s' $name`\
+  getTopic $string | popWidgetBalloon $widget -
+ labelType = pixmap
+ labelPixmap = moteur.xpm
+ labelString = my button
+ activateCallback = osh> printf 'hello'
+end
+!----------------------------
+begin OWidget
+ name = WidgetT_41
+ type = XmPushButton
+ x = 10
+ y = 10
+ width = 76
+ height = 76
+ helpCallback = osh>\
+  widget=`get Widget this`\
+  name=`get $widget name`\
+  string=`printf 'WoT.htm#%s' $name`\
+  getTopic $string | popWidgetBalloon $widget -
+ labelType = pixmap
+ labelPixmap = NeXT.xpm
+ labelString = my button
+end
+!----------------------------
+begin OWidget
+ name = WidgetT_32
+ type = XmPushButton
+ x = 18
+ y = 88
+ labelString = ls
+ activateCallback = .osh> echo $xxx;spawn ls
+ createCallback = .osh> xxx='Saved variabl ok.'
+end
+!----------------------------
+begin OWidget
+ name = WidgetT_33
+ type = XmDrawingArea
+ createCallback = osh> do `get Widget this` addEventHandler LeaveWindowMask 'osh> echo from_an_event_handler'
+ eventHandler = EnterWindowMask | PointerMotionMask :osh> \
+printf 'XEvent handler: type:%d x:%d y:%d' `get Widget eventType` `get Widget eventX` `get Widget eventY`
+ x = 49
+ y = 99
+ width = 170
+ height = 97
+ background = black
+ helpCallback = osh>\
+  widget=`get Widget this`\
+  name=`get $widget name`\
+  string=`printf 'WoT.htm#%s' $name`\
+  getTopic $string | popWidgetBalloon $widget -
+ inputCallback = osh> printf 'XEvent callback: type:%d x:%d y:%d' `get Widget eventType` `get Widget eventX` `get Widget eventY`
+end
+!----------------------------
+begin OWidget
+ name = WidgetT_36
+ type = XmPushButton
+ destroyCallback = osh> echo 'WidgetT_36:destroy callback'
+ x = 107
+ y = 257
+ helpCallback = osh>\
+  widget=`get Widget this`\
+  name=`get $widget name`\
+  string=`printf 'WoT.htm#%s' $name`\
+  getTopic $string | popWidgetBalloon $widget -
+ labelString = Destroy callback
+end
+!----------------------------
+begin OWidget
+ name = WidgetT_43
+ type = XmPushButton
+ createCallback = osh> set `get Widget this` shape oval
+ x = 94
+ y = 56
+ width = 92
+ height = 26
+ background = red
+ labelString = oval label
+end
+!----------------------------
+begin OWidget
+ name = WidgetT_44
+ type = XmPushButton
+ x = 86
+ y = 211
+ background = wheat
+ labelString = edit activateCallback
+ activateCallback = osh>\
+  ref=`thisWidget`\
+  widget=`grabWidgetName $ref`\
+  load oresed.odb | realize -\
+  setWidgetResource oresed_39 value $widget\
+  setWidgetResource oresed_38 value activateCallback\
+  value=`getWidgetResource $widget activateCallback`\
+  setWidgetResource oresed_27 value $value\
+  do Widget/oresed_33 manage
+end
+!----------------------------
+begin OWidget
+ name = WidgetT_46
+ type = XmToggleButton
+ x = 108
+ y = 8
+ background = grey
+ labelString = Set balloon help
+ valueChangedCallback = osh> set Wo overflyHelp `getWidgetResource WidgetT_46 set`
+end
+!----------------------------
+begin OWidget
+ name = WidgetT_47
+ type = XmPushButton
+ background = grey
+ labelString = OCyclic
+ activateCallback = osh>\
+  isValid OCyclic/xxx && delete OCyclic/xxx\
+  create OCyclic name xxx widget `thisWidget` delay 1000 script 'osh> echo Hello'\
+  do OCyclic/xxx start
+end

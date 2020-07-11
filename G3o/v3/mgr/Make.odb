@@ -1,0 +1,105 @@
+!/* +---------------------- Copyright notice -------------------------------+ */
+!/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+!/* |   Permission to use, copy, modify, and distribute this software       | */
+!/* |   and its documentation for any purpose and without fee is hereby     | */
+!/* |   granted, provided that the above copyright notice appear in all     | */
+!/* |   copies and that both that copyright notice and this permission      | */
+!/* |   notice appear in supporting documentation.  This software is        | */
+!/* |   provided "as is" without express or implied warranty.               | */
+!/* +---------------------- Copyright notice -------------------------------+ */
+! VAX/VMS : libkernlib needed.
+!----------------------------
+begin Make
+  package = G3o
+  has = GL
+  libs = \
+G3o: libm libCo libGo libf77 libkernlib libpacklib libgeant libG3oEXPO\
+GL: libGL libGLU
+end
+!----------------------------
+!----------------------------
+!----------------------------
+begin OModule
+  name  = G3oT
+  type  = application
+  objs  = idummy
+  libs  = libG3oEXPO libG3o libgeant libpacklib libkernlib libf77 libGo libGLU libGL libCo libm
+end
+!----------------------------
+!----------------------------
+begin OModule
+  name     = geantT
+  type     = application
+  language = f77
+  libs     = libG3oEXPO libgeant libpacklib libkernlib 
+  distributed = no
+end
+!----------------------------
+begin OModule
+  name  = NoHT
+  type  = application
+  distributed = no
+end
+!----------------------------
+!----------------------------
+!----------------------------
+begin OModule
+  name  = libG3oEXPO
+  type  = ar
+end
+!----------------------------
+begin OModule
+  name  = G3oEXPO
+  inLib = libG3oEXPO
+end
+!----------------------------
+begin OModule
+  name     = G3oEXPO_F77
+  language = f77
+  inLib    = libG3oEXPO
+end
+!----------------------------
+!----------------------------
+!----------------------------
+begin OModule
+  name  = libG3o
+  type  = ar
+end
+!----------------------------
+begin OModule
+  name  = G3oCommands
+  inLib = libG3o
+end
+!----------------------------
+begin OModule
+  name  = G3oTypes
+  inLib = libG3o
+end
+!----------------------------
+begin OModule
+  name  = GEANT
+  inLib = libG3o
+end
+!----------------------------
+begin OModule
+  name     = ogeant
+  language = f77
+  inLib    = libG3o
+end
+!----------------------------
+!-- Ci ----------------------
+!----------------------------
+begin OModule
+  name      = G3oBinds
+  inLib     = libG3o
+end
+!----------------------------
+!----------------------------
+begin OModule
+  name     = idummy
+  language = f77
+  inLib    = none
+end
+
+
+

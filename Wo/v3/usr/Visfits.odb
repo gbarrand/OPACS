@@ -1,0 +1,286 @@
+!/* +---------------------- Copyright notice -------------------------------+ */
+!/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+!/* |   Permission to use, copy, modify, and distribute this software       | */
+!/* |   and its documentation for any purpose and without fee is hereby     | */
+!/* |   granted, provided that the above copyright notice appear in all     | */
+!/* |   copies and that both that copyright notice and this permission      | */
+!/* |   notice appear in supporting documentation.  This software is        | */
+!/* |   provided "as is" without express or implied warranty.               | */
+!/* +---------------------- Copyright notice -------------------------------+ */
+!----------------------------
+begin OInterface
+ version = v3
+ prefix = Visfits_
+end
+!----------------------------
+begin OWidget
+ name = Visfits_view_casc
+ type = XmCascadeButton
+ background = lightgrey
+ labelString = View
+ subMenuId = Visfits_view_pull
+end
+!----------------------------
+begin OWidget
+ name = Visfits_op_casc
+ type = XmCascadeButton
+ background = lightgrey
+ labelString = Operations
+ subMenuId = Visfits_op_pull
+end
+!----------------------------
+begin OWidget
+ name = Visfits_op_pull
+ type = XmPulldownMenu
+ children = Visfits_290 Visfits_291 Visfits_262 Visfits_289 Visfits_294 Visfits_295 Visfits_296 Visfits_332 Visfits_314 Visfits_340 Visfits_341 
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = Visfits_290
+ type = XmPushButton
+ background = lightgrey
+ labelString = Auto lut
+ activateCallback = osh> autolut
+end
+!----------------------------
+begin OWidget
+ name = Visfits_291
+ type = XmPushButton
+ background = lightgrey
+ labelString = Change lut
+ activateCallback = osh> load oimalut.oui;manageWidget oimalut_palette
+end
+!----------------------------
+begin OWidget
+ name = Visfits_262
+ type = XmPushButton
+ labelString = Operations (image,image)
+ activateCallback = osh> load oimaopim.oui;manageWidget oimaopim_palette
+end
+!----------------------------
+begin OWidget
+ name = Visfits_289
+ type = XmPushButton
+ labelString = Operations (image,constant)
+ activateCallback = osh> load oimaopcs.oui;manageWidget oimaopcs_palette
+end
+!----------------------------
+begin OWidget
+ name = Visfits_294
+ type = XmPushButton
+ labelString = Filter
+ activateCallback = osh> load oimafil.oui;manageWidget oimafil_palette
+end
+!----------------------------
+begin OWidget
+ name = Visfits_295
+ type = XmPushButton
+ labelString = Rebin
+ activateCallback = osh> load oimarebin.oui;manageWidget oimarebin_palette
+end
+!----------------------------
+begin OWidget
+ name = Visfits_296
+ type = XmPushButton
+ labelString = Transf
+ activateCallback = osh> load oimatransf.oui;manageWidget oimatransf_palette
+end
+!----------------------------
+begin OWidget
+ name = Visfits_332
+ type = XmPushButton
+ labelString = Convol image matrix
+ activateCallback = osh> load oimaconv.oui;manageWidget oimaconv_palette
+end
+!----------------------------
+begin OWidget
+ name = Visfits_314
+ type = XmSeparator
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = Visfits_340
+ type = XmPushButton
+ background = lightgrey
+ labelString = Read transf
+ activateCallback = osh> manageWidget Visfits_341
+end
+!----------------------------
+begin OWidget
+ name = Visfits_341
+ type = XmFileSelectionDialog
+ dialogTitle = Transformation file
+ okCallback = osh> unmanageWidget get Widget this; read_transf `get Widget thisValue`
+ cancelCallback = osh> unmanageWidget get Widget this
+end
+!----------------------------
+begin OWidget
+ name = Visfits_view_pull
+ type = XmPulldownMenu
+ children = Visfits_146 Visfits_147 Visfits_152 Visfits_244 Visfits_292 Visfits_284 Visfits_260 Visfits_261 
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = Visfits_146
+ type = XmPushButton
+ background = lightgrey
+ labelString = Zoom in
+ activateCallback = osh> scale 2.
+end
+!----------------------------
+begin OWidget
+ name = Visfits_147
+ type = XmPushButton
+ background = lightgrey
+ labelString = Zoom out
+ activateCallback = osh> scale .5
+end
+!----------------------------
+begin OWidget
+ name = Visfits_152
+ type = XmPushButton
+ background = lightgrey
+ labelString = Reset
+ activateCallback = osh> reset
+end
+!----------------------------
+begin OWidget
+ name = Visfits_244
+ type = XmSeparator
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = Visfits_292
+ type = XmPushButton
+ background = lightgrey
+ labelString = Change colormap
+ activateCallback = osh>\
+  collect OColormap | get - name | setWidgetResource Visfits_293 listItems -\
+  manageWidget Visfits_293
+end
+!----------------------------
+begin OWidget
+ name = Visfits_284
+ type = XmPushButton
+ background = lightgrey
+ labelString = Move by pixel
+ activateCallback = osh> manageWidget Visfits_277
+end
+!----------------------------
+begin OWidget
+ name = Visfits_260
+ type = XmPushButton
+ background = lightgrey
+ labelString = Get part
+ activateCallback = osh> load oimapart.oui;manageWidget oimapart_palette
+end
+!----------------------------
+begin OWidget
+ name = Visfits_261
+ type = XmPushButton
+ background = lightgrey
+ labelString = Swap window
+ activateCallback = osh> load oimaswap.oui;manageWidget oimaswap_palette
+end
+!----------------------------
+begin OWidget
+ name = Visfits_277
+ type = XmFormDialog
+ children = Visfits_278 Visfits_283 
+ dialogTitle = Translate image
+end
+!----------------------------
+begin OWidget
+ name = Visfits_278
+ type = XmForm
+ children = Visfits_279 Visfits_280 Visfits_281 Visfits_282 
+ topAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = Visfits_279
+ type = XmPushButton
+ background = lightgrey
+ labelString = UP
+ activateCallback = osh> translate 0 1
+ bottomAttachment = attach_position
+ leftAttachment = attach_position
+ rightAttachment = attach_position
+ bottomPosition = 33
+ leftPosition = 33
+ rightPosition = 66
+end
+!----------------------------
+begin OWidget
+ name = Visfits_280
+ type = XmPushButton
+ background = lightgrey
+ labelString = DOWN
+ activateCallback = osh> translate 0 -1
+ topAttachment = attach_position
+ bottomAttachment = attach_form
+ leftAttachment = attach_position
+ rightAttachment = attach_position
+ topPosition = 66
+ leftPosition = 33
+ rightPosition = 66
+end
+!----------------------------
+begin OWidget
+ name = Visfits_281
+ type = XmPushButton
+ background = lightgrey
+ labelString = RIGHT
+ activateCallback = osh> translate -1 0
+ topAttachment = attach_position
+ bottomAttachment = attach_position
+ leftAttachment = attach_position
+ rightAttachment = attach_form
+ topPosition = 33
+ bottomPosition = 66
+ leftPosition = 50
+end
+!----------------------------
+begin OWidget
+ name = Visfits_282
+ type = XmPushButton
+ background = lightgrey
+ labelString = LEFT
+ activateCallback = osh> translate 1 0
+ topAttachment = attach_position
+ bottomAttachment = attach_position
+ leftAttachment = attach_position
+ rightAttachment = attach_position
+ topPosition = 33
+ bottomPosition = 66
+ rightPosition = 50
+end
+!----------------------------
+begin OWidget
+ name = Visfits_283
+ type = XmPushButton
+ labelString = Cancel
+ activateCallback = osh> unmanageWidget thisParent
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ bottomAttachment = attach_form
+ topAttachment = attach_widget
+ topWidget = Visfits_278
+end
+!----------------------------
+begin OWidget
+ name = Visfits_293
+ type = XmSelectionDialog
+ dialogTitle = Change colormap
+ background = lightgrey
+ autoUnmanage = false
+ okCallback = osh> setval target virtualColormap `get Widget thisValue`;unmanageWidget this
+ applyCallback = osh> setval target virtualColormap `get Widget thisValue`
+ cancelCallback = osh> unmanageWidget this
+end

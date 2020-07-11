@@ -1,0 +1,131 @@
+!/* +---------------------- Copyright notice -------------------------------+ */
+!/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+!/* |   Permission to use, copy, modify, and distribute this software       | */
+!/* |   and its documentation for any purpose and without fee is hereby     | */
+!/* |   granted, provided that the above copyright notice appear in all     | */
+!/* |   copies and that both that copyright notice and this permission      | */
+!/* |   notice appear in supporting documentation.  This software is        | */
+!/* |   provided "as is" without express or implied warranty.               | */
+!/* +---------------------- Copyright notice -------------------------------+ */
+!----------------------------
+begin OInterface
+ version = v3
+ prefix = XMailbox_
+ packages = Xm
+end
+!----------------------------
+begin OWidget
+ name = XMailbox_palette
+ type = XmFormDialog
+ children = XMailbox_26 XMailbox_28 XMailbox_29 XMailbox_30 XMailbox_31 XMailbox_32 XMailbox_33 XMailbox_34 XMailbox_35 
+ autoUnmanage = false
+ dialogTitle = Mailbox
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = XMailbox_26
+ type = XmPushButton
+ activateCallback = osh> unmanageWidget `get Widget thisParent`
+ background = lightgrey
+ labelString = Cancel
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ bottomAttachment = attach_form
+ topAttachment = attach_widget
+ topWidget = XMailbox_31
+end
+!----------------------------
+begin OWidget
+ name = XMailbox_28
+ type = XmLabel
+ createCallback = osh> setWidgetResource `thisWidget` height `getWidgetResource XMailbox_29 height`
+ background = lightgrey
+ labelString = Mailbox name
+ topAttachment = attach_widget
+ topWidget = XMailbox_35
+end
+!----------------------------
+begin OWidget
+ name = XMailbox_29
+ type = XmText
+ background = lightgrey
+ topAttachment = attach_widget
+ leftAttachment = attach_widget
+ rightAttachment = attach_form
+ topWidget = XMailbox_35
+ leftWidget = XMailbox_28
+end
+!----------------------------
+begin OWidget
+ name = XMailbox_30
+ type = XmLabel
+ createCallback = osh> setWidgetResource `thisWidget` height `getWidgetResource XMailbox_31 height`
+ background = lightgrey
+ labelString = Script
+ topAttachment = attach_widget
+ topWidget = XMailbox_29
+end
+!----------------------------
+begin OWidget
+ name = XMailbox_31
+ type = XmText
+ background = lightgrey
+ topAttachment = attach_widget
+ leftAttachment = attach_widget
+ rightAttachment = attach_form
+ topWidget = XMailbox_29
+ leftWidget = XMailbox_28
+end
+!----------------------------
+begin OWidget
+ name = XMailbox_32
+ type = XmText
+ topAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = XMailbox_33
+ type = XmPushButton
+ labelString = Create
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = XMailbox_34
+ activateCallback = osh>\
+   name=`getWidgetResource XMailbox_32 value`\
+   mailbox=`createMailbox XMailbox_32 $name`\
+   string=`printf '   name: %s\naddress: %d' $name $mailbox`\
+   setWidgetResource XMailbox_34 value $string
+end
+!----------------------------
+begin OWidget
+ name = XMailbox_34
+ type = XmText
+ createCallback = osh> setWidgetTextSize `get Widget this` 2 10
+ editMode = multi_line_edit
+ foreground = black
+ background = white
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = XMailbox_32
+end
+!----------------------------
+begin OWidget
+ name = XMailbox_35
+ type = XmPushButton
+ labelString = Send
+ foreground = white
+ background = black
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = XMailbox_33
+ activateCallback = osh>\
+   mailbox=`getWidgetResource XMailbox_29 value`\
+   string=`getWidgetResource XMailbox_31 value`\
+   sendMessageToMailbox `thisWidget` $mailbox $string
+end

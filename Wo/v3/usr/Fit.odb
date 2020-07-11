@@ -1,0 +1,128 @@
+!/* +---------------------- Copyright notice -------------------------------+ */
+!/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+!/* |   Permission to use, copy, modify, and distribute this software       | */
+!/* |   and its documentation for any purpose and without fee is hereby     | */
+!/* |   granted, provided that the above copyright notice appear in all     | */
+!/* |   copies and that both that copyright notice and this permission      | */
+!/* |   notice appear in supporting documentation.  This software is        | */
+!/* |   provided "as is" without express or implied warranty.               | */
+!/* +---------------------- Copyright notice -------------------------------+ */
+!----------------------------
+begin OInterface
+ version = v3
+ prefix = Fit_
+ packages = Xm Xo
+end
+!----------------------------
+begin OWidget
+ name = Fit_palette
+ type = XmFormDialog
+ children = Fit_grab Fit_localTarget Fit_type Fit_type_pdm Fit_cancel 
+ autoUnmanage = False
+ dialogTitle = Fitting
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = Fit_grab
+ type = XmPushButton
+ createCallback = osh> setWidgetResource `thisWidget` height `getWidgetResource Fit_localTarget height`
+ activateCallback = osh>\
+  ref=`thisWidget`\
+  setWidgetResource Fit_localTarget value `grabWidgetName $ref`\
+  callWidgetCallbacks Fit_localTarget activateCallback
+ labelString = Plotter
+ background = grey
+ topAttachment = attach_form
+ leftAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = Fit_localTarget
+ type = XmText
+ background = wheat
+ topAttachment = attach_form
+ leftAttachment = attach_widget
+ rightAttachment = attach_form
+ leftWidget = Fit_grab
+ activateCallback = osh>\
+  #Fit_type\
+  widget=`get Widget thisLocalTarget`\
+  # Could be an XzPlotter\
+  # isNotWidgetSubclass $widget XoPlotter && echo 'Not an XoPlotter.'\
+  # isNotWidgetSubclass $widget XoPlotter && exit\
+  fitType=`getWidgetResource $widget fitType`\
+  test $fitType eq none         && setWidgetOption Fit_type 'None'\
+  test $fitType eq gaussian     && setWidgetOption Fit_type 'Gaussian'\
+  test $fitType eq breit_wigner && setWidgetOption Fit_type 'Breit Wigner'\
+  test $fitType eq exponential  && setWidgetOption Fit_type 'Exponential'\
+  test $fitType eq polynomial   && setWidgetOption Fit_type 'Polynomial'
+ targetChangedCallback = osh> callWidgetCallbacks `get Widget this` activateCallback
+end
+!----------------------------
+begin OWidget
+ name = Fit_type
+ type = XmOptionMenu
+ topAttachment = attach_widget
+ topWidget = Fit_localTarget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ labelString = Fit type
+ subMenuId = Fit_type_pdm
+ background = grey
+end
+!----------------------------
+begin OWidget
+ name = Fit_type_pdm
+ type = XmPulldownMenu
+ children = Fit_type_none Fit_type_gauss Fit_type_breit Fit_type_exponential Fit_type_polynomial
+ background = grey
+end
+!----------------------------
+begin OWidget
+ name = Fit_type_none
+ type = XmPushButton
+ labelString = None
+ activateCallback = osh> setWidgetResource `get Widget thisLocalTarget` fitType none
+end
+!----------------------------
+begin OWidget
+ name = Fit_type_gauss
+ type = XmPushButton
+ labelString = Gaussian
+ activateCallback = osh> setWidgetResource `get Widget thisLocalTarget` fitType gaussian
+end
+!----------------------------
+begin OWidget
+ name = Fit_type_breit
+ type = XmPushButton
+ labelString = Breit Wigner
+ activateCallback = osh> setWidgetResource `get Widget thisLocalTarget` fitType breit_wigner
+end
+!----------------------------
+begin OWidget
+ name = Fit_type_exponential
+ type = XmPushButton
+ labelString = Exponential
+ activateCallback = osh> setWidgetResource `get Widget thisLocalTarget` fitType exponential
+end
+!----------------------------
+begin OWidget
+ name = Fit_type_polynomial
+ type = XmPushButton
+ labelString = Polynomial
+ activateCallback = osh> setWidgetResource `get Widget thisLocalTarget` fitType polynomial
+end
+!----------------------------
+begin OWidget
+ name = Fit_cancel
+ type = XmPushButton
+ activateCallback = osh> do `get Widget thisParent` unmanage
+ labelString = Cancel
+ background = lightgrey
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ bottomAttachment = attach_form
+ topAttachment = attach_widget
+ topWidget = Fit_type
+end

@@ -1,0 +1,130 @@
+!----------------------------
+begin OInterface
+ prefix = AddPanel_
+end
+!----------------------------
+begin OWidget
+ name = AddPanel_palette
+ type = XmFormDialog
+ children = AddPanel_label_1 AddPanel_text_1 AddPanel_label_2 AddPanel_text_2 AddPanel_label_3 AddPanel_text_3 AddPanel_create AddPanel_cancel
+ autoUnmanage = False
+ dialogTitle = New panel
+end
+!----------------------------
+begin OWidget
+ name = AddPanel_label_1
+ type = XmLabel
+ labelString = Name of panel
+ leftAttachment = attach_form
+ topAttachment = attach_form
+ rightAttachment = attach_position
+ rightPosition = 40
+end
+!----------------------------
+begin OWidget
+ name = AddPanel_text_1
+ type = XmText
+ leftAttachment = attach_widget
+ leftWidget     = AddPanel_label_1
+ rightAttachment = attach_form
+ topAttachment = attach_form
+ createCallback = osh> setWidgetResource `thisWidget` value 'Xxx'
+end
+!----------------------------
+begin OWidget
+ name = AddPanel_label_2
+ type = XmLabel
+ labelString = Rows
+ leftAttachment = attach_form
+ topAttachment = attach_widget
+ topWidget = AddPanel_text_1
+ rightAttachment = attach_position
+ rightPosition = 40
+end
+!----------------------------
+begin OWidget
+ name = AddPanel_text_2
+ type = XmText
+ leftAttachment = attach_widget
+ leftWidget     = AddPanel_label_2
+ rightAttachment = attach_form
+ topAttachment = attach_widget
+ topWidget = AddPanel_text_1
+ createCallback = osh> setWidgetResource `thisWidget` value 1
+end
+!----------------------------
+begin OWidget
+ name = AddPanel_label_3
+ type = XmLabel
+ labelString = Columns
+ leftAttachment = attach_form
+ topAttachment = attach_widget
+ topWidget = AddPanel_text_2
+ rightAttachment = attach_position
+ rightPosition = 40
+end
+!----------------------------
+begin OWidget
+ name = AddPanel_text_3
+ type = XmText
+ leftAttachment = attach_widget
+ leftWidget     = AddPanel_label_3
+ rightAttachment = attach_form
+ topAttachment = attach_widget
+ topWidget = AddPanel_text_2
+ createCallback = osh> setWidgetResource `thisWidget` value 1
+end
+!----------------------------
+begin OWidget
+ name = AddPanel_create
+ type = XmPushButton
+ labelString = Create
+ topAttachment = attach_widget
+ topWidget = AddPanel_text_3
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ activateCallback = osh>\
+  histo_list=''\
+  #histo_list=`getWidgetResource Hist_list items`\
+  #echo $histo_list\
+  #test $histo_list eq '' && warn 'Choose some histogram'\
+  #test $histo_list eq '' && exit\
+  parent=`getWidgetResource StoreGridParent value`\
+  name=`getWidgetResource AddPanel_text_1 value`\
+  rows=`getWidgetResource AddPanel_text_2 value`\
+  cols=`getWidgetResource AddPanel_text_3 value`\
+  string=`printf 'Panels_%s' $name`\
+  swidget=`printf 'Widget/%s' $string`\
+  comment=`printf 'Panel %s already exists' $name`\
+  isValid $swidget && echo $comment\
+  isValid $swidget && exit\
+  widget=`create Widget name $string parent Panels_pdm type XmPushButton markFile true`\
+  setWidgetResource $widget labelString $name\
+  string=`printf '&osh>fileName=%s.odb;. LoadPanel.osh' $name `\
+  setWidgetResource $widget activateCallback $string\
+  do $widget markResource labelString\
+  do $widget markResource activateCallback\
+  do Wo saveInterface\
+  string=`printf '%s.odb' $name `\
+  if test $histo_list eq ''\
+  then\
+  createGridFile $string $parent XoPlotter $rows $cols\
+  else\
+  script='osh>widget=`thisWidget`;list=`getWidgetResource $widget plottedObjects`;askHistograms $list | empty ;updatePlot $widget'\
+  createGridFile $string $parent XoPlotter $rows $cols $histo_list $script\
+  fi
+end
+!----------------------------
+begin OWidget
+ name = AddPanel_cancel
+ type = XmPushButton
+ labelString = Cancel
+ activateCallback = osh> unmanageWidget `thisWidgetParent`
+ topAttachment = attach_widget
+ topWidget = AddPanel_create
+ bottomAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+
+

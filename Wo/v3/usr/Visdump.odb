@@ -1,0 +1,115 @@
+!/* +---------------------- Copyright notice -------------------------------+ */
+!/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+!/* |   Permission to use, copy, modify, and distribute this software       | */
+!/* |   and its documentation for any purpose and without fee is hereby     | */
+!/* |   granted, provided that the above copyright notice appear in all     | */
+!/* |   copies and that both that copyright notice and this permission      | */
+!/* |   notice appear in supporting documentation.  This software is        | */
+!/* |   provided "as is" without express or implied warranty.               | */
+!/* +---------------------- Copyright notice -------------------------------+ */
+!----------------------------
+begin OInterface
+ version = v3
+ prefix = Visdump_
+ packages = Xm
+end
+!----------------------------
+begin OWidget
+ name = Visdump_palette
+ type = XmFormDialog
+ children = Visdump_9 Visdump_7 Visdump_11 Visdump_14 Visdump_12
+ autoUnmanage = False
+ dialogTitle = Sensitive dump
+end
+!----------------------------
+begin OWidget
+ name = Visdump_9
+ type = XmFrame
+ children = Visdump_types
+ topAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = Visdump_types
+ type = XmScrolledList
+ background = lightgrey
+ visibleItemCount = 5
+ selectionPolicy = single_select
+ scrollBarDisplayPolicy = static
+ listSizePolicy = constant
+ createCallback = osh> collect OType | get - name | sort | setWidgetResource Visdump_types items -
+ singleSelectionCallback = osh>\
+  collect `getWidgetResource Visdump_types selectedItems` | dump - | setWidgetResource Visdump_list items -
+end
+!----------------------------
+begin OWidget
+ name = Visdump_7
+ type = XmLabel
+ background = black
+ foreground = white
+ labelString = Dump
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topAttachment = attach_widget
+ topWidget = Visdump_9
+end
+!----------------------------
+begin OWidget
+ name = Visdump_11
+ type = XmFrame
+ children = Visdump_list 
+ topAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ bottomAttachment = attach_widget
+ bottomWidget = Visdump_12
+ topAttachment = attach_widget
+ topWidget = Visdump_7
+end
+!----------------------------
+begin OWidget
+ name = Visdump_list
+ type = XmScrolledList
+ background = lightgrey
+ visibleItemCount = 5
+ selectionPolicy = single_select
+ scrollBarDisplayPolicy = static
+ listSizePolicy = constant
+ fontList = *courier*-r-*--14-*
+ singleSelectionCallback = osh>\
+  list=`getWidgetResource Visdump_list items | getLine - 1`\
+  string=`getWidgetResource Visdump_list selectedItems`\
+  type=`getStringWord $list 1`\
+  ident=`getStringWord $string 1`\
+  string=`printf '%s/%s' $type $ident`\
+  collect ONode where name eq $string | set - highlight 1
+end
+!----------------------------
+begin OWidget
+ name = Visdump_12
+ type = XmPushButton
+ labelString = Highlight
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ bottomAttachment = attach_widget
+ bottomWidget = Visdump_14
+ activateCallback = osh>\
+  list=`getWidgetResource Visdump_list items | getLine - 1`\
+  string=`getWidgetResource Visdump_list selectedItems`\
+  type=`getStringWord $list 1`\
+  ident=`getStringWord $string 1`\
+  string=`printf '%s/%s' $type $ident`\
+  collect ONode where name eq $string | set - highlight 1
+end
+!----------------------------
+begin OWidget
+ name = Visdump_14
+ type = XmPushButton
+ labelString = Cancel
+ activateCallback = osh> unmanageWidget `thisWidgetParent`
+ bottomAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end

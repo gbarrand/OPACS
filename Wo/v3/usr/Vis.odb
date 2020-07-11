@@ -1,0 +1,302 @@
+!/* +---------------------- Copyright notice -------------------------------+ */
+!/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+!/* |   Permission to use, copy, modify, and distribute this software       | */
+!/* |   and its documentation for any purpose and without fee is hereby     | */
+!/* |   granted, provided that the above copyright notice appear in all     | */
+!/* |   copies and that both that copyright notice and this permission      | */
+!/* |   notice appear in supporting documentation.  This software is        | */
+!/* |   provided "as is" without express or implied warranty.               | */
+!/* +---------------------- Copyright notice -------------------------------+ */
+!----------------------------
+begin OInterface
+ version = v3
+ prefix = Vis_
+ createCallback = osh>\
+  do Event initialize\
+  do UDET declareHitsAndDigis
+ resources = Wo*user_panel*XoCamera.borderWidth:3\
+Wo*user_panel*XoCamera.borderColor:dimgrey\
+Wo*user_panel*XoPlotter.borderWidth:3\
+Wo*user_panel*XoPlotter.borderColor:dimgrey\
+Wo*user_panel*XmText.rows:3\
+Wo*shell_view_panel*XoCamera.borderWidth:3\
+Wo*shell_view_panel*XoCamera.borderColor:dimgrey\
+Wo*shell_view_panel*XmText.rows:3
+end
+!----------------------------
+begin OWidget
+ name = Vis_1
+ type = TopLevelShell
+ children = Vis_9 Vis_15 Vis_37 
+ mappedWhenManaged = true
+ geometry = 750x800+0+0
+ title = Vis
+end
+!----------------------------
+begin OWidget
+ name = Vis_9
+ type = XmForm
+ children = Vis_4 Vis_form 
+end
+!----------------------------
+begin OWidget
+ name = Vis_4
+ type = XmMenuBar
+ children = Vis_5 Vis_21 Vis_33 Vis_34 Vis_6 Vis_22 Vis3d_casc<Vis3d.odb Vis3d_pull<Vis3d.odb Wo_casc<Wo.odb Wo_pull<Wo.odb 
+ background = lightgrey
+ shadowThickness = 4
+ topShadowColor = white
+ bottomShadowColor = black
+ menuHelpWidget = Vis_33
+ topAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = Vis_5
+ type = XmCascadeButton
+ background = lightgrey
+ labelString = File
+ subMenuId = Vis_6
+end
+!----------------------------
+begin OWidget
+ name = Vis_21
+ type = XmCascadeButton
+ background = lightgrey
+ labelString = Event
+ subMenuId = Vis_22
+end
+!----------------------------
+begin OWidget
+ name = Vis_33
+ type = XmCascadeButton
+ background = lightgrey
+ labelString = Help
+ subMenuId = Vis_34
+end
+!----------------------------
+begin OWidget
+ name = Vis_34
+ type = XmPulldownMenu
+ children = Vis_35
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = Vis_35
+ type = XmPushButton
+ background = lightgrey
+ labelString = Wo
+ activateCallback = osh>\
+  load Help.odb | realize -\
+  manageWidget Help_palette;raiseWidget Help_palette_popup\
+  showTopic Help_help 'Wo.htm'
+end
+!----------------------------
+begin OWidget
+ name = Vis_6
+ type = XmPulldownMenu
+ children = Vis_14 Vis_42 Vis_40 Vis_38 Vis_54 Vis_7 Vis_47 Vis_8 
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = Vis_14
+ type = XmPushButton
+ labelString = Open file
+ activateCallback = osh> manageWidget Vis_15
+end
+!----------------------------
+begin OWidget
+ name = Vis_42
+ type = XmPushButton
+ labelString = Print
+ activateCallback = osh> load Visps.odb| realize -;manageWidget Visps_palette;raiseWidget Visps_palette_popup
+end
+!----------------------------
+begin OWidget
+ name = Vis_40
+ type = XmPushButton
+ labelString = Edit script
+ activateCallback = osh> load Vised.odb | realize -;do Widget/Vised_palette manage;do Widget/Vised_palette_popup raise
+end
+!----------------------------
+begin OWidget
+ name = Vis_38
+ type = XmPushButton
+ labelString = Commands
+ activateCallback = osh> manageWidget Vis_37
+end
+!----------------------------
+begin OWidget
+ name = Vis_54
+ type = XmPushButton
+ labelString = Instances
+ activateCallback = osh> load OType.odb | realize -;manageWidget OType_palette;raiseWidget OType_palette_popup
+end
+!----------------------------
+begin OWidget
+ name = Vis_7
+ type = XmPushButton
+ labelString = Grid
+ activateCallback = osh> load Grid.odb | realize -;manageWidget Grid_palette;raiseWidget Grid_palette_popup
+end
+!----------------------------
+begin OWidget
+ name = Vis_47
+ type = XmPushButton
+ labelString = GEANT
+ activateCallback = osh> load geant.odb | realize -;manageWidget geant_palette;raiseWidget geant_palette_popup
+end
+!----------------------------
+begin OWidget
+ name = Vis_8
+ type = XmPushButton
+ background = lightgrey
+ labelString = Stop
+ activateCallback = osh> do Wo sendExit
+end
+!----------------------------
+begin OWidget
+ name = Vis_22
+ type = XmPulldownMenu
+ children = Vis_next_event Vis_46 Vis_43 Vis_auto_stop Vis_16 Vis_17 Vis_44 
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = Vis_next_event
+ type = XmPushButton
+ labelString = Next Event
+ accelerator = Ctrl<Key>e
+ acceleratorText = Ctrl/e
+ activateCallback = osh>\
+  do Event getNext\
+  get Widget/user_grid children | callWidgetCallbacks - userCallback\
+  dump Event runNumber eventNumber | setWidgetResource user_text value -
+end
+!----------------------------
+begin OWidget
+ name = Vis_46
+ type = XmPushButton
+ labelString = Select Event
+ activateCallback = osh>\
+  value=`ask 'Event number' 0`\
+  do Event get $value \
+  get Widget/user_grid children | callWidgetCallbacks - userCallback\
+  dump Event runNumber eventNumber | setWidgetResource user_text value -
+end
+!----------------------------
+begin OWidget
+ name = Vis_43
+ type = XmPushButton
+ labelString = Auto Next Event
+ accelerator = Ctrl<Key>a
+ acceleratorText = Ctrl/a
+ activateCallback = osh>\
+  isValid OCyclic/auto_next && delete OCyclic/auto_next\
+  delay=`ask delay(msec) 1000`\
+  script='osh> do Event getNext;get Widget/user_grid children | callWidgetCallbacks - userCallback;dump Event runNumber eventNumber | setWidgetResource user_text value -'\
+  create OCyclic name auto_next widget `thisWidget` delay $delay script $script\
+  do OCyclic/auto_next start
+end
+!----------------------------
+begin OWidget
+ name = Vis_auto_stop
+ type = XmPushButton
+ labelString = Auto stop
+ activateCallback = osh> isValid OCyclic/auto_next && delete OCyclic/auto_next
+end
+!----------------------------
+begin OWidget
+ name = Vis_16
+ type = XmSeparator
+end
+!----------------------------
+begin OWidget
+ name = Vis_17
+ type = XmPushButton
+ labelString = Redisplay
+ accelerator = Ctrl<Key>r
+ acceleratorText = Ctrl/r
+ activateCallback = osh> get Widget/user_grid children | callWidgetCallbacks - userCallback
+end
+!----------------------------
+begin OWidget
+ name = Vis_44
+ type = XmPushButton
+ labelString = Bank Dump
+ accelerator = Ctrl<Key>d
+ acceleratorText = Ctrl/d
+ activateCallback = osh> load OType.odb | realize -;manageWidget OType_palette;raiseWidget OType_palette_popup
+end
+!----------------------------
+begin OWidget
+ name = Vis_form
+ type = XmForm
+ children = user_panel<user.odb
+ background = grey
+ topAttachment = attach_widget
+ bottomAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = Vis_4
+end
+!----------------------------
+begin OWidget
+ name = Vis_15
+ type = XmFileSelectionDialog
+ dialogTitle = GEANT file
+ okCallback = osh>\
+  unmanageWidget `get Widget this`\
+  load `get Widget thisValue` geant\
+  setWidgetResource user_text value 'No event loaded'\
+  get Widget/user_grid children | callWidgetCallbacks - userCallback\
+  #dump Event runNumber eventNumber | setWidgetResource user_text value -
+ cancelCallback = osh> unmanageWidget `get Widget this`
+ dirMask = /pub/ftp/pub/data/geant/*
+end
+!----------------------------
+begin OWidget
+ name = Vis_37
+ type = XmFormDialog
+ children = Vis_cmd Vis_39 Vis_41 
+ autoUnmanage = false
+ dialogTitle = osh
+end
+!----------------------------
+begin OWidget
+ name = Vis_cmd
+ type = XmCommand
+ promptString = osh commands
+ commandEnteredCallback = osh> osh `get Widget thisValue`
+ topAttachment = attach_form
+ bottomAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ bottomWidget = Vis_39
+end
+!----------------------------
+begin OWidget
+ name = Vis_39
+ type = XmPushButton
+ labelString = Cancel
+ activateCallback = osh> unmanageWidget Vis_37
+ bottomAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_position
+ rightPosition = 50
+end
+!----------------------------
+begin OWidget
+ name = Vis_41
+ type = XmPushButton
+ labelString = Help
+! activateCallback = osh> help 'Commands cmds.ohtx'
+ bottomAttachment = attach_form
+ leftAttachment = attach_position
+ rightAttachment = attach_form
+ leftPosition = 50
+end

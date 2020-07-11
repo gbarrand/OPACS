@@ -1,0 +1,37 @@
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!! for XzPlotterT !!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!! Loaded by XzPlotterT at startup !!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!! UNIX> /cern/pro/bin/rfra ../usr/phan.ra  phan.rz
+!! UNIX> /cern/pro/bin/rfra ../usr/nomad.ra nomad.rz
+!! (Lego + fit + ctrl/ptrmove) does not work.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+*xzPlotterT.statisticsVisible : false
+*xzPlotterT.pageTitle         : This is a page title
+*xzPlotterT.title             : This is an hitogram title
+*xzPlotterT.options           :BOX;STA;UTIT
+*xzPlotterT.parameters        :GSIZ=.4
+*xzPlotterT.plottedObjects    :12
+*xzPlotterT.fitType           :gaussian
+*xzPlotterT.vAxisTitle        :yyy
+!*xzPlotterT.plottedObjects   :28
+!*xzPlotterT.layout           :xyv,45,50
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! "commands" resource disable all the upper commands.
+!!! \n or ; could be used as a command separator.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+*xzPlotterT.commands:zones=1,2;option=STA;plot=12;axes=xxx,yyy;fit=12,gaussian;option=NSTA;lego=28;axes=xxx,yyy
+!*XzPlotterT.commands:zones=1,2\nplot=12\noption=STA\nlego=28
+!*xzPlotterT.commands:zones=1,2;plot=12;fit=12,exp;option=STA;lego=28
+!*xzPlotterT.commands:zones=1,2;plot=12;fit=12,pol;option=STA;lego=28
+!*xzPlotterT.commands:zones=1,2;plot=12;fit=12,pol,3;option=STA;lego=28
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+
+
+
+

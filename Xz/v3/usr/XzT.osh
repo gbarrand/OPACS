@@ -1,0 +1,18 @@
+load phan.rz hbook
+#load t.rz hbook
+collect HFile | dump -
+dump HBook
+create HBook dimension 1 xAxisNumberOfBins 10 xAxisMinimum 1. xAxisMaximum 10.
+do HBook/1 fill 2.
+create HBook identifier 29 dimension 2 xAxisNumberOfBins 10 xAxisMinimum 1. xAxisMaximum 10. yAxisNumberOfBins 6 yAxisMinimum 1. yAxisMaximum 6.
+do HBook/29 fill 1. 3. 2.
+create HBook title 'mon histo' dimension 1 xAxisNumberOfBins 11 xAxisMinimum 1. xAxisMaximum 4.
+collect HBook | dump - identifier title
+delete HBook/12
+collect HBook | dump - identifier title
+# Should appear 'bins 2: 1'
+dump HBook/1 identifier bins
+# Should appear 'bins 21: 2'
+dump HBook/29 identifier bins
+#set HBook directory //t/SUBD1
+#dump HBook

@@ -1,0 +1,261 @@
+!/* +---------------------- Copyright notice -------------------------------+ */
+!/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+!/* |   Permission to use, copy, modify, and distribute this software       | */
+!/* |   and its documentation for any purpose and without fee is hereby     | */
+!/* |   granted, provided that the above copyright notice appear in all     | */
+!/* |   copies and that both that copyright notice and this permission      | */
+!/* |   notice appear in supporting documentation.  This software is        | */
+!/* |   provided "as is" without express or implied warranty.               | */
+!/* +---------------------- Copyright notice -------------------------------+ */
+!----------------------------
+begin Make
+  package = Xo
+!distrib:
+  has  = X11 Xext Xt Xmu GL HTML Xm XoXm
+!LAL:
+!  has  = X11 Xext Xt Xmu GL HTML XoCi Xm XoXm
+!Xaw:
+!  has  = X11 Xext Xt Xmu GL HTML Xaw XoXaw 
+!NT:  
+! has  = X11 Xext Xt Xmu GL Xaw XoXaw 
+  libs = \
+X11: libX11\
+Xext: libXext\
+Xt: libXt\
+Xmu: libXmu\
+Xm: libXm\
+Xaw: libXaw\
+GL: libGL libGLU libGLX\
+HTML: libwww libhtmlw\
+XoCi: libCSet libCi\
+Xo: libc libm libCo libHo libGo libXx
+end
+!----------------------------
+!----------------------------
+!----------------------------
+begin OModule
+  name  = XoCameraT
+  type  = application
+  libs  = libXo libwww libhtmlw libXm libXaw libXx libXmu libXt libGo libGLX libGLU libGL libXext libX11 libHo libCo libm
+end
+!----------------------------
+begin OModule
+  name  = XoPlotterT
+  type  = application
+  libs  = libCi libCSet libXo libwww libhtmlw libXm libXaw libXx libXmu libXt libGo libGLX libGLU libGL libXext libX11 libHo libCo libm
+end
+!----------------------------
+begin OModule
+  name  = OPlotterT
+  type  = application
+  libs  = libXo libwww libhtmlw libXm libXaw libXx libXmu libXt libGo libGLX libGLU libGL libXext libX11 libHo libCo libm
+!  libs  = libXo libGo libGLU libGL libHo libCo        libm
+!  objs  = OPlotter
+end
+!----------------------------
+begin OModule
+  name  = XoMosaicT
+  type  = application
+  libs  = libXo libwww libhtmlw libXm libXaw libXx libXmu libXt libGo libGLX libGLU libGL libXext libX11 libHo libCo libm
+end
+!----------------------------
+begin OModule
+  name  = XoGraphT
+  type  = application
+  libs  = libXo libwww libhtmlw libXm libXaw libXx libXmu libXt libGo libGLX libGLU libGL libXext libX11 libHo libCo libm
+end
+!----------------------------
+begin OModule
+  name  = XoLabelT
+  type  = application
+  libs  = libXo libwww libhtmlw libXm libXaw libXx libXmu libXt libGo libGLX libGLU libGL libXext libX11 libHo libCo libm
+end
+!----------------------------
+begin OModule
+  name  = XoEyesT
+  type  = application
+  libs  = libXo libwww libhtmlw libXm libXaw libXx libXmu libXt libGo libGLX libGLU libGL libXext libX11 libHo libCo libm
+end
+!----------------------------
+begin OModule
+  name  = XoImageT
+  type  = application
+  libs  = libXo libwww libhtmlw libXm libXaw libXx libXmu libXt libGo libGLX libGLU libGL libXext libX11 libHo libCo libm
+end
+!----------------------------
+begin OModule
+  name  = XoColormapT
+  type  = application
+  libs  = libXo libwww libhtmlw libXm libXaw libXx libXmu libXt libGo libGLX libGLU libGL libXext libX11 libHo libCo libm
+end
+!----------------------------
+begin OModule
+  name  = XoRheostatT
+  type  = application
+  libs  = libXo libwww libhtmlw libXm libXaw libXx libXmu libXt libGo libGLX libGLU libGL libXext libX11 libHo libCo libm
+!  objs  = XoRheostat
+!  libs  = libXo libXm libXx libXmu libXt libXext libX11                     libCo libm
+end
+!----------------------------
+begin OModule
+  name  = XoHelpT
+  type  = application
+  libs  = libXo libwww libhtmlw libXm libXaw libXx libXmu libXt libGo libGLX libGLU libGL libXext libX11 libHo libCo libm
+!  objs  = XoHelp
+!  libs  = libXo libXm libXx libXmu libXt libXext libX11 libCo libm
+end
+!----------------------------
+!----------------------------
+begin OModule
+  name  = XoShapeT
+  type  = application
+  libs  = libXo libwww libhtmlw libXm libXaw libXx libXmu libXt libGo libGLX libGLU libGL libXext libX11 libHo libCo libm
+  distributed = no
+end
+!----------------------------
+begin OModule
+  name  = XawT
+  type  = application
+  libs  = libXaw libXmu libXt libXext libX11 libm
+  distributed = no
+end
+!----------------------------
+begin OModule
+  name  = XmPushBT
+  type  = application
+  libs  = libXm libXt libX11
+  distributed = no
+end
+!----------------------------
+begin OModule
+  name  = NoHT
+  type  = application
+  distributed = no
+end
+!----------------------------
+!----------------------------
+!----------------------------
+begin OModule
+  name  = libXo
+  type  = so;NT=ar
+  libs  = libwww libhtmlw libXm libXaw libXx libXmu libXt libGo libGLX libGLU libGL libHo libXext libX11 libCo libm libc
+end
+!----------------------------
+begin OModule
+  name  = OImage
+  inLib = libXo
+end
+!----------------------------
+begin OModule
+  name  = OPlotter
+  inLib = libXo
+end
+!----------------------------
+begin OModule
+  name  = mowww
+  inLib = libXo
+end
+!----------------------------
+begin OModule
+  name  = img
+  inLib = libXo
+end
+!----------------------------
+begin OModule
+  name  = picread
+  inLib = libXo
+end
+!----------------------------
+begin OModule
+  name  = xpmread
+  inLib = libXo
+end
+!----------------------------
+begin OModule
+  name  = XoCommands
+  inLib = libXo
+end
+!----------------------------
+begin OModule
+  name  = XoTypes
+  inLib = libXo
+end
+!----------------------------
+begin OModule
+  name  = OColormapX
+  inLib = libXo
+end
+!----------------------------
+begin OModule
+  name  = XoF77
+  inLib = libXo
+end
+!----------------------------
+begin OModule
+  name  = XoShape
+  inLib = libXo
+end
+!----------------------------
+begin OModule
+  name  = XoGraph
+  inLib = libXo
+end
+!----------------------------
+begin OModule
+  name  = XoEyes
+  inLib = libXo
+end
+!----------------------------
+begin OModule
+  name  = XoLabel
+  inLib = libXo
+end
+!----------------------------
+begin OModule
+  name  = XoColormap
+  inLib = libXo
+end
+!----------------------------
+!-- Ci ----------------------
+!----------------------------
+begin OModule
+  name      = XoBinds
+  inLib     = libXo
+end
+!----------------------------
+!-- Xaw/Xm ------------------
+!----------------------------
+begin OModule
+  name  = Xo
+  inLib = libXo
+end
+!----------------------------
+begin OModule
+  name  = XoRheostat
+  inLib = libXo
+end
+!----------------------------
+begin OModule
+  name  = XoMosaic
+  inLib = libXo
+end
+!----------------------------
+begin OModule
+  name  = XoHelp
+  inLib = libXo
+end
+!----------------------------
+begin OModule
+  name  = XoPlotter
+  inLib = libXo
+end
+!----------------------------
+begin OModule
+  name  = XoCamera
+  inLib = libXo
+end
+!----------------------------
+begin OModule
+  name  = XoImage
+  inLib = libXo
+end

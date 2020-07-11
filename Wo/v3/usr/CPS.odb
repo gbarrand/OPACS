@@ -1,0 +1,394 @@
+!/* +---------------------- Copyright notice -------------------------------+ */
+!/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+!/* |   Permission to use, copy, modify, and distribute this software       | */
+!/* |   and its documentation for any purpose and without fee is hereby     | */
+!/* |   granted, provided that the above copyright notice appear in all     | */
+!/* |   copies and that both that copyright notice and this permission      | */
+!/* |   notice appear in supporting documentation.  This software is        | */
+!/* |   provided "as is" without express or implied warranty.               | */
+!/* +---------------------- Copyright notice -------------------------------+ */
+!----------------------------
+begin OInterface
+ version = v3
+ prefix = CPS_
+ packages = Xm 
+end
+!----------------------------
+begin OWidget
+ name = CPS_palette
+ type = XmFormDialog
+ children = CPS_capture CPS_grab CPS_localTarget CPS_1 CPS_23 CPS_25 CPS_file CPS_27 CPS_orientation CPS_orientation_pull CPS_34 CPS_38 CPS_39 CPS_43 CPS_44 CPS_45 CPS_46 CPS_47 CPS_48 CPS_49 CPS_50 CPS_shade_option CPS_shade_pull 
+ dialogTitle = Postscript
+ background = lightgrey
+ autoUnmanage = False
+end
+!----------------------------
+begin OWidget
+ name = CPS_capture
+ type = XmPushButton
+ activateCallback = osh>\
+  widget=`thisWidget`\
+  set CPS backgroundDrawn `getWidgetResource CPS_35 set`\
+  set CPS colorScheme     `getWidgetOption   CPS_shade_option`\
+  set CPS fileName        `getWidgetResource CPS_file value`\
+  set CPS orientation     `getWidgetOption   CPS_orientation`\
+  set CPS lineWidth       `getWidgetResource CPS_44   value`\
+  set CPS bitsPerPixel    `getWidgetOption CPS_38`\
+  set Widget grabCursor crosshair\
+  do $widget grabRootWindowPart\
+  set $widget cursor watch\
+  putRootWindowPixmapInPS $widget `get Widget grabbedX` `get Widget grabbedY` `get Widget grabbedWidth` `get Widget grabbedHeight`\
+  set $widget cursor default
+ labelString = Capture
+ background = lightgrey
+ topAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = CPS_grab
+ type = XmPushButton
+ createCallback = osh> setWidgetResource `thisWidget` height `getWidgetResource CPS_localTarget height`
+ activateCallback = osh>\
+   ref=`thisWidget`\
+   setWidgetResource CPS_localTarget value `grabWidgetName $ref`
+ labelString = Widget
+ background = grey
+ topAttachment = attach_widget
+ topWidget = CPS_capture
+ leftAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = CPS_localTarget
+ type = XmText
+ topAttachment = attach_widget
+ topWidget = CPS_capture
+ leftAttachment = attach_widget
+ leftWidget = CPS_grab
+ rightAttachment = attach_form
+ background = wheat
+ createCallback = osh> setWidgetTextSize `get Widget this` 1 10
+end
+!----------------------------
+begin OWidget
+ name = CPS_1
+ type = XmRowColumn
+ children = CPS_20 CPS_21 CPS_close  
+ background = lightgrey
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topAttachment = attach_widget
+ topWidget = CPS_localTarget
+end
+!----------------------------
+begin OWidget
+ name = CPS_20
+ type = XmPushButton
+ activateCallback = osh>\
+  set CPS backgroundDrawn `getWidgetResource CPS_35 set`\
+  set CPS colorScheme     `getWidgetOption   CPS_shade_option`\
+  set CPS fileName        `getWidgetResource CPS_file value`\
+  set CPS orientation     `getWidgetOption   CPS_orientation`\
+  set CPS lineWidth       `getWidgetResource CPS_44   value`\
+  set CPS bitsPerPixel    `getWidgetOption CPS_38`\
+  set `get Widget this` cursor watch\
+  do `get Widget thisLocalTarget` putPageInPS\
+  set `get Widget this` cursor default
+ labelString = Picture in metafile
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = CPS_21
+ type = XmPushButton
+ activateCallback = osh>\
+  set CPS backgroundDrawn `getWidgetResource CPS_35   set`\
+  set CPS colorScheme     `getWidgetOption   CPS_shade_option`\
+  set CPS fileName        `getWidgetResource CPS_file value`\
+  set CPS orientation     `getWidgetOption   CPS_orientation`\
+  set CPS lineWidth       `getWidgetResource CPS_44   value`\
+  set CPS bitsPerPixel    `getWidgetOption CPS_38`\
+  set `get Widget this` cursor watch\
+  do `get Widget thisLocalTarget` putPixmapInPS\
+  set `get Widget this` cursor default
+ labelString = Pixmap in metafile
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = CPS_close
+ type = XmPushButton
+ activateCallback = osh> do CPS close
+ labelString = Metafile close
+ background = red
+end
+!----------------------------
+begin OWidget
+ name = CPS_23
+ type = XmPushButton
+ activateCallback = osh> do `get Widget thisParent` unmanage
+ labelString = Cancel
+ background = lightgrey
+ topAttachment = attach_widget
+ leftAttachment = attach_widget
+ rightAttachment = attach_form
+ topWidget = CPS_50
+end
+!----------------------------
+begin OWidget
+ name = CPS_25
+ type = XmLabel
+ labelString = parameters
+ foreground = white
+ background = black
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = CPS_1
+end
+!----------------------------
+begin OWidget
+ name = CPS_file
+ type = XmText
+ createCallback = osh> setWidgetResource `get Widget this` value out.ps
+ background = lightgrey
+ topAttachment = attach_widget
+ leftAttachment = attach_widget
+ rightAttachment = attach_form
+ topWidget = CPS_25
+ leftWidget = CPS_27
+end
+!----------------------------
+begin OWidget
+ name = CPS_27
+ type = XmLabel
+ createCallback = osh> setWidgetResource `thisWidget` height `getWidgetResource CPS_file height`
+ labelString = File
+ background = lightgrey
+ topAttachment = attach_widget
+ topWidget = CPS_25
+end
+!----------------------------
+begin OWidget
+ name = CPS_orientation
+ type = XmOptionMenu
+ subMenuId = CPS_orientation_pull
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topAttachment = attach_widget
+ topWidget = CPS_45
+ background = lightgrey
+ labelString = Orientation
+ createCallback = osh> setWidgetOption `get Widget this` portrait
+end
+!----------------------------
+begin OWidget
+ name = CPS_orientation_pull
+ type = XmPulldownMenu
+ children = CPS_orientation_portrait CPS_orientation_landscape
+end
+!----------------------------
+begin OWidget
+ name = CPS_orientation_portrait
+ type = XmPushButton
+ labelString = portrait
+end
+!----------------------------
+begin OWidget
+ name = CPS_orientation_landscape
+ type = XmPushButton
+ labelString = landscape
+end
+!----------------------------
+begin OWidget
+ name = CPS_34
+ type = XmRadioBox
+ children = CPS_35 CPS_36 
+ x = 0
+ y = 403
+ width = 115
+ background = lightgrey
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_none
+ topWidget = CPS_46
+end
+!----------------------------
+begin OWidget
+ name = CPS_35
+ type = XmToggleButton
+ createCallback = osh> setWidgetResource `get Widget this` set 1
+ labelString = print back
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = CPS_36
+ type = XmToggleButton
+ labelString = no back
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = CPS_38
+ type = XmOptionMenu
+ subMenuId = CPS_39
+ labelString = #bit/pixel
+ topAttachment = attach_widget
+ topWidget = CPS_34
+ background = lightgrey
+ rightAttachment = attach_form
+ leftAttachment = attach_widget
+end
+!----------------------------
+begin OWidget
+ name = CPS_39
+ type = XmPulldownMenu
+ children = CPS_40 CPS_41 CPS_42 
+end
+!----------------------------
+begin OWidget
+ name = CPS_40
+ type = XmPushButton
+ labelString = 2
+end
+!----------------------------
+begin OWidget
+ name = CPS_41
+ type = XmPushButton
+ labelString = 4
+end
+!----------------------------
+begin OWidget
+ name = CPS_42
+ type = XmPushButton
+ labelString = 8
+end
+!----------------------------
+begin OWidget
+ name = CPS_43
+ type = XmLabel
+ labelString = Line width
+ background = lightgrey
+ topAttachment = attach_widget
+ topWidget = CPS_38
+ leftAttachment = attach_form
+ createCallback = osh> setWidgetResource `thisWidget` height `getWidgetResource CPS_44 height`
+end
+!----------------------------
+begin OWidget
+ name = CPS_44
+ type = XmText
+ createCallback = osh> setWidgetResource `get Widget this` value -1
+ background = lightgrey
+ topAttachment = attach_widget
+ rightAttachment = attach_form
+ leftAttachment = attach_widget
+ topWidget = CPS_38
+ leftWidget = CPS_43
+end
+!----------------------------
+begin OWidget
+ name = CPS_45
+ type = XmSeparator
+ background = lightgrey
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = CPS_shade_option
+end
+!----------------------------
+begin OWidget
+ name = CPS_46
+ type = XmSeparator
+ background = lightgrey
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = CPS_orientation
+end
+!----------------------------
+begin OWidget
+ name = CPS_47
+ type = XmSeparator
+ background = lightgrey
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = CPS_file
+end
+!----------------------------
+begin OWidget
+ name = CPS_48
+ type = XmLabel
+ labelString = View command
+ foreground = white
+ background = black
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = CPS_44
+end
+!----------------------------
+begin OWidget
+ name = CPS_49
+ type = XmPushButton
+ labelString = Apply
+ background = lightgrey
+ topAttachment = attach_widget
+ topWidget = CPS_48
+ activateCallback = osh> spawn `getWidgetResource CPS_50 value`
+ createCallback = osh> setWidgetResource `thisWidget` height `getWidgetResource CPS_50 height`
+end
+!----------------------------
+begin OWidget
+ name = CPS_50
+ type = XmText
+ createCallback = osh> setWidgetResource `get Widget this` value 'ghostview -back white -fore black  out.ps &'
+ activateCallback = osh> spawn `get Widget thisValue`
+ background = lightgrey
+ topAttachment = attach_widget
+ leftAttachment = attach_widget
+ rightAttachment = attach_form
+ topWidget = CPS_48
+ leftWidget = CPS_49
+end
+!----------------------------
+begin OWidget
+ name = CPS_shade_option
+ type = XmOptionMenu
+ subMenuId = CPS_shade_pull
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topAttachment = attach_widget
+ topWidget = CPS_47
+ background = lightgrey
+ labelString = Shade
+ createCallback = osh> setWidgetOption `get Widget this` color
+end
+!----------------------------
+begin OWidget
+ name = CPS_shade_pull
+ type = XmPulldownMenu
+ children = CPS_shade_option_1 CPS_shade_option_2 CPS_shade_option_3 
+end
+!----------------------------
+begin OWidget
+ name = CPS_shade_option_1
+ type = XmPushButton
+ labelString = color
+end
+!----------------------------
+begin OWidget
+ name = CPS_shade_option_2
+ type = XmPushButton
+ labelString = grey
+end
+!----------------------------
+begin OWidget
+ name = CPS_shade_option_3
+ type = XmPushButton
+ labelString = bw
+end

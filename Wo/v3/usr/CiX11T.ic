@@ -1,0 +1,66 @@
+/* +---------------------- Copyright notice -------------------------------+ */
+/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+/* |   Permission to use, copy, modify, and distribute this software       | */
+/* |   and its documentation for any purpose and without fee is hereby     | */
+/* |   granted, provided that the above copyright notice appear in all     | */
+/* |   copies and that both that copyright notice and this permission      | */
+/* |   notice appear in supporting documentation.  This software is        | */
+/* |   provided "as is" without express or implied warranty.               | */
+/* +---------------------- Copyright notice -------------------------------+ */
+#ifndef CiX11T_ic
+#define CiX11T_ic
+
+#include <X11/Intrinsic.h>
+
+/***************************************************************************/
+void XDispTDraw (
+ Widget This
+)
+/***************************************************************************/
+/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+{
+ Display*      xdisp;
+ Window        xwindow,root;
+ GC            xgc;
+ int           x,y;
+ unsigned int  width,height,border,depth;
+ XGCValues     values;
+/*.........................................................................*/
+ xdisp            = XtDisplay (This);
+ xwindow          = XtWindow  (This);
+ XClearWindow     (xdisp,xwindow);
+ xgc              = XCreateGC (xdisp,xwindow,(long)0,&values);
+ XSetForeground   (xdisp,xgc,XWhitePixelOfScreen(XDefaultScreenOfDisplay(xdisp)));
+ XSetBackground   (xdisp,xgc,XBlackPixelOfScreen(XDefaultScreenOfDisplay(xdisp)));
+ XDrawPoint       (xdisp,xwindow,xgc,65,25);
+ XDrawArc         (xdisp,xwindow,xgc,30,30,30,30,0,360*64);
+ XFillArc         (xdisp,xwindow,xgc,70,30,30,30,0,360*64);
+ XDrawRectangle   (xdisp,xwindow,xgc,30,70,30,35);
+ XFillRectangle   (xdisp,xwindow,xgc,70,70,30,35);
+ XGetGeometry     (xdisp,xwindow,&root,&x,&y,&width,&height,&border,&depth);
+
+ values.line_width  = 4;
+ XChangeGC          (xdisp,xgc,GCLineWidth,&values);
+/*
+ XSetLineAttributes (xdisp,xgc,7,0,0,0);
+*/
+ XDrawLine         (xdisp,xwindow,xgc,0,0,width,height);
+
+ XDrawString      (xdisp,xwindow,xgc,10,height/2,"Drawn with an interpreted exposeCallback",40);
+{XPoint           pts[4];
+ pts[0].x         = 10;
+ pts[0].y         = 10;
+ pts[1].x         = 100;
+ pts[1].y         = 0;
+ pts[2].x         = 0;
+ pts[2].y         = 100;
+ pts[3].x         = -100;
+ pts[3].y         = 0;
+ XDrawLines       (xdisp,xwindow,xgc,pts,4,CoordModePrevious);}
+ XSetForeground   (xdisp,xgc,XBlackPixelOfScreen(XDefaultScreenOfDisplay(xdisp)));
+ XSetBackground   (xdisp,xgc,XWhitePixelOfScreen(XDefaultScreenOfDisplay(xdisp)));
+ XDrawImageString (xdisp,xwindow,xgc,10,height/2+20,"Drawn with an interpreted exposeCallback",40);
+ XFreeGC          (xdisp,xgc);
+}
+
+#endif /*CiX11T_ic*/

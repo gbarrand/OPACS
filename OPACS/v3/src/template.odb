@@ -1,0 +1,71 @@
+!----------------------------
+begin OInterface
+ version = v1
+ prefix = template_
+ packages = Xm
+end
+!----------------------------
+begin OWidget
+ name = template_shell
+ type = TopLevelShell
+ children = template_form 
+ geometry = 400x300+0+0
+ title = W
+end
+!----------------------------
+begin OWidget
+ name = template_form
+ type = XmForm
+ children = template_menubar template_bb
+end
+!----------------------------
+begin OWidget
+ name = template_menubar
+ type = XmMenuBar
+ children = Wo_casc<Wo.odb Wo_pull<Wo.odb template_casc template_pdm
+ background = lightgrey
+ shadowThickness = 4
+ topShadowColor = white
+ bottomShadowColor = black
+ topAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ menuHelpWidget = template_casc
+end
+!----------------------------
+begin OWidget
+ name = template_bb
+ type = XmBulletinBoard
+ background = grey
+ topAttachment = attach_widget
+ bottomAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = template_menubar
+end
+!----------------------------
+begin OWidget
+ name = template_casc
+ type = XmCascadeButton
+ labelString = Help
+ mnemonic = H
+ subMenuId = template_pdm
+end
+!----------------------------
+begin OWidget
+ name = template_pdm
+ type = XmPulldownMenu
+ children = template_help
+end
+!----------------------------
+begin OWidget
+ name = template_help
+ type = XmPushButton
+ background = lightgrey
+ labelString = Help
+ activateCallback = osh>\
+  load Help.odb | realize -\
+  showTopic Help_help 'W.html'\
+  manageWidget Help_palette;raiseWidget Help_palette_popup
+end
+

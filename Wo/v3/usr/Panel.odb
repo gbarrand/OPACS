@@ -1,0 +1,66 @@
+!----------------------------
+begin OInterface
+ prefix = Panel_
+ packages = Xm 
+end
+!----------------------------
+begin OWidget
+ name = Panel_casc
+ type = XmCascadeButton
+ labelString = Panel
+ subMenuId = Panel_pdm
+end
+!----------------------------
+begin OWidget
+ name = Panel_pdm
+ type = XmPulldownMenu
+ children = Panel_add Panel_save  Panel_separator Panel_update Panel_auto Panel_auto_stop
+end
+!----------------------------
+begin OWidget
+ name = Panel_add
+ type = XmPushButton
+ labelString = New panel
+ activateCallback = osh> load AddPanel.odb | realize - ;manageWidget AddPanel_palette;raiseWidget AddPanel_palette_popup
+end
+!----------------------------
+begin OWidget
+ name = Panel_save
+ type = XmPushButton
+ labelString = Save panel
+ activateCallback = osh> do Wo saveInterface `getWidgetResource StoreFileName value`
+end
+!----------------------------
+begin OWidget
+ name = Panel_separator
+ type = XmSeparator
+end
+!----------------------------
+begin OWidget
+ name = Panel_update
+ type = XmPushButton
+ labelString = Update
+ activateCallback = osh>\
+  grid=`getWidgetResource StoreGridName value`\
+  get $grid managedChildren | callWidgetCallbacks - userCallback
+end
+!----------------------------
+begin OWidget
+ name = Panel_auto
+ type = XmPushButton
+ labelString = Automatic
+ activateCallback = osh>\
+  isValid OCyclic/cyclic_refresh && delete OCyclic/cyclic_refresh\
+  delay=`ask delay(msec) 1000`\
+  test $delay eq '' && exit \
+  script='osh> get `getWidgetResource StoreGridName value` managedChildren | callWidgetCallbacks - userCallback'\
+  create OCyclic name cyclic_refresh widget Panel_auto delay $delay script $script | empty\
+  do OCyclic/cyclic_refresh start
+end
+!----------------------------
+begin OWidget
+ name = Panel_auto_stop
+ type = XmPushButton
+ labelString = Auto stop
+ activateCallback = osh> isValid OCyclic/cyclic_refresh && delete OCyclic/cyclic_refresh
+end

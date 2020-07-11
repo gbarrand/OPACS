@@ -1,0 +1,101 @@
+!----------------------------
+begin OInterface
+ prefix = pi_
+ packages = Xm 
+! resources = \
+!Wo*vAxisAutomatic:false\
+!Wo*vAxisMinimum:0\
+!Wo*vAxisMaximum:100
+end
+!----------------------------
+begin OWidget
+ name = pi_shell
+ type = TopLevelShell
+ children = pi_form 
+ geometry = 400x300+0+0
+ title = Xxx
+end
+!----------------------------
+begin OWidget
+ name = pi_form
+ type = XmForm
+ children = pi_menubar pi_grid
+end
+!----------------------------
+begin OWidget
+ name = pi_menubar
+ type = XmMenuBar
+ children = Wo_casc<Wo.odb Wo_pull<Wo.odb pi_casc pi_pdm pi_analysis_casc pi_analysis_pdm 
+ background = lightgrey
+ shadowThickness = 4
+ topShadowColor = white
+ bottomShadowColor = black
+ menuHelpWidget = pi_casc
+ topAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = pi_casc
+ type = XmCascadeButton
+ labelString = Help
+ mnemonic = H
+ subMenuId = pi_pdm
+end
+!----------------------------
+begin OWidget
+ name = pi_pdm
+ type = XmPulldownMenu
+ children = pi_help 
+end
+!----------------------------
+begin OWidget
+ name = pi_help
+ type = XmPushButton
+ background = lightgrey
+ labelString = Help
+ activateCallback = osh>\
+  load Help.odb | realize -\
+  showTopic Help_help 'Xxx.htm'\
+  manageWidget Help_palette;raiseWidget Help_palette_popup
+end
+!----------------------------
+begin OWidget
+ name = pi_analysis_casc
+ type = XmCascadeButton
+ labelString = Analysis
+ subMenuId = pi_analysis_pdm
+end
+!----------------------------
+begin OWidget
+ name = pi_analysis_pdm
+ type = XmPulldownMenu
+ children = pi_analysis
+end
+!----------------------------
+begin OWidget
+ name = pi_analysis
+ type = XmPushButton
+ background = lightgrey
+ labelString = Analysis
+ createCallback = osh>load pi_mc.otu;load pi_data.otu
+ activateCallback = osh>. ./pi.osh
+end
+!----------------------------
+begin OWidget
+ name = pi_grid
+ type = XmForm
+ background = grey
+ topAttachment = attach_widget
+ bottomAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = pi_menubar
+ createCallback = &osh>\
+  buildWidgetGrid `thisWidget` XoPlotter 2 3\
+  setWidgetResource  pi_grid_1_3 fitType polynomial\
+  #setWidgetResource  pi_grid_1_3 fitNumberOfParameters 3
+end
+
+

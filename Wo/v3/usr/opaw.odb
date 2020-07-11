@@ -1,0 +1,135 @@
+!----------------------------
+begin OInterface
+ version = v3
+ prefix = opaw_
+ packages = Xm
+end
+!----------------------------
+begin OWidget
+ name = opaw_shell
+ type = TopLevelShell
+ children = opaw_form 
+ geometry = 400x300+0+0
+ title = Wo && PAW
+end
+!----------------------------
+begin OWidget
+ name = opaw_form
+ type = XmForm
+ children = opaw_menubar opaw_command
+end
+!----------------------------
+begin OWidget
+ name = opaw_menubar
+ type = XmMenuBar
+! children = Wo_casc<Wo.odb Wo_pull<Wo.odb opaw_casc opaw_pdm opaw_user_casc opaw_user_pdm opaw_help_casc opaw_help_pdm
+ children = opaw_casc opaw_pdm opaw_user_casc opaw_user_pdm opaw_help_casc opaw_help_pdm
+ background = lightgrey
+ shadowThickness = 4
+ topShadowColor = white
+ bottomShadowColor = black
+ topAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ menuHelpWidget = opaw_help_casc
+end
+!----------------------------
+begin OWidget
+ name = opaw_help_casc
+ type = XmCascadeButton
+ labelString = Help
+ mnemonic = H
+ subMenuId = opaw_help_pdm
+end
+!----------------------------
+begin OWidget
+ name = opaw_help_pdm
+ type = XmPulldownMenu
+ children = opaw_help
+end
+!----------------------------
+begin OWidget
+ name = opaw_help
+ type = XmPushButton
+ background = lightgrey
+ labelString = Help
+ activateCallback = osh>\
+  load Help.odb | realize -\
+  showTopic Help_help 'opaw.htm'\
+  manageWidget Help_palette;raiseWidget Help_palette_popup
+end
+!----------------------------
+begin OWidget
+ name = opaw_command
+ type = XmCommand
+ createCallback = osh> PAW
+ commandEnteredCallback = osh> KUIP `thisValue`
+ topAttachment = attach_widget
+ topWidget = opaw_menubar
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ bottomAttachment = attach_form
+end
+!----------------------------
+!----------------------------
+!----------------------------
+begin OWidget
+ name = opaw_casc
+ type = XmCascadeButton
+ labelString = PAW
+ subMenuId = opaw_pdm
+end
+!----------------------------
+begin OWidget
+ name = opaw_pdm
+ type = XmPulldownMenu
+ children = opaw_h_lis opaw_quit
+end
+!----------------------------
+begin OWidget
+ name = opaw_h_lis
+ type = XmPushButton
+ labelString = H/LIS
+ activateCallback = KUIP> H/LIS
+end
+!----------------------------
+begin OWidget
+ name = opaw_quit
+ type = XmPushButton
+ labelString = Quit
+ activateCallback = KUIP> Wo/quit
+! activateCallback = osh> do Wo sendExit 0
+end
+!----------------------------
+!----------------------------
+!----------------------------
+!----------------------------
+begin OWidget
+ name = opaw_user_casc
+ type = XmCascadeButton
+ labelString = User
+ subMenuId = opaw_user_pdm
+end
+!----------------------------
+begin OWidget
+ name = opaw_user_pdm
+ type = XmPulldownMenu
+ children = opaw_exa_1 opaw_exa_2
+end
+!----------------------------
+begin OWidget
+ name = opaw_exa_1
+ type = XmPushButton
+ labelString = Open phan.rz
+ activateCallback = KUIP> H/FILE 54 phan.rz
+end
+!----------------------------
+begin OWidget
+ name = opaw_exa_2
+ type = XmPushButton
+ labelString = Exec opaw.kum
+ activateCallback = KUIP> EXEC opaw.kum
+end
+
+
+

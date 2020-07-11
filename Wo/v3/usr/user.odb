@@ -1,0 +1,172 @@
+!/* +---------------------- Copyright notice -------------------------------+ */
+!/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+!/* |   Permission to use, copy, modify, and distribute this software       | */
+!/* |   and its documentation for any purpose and without fee is hereby     | */
+!/* |   granted, provided that the above copyright notice appear in all     | */
+!/* |   copies and that both that copyright notice and this permission      | */
+!/* |   notice appear in supporting documentation.  This software is        | */
+!/* |   provided "as is" without express or implied warranty.               | */
+!/* +---------------------- Copyright notice -------------------------------+ */
+!----------------------------
+begin OInterface
+ version = v3
+ prefix = user_
+end
+!----------------------------
+begin OWidget
+ name = user_panel
+ type = XmForm
+ children = user_text user_grid
+ background = lightgrey
+ topAttachment = attach_form
+ bottomAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = user_text
+ type = XmText
+ background = grey
+ editMode = multi_line_edit
+ topAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = user_grid
+ type = XmForm
+ children = top_left_view top_right_view bottom_left_view bottom_right_view 
+ background = grey
+ topAttachment = attach_widget
+ bottomAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = user_text
+end
+!----------------------------
+begin OWidget
+ name = top_left_view
+ type = XoCamera
+ createCallback = osh>\
+  set Widget target `thisWidget`\
+  camera=`thisCamera`\
+  rotateCamera $camera y 90.\
+  resetCamera $camera context\
+  set OContext color lightblue; collect VOLU where name eq ECAL | represent - | viewNode - $camera\
+  #set OContext color green; collect VOLU where name eq TOWE  | represent - | viewNode - $camera\
+  set OContext color grey;do Go representFrame FRAME 10. | viewNode - $camera
+ background = black
+ viewLimits = -200 200
+ collectCallback = osh> getCameraNodes `thisCamera` | collect ONode where highlight eq 1 | get - name | dump -
+ userCallback = osh>\
+  collect ONode where name eq KINE* | delete -\
+  collect ONode where name eq TOWE* | delete -\
+  collect ONode where name eq HITS* | delete -\
+  camera=`thisCamera`\
+  resetCamera $camera context\
+  collect KINE | represent - | viewNode - $camera \
+  set OContext lineStyle solid lineWidth 1 color green;collect HITS_ECAL_TOWE | represent - | viewNode - $camera\
+  #set OContext lineStyle solid lineWidth 1 color green\
+  #set TOWE representation geometric;collect TOWE | represent - | viewNode - $camera\
+  set OContext lineStyle solid color magenta\
+  set TOWE representation herisson norme 200.;collect TOWE | represent - | viewNode - $camera
+ topAttachment = attach_position
+ bottomAttachment = attach_position
+ leftAttachment = attach_position
+ rightAttachment = attach_position
+ topPosition = 1
+ bottomPosition = 49
+ leftPosition = 1
+ rightPosition = 49
+end
+!----------------------------
+begin OWidget
+ name = top_right_view
+ type = XoCamera
+ background = black
+ referenceCamera = top_left_view
+ viewLimits = -200 200
+ collectCallback = osh> getCameraNodes `thisCamera` | collect ONode where highlight eq 1 | get - name | dump -
+ topAttachment = attach_position
+ bottomAttachment = attach_position
+ leftAttachment = attach_position
+ rightAttachment = attach_position
+ topPosition = 1
+ bottomPosition = 49
+ leftPosition = 51
+ rightPosition = 99
+end
+!----------------------------
+begin OWidget
+ name = bottom_left_view
+ type = XoPlotter
+ createCallback = osh>\
+  ohist=`create OHistogram name TOWE_energy dimension 1 xAxisNumberOfBins 10 xAxisMinimum 0. xAxisMaximum 1.`\
+  setWidgetResource `get Widget this` plottedObjects $ohist
+ userCallback = osh>\
+  ohist='OHistogram/TOWE_energy'\
+  do $ohist clear\
+  collect TOWE | putInHistogram  - energy $ohist\
+  updatePlot `thisWidget`
+ topAttachment = attach_position
+ bottomAttachment = attach_position
+ leftAttachment = attach_position
+ rightAttachment = attach_position
+ topPosition = 51
+ bottomPosition = 99
+ leftPosition = 1
+ rightPosition = 49
+end
+!----------------------------
+begin OWidget
+ name = bottom_right_view
+ type = XoCamera
+ background = black
+ viewLimits = -200 200
+ createCallback = osh>\
+  camera=`thisCamera`\
+  resetCamera $camera context\
+  set OContext color lightblue; collect VOLU where name eq ECAL | represent - | viewNode - $camera\
+  #set OContext color green; collect VOLU where name eq TOWE  | represent - | viewNode - $camera\
+  set OContext color grey;do Go representFrame FRAME 10. | viewNode - $camera
+ userCallback = osh>\
+  camera=`thisCamera`\
+  resetCamera $camera context\
+  collect KINE | represent - | viewNode - $camera \
+  set OContext lineStyle solid lineWidth 5 color magenta\
+  set TOWE representation herisson norme 100.;collect TOWE | represent - | viewNode - $camera
+ topAttachment = attach_position
+ bottomAttachment = attach_position
+ leftAttachment = attach_position
+ rightAttachment = attach_position
+ topPosition = 51
+ bottomPosition = 99
+ leftPosition = 51
+ rightPosition = 99
+end
+!----------------------------
+begin OWidget
+ name = shell_view_panel
+ type = XmFormDialog
+ children = shell_view 
+ dialogTitle = Shell view
+end
+!----------------------------
+begin OWidget
+ name = shell_view
+ type = XoCamera
+ children = shell_view_text 
+ background = black
+ referenceCamera = top_left_view
+ viewLimits = -200 200
+ collectCallback = osh> getCameraNodes `thisCamera` | collect ONode where highlight eq 1 | get - name | dump -
+end
+!----------------------------
+begin OWidget
+ name = shell_view_text
+ type = XmText
+ background = white
+ editMode = multi_line_edit
+end

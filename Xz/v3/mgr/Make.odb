@@ -1,0 +1,179 @@
+!/* +---------------------- Copyright notice -------------------------------+ */
+!/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+!/* |   Permission to use, copy, modify, and distribute this software       | */
+!/* |   and its documentation for any purpose and without fee is hereby     | */
+!/* |   granted, provided that the above copyright notice appear in all     | */
+!/* |   copies and that both that copyright notice and this permission      | */
+!/* |   notice appear in supporting documentation.  This software is        | */
+!/* |   provided "as is" without express or implied warranty.               | */
+!/* +---------------------- Copyright notice -------------------------------+ */
+! VAX/VMS : libkernlib needed.
+!----------------------------
+begin Make
+  package = Xz
+  has  = X11 Xext Xt Xmu CERN
+!  has  = X11 Xext Xt Xmu CERN XzCm
+  libs = \
+X11: libX11\
+Xext: libXext\
+Xt: libXt\
+Xmu: libXmu\
+CERN: libkernlib libpacklib libgrafX11 libgraflib\
+Xz: libm libCo libXx libf77 libXzPAWC\
+XzCm: libCSet libCm libXzCm
+end
+!----------------------------
+!----------------------------
+!----------------------------
+begin OModule
+  name  = XzPlotterT
+  type  = application
+  libs  = libXz libXzPAWC libgraflib libgrafX11 libpacklib libkernlib libf77 libXx libXmu libXt libXext libX11 libCo libm
+end
+!----------------------------
+begin OModule
+  name  = oshXz
+  type  = application
+  libs  = libXz libXzPAWC libgraflib libgrafX11 libpacklib libkernlib libf77 libXx libXmu libXt libXext libX11 libCo libm
+end
+!----------------------------
+!----------------------------
+begin OModule
+  name     = hbookT
+  type     = application
+  language = f77
+  libs     = libpacklib libkernlib
+  distributed = no
+end
+!----------------------------
+begin OModule
+  name     = kuipT
+  type     = application
+  language = f77
+  objs     = ktcdf ktyyy
+  libs     = libpacklib
+  distributed = no
+end
+!----------------------------
+begin OModule
+  name        = pawcT
+  type        = application
+  language    = f77
+  distributed = no
+end
+!----------------------------
+begin OModule
+  name  = NoHT
+  type  = application
+  distributed = no
+end
+!----------------------------
+!----------------------------
+!----------------------------
+!----------------------------
+begin OModule
+  name  = libXz
+  type  = ar
+end
+!----------------------------
+begin OModule
+  name  = XzCommands
+  inLib = libXz
+end
+!----------------------------
+begin OModule
+  name  = XzTypes
+  inLib = libXz
+end
+!----------------------------
+begin OModule
+  name  = XzPlotter
+  inLib = libXz
+end
+!----------------------------
+begin OModule
+  name  = HFile
+  inLib = libXz
+end
+!----------------------------
+begin OModule
+  name  = HBook
+  inLib = libXz
+end
+!----------------------------
+begin OModule
+  name  = HPlot
+  inLib = libXz
+end
+!----------------------------
+begin OModule
+  name  = Kuip
+  inLib = libXz
+end
+!----------------------------
+begin OModule
+  name     = ohplot
+  language = f77
+  inLib    = libXz
+end
+!----------------------------
+begin OModule
+  name     = ohbook
+  language = f77
+  inLib    = libXz
+end
+!----------------------------
+begin OModule
+  name     = okuip
+  language = f77
+  inLib    = libXz
+end
+!----------------------------
+begin OModule
+  name  = hg
+  inLib = libXz
+end
+!----------------------------
+!-- Ci ----------------------
+!----------------------------
+begin OModule
+  name      = XzBinds
+  inLib     = libXz
+end
+!----------------------------
+!----------------------------
+!----------------------------
+begin OModule
+  name  = libXzPAWC
+  type  = ar
+end
+!----------------------------
+begin OModule
+  name     = opawc
+  language = f77
+  inLib    = libXzPAWC
+end
+!----------------------------
+!-- Cm ----------------------
+!----------------------------
+begin OModule
+  name  = libXzCm
+  type  = ar
+end
+!----------------------------
+begin OModule
+  name  = XzCm
+  inLib = libXzCm
+end
+!----------------------------
+!----------------------------
+!----------------------------
+begin OModule
+  name  = ktcdf
+  inLib = none
+end
+!----------------------------
+begin OModule
+  name  = ktyyy
+  inLib = none
+end

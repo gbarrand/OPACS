@@ -1,0 +1,147 @@
+!/* +---------------------- Copyright notice -------------------------------+ */
+!/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+!/* |   Permission to use, copy, modify, and distribute this software       | */
+!/* |   and its documentation for any purpose and without fee is hereby     | */
+!/* |   granted, provided that the above copyright notice appear in all     | */
+!/* |   copies and that both that copyright notice and this permission      | */
+!/* |   notice appear in supporting documentation.  This software is        | */
+!/* |   provided "as is" without express or implied warranty.               | */
+!/* +---------------------- Copyright notice -------------------------------+ */
+!----------------------------
+begin OInterface
+ version = v3
+ prefix = ocapture_
+ packages = Xm
+end
+!----------------------------
+begin OWidget
+ name = ocapture_palette
+ type = XmFormDialog
+ children = ocapture_radio ocapture_6 ocapture_7 ocapture_8 ocapture_label ocapture_apply ocapture_sys ocapture_cancel 
+ dialogTitle = Capture
+ background = lightgrey
+ autoUnmanage = False
+end
+!----------------------------
+begin OWidget
+ name = ocapture_radio
+ type = XmRadioBox
+ children = ocapture_4 ocapture_5 ocapture_9 
+ topAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = ocapture_4
+ type = XmToggleButton
+ background = grey
+ labelString = ps
+ set = true
+ valueChangedCallback = osh> setWidgetResource ocapture_7 value out.ps;setWidgetResource ocapture_sys value 'ghostview -back white -fore black  out.ps &'
+end
+!----------------------------
+begin OWidget
+ name = ocapture_5
+ type = XmToggleButton
+ background = grey
+ labelString = gif
+ valueChangedCallback = osh> setWidgetResource ocapture_7 value out.gif;setWidgetResource ocapture_sys value 'xv out.gif &'
+end
+!----------------------------
+begin OWidget
+ name = ocapture_9
+ type = XmToggleButton
+ background = grey
+ labelString = X bitmap
+ valueChangedCallback = osh> setWidgetResource ocapture_7 value out.xbm;setWidgetResource ocapture_sys value 'bitmap out.xbm &'
+end
+!----------------------------
+begin OWidget
+ name = ocapture_6
+ type = XmLabel
+ background = black
+ foreground = white
+ labelString = File name
+ topAttachment = attach_widget
+ topWidget = ocapture_radio
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = ocapture_7
+ type = XmText
+ background = grey
+ topAttachment = attach_widget
+ topWidget = ocapture_6
+ createCallback = osh> setWidgetResource `get Widget this` value out.ps
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = ocapture_8
+ type = XmPushButton
+ activateCallback = osh>\
+  widget=`thisWidget`\
+  set $widget cursor watch\
+  fname=`getWidgetResource ocapture_7 value`\
+  test `getWidgetResource ocapture_4 set` eq true && captureAndSavePixmap $widget ps  $fname\
+  test `getWidgetResource ocapture_5 set` eq true && captureAndSavePixmap $widget gif $fname\
+  test `getWidgetResource ocapture_9 set` eq true && captureAndSavePixmap $widget xbm $fname\
+  set `get Widget this` cursor  default
+ labelString = Capture
+ background = grey
+ topAttachment = attach_widget
+ topWidget = ocapture_7
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = ocapture_label
+ type = XmLabel
+ labelString = View command
+ foreground = white
+ background = black
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = ocapture_8
+end
+!----------------------------
+begin OWidget
+ name = ocapture_apply
+ type = XmPushButton
+ labelString = Apply
+ background = lightgrey
+ topAttachment = attach_widget
+ topWidget = ocapture_label
+ activateCallback = osh> spawn `getWidgetResource ocapture_sys value`
+end
+!----------------------------
+begin OWidget
+ name = ocapture_sys
+ type = XmText
+ createCallback = osh> setWidgetResource `get Widget this` value 'ghostview -back white -fore black  out.ps &'
+ activateCallback = osh> spawn `get Widget thisValue`
+ background = lightgrey
+ topAttachment = attach_widget
+ leftAttachment = attach_widget
+ rightAttachment = attach_form
+ topWidget = ocapture_label
+ leftWidget = ocapture_apply
+end
+!----------------------------
+begin OWidget
+ name = ocapture_cancel
+ type = XmPushButton
+ activateCallback = osh> do Wo sendExit
+ labelString = Exit
+ background = lightgrey
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topAttachment = attach_widget
+ topWidget = ocapture_sys
+end

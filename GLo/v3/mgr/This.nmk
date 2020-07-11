@@ -1,0 +1,207 @@
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#  File produced by the Co/omake tool
+# using file Make.odb.
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#  The soft linked packages has been taken
+# from the property 'has' of the 
+# 'Make' object of file Make.odb.
+# It had the value :
+#    X11
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+HAS_CPPFLAGS = \
+ $(GLo_CPPFLAGS)\
+ $(X11_CPPFLAGS)
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+all   :: mkdir
+
+clean ::
+	if exist $(bin)\*.obj del $(bin)\*.obj
+	if exist $(bin)\*.exe del $(bin)\*.exe
+	if exist $(bin)\*.lib del $(bin)\*.lib
+	if exist $(bin)\*.dll del $(bin)\*.dll
+	if exist $(bin)\*.exp del $(bin)\*.exp
+	if exist $(bin)\*.pdb del $(bin)\*.pdb
+rmlib ::
+	if exist $(bin)\*.lib del $(bin)\*.lib
+rmo   ::
+	if exist $(bin)\*.obj del $(bin)\*.obj
+rmexe ::
+	if exist $(bin)\*.exe del $(bin)\*.exe
+
+mkdir :
+	@if not exist $(bin) mkdir $(bin)
+
+libGLo_target = $(bin)\libGLo.lib
+libGLUo_target = $(bin)\libGLUo.lib
+libGLXo_target = $(bin)\libGLXo.lib
+libGLPSo_target = $(bin)\libGLPSo.lib
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+all :: mkdir \
+$(libGLo_target) \
+$(libGLUo_target) \
+$(libGLXo_target) \
+$(libGLPSo_target) \
+$(bin)\glXT.exe \
+$(bin)\glPST.exe 
+	@echo "GLo : all ok." 
+
+libs :: mkdir \
+$(libGLo_target) \
+$(libGLUo_target) \
+$(libGLXo_target) \
+$(libGLPSo_target) 
+	@echo "GLo : libs ok." 
+
+apps :: mkdir \
+$(bin)\glXT.exe \
+$(bin)\glPST.exe \
+$(bin)\NoHT.exe 
+	@echo "GLo : apps ok." 
+#--------------------------------------------
+rmexeo :
+	if exist $(bin)\glXT.obj del $(bin)\glXT.obj
+	if exist $(bin)\glPST.obj del $(bin)\glPST.obj
+	if exist $(bin)\NoHT.obj del $(bin)\NoHT.obj
+#--------------------------------------------
+glXT : $(bin)\glXT.exe
+	@echo "GLo : glXT ok."
+glPST : $(bin)\glPST.exe
+	@echo "GLo : glPST ok."
+NoHT : $(bin)\NoHT.exe
+	@echo "GLo : NoHT ok."
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#--------------------------------------------
+$(bin)\glXT.exe : $(bin)\glXT.obj \
+$(libGLXo_target) \
+$(libGLUo_target) \
+$(libGLo_target) 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\glXT.exe $(bin)\glXT.obj \
+$(libGLXo) \
+$(libGLUo) \
+$(libGLo) \
+$(libCo) \
+$(libX11) \
+$(libm) \
+$(CCLDEND) 
+
+$(bin)\glXT.obj   : $(app)\glXT.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\glXT.obj $(app)\glXT.c
+#--------------------------------------------
+$(bin)\glPST.exe : $(bin)\glPST.obj \
+$(libGLPSo_target) \
+$(libGLUo_target) \
+$(libGLo_target) 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\glPST.exe $(bin)\glPST.obj \
+$(libGLPSo) \
+$(libGLUo) \
+$(libGLo) \
+$(libCo) \
+$(libm) \
+$(CCLDEND) 
+
+$(bin)\glPST.obj   : $(app)\glPST.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\glPST.obj $(app)\glPST.c
+#--------------------------------------------
+$(bin)\NoHT.exe : $(bin)\NoHT.obj 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\NoHT.exe $(bin)\NoHT.obj \
+$(CCLDEND) 
+
+$(bin)\NoHT.obj   : $(app)\NoHT.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\NoHT.obj $(app)\NoHT.c
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# libraries 
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#--------------------------------------------
+
+$(bin)\libGLo.lib : \
+$(bin)\gl.obj \
+$(bin)\glList.obj \
+$(bin)\glDriverZ.obj \
+$(bin)\ZBuffer.obj \
+$(bin)\ZPolygon.obj 
+	if exist $(bin)\libGLo.lib del $(bin)\libGLo.lib 
+	lib.exe @<<
+/nologo /out:$(bin)\libGLo.lib
+$(bin)\gl.obj
+$(bin)\glList.obj
+$(bin)\glDriverZ.obj
+$(bin)\ZBuffer.obj
+$(bin)\ZPolygon.obj
+<<
+#--------------------------------------------
+
+$(bin)\libGLUo.lib : \
+$(bin)\glu.obj \
+$(libGLo_target) 
+	if exist $(bin)\libGLUo.lib del $(bin)\libGLUo.lib 
+	lib.exe @<<
+/nologo /out:$(bin)\libGLUo.lib
+$(bin)\glu.obj
+<<
+#--------------------------------------------
+
+$(bin)\libGLXo.lib : \
+$(bin)\glx.obj \
+$(bin)\glDriverX.obj \
+$(libGLo_target) 
+	if exist $(bin)\libGLXo.lib del $(bin)\libGLXo.lib 
+	lib.exe @<<
+/nologo /out:$(bin)\libGLXo.lib
+$(bin)\glx.obj
+$(bin)\glDriverX.obj
+<<
+#--------------------------------------------
+
+$(bin)\libGLPSo.lib : \
+$(bin)\glPS.obj \
+$(bin)\glDriverPS.obj \
+$(libGLo_target) 
+	if exist $(bin)\libGLPSo.lib del $(bin)\libGLPSo.lib 
+	lib.exe @<<
+/nologo /out:$(bin)\libGLPSo.lib
+$(bin)\glPS.obj
+$(bin)\glDriverPS.obj
+<<
+#--------------------------------------------
+# libGLo dependencies 
+#--------------------------------------------
+$(bin)\gl.obj : $(src)\gl.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\gl.obj $(src)\gl.c
+
+$(bin)\glList.obj : $(src)\glList.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\glList.obj $(src)\glList.c
+
+$(bin)\glDriverZ.obj : $(src)\glDriverZ.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\glDriverZ.obj $(src)\glDriverZ.c
+
+$(bin)\ZBuffer.obj : $(src)\ZBuffer.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\ZBuffer.obj $(src)\ZBuffer.c
+
+$(bin)\ZPolygon.obj : $(src)\ZPolygon.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\ZPolygon.obj $(src)\ZPolygon.c
+
+#--------------------------------------------
+# libGLUo dependencies 
+#--------------------------------------------
+$(bin)\glu.obj : $(src)\glu.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\glu.obj $(src)\glu.c
+
+#--------------------------------------------
+# libGLXo dependencies 
+#--------------------------------------------
+$(bin)\glx.obj : $(src)\glx.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\glx.obj $(src)\glx.c
+
+$(bin)\glDriverX.obj : $(src)\glDriverX.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\glDriverX.obj $(src)\glDriverX.c
+
+#--------------------------------------------
+# libGLPSo dependencies 
+#--------------------------------------------
+$(bin)\glPS.obj : $(src)\glPS.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\glPS.obj $(src)\glPS.c
+
+$(bin)\glDriverPS.obj : $(src)\glDriverPS.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\glDriverPS.obj $(src)\glDriverPS.c
+
+

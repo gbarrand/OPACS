@@ -1,0 +1,139 @@
+!----------------------------
+begin OInterface
+ version = v3
+ prefix = CiT_
+ parent  = WoTest_form
+ packages = Xm
+end
+!----------------------------
+begin OWidget
+ name = CiT_panel
+ type = XmBulletinBoard
+ children = CiT_libc CiT_libCo CiT_libX11 CiT_frame CiT_darea CiT_start CiT_stop 
+ background = dimgrey
+ topAttachment = attach_form
+ bottomAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = CiT_libc
+ type = XmPushButton
+ createCallback = Ci> int i = 0;
+ x = 16
+ y = 10
+ labelString = Script using libc
+ activateCallback = Ci>\
+#include <stdio.h>\
+i += 2;printf("i = %d\n",i);
+end
+!----------------------------
+begin OWidget
+ name = CiT_libCo
+ type = XmPushButton
+ createCallback = Ci> int j = 0;
+ x = 16
+ y = 50
+ labelString = Script using libCo
+ activateCallback = Ci>\
+#include <CPrinter.h>\
+j +=3;CInfoF("j = %d\n",j);
+end
+!----------------------------
+begin OWidget
+ name = CiT_libX11
+ type = XmPushButton
+ x = 16
+ y = 90
+ labelString = Script using X11
+ activateCallback = Ci>\
+#include  <XWidget.h>\
+#include  <CiX11T.ic>\
+{Widget     widget;\
+ widget     = XWidgetGetIdentifier("CiT_panel");\
+ XDispTDraw (widget);}
+end
+!----------------------------
+begin OWidget
+ name = CiT_frame
+ type = XmFrame
+ children = CiT_list 
+ x = 215
+ y = 137
+ width = 87
+ height = 127
+ borderWidth = 3
+ borderColor = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = CiT_list
+ type = XmScrolledList
+ createCallback = osh> setWidgetResource `get Widget this` items 'line 1\nline 2\nline 3'
+ visibleItemCount = 4
+ selectionPolicy = single_select
+ listSizePolicy = variable
+ scrollBarDisplayPolicy = static
+ singleSelectionCallback = Ci>\
+#include <stddef.h>\
+#include <Xm/List.h>\
+#include <CPrinter.h>\
+#include <XWidget.h>\
+#include <XmTools.h>\
+{if(callData!=NULL) {\
+ String         string;\
+ string         = XmConvertCompoundStringToString (((XmListCallbackStruct*)callData)->item,0);\
+ CInfoF         ("%s\n",string);\
+ XtFree         (string);}}
+end
+!----------------------------
+begin OWidget
+ name = CiT_darea
+ type = XmDrawingArea
+ createCallback = Ci>\
+#include <stdio.h>\
+#include <stddef.h>\
+#include <CPrinter.h>\
+#include <XWidget.h>\
+typedef struct {int reason;XEvent* event;} AnyCallbackStruct;
+ eventHandler = EnterWindowMask | PointerMotionMask :Ci> \
+{XEvent* xevent;\
+ xevent  = thisXEvent;\
+ CInfoF  ("XEvent handler: type:%d x:%d y:%d\n",xevent->type,xevent->xbutton.x,xevent->xbutton.y);}
+ x = 49
+ y = 99
+ width = 170
+ height = 97
+ background = black
+ inputCallback = Ci>\
+{if(callData!=NULL) {\
+ XEvent* xevent;\
+ xevent  = ((AnyCallbackStruct*)callData)->event;\
+ CInfoF  ("XEvent callback: type:%d x:%d y:%d\n",xevent->type,xevent->xbutton.x,xevent->xbutton.y);}}
+end
+!----------------------------
+begin OWidget
+ name = CiT_start
+ type = XmPushButton
+ x = 23
+ y = 231
+ labelString = Start compute
+ activateCallback = Ci>\
+#include  <Wo.h>\
+{int count;while(1) {\
+ if(WoGetStopFlag()==1) {CInfoF("-----------stop----------\n");break;}\
+ CInfoF("%d\n",count);count++;}}
+end
+!----------------------------
+begin OWidget
+ name = CiT_stop
+ type = XmPushButton
+ x = 17
+ y = 283
+ labelString = Stop compute
+ activateCallback = Ci>\
+#include  <Wo.h>\
+{WoSetStopFlag();}
+! activateCallback = osh> set Wo stopFlag 1
+end

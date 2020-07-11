@@ -1,0 +1,408 @@
+!/* +---------------------- Copyright notice -------------------------------+ */
+!/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+!/* |   Permission to use, copy, modify, and distribute this software       | */
+!/* |   and its documentation for any purpose and without fee is hereby     | */
+!/* |   granted, provided that the above copyright notice appear in all     | */
+!/* |   copies and that both that copyright notice and this permission      | */
+!/* |   notice appear in supporting documentation.  This software is        | */
+!/* |   provided "as is" without express or implied warranty.               | */
+!/* +---------------------- Copyright notice -------------------------------+ */
+! VAX/VMS : libkernlib needed.
+! Xm and Xaw are not compatibles (at least on HP-UX 10.20).
+!----------------------------------------------------------
+begin Make
+  package  = Wo
+  incMake  = include macros.mk
+  incNMake = !include macros.nmk
+! Xaw : Wo + Xo + Xaw :
+!  has = X11 Xext Xt Xmu Xaw WoXaw WoGL WoXo WoHTML  
+! distrib : Wo + Xo + Xm :
+  has = X11 Xext Xt Xmu Xm WoXm WoGL WoXo WoHTML 
+! LAL : Wo + Xo + Xm + Xz + G3o + PAW + Ci :
+!  has = X11 Xext Xt Xmu Xm WoXm WoGL WoXo WoHTML WoXz WoG3o WoPAW WoCi
+! JAVA : Wo + Xo + Xm :
+!  has = X11 Xext Xt Xmu Xm WoXm WoGL WoXo WoHTML JAVA WoJAVA
+! Inventor : Wo + Xo + Xm + Inventor :
+!  has = X11 Xext Xt Xmu Xm WoXm WoGL WoXo WoHTML WoInventor
+! Could be also set : WoFNAL (OSF1), Wotcl.
+  libs = \
+X11:        libX11\
+Xext:       libXext\
+Xt:         libXt\
+Xmu:        libXmu\
+Xm:         libXm\
+Xaw:        libXaw\
+Wo:         libc libm libCo libXx\
+WoXm:       libWoXm\
+WoHTML:     libwww libhtmlw\
+WoGL:       libGL libGLU libGLX libWoGL\
+WoXo:       libHo libGo libXo\
+WoCi:       libCSet libCi libWoCi\
+WoXz:       libf77 libkernlib libpacklib libgrafX11 libgraflib libXz libXzPAWC libWoHoXz\
+WoG3o:      libGL libGLU libGo libf77 libkernlib libpacklib libgeant libG3o libG3oEXPO\
+WoXaw:      libWoXaw\
+Wotcl:      libtcl\
+WoFNAL:     libWoFNAL libFNAL\
+WoPAW:      libWoPAW libmathlib libpawlib\
+WoJAVA:     libWoJAVA\
+WoInventor: libInventorXt libInventor
+end
+!----------------------------
+!----------------------------
+!----------------------------
+begin OModule
+  name = oshow
+  type = application
+  libs = libWoPAW libpawlib libWoFNAL libFNAL libG3oEXPO libG3o libgeant libWoHoXz libXz libXzPAWC libgraflib libgrafX11 libpacklib libkernlib libmathlib libf77 libWoCi libCi libCSet libWoGL libXo libhtmlw libWoXm libXm libWoXaw libXaw libWo libXx libXmu libXt libGo libGLX libGLU libGL libXext libX11 libHo libCo libwww libm
+end
+!----------------------------
+begin OModule
+  name = onew
+  type = application
+  libs = libWoPAW libpawlib libWoFNAL libFNAL libG3oEXPO libG3o libgeant libWoHoXz libXz libXzPAWC libgraflib libgrafX11 libpacklib libkernlib libmathlib libf77 libWoCi libCi libCSet libWoGL libXo libhtmlw libWoXm libXm libWoXaw libXaw libWo libXx libXmu libXt libGo libGLX libGLU libGL libXext libX11 libHo libCo libwww libm
+end
+!----------------------------
+!----------------------------
+begin OModule
+  name = oiv
+  type = application
+  libs = libInventorXt libInventor libWoPAW libpawlib libWoFNAL libFNAL libG3oEXPO libG3o libgeant libWoHoXz libXz libXzPAWC libgraflib libgrafX11 libpacklib libkernlib libmathlib libf77 libWoCi libCi libCSet libWoGL libXo libhtmlw libWoXm libXm libWoXaw libXaw libWo libXx libXmu libXt libGo libGLX libGLU libGL libXext libX11 libHo libCo libwww libm
+  language = c++
+  distributed = no
+end
+!----------------------------
+begin OModule
+  name = oshWo
+  type = application
+  libs = libWoPAW libpawlib libWoFNAL libFNAL libG3oEXPO libG3o libgeant libWoHoXz libXz libXzPAWC libgraflib libgrafX11 libpacklib libkernlib libmathlib libf77 libWoCi libCi libCSet libWoGL libXo libhtmlw libWoXm libXm libWoXaw libXaw libWo libXx libXmu libXt libGo libGLX libGLU libGL libXext libX11 libHo libCo libwww libm
+  distributed = no
+end
+!----------------------------
+begin OModule
+  name = WoT
+  type = application
+  libs = libWoPAW libpawlib libWoFNAL libFNAL libG3oEXPO libG3o libgeant libWoHoXz libXz libXzPAWC libgraflib libgrafX11 libpacklib libkernlib libmathlib libf77 libWoCi libCi libCSet libWoGL libXo libhtmlw libWoXm libXm libWoXaw libXaw libWo libXx libXmu libXt libGo libGLX libGLU libGL libXext libX11 libHo libCo libwww libm
+  distributed = no
+end
+!----------------------------
+begin OModule
+  name = CiT
+  type = application
+  libs = libCi libCSet libGo libCo libm
+  distributed = no
+end
+!----------------------------
+begin OModule
+  name  = NoHT
+  type  = application
+  distributed = no
+end
+!----------------------------
+begin OModule
+  name  = tclT
+  type  = application
+  libs  = libtcl libCo libm
+  distributed = no
+end
+!----------------------------
+begin OModule
+  name  = ouiToodb
+  type  = application
+  libs  = libWo libXx libXmu libXt libXext libX11 libCo libm
+  distributed = no
+end
+!----------------------------
+begin OModule
+  name  = ovoid
+  type  = application
+  libs  = libWo libXx libXmu libXt libXext libX11 libCo libm
+  distributed = no
+end
+!----------------------------
+begin OModule
+  name = jo
+  type = application
+  language = java
+  distributed = no
+end
+!----------------------------
+begin OModule
+  name = jolet
+  type = application
+  language = java
+  distributed = no
+end
+!----------------------------
+begin OModule
+  name = JavaT
+  type = application
+  language = java
+  distributed = no
+end
+!----------------------------
+begin OModule
+  name     = wof77t
+  language = f77
+  type     = application
+  objs     = woinit
+  libs = libWoPAW libpawlib libWoFNAL libFNAL libG3oEXPO libG3o libgeant libWoHoXz libXz libXzPAWC libgraflib libgrafX11 libpacklib libkernlib libmathlib libf77 libWoCi libCi libCSet libWoGL libXo libhtmlw libWoXm libXm libWoXaw libXaw libWo libXx libXmu libXt libGo libGLX libGLU libGL libXext libX11 libHo libCo libwww libm
+  distributed = no
+end
+!----------------------------
+!----------------------------
+!----------------------------
+!----------------------------
+!----------------------------
+begin OModule
+  name  = libWo
+  type  = so;NT=ar
+  libs  = libXx libXmu libXt libXext libX11 libCo libm libc
+end
+!----------------------------
+begin OModule
+  name  = WoF77
+  inLib = libWo
+end
+!----------------------------
+begin OModule
+  name  = WoCommands
+  inLib = libWo
+end
+!----------------------------
+begin OModule
+  name  = WoTypes
+  inLib = libWo
+end
+!----------------------------
+begin OModule
+  name  = Wo
+  inLib = libWo
+end
+!----------------------------
+begin OModule
+  name  = OInterface
+  inLib = libWo
+end
+!----------------------------
+begin OModule
+  name  = OPiece
+  inLib = libWo
+end
+!----------------------------
+begin OModule
+  name  = OWidget
+  inLib = libWo
+end
+!----------------------------
+begin OModule
+  name  = OClass
+  inLib = libWo
+end
+!----------------------------
+begin OModule
+  name  = OPart
+  inLib = libWo
+end
+!----------------------------
+begin OModule
+  name  = OInterpreter
+  inLib = libWo
+end
+!----------------------------
+begin OModule
+  name  = OCyclic
+  inLib = libWo
+end
+!----------------------------
+begin OModule
+  name  = XtwTools
+  inLib = libWo
+end
+!----------------------------
+begin OModule
+  name  = OResource
+  inLib = libWo
+end
+!----------------------------
+begin OModule
+  name  = OEvent
+  inLib = libWo
+end
+!----------------------------
+begin OModule
+  name  = OTrace
+  inLib = libWo
+end
+!----------------------------
+!-- Ci ----------------------
+!----------------------------
+begin OModule
+  name      = WoBinds
+  inLib     = libWo
+end
+!----------------------------
+begin OModule
+  name  = X11Binds
+  inLib = libWo
+end
+!----------------------------
+!----------------------------
+!----------------------------
+begin OModule
+  name  = libWoXm
+  type  = so;NT=ar
+  libs  = libXm libXmu libXt libXext libX11 libWo libXx libCo libm libc
+end
+!----------------------------
+begin OModule
+  name  = XmTools
+  inLib = libWoXm
+end
+!----------------------------
+begin OModule
+  name  = XmCommands
+  inLib = libWoXm
+end
+!----------------------------
+begin OModule
+  name  = XmBinds
+  inLib = libWoXm
+end
+!----------------------------
+!----------------------------
+!----------------------------
+begin OModule
+  name  = libWoXaw
+  type  = so;NT=ar
+  libs  = libXaw libXx libXmu libXt libXext libX11 libCo libc
+end
+!----------------------------
+begin OModule
+  name  = XawTools
+  inLib = libWoXaw
+end
+!----------------------------
+!----------------------------
+!----------------------------
+begin OModule
+  name  = libWoGL
+  type  = so;NT=ar
+  libs  = libGL libGLU libGLX libX11 libCo libc
+end
+!----------------------------
+begin OModule
+  name  = GL_Binds
+  inLib = libWoGL
+end
+!----------------------------
+!----------------------------
+!----------------------------
+begin OModule
+  name  = libWoHoXz
+  type  = ar
+end
+!----------------------------
+begin OModule
+  name  = HoXzCommands
+  inLib = libWoHoXz
+end
+!----------------------------
+begin OModule
+  name  = HoXz
+  inLib = libWoHoXz
+end
+!----------------------------
+begin OModule
+  name     = ominuit
+  language = f77
+  inLib    = libWoHoXz
+end
+!----------------------------
+!----------------------------
+!----------------------------
+begin OModule
+  name  = libWoCi
+  type  = so
+  libs  = libWo libXx libCo libc
+end
+!----------------------------
+begin OModule
+  name  = CiCommands
+  inLib = libWoCi
+end
+!----------------------------
+begin OModule
+  name  = OCi
+  inLib = libWoCi
+end
+!----------------------------
+!----------------------------
+!----------------------------
+begin OModule
+  name  = libWoFNAL
+  type  = so
+  libs  = libCo libc
+end
+!----------------------------
+begin OModule
+  name  = FNAL_Commands
+  inLib = libWoFNAL
+end
+!----------------------------
+!----------------------------
+!----------------------------
+begin OModule
+  name  = libWoPAW
+  type  = ar
+  libs  = libXz libCo libc
+end
+!----------------------------
+begin OModule
+  name  = PAW_Commands
+  inLib = libWoPAW
+end
+!----------------------------
+begin OModule
+  name  = kwo
+  inLib = libWoPAW
+end
+!----------------------------
+begin OModule
+  name  = kwodef
+  inLib = libWoPAW
+end
+!----------------------------
+!----------------------------
+!----------------------------
+begin OModule
+  name  = libWoJAVA
+  type  = so;NT=ar
+  libs  = libWoCi libCi libCSet libWoGL libXo libhtmlw libWoXm libXm libWoXaw libXaw libWo libXx libXmu libXt libGo libGLX libGLU libGL libXext libX11 libHo libCo libwww libm libc
+end
+!----------------------------
+begin OModule
+  name     = Wo
+  language = java
+  inLib    = libWoJAVA
+end
+!----------------------------
+begin OModule
+  name  = WoJAVA
+  inLib = libWoJAVA
+end
+!----------------------------
+begin OModule
+  name  = JAVA
+  inLib = libWoJAVA
+end
+!----------------------------
+!----------------------------
+!----------------------------
+begin OModule
+  name  = woinit
+  inLib = none
+end
+
+
+
+

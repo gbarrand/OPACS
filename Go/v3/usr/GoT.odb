@@ -1,0 +1,19 @@
+begin OCamera
+  name       = my_camera
+  width      = 400;
+  height     = 200;
+  backgroundColor  = white
+!  backgroundColor  = 38
+!  backgroundColor  = 3 
+!  viewLimits = -400 400
+!  viewPoint  = 0 0 400
+  depthTreatment = zbuffer
+!  viewPoint  = 1 0 0
+!  upVector = 0 0 1
+!  viewPoint  = 1 0 0
+!  upVector = 0 1 1
+  projection = perspective
+  projectionAngle = 120.
+!  projectionAngle = 90.
+!  projectionAngle = 160.
+end

@@ -1,0 +1,573 @@
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#  File produced by the Co/omake tool
+# using file Make.odb.
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#  The soft linked packages has been taken
+# from the property 'has' of the 
+# 'Make' object of file Make.odb.
+# It had the value :
+#    X11 Xext Xt Xmu GL HTML Xm XoXm
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+HAS_CPPFLAGS = \
+ $(Xo_CPPFLAGS)\
+ $(X11_CPPFLAGS)\
+ $(Xext_CPPFLAGS)\
+ $(Xt_CPPFLAGS)\
+ $(Xmu_CPPFLAGS)\
+ $(GL_CPPFLAGS)\
+ $(HTML_CPPFLAGS)\
+ $(Xm_CPPFLAGS)\
+ $(XoXm_CPPFLAGS)
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+all   :: mkdir
+
+clean ::
+	if exist $(bin)\*.obj del $(bin)\*.obj
+	if exist $(bin)\*.exe del $(bin)\*.exe
+	if exist $(bin)\*.lib del $(bin)\*.lib
+	if exist $(bin)\*.dll del $(bin)\*.dll
+	if exist $(bin)\*.exp del $(bin)\*.exp
+	if exist $(bin)\*.pdb del $(bin)\*.pdb
+rmlib ::
+	if exist $(bin)\*.lib del $(bin)\*.lib
+rmo   ::
+	if exist $(bin)\*.obj del $(bin)\*.obj
+rmexe ::
+	if exist $(bin)\*.exe del $(bin)\*.exe
+
+mkdir :
+	@if not exist $(bin) mkdir $(bin)
+
+libXo_target = $(bin)\libXo.lib
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+all :: mkdir \
+$(libXo_target) \
+$(bin)\XoCameraT.exe \
+$(bin)\XoPlotterT.exe \
+$(bin)\OPlotterT.exe \
+$(bin)\XoMosaicT.exe \
+$(bin)\XoGraphT.exe \
+$(bin)\XoLabelT.exe \
+$(bin)\XoEyesT.exe \
+$(bin)\XoImageT.exe \
+$(bin)\XoColormapT.exe \
+$(bin)\XoRheostatT.exe \
+$(bin)\XoHelpT.exe 
+	@echo "Xo : all ok." 
+
+libs :: mkdir \
+$(libXo_target) 
+	@echo "Xo : libs ok." 
+
+apps :: mkdir \
+$(bin)\XoCameraT.exe \
+$(bin)\XoPlotterT.exe \
+$(bin)\OPlotterT.exe \
+$(bin)\XoMosaicT.exe \
+$(bin)\XoGraphT.exe \
+$(bin)\XoLabelT.exe \
+$(bin)\XoEyesT.exe \
+$(bin)\XoImageT.exe \
+$(bin)\XoColormapT.exe \
+$(bin)\XoRheostatT.exe \
+$(bin)\XoHelpT.exe \
+$(bin)\XoShapeT.exe \
+$(bin)\XawT.exe \
+$(bin)\XmPushBT.exe \
+$(bin)\NoHT.exe 
+	@echo "Xo : apps ok." 
+#--------------------------------------------
+rmexeo :
+	if exist $(bin)\XoCameraT.obj del $(bin)\XoCameraT.obj
+	if exist $(bin)\XoPlotterT.obj del $(bin)\XoPlotterT.obj
+	if exist $(bin)\OPlotterT.obj del $(bin)\OPlotterT.obj
+	if exist $(bin)\XoMosaicT.obj del $(bin)\XoMosaicT.obj
+	if exist $(bin)\XoGraphT.obj del $(bin)\XoGraphT.obj
+	if exist $(bin)\XoLabelT.obj del $(bin)\XoLabelT.obj
+	if exist $(bin)\XoEyesT.obj del $(bin)\XoEyesT.obj
+	if exist $(bin)\XoImageT.obj del $(bin)\XoImageT.obj
+	if exist $(bin)\XoColormapT.obj del $(bin)\XoColormapT.obj
+	if exist $(bin)\XoRheostatT.obj del $(bin)\XoRheostatT.obj
+	if exist $(bin)\XoHelpT.obj del $(bin)\XoHelpT.obj
+	if exist $(bin)\XoShapeT.obj del $(bin)\XoShapeT.obj
+	if exist $(bin)\XawT.obj del $(bin)\XawT.obj
+	if exist $(bin)\XmPushBT.obj del $(bin)\XmPushBT.obj
+	if exist $(bin)\NoHT.obj del $(bin)\NoHT.obj
+#--------------------------------------------
+XoCameraT : $(bin)\XoCameraT.exe
+	@echo "Xo : XoCameraT ok."
+XoPlotterT : $(bin)\XoPlotterT.exe
+	@echo "Xo : XoPlotterT ok."
+OPlotterT : $(bin)\OPlotterT.exe
+	@echo "Xo : OPlotterT ok."
+XoMosaicT : $(bin)\XoMosaicT.exe
+	@echo "Xo : XoMosaicT ok."
+XoGraphT : $(bin)\XoGraphT.exe
+	@echo "Xo : XoGraphT ok."
+XoLabelT : $(bin)\XoLabelT.exe
+	@echo "Xo : XoLabelT ok."
+XoEyesT : $(bin)\XoEyesT.exe
+	@echo "Xo : XoEyesT ok."
+XoImageT : $(bin)\XoImageT.exe
+	@echo "Xo : XoImageT ok."
+XoColormapT : $(bin)\XoColormapT.exe
+	@echo "Xo : XoColormapT ok."
+XoRheostatT : $(bin)\XoRheostatT.exe
+	@echo "Xo : XoRheostatT ok."
+XoHelpT : $(bin)\XoHelpT.exe
+	@echo "Xo : XoHelpT ok."
+XoShapeT : $(bin)\XoShapeT.exe
+	@echo "Xo : XoShapeT ok."
+XawT : $(bin)\XawT.exe
+	@echo "Xo : XawT ok."
+XmPushBT : $(bin)\XmPushBT.exe
+	@echo "Xo : XmPushBT ok."
+NoHT : $(bin)\NoHT.exe
+	@echo "Xo : NoHT ok."
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#--------------------------------------------
+$(bin)\XoCameraT.exe : $(bin)\XoCameraT.obj \
+$(libXo_target) 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\XoCameraT.exe $(bin)\XoCameraT.obj \
+$(libXo) \
+$(libwww) \
+$(libhtmlw) \
+$(libXm) \
+$(libXx) \
+$(libXmu) \
+$(libXt) \
+$(libGo) \
+$(libGLX) \
+$(libGLU) \
+$(libGL) \
+$(libXext) \
+$(libX11) \
+$(libHo) \
+$(libCo) \
+$(libm) \
+$(CCLDEND) 
+
+$(bin)\XoCameraT.obj   : $(app)\XoCameraT.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\XoCameraT.obj $(app)\XoCameraT.c
+#--------------------------------------------
+$(bin)\XoPlotterT.exe : $(bin)\XoPlotterT.obj \
+$(libXo_target) 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\XoPlotterT.exe $(bin)\XoPlotterT.obj \
+$(libXo) \
+$(libwww) \
+$(libhtmlw) \
+$(libXm) \
+$(libXx) \
+$(libXmu) \
+$(libXt) \
+$(libGo) \
+$(libGLX) \
+$(libGLU) \
+$(libGL) \
+$(libXext) \
+$(libX11) \
+$(libHo) \
+$(libCo) \
+$(libm) \
+$(CCLDEND) 
+
+$(bin)\XoPlotterT.obj   : $(app)\XoPlotterT.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\XoPlotterT.obj $(app)\XoPlotterT.c
+#--------------------------------------------
+$(bin)\OPlotterT.exe : $(bin)\OPlotterT.obj \
+$(libXo_target) 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\OPlotterT.exe $(bin)\OPlotterT.obj \
+$(libXo) \
+$(libwww) \
+$(libhtmlw) \
+$(libXm) \
+$(libXx) \
+$(libXmu) \
+$(libXt) \
+$(libGo) \
+$(libGLX) \
+$(libGLU) \
+$(libGL) \
+$(libXext) \
+$(libX11) \
+$(libHo) \
+$(libCo) \
+$(libm) \
+$(CCLDEND) 
+
+$(bin)\OPlotterT.obj   : $(app)\OPlotterT.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\OPlotterT.obj $(app)\OPlotterT.c
+#--------------------------------------------
+$(bin)\XoMosaicT.exe : $(bin)\XoMosaicT.obj \
+$(libXo_target) 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\XoMosaicT.exe $(bin)\XoMosaicT.obj \
+$(libXo) \
+$(libwww) \
+$(libhtmlw) \
+$(libXm) \
+$(libXx) \
+$(libXmu) \
+$(libXt) \
+$(libGo) \
+$(libGLX) \
+$(libGLU) \
+$(libGL) \
+$(libXext) \
+$(libX11) \
+$(libHo) \
+$(libCo) \
+$(libm) \
+$(CCLDEND) 
+
+$(bin)\XoMosaicT.obj   : $(app)\XoMosaicT.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\XoMosaicT.obj $(app)\XoMosaicT.c
+#--------------------------------------------
+$(bin)\XoGraphT.exe : $(bin)\XoGraphT.obj \
+$(libXo_target) 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\XoGraphT.exe $(bin)\XoGraphT.obj \
+$(libXo) \
+$(libwww) \
+$(libhtmlw) \
+$(libXm) \
+$(libXx) \
+$(libXmu) \
+$(libXt) \
+$(libGo) \
+$(libGLX) \
+$(libGLU) \
+$(libGL) \
+$(libXext) \
+$(libX11) \
+$(libHo) \
+$(libCo) \
+$(libm) \
+$(CCLDEND) 
+
+$(bin)\XoGraphT.obj   : $(app)\XoGraphT.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\XoGraphT.obj $(app)\XoGraphT.c
+#--------------------------------------------
+$(bin)\XoLabelT.exe : $(bin)\XoLabelT.obj \
+$(libXo_target) 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\XoLabelT.exe $(bin)\XoLabelT.obj \
+$(libXo) \
+$(libwww) \
+$(libhtmlw) \
+$(libXm) \
+$(libXx) \
+$(libXmu) \
+$(libXt) \
+$(libGo) \
+$(libGLX) \
+$(libGLU) \
+$(libGL) \
+$(libXext) \
+$(libX11) \
+$(libHo) \
+$(libCo) \
+$(libm) \
+$(CCLDEND) 
+
+$(bin)\XoLabelT.obj   : $(app)\XoLabelT.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\XoLabelT.obj $(app)\XoLabelT.c
+#--------------------------------------------
+$(bin)\XoEyesT.exe : $(bin)\XoEyesT.obj \
+$(libXo_target) 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\XoEyesT.exe $(bin)\XoEyesT.obj \
+$(libXo) \
+$(libwww) \
+$(libhtmlw) \
+$(libXm) \
+$(libXx) \
+$(libXmu) \
+$(libXt) \
+$(libGo) \
+$(libGLX) \
+$(libGLU) \
+$(libGL) \
+$(libXext) \
+$(libX11) \
+$(libHo) \
+$(libCo) \
+$(libm) \
+$(CCLDEND) 
+
+$(bin)\XoEyesT.obj   : $(app)\XoEyesT.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\XoEyesT.obj $(app)\XoEyesT.c
+#--------------------------------------------
+$(bin)\XoImageT.exe : $(bin)\XoImageT.obj \
+$(libXo_target) 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\XoImageT.exe $(bin)\XoImageT.obj \
+$(libXo) \
+$(libwww) \
+$(libhtmlw) \
+$(libXm) \
+$(libXx) \
+$(libXmu) \
+$(libXt) \
+$(libGo) \
+$(libGLX) \
+$(libGLU) \
+$(libGL) \
+$(libXext) \
+$(libX11) \
+$(libHo) \
+$(libCo) \
+$(libm) \
+$(CCLDEND) 
+
+$(bin)\XoImageT.obj   : $(app)\XoImageT.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\XoImageT.obj $(app)\XoImageT.c
+#--------------------------------------------
+$(bin)\XoColormapT.exe : $(bin)\XoColormapT.obj \
+$(libXo_target) 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\XoColormapT.exe $(bin)\XoColormapT.obj \
+$(libXo) \
+$(libwww) \
+$(libhtmlw) \
+$(libXm) \
+$(libXx) \
+$(libXmu) \
+$(libXt) \
+$(libGo) \
+$(libGLX) \
+$(libGLU) \
+$(libGL) \
+$(libXext) \
+$(libX11) \
+$(libHo) \
+$(libCo) \
+$(libm) \
+$(CCLDEND) 
+
+$(bin)\XoColormapT.obj   : $(app)\XoColormapT.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\XoColormapT.obj $(app)\XoColormapT.c
+#--------------------------------------------
+$(bin)\XoRheostatT.exe : $(bin)\XoRheostatT.obj \
+$(libXo_target) 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\XoRheostatT.exe $(bin)\XoRheostatT.obj \
+$(libXo) \
+$(libwww) \
+$(libhtmlw) \
+$(libXm) \
+$(libXx) \
+$(libXmu) \
+$(libXt) \
+$(libGo) \
+$(libGLX) \
+$(libGLU) \
+$(libGL) \
+$(libXext) \
+$(libX11) \
+$(libHo) \
+$(libCo) \
+$(libm) \
+$(CCLDEND) 
+
+$(bin)\XoRheostatT.obj   : $(app)\XoRheostatT.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\XoRheostatT.obj $(app)\XoRheostatT.c
+#--------------------------------------------
+$(bin)\XoHelpT.exe : $(bin)\XoHelpT.obj \
+$(libXo_target) 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\XoHelpT.exe $(bin)\XoHelpT.obj \
+$(libXo) \
+$(libwww) \
+$(libhtmlw) \
+$(libXm) \
+$(libXx) \
+$(libXmu) \
+$(libXt) \
+$(libGo) \
+$(libGLX) \
+$(libGLU) \
+$(libGL) \
+$(libXext) \
+$(libX11) \
+$(libHo) \
+$(libCo) \
+$(libm) \
+$(CCLDEND) 
+
+$(bin)\XoHelpT.obj   : $(app)\XoHelpT.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\XoHelpT.obj $(app)\XoHelpT.c
+#--------------------------------------------
+$(bin)\XoShapeT.exe : $(bin)\XoShapeT.obj \
+$(libXo_target) 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\XoShapeT.exe $(bin)\XoShapeT.obj \
+$(libXo) \
+$(libwww) \
+$(libhtmlw) \
+$(libXm) \
+$(libXx) \
+$(libXmu) \
+$(libXt) \
+$(libGo) \
+$(libGLX) \
+$(libGLU) \
+$(libGL) \
+$(libXext) \
+$(libX11) \
+$(libHo) \
+$(libCo) \
+$(libm) \
+$(CCLDEND) 
+
+$(bin)\XoShapeT.obj   : $(app)\XoShapeT.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\XoShapeT.obj $(app)\XoShapeT.c
+#--------------------------------------------
+$(bin)\XawT.exe : $(bin)\XawT.obj 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\XawT.exe $(bin)\XawT.obj \
+$(libXmu) \
+$(libXt) \
+$(libXext) \
+$(libX11) \
+$(libm) \
+$(CCLDEND) 
+
+$(bin)\XawT.obj   : $(app)\XawT.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\XawT.obj $(app)\XawT.c
+#--------------------------------------------
+$(bin)\XmPushBT.exe : $(bin)\XmPushBT.obj 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\XmPushBT.exe $(bin)\XmPushBT.obj \
+$(libXm) \
+$(libXt) \
+$(libX11) \
+$(CCLDEND) 
+
+$(bin)\XmPushBT.obj   : $(app)\XmPushBT.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\XmPushBT.obj $(app)\XmPushBT.c
+#--------------------------------------------
+$(bin)\NoHT.exe : $(bin)\NoHT.obj 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\NoHT.exe $(bin)\NoHT.obj \
+$(CCLDEND) 
+
+$(bin)\NoHT.obj   : $(app)\NoHT.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\NoHT.obj $(app)\NoHT.c
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# libraries 
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#--------------------------------------------
+
+$(bin)\libXo.lib : \
+$(bin)\OImage.obj \
+$(bin)\OPlotter.obj \
+$(bin)\mowww.obj \
+$(bin)\img.obj \
+$(bin)\picread.obj \
+$(bin)\xpmread.obj \
+$(bin)\XoCommands.obj \
+$(bin)\XoTypes.obj \
+$(bin)\OColormapX.obj \
+$(bin)\XoF77.obj \
+$(bin)\XoShape.obj \
+$(bin)\XoGraph.obj \
+$(bin)\XoEyes.obj \
+$(bin)\XoLabel.obj \
+$(bin)\XoColormap.obj \
+$(bin)\XoBinds.obj \
+$(bin)\Xo.obj \
+$(bin)\XoRheostat.obj \
+$(bin)\XoMosaic.obj \
+$(bin)\XoHelp.obj \
+$(bin)\XoPlotter.obj \
+$(bin)\XoCamera.obj \
+$(bin)\XoImage.obj 
+	if exist $(bin)\libXo.lib del $(bin)\libXo.lib 
+	lib.exe @<<
+/nologo /out:$(bin)\libXo.lib
+$(bin)\OImage.obj
+$(bin)\OPlotter.obj
+$(bin)\mowww.obj
+$(bin)\img.obj
+$(bin)\picread.obj
+$(bin)\xpmread.obj
+$(bin)\XoCommands.obj
+$(bin)\XoTypes.obj
+$(bin)\OColormapX.obj
+$(bin)\XoF77.obj
+$(bin)\XoShape.obj
+$(bin)\XoGraph.obj
+$(bin)\XoEyes.obj
+$(bin)\XoLabel.obj
+$(bin)\XoColormap.obj
+$(bin)\XoBinds.obj
+$(bin)\Xo.obj
+$(bin)\XoRheostat.obj
+$(bin)\XoMosaic.obj
+$(bin)\XoHelp.obj
+$(bin)\XoPlotter.obj
+$(bin)\XoCamera.obj
+$(bin)\XoImage.obj
+<<
+#--------------------------------------------
+# libXo dependencies 
+#--------------------------------------------
+$(bin)\OImage.obj : $(src)\OImage.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\OImage.obj $(src)\OImage.c
+
+$(bin)\OPlotter.obj : $(src)\OPlotter.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\OPlotter.obj $(src)\OPlotter.c
+
+$(bin)\mowww.obj : $(src)\mowww.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\mowww.obj $(src)\mowww.c
+
+$(bin)\img.obj : $(src)\img.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\img.obj $(src)\img.c
+
+$(bin)\picread.obj : $(src)\picread.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\picread.obj $(src)\picread.c
+
+$(bin)\xpmread.obj : $(src)\xpmread.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\xpmread.obj $(src)\xpmread.c
+
+$(bin)\XoCommands.obj : $(src)\XoCommands.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\XoCommands.obj $(src)\XoCommands.c
+
+$(bin)\XoTypes.obj : $(src)\XoTypes.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\XoTypes.obj $(src)\XoTypes.c
+
+$(bin)\OColormapX.obj : $(src)\OColormapX.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\OColormapX.obj $(src)\OColormapX.c
+
+$(bin)\XoF77.obj : $(src)\XoF77.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\XoF77.obj $(src)\XoF77.c
+
+$(bin)\XoShape.obj : $(src)\XoShape.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\XoShape.obj $(src)\XoShape.c
+
+$(bin)\XoGraph.obj : $(src)\XoGraph.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\XoGraph.obj $(src)\XoGraph.c
+
+$(bin)\XoEyes.obj : $(src)\XoEyes.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\XoEyes.obj $(src)\XoEyes.c
+
+$(bin)\XoLabel.obj : $(src)\XoLabel.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\XoLabel.obj $(src)\XoLabel.c
+
+$(bin)\XoColormap.obj : $(src)\XoColormap.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\XoColormap.obj $(src)\XoColormap.c
+
+$(bin)\XoBinds.obj : $(src)\XoBinds.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\XoBinds.obj $(src)\XoBinds.c
+
+$(bin)\Xo.obj : $(src)\Xo.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\Xo.obj $(src)\Xo.c
+
+$(bin)\XoRheostat.obj : $(src)\XoRheostat.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\XoRheostat.obj $(src)\XoRheostat.c
+
+$(bin)\XoMosaic.obj : $(src)\XoMosaic.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\XoMosaic.obj $(src)\XoMosaic.c
+
+$(bin)\XoHelp.obj : $(src)\XoHelp.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\XoHelp.obj $(src)\XoHelp.c
+
+$(bin)\XoPlotter.obj : $(src)\XoPlotter.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\XoPlotter.obj $(src)\XoPlotter.c
+
+$(bin)\XoCamera.obj : $(src)\XoCamera.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\XoCamera.obj $(src)\XoCamera.c
+
+$(bin)\XoImage.obj : $(src)\XoImage.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\XoImage.obj $(src)\XoImage.c
+
+

@@ -1,0 +1,255 @@
+!----------------------------
+begin OInterface
+ version = v3
+ prefix = NewApp_
+ packages = Xm
+end
+!----------------------------
+begin OWidget
+ name = NewApp_palette
+ type = XmFormDialog
+ children = NewApp_466 NewApp_name NewApp_label_dir NewApp_directory NewApp_box NewApp_box_pdm NewApp_actions NewApp_create NewApp_make NewApp_make_pdm NewApp_468 NewApp_sys NewApp_cancel
+ autoUnmanage = False
+ background = lightgrey
+ dialogTitle = New Wo application
+end
+!----------------------------
+begin OWidget
+ name = NewApp_cancel
+ type = XmPushButton
+ activateCallback = osh> do Wo sendExit
+ labelString = Quit
+ background = lightgrey
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topAttachment = attach_widget
+ topWidget = NewApp_sys
+ bottomAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = NewApp_466
+ type = XmLabel
+ labelString = Application name
+ background = black
+ foreground = white
+ topAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = NewApp_name
+ type = XmText
+ createCallback = osh> setWidgetResource `get Widget this` value Xxx
+ background = grey
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = NewApp_466
+end
+!----------------------------
+begin OWidget
+ name = NewApp_label_dir
+ type = XmLabel
+ labelString = Template directory
+ background = black
+ foreground = white
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = NewApp_name
+end
+!----------------------------
+begin OWidget
+ name = NewApp_directory
+ type = XmText
+ background = grey
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = NewApp_label_dir
+end
+!----------------------------
+begin OWidget
+ name = NewApp_box
+ type = XmOptionMenu
+ background = grey
+ subMenuId = NewApp_box_pdm
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = NewApp_directory
+end
+!----------------------------
+begin OWidget
+ name = NewApp_box_pdm
+ type = XmPulldownMenu
+ children = NewApp_default NewApp_exa NewApp_Ci NewApp_Xaw
+ background = grey
+end
+!----------------------------
+begin OWidget
+ name = NewApp_default
+ type = XmPushButton
+ background = grey
+ labelString = Default
+ activateCallback = osh> setWidgetResource NewApp_directory value ''
+end
+!----------------------------
+begin OWidget
+ name = NewApp_exa
+ type = XmPushButton
+ background = grey
+ labelString = Default & examples
+ activateCallback = osh>\
+  sys=`get CSystem kind`\
+  if test $sys eq UNIX\
+  then\
+    string='$WOROOT/usr/template/Example/'\
+  fi\
+  if test $sys eq NT\
+  then\
+    string='$WOROOT/usr/template/Example/'\
+  fi\
+  if test $sys eq VMS\
+  then\
+    string='WOROOT:[usr.template.Example]'\
+  fi\
+  setWidgetResource NewApp_directory value $string
+end
+!----------------------------
+begin OWidget
+ name = NewApp_Ci
+ type = XmPushButton
+ background = grey
+ labelString = Ci
+ activateCallback = osh>\
+  sys=`get CSystem kind`\
+  if test $sys eq UNIX\
+  then\
+    string='$WOROOT/usr/template/Ci/'\
+  fi\
+  if test $sys eq NT\
+  then\
+    string='$WOROOT/usr/template/Ci/'\
+  fi\
+  if test $sys eq VMS\
+  then\
+    string='WOROOT:[usr.template.Ci]'\
+  fi\
+  setWidgetResource NewApp_directory value $string
+end
+!----------------------------
+begin OWidget
+ name = NewApp_Xaw
+ type = XmPushButton
+ background = grey
+ labelString = Xaw
+ activateCallback = osh>\
+  sys=`get CSystem kind`\
+  if test $sys eq UNIX\
+  then\
+    string='$WOROOT/usr/template/Xaw/'\
+  fi\
+  if test $sys eq NT\
+  then\
+    string='$WOROOT/usr/template/Xaw/'\
+  fi\
+  if test $sys eq VMS\
+  then\
+    string='WOROOT:[usr.template.Xaw]'\
+  fi\
+  setWidgetResource NewApp_directory value $string
+end
+!----------------------------
+begin OWidget
+ name = NewApp_actions
+ type = XmLabel
+ labelString = Actions
+ background = black
+ foreground = white
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = NewApp_box
+end
+!----------------------------
+begin OWidget
+ name = NewApp_create
+ type = XmPushButton
+ background = grey
+ labelString = Create
+ activateCallback = osh> do Wo makeApplication `getWidgetResource NewApp_name value` `getWidgetResource NewApp_directory value`
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = NewApp_actions
+end
+!----------------------------
+begin OWidget
+ name = NewApp_make
+ type = XmOptionMenu
+ background = grey
+ labelString = make
+ subMenuId = NewApp_make_pdm
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = NewApp_create
+end
+!----------------------------
+begin OWidget
+ name = NewApp_make_pdm
+ type = XmPulldownMenu
+ children = NewApp_make_OSF1 NewApp_make_HP  NewApp_make_ALPHA
+ background = grey
+end
+!----------------------------
+begin OWidget
+ name = NewApp_make_OSF1
+ type = XmPushButton
+ background = grey
+ labelString = OSF1
+ activateCallback = osh> spawn 'make OSF1'
+end
+!----------------------------
+begin OWidget
+ name = NewApp_make_HP
+ type = XmPushButton
+ background = grey
+ labelString = HP-UX
+ activateCallback = osh> spawn 'make HP-UX'
+end
+!----------------------------
+begin OWidget
+ name = NewApp_make_ALPHA
+ type = XmPushButton
+ background = grey
+ labelString = VMS/ALPHA
+ activateCallback = osh> spawn 'mms ALPHA'
+end
+!----------------------------
+begin OWidget
+ name = NewApp_468
+ type = XmLabel
+ labelString = Commands to system
+ background = black
+ foreground = white
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = NewApp_make
+end
+!----------------------------
+begin OWidget
+ name = NewApp_sys
+ type = XmCommand
+ background = grey
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = NewApp_468
+ historyVisibleItemCount = 3
+ commandEnteredCallback = osh> spawn `get Widget thisValue`
+end

@@ -1,0 +1,86 @@
+!/* +---------------------- Copyright notice -------------------------------+ */
+!/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+!/* |   Permission to use, copy, modify, and distribute this software       | */
+!/* |   and its documentation for any purpose and without fee is hereby     | */
+!/* |   granted, provided that the above copyright notice appear in all     | */
+!/* |   copies and that both that copyright notice and this permission      | */
+!/* |   notice appear in supporting documentation.  This software is        | */
+!/* |   provided "as is" without express or implied warranty.               | */
+!/* +---------------------- Copyright notice -------------------------------+ */
+!----------------------------
+begin OInterface
+ version = v3
+ prefix = CiXoT_
+ parent = WoTest_form
+ packages = Xm Xo 
+end
+!----------------------------
+begin OWidget
+ name = CiXoT_panel
+ type = XmBulletinBoard
+ children = CiXoT_button CiXoT_camera 
+ background = dimgrey
+ topAttachment = attach_form
+ bottomAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = CiXoT_button
+ type = XmPushButton
+ x = 16
+ y = 10
+ labelString = Cube in XoCamera
+ activateCallback = Ci>\
+#include <OCamera.h>\
+#include <Go.h>\
+{OCamera ocamera;\
+ ONode   gobject;\
+ OPointList points;\
+ gobject           = ONodeCreate ("Cube");\
+ OContextSetF      (OContextGetStaticInstance(),"c" ,OColorYellow);\
+ OContextSetF      (OContextGetStaticInstance(),"lw",OLineStyleDashed,4);\
+ OContextSetF      (OContextGetStaticInstance(),"m",OMarkerStyleDot);\
+ points            = OPointListCreate(5);\
+ OPointListSetIthEntry   (points,0, 0.5,-0.5,0.5);\
+ OPointListSetIthEntry   (points,1, 0.5, 0.5,0.5);\
+ OPointListSetIthEntry   (points,2,-0.5, 0.5,0.5);\
+ OPointListSetIthEntry   (points,3,-0.5,-0.5,0.5);\
+ OPointListSetIthEntry   (points,4, 0.5,-0.5,0.5);\
+ GoAddMarkersToNode      (gobject,points);\
+/* GoAddLinesToNode        (gobject,points);*/\
+ OPointListSetIthEntry   (points,0, 0.5,-0.5,-0.5);\
+ OPointListSetIthEntry   (points,1, 0.5, 0.5,-0.5);\
+ OPointListSetIthEntry   (points,2,-0.5, 0.5,-0.5);\
+ OPointListSetIthEntry   (points,3,-0.5,-0.5,-0.5);\
+ OPointListSetIthEntry   (points,4, 0.5,-0.5,-0.5);\
+ GoAddMarkersToNode      (gobject,points);\
+/* GoAddLinesToNode        (gobject,points);*/\
+ OPointListDelete     (points);\
+ /*points            = OPointListCreate(8);\
+ OPointListSetIthEntry   (points,0, 0.5,-0.5, 0.5);\
+ OPointListSetIthEntry   (points,1, 0.5,-0.5,-0.5);\
+ OPointListSetIthEntry   (points,2, 0.5, 0.5, 0.5);\
+ OPointListSetIthEntry   (points,3, 0.5, 0.5,-0.5);\
+ OPointListSetIthEntry   (points,4,-0.5, 0.5, 0.5);\
+ OPointListSetIthEntry   (points,5,-0.5, 0.5,-0.5);\
+ OPointListSetIthEntry   (points,6,-0.5,-0.5, 0.5);\
+ OPointListSetIthEntry   (points,7,-0.5,-0.5,-0.5);\
+ GoAddSegmentsToNode   (gobject,points);\
+ OPointListDelete     (points);*/\
+ ocamera           = OCameraGetIdentifier("CiXoT_camera");\
+ OCameraViewNode (ocamera,gobject);}
+end
+!----------------------------
+begin OWidget
+ name = CiXoT_camera
+ type = XoCamera
+ x = 26
+ y = 56
+ width = 157
+ height = 139
+ borderColor = white
+ backgroundColor = black
+ highlightContext = color red
+end

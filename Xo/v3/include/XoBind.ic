@@ -1,0 +1,33 @@
+/* +---------------------- Copyright notice -------------------------------+ */
+/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+/* |   Permission to use, copy, modify, and distribute this software       | */
+/* |   and its documentation for any purpose and without fee is hereby     | */
+/* |   granted, provided that the above copyright notice appear in all     | */
+/* |   copies and that both that copyright notice and this permission      | */
+/* |   notice appear in supporting documentation.  This software is        | */
+/* |   provided "as is" without express or implied warranty.               | */
+/* +---------------------- Copyright notice -------------------------------+ */
+#ifndef XoBind_ic
+#define XoBind_ic
+
+  CiBindClass ("CiBindOColormapX",(CiRoutine)CiBindOColormapX);
+  CiBindClass ("CiBindOImage",(CiRoutine)CiBindOImage);
+  CiBindClass ("CiBindOPlotter",(CiRoutine)CiBindOPlotter);
+  CiBindClass ("CiBindXo",(CiRoutine)CiBindXo);
+  CiBindClass ("CiBindXoCamera",(CiRoutine)CiBindXoCamera);
+  CiBindClass ("CiBindXoColormap",(CiRoutine)CiBindXoColormap);
+  CiBindClass ("CiBindXoEyes",(CiRoutine)CiBindXoEyes);
+  CiBindClass ("CiBindXoF77",(CiRoutine)CiBindXoF77);
+  CiBindClass ("CiBindXoShape",(CiRoutine)CiBindXoShape);
+  CiBindClass ("CiBindXoGraph",(CiRoutine)CiBindXoGraph);
+  CiBindClass ("CiBindXoHelp",(CiRoutine)CiBindXoHelp);
+  CiBindClass ("CiBindXoImage",(CiRoutine)CiBindXoImage);
+  CiBindClass ("CiBindXoLabel",(CiRoutine)CiBindXoLabel);
+  CiBindClass ("CiBindXoMosaic",(CiRoutine)CiBindXoMosaic);
+  CiBindClass ("CiBindXoPlotter",(CiRoutine)CiBindXoPlotter);
+  CiBindClass ("CiBindXoRheostat",(CiRoutine)CiBindXoRheostat);
+  CiBindClass ("CiBindXoTypes",(CiRoutine)CiBindXoTypes);
+
+#endif /*XoBind_ic*/
+
+

@@ -1,0 +1,108 @@
+/* +---------------------- Copyright notice -------------------------------+ */
+/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+/* |   Permission to use, copy, modify, and distribute this software       | */
+/* |   and its documentation for any purpose and without fee is hereby     | */
+/* |   granted, provided that the above copyright notice appear in all     | */
+/* |   copies and that both that copyright notice and this permission      | */
+/* |   notice appear in supporting documentation.  This software is        | */
+/* |   provided "as is" without express or implied warranty.               | */
+/* +---------------------- Copyright notice -------------------------------+ */
+#include <string.h>
+
+#include <CMemory.h>
+#include <CString.h>
+
+#include <FString.h>
+
+#define MINIMUM(a,b)            ((a)<(b)?a:b)
+/******************************************************************************/
+FString FStringCreate (
+ int a_length
+)
+/***************************************************************************/
+/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+{
+   int count;
+  char* fstr;
+/*.........................................................................*/
+  if(a_length<=0)           a_length = 1; /* in fortran character*0 does not exist */
+  fstr                      = (char*)CMemoryAllocateBlock(a_length*sizeof(char));
+  if(fstr==NULL)            return NULL;
+  for(count=0;count<a_length;count++) fstr[count] = ' ';
+  return                    fstr;
+}
+/***************************************************************************/
+FString FStringCreateFromC (
+ char* a_string    
+,int* a_length
+)
+/***************************************************************************/
+/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+{
+  size_t alength,length;
+  char* fstr;
+/*.........................................................................*/
+  if(a_length!=NULL) *a_length = 0;
+  if(a_string!=NULL)
+    {
+      length = alength = strlen(a_string);
+    }
+  else
+    {
+      length = alength = 0;
+    }
+  length                   = length==0 ? 1 : length; /* in fortran character*0 does not exist */
+/*add one more white character so that CERNLIB LENOCC works */
+  fstr                     = (char*) CStringCreate(length+1);
+  if(fstr==NULL)           return NULL;
+  if( (a_string!=NULL) && (alength!=0) )
+    strncpy (fstr,a_string,alength);
+  else
+    fstr[0] = ' ';
+  if(a_length!=NULL) *a_length                = (int)length;
+  return  fstr;
+}     
+/***************************************************************************/
+int FStringInitializeFromC (
+ FString This
+,int a_length
+,char* a_string    
+)
+/***************************************************************************/
+/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+{
+  size_t length;
+/*.........................................................................*/
+  if(This==NULL)     return 0; 
+  if(a_string==NULL) return 0;
+  length = MINIMUM(strlen(a_string),(size_t)a_length);
+  if(length<=0) return 0;
+  strncpy ((char*)This,a_string,length);
+  return  length;
+}     
+/***************************************************************************/
+char* FStringConvertToC (
+ FString This
+,int  a_length     
+)
+/***************************************************************************/
+/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+{
+  char* string;
+/*.........................................................................*/
+  if(This==NULL)     return NULL;
+  string             = CStringCreate(a_length);
+  if(a_length>0)     strncpy (string,((char*)This),a_length);
+  return             string;
+}     
+/***************************************************************************/
+void FStringDelete (
+ FString This
+)
+/***************************************************************************/
+/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+{
+/*.........................................................................*/
+  if(This==NULL) return;
+  CMemoryFreeBlock (This);
+}     

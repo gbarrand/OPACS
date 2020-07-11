@@ -1,0 +1,344 @@
+!/* +---------------------- Copyright notice -------------------------------+ */
+!/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+!/* |   Permission to use, copy, modify, and distribute this software       | */
+!/* |   and its documentation for any purpose and without fee is hereby     | */
+!/* |   granted, provided that the above copyright notice appear in all     | */
+!/* |   copies and that both that copyright notice and this permission      | */
+!/* |   notice appear in supporting documentation.  This software is        | */
+!/* |   provided "as is" without express or implied warranty.               | */
+!/* +---------------------- Copyright notice -------------------------------+ */
+!----------------------------
+begin OInterface
+ prefix = Plotter_
+ packages = Xm Xo
+ resources = *Plotter_325*XmList.fontList:*courier*-r-*--14-*
+end
+!----------------------------
+begin OWidget
+ name = Plotter_palette
+ type = XmFormDialog
+ children = Plotter_grab Plotter_localTarget Plotter_menubar Plotter_label_plottedObjects Plotter_plottedObjects Plotter_cancel 
+ autoUnmanage = False
+ dialogTitle = XoPlotter
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = Plotter_grab
+ type = XmPushButton
+ activateCallback = osh>\
+  ref=`thisWidget`\
+  setWidgetResource Plotter_localTarget value `grabWidgetName $ref`\
+  callWidgetCallbacks Plotter_localTarget activateCallback
+ labelString = XoPlotter
+ background = grey
+ topAttachment = attach_form
+ leftAttachment = attach_form
+ createCallback = osh> setWidgetResource `thisWidget` height `getWidgetResource Plotter_localTarget height`
+end
+!----------------------------
+begin OWidget
+ name = Plotter_localTarget
+ type = XmText
+ background = wheat
+ topAttachment = attach_form
+ leftAttachment = attach_widget
+ rightAttachment = attach_form
+ leftWidget = Plotter_grab
+ activateCallback = osh>\
+  widget=`thisLocalTargetWidget`\
+  isNotWidgetSubclass $widget XoPlotter && echo 'Not an XoPlotter.'\
+  isNotWidgetSubclass $widget XoPlotter && exit\
+  #Plotter_plottedObjects\
+  setWidgetResource Plotter_plottedObjects value `getWidgetResource $widget plottedObjects`
+ targetChangedCallback = osh> callWidgetCallbacks `get Widget this` activateCallback
+end
+!----------------------------
+begin OWidget
+ name = Plotter_label_plottedObjects
+ type = XmLabel
+ labelString = Plotted objects
+ foreground = white
+ background = black
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = Plotter_localTarget
+end
+!----------------------------
+begin OWidget
+ name = Plotter_plottedObjects
+ type = XmText
+ background = lightgrey
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = Plotter_label_plottedObjects
+ activateCallback = osh>\
+  value=`getWidgetResource Plotter_plottedObjects value`\
+  setAndMarkWidgetResource `get Widget thisLocalTarget` plottedObjects $value\
+  callWidgetCallbacks Plotter_localTarget activateCallback
+end
+!----------------------------
+begin OWidget
+ name = Plotter_menubar
+ type = XmMenuBar
+ children = Plotter_opt_casc Plotter_opt_pdm Plotter_fit_casc Plotter_fit_pdm 
+ background = lightgrey
+ shadowThickness = 4
+ topShadowColor = white
+ bottomShadowColor = black
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = Plotter_plottedObjects
+end
+!----------------------------
+begin OWidget
+ name = Plotter_opt_casc
+ type = XmCascadeButton
+ labelString = Options
+ subMenuId = Plotter_opt_pdm
+end
+!----------------------------
+begin OWidget
+ name = Plotter_opt_pdm
+ type = XmPulldownMenu
+ children = Plotter_show_bins Plotter_sep_1 Plotter_stat Plotter_grid Plotter_back Plotter_bars Plotter_log Plotter_text_mag Plotter_edges Plotter_xy_casc Plotter_xy_pdm Plotter_layout_casc Plotter_layout_pdm
+end
+!----------------------------
+begin OWidget
+ name = Plotter_show_bins
+ type = XmPushButton
+ labelString = Show selected bins
+ activateCallback = osh>\
+  widget=`thisLocalTargetWidget`\
+  plotter=`getWidgetPlotter $widget`\
+  string=`do $plotter getInformations`\
+  manageWidget Plotter_bins\
+  raiseWidget Plotter_bins_popup\
+  setWidgetResource Plotter_bins listItems $string
+end
+!----------------------------
+begin OWidget
+ name = Plotter_sep_1
+ type = XmSeparator
+end
+!----------------------------
+begin OWidget
+ name = Plotter_stat
+ type = XmPushButton
+ labelString = Show/hide stats
+ activateCallback = osh>resource=statisticsVisible;. Plotter.osh
+end
+!----------------------------
+begin OWidget
+ name = Plotter_grid
+ type = XmPushButton
+ labelString = Show/hide grid
+ activateCallback = osh>resource=gridsVisible;. Plotter.osh
+end
+!----------------------------
+begin OWidget
+ name = Plotter_back
+ type = XmPushButton
+ labelString = Show/hide walls
+ activateCallback = osh>resource=wallsVisible;. Plotter.osh
+end
+!----------------------------
+begin OWidget
+ name = Plotter_bars
+ type = XmPushButton
+ labelString = Show/hide bars
+ activateCallback = osh>resource=barsVisible;. Plotter.osh
+end
+!----------------------------
+begin OWidget
+ name = Plotter_log
+ type = XmPushButton
+ labelString = Log scale on/off
+ activateCallback = osh>resource=vAxisLogScale;. Plotter.osh
+end
+!----------------------------
+begin OWidget
+ name = Plotter_text_mag
+ type = XmPushButton
+ labelString = Magnify text on/off
+ activateCallback = osh>\
+  widget=`thisLocalTargetWidget`\
+  value=`getWidgetResource $widget textScale`\
+  test $value eq '2.'  && new_value='1.'\
+  test $value eq '1.'  && new_value='2.'\
+  setWidgetResource $widget textScale $new_value
+end
+!----------------------------
+begin OWidget
+ name = Plotter_bins
+ type = XmSelectionDialog
+ dialogTitle = bins
+ autoUnmanage = false
+ okLabelString = Put in out.txt
+ applyLabelString = 
+ okCallback = osh>\
+  list=`getWidgetResource Plotter_bins listItems`\
+  echo $list > out.txt
+ cancelCallback = osh> unmanageWidget Plotter_bins
+end
+!----------------------------
+begin OWidget
+ name = Plotter_edges
+ type = XmPushButton
+ labelString = Show/hide edges
+ activateCallback = osh>resource=edgesVisible;. Plotter.osh
+end
+!----------------------------
+begin OWidget
+ name = Plotter_xy_casc
+ type = XmCascadeButton
+ labelString = XY modeling
+ subMenuId = Plotter_xy_pdm
+end
+!----------------------------
+begin OWidget
+ name = Plotter_xy_pdm
+ type = XmPulldownMenu
+ children = Plotter_xy_random Plotter_xy_box Plotter_xy_text Plotter_xy_color 
+end
+!----------------------------
+begin OWidget
+ name = Plotter_xy_random
+ type = XmPushButton
+ labelString = Random
+ activateCallback = osh> setWidgetResource `thisLocalTargetWidget` xyModeling random
+end
+!----------------------------
+begin OWidget
+ name = Plotter_xy_box
+ type = XmPushButton
+ labelString = Box
+ activateCallback = osh> setWidgetResource `thisLocalTargetWidget` xyModeling box
+end
+!----------------------------
+begin OWidget
+ name = Plotter_xy_text
+ type = XmPushButton
+ labelString = Text
+ activateCallback = osh> setWidgetResource `thisLocalTargetWidget` xyModeling text
+end
+!----------------------------
+begin OWidget
+ name = Plotter_xy_color
+ type = XmPushButton
+ labelString = Color
+ activateCallback = osh> setWidgetResource `thisLocalTargetWidget` xyModeling color
+end
+!----------------------------
+begin OWidget
+ name = Plotter_fit_casc
+ type = XmCascadeButton
+ labelString = Fit
+ subMenuId = Plotter_fit_pdm
+end
+!----------------------------
+begin OWidget
+ name = Plotter_fit_pdm
+ type = XmPulldownMenu
+ children = Plotter_fit_none Plotter_fit_gauss Plotter_fit_breit Plotter_fit_exponential Plotter_fit_polynomial
+end
+!----------------------------
+begin OWidget
+ name = Plotter_fit_none
+ type = XmPushButton
+ labelString = None
+ activateCallback = osh> setWidgetResource `thisLocalTargetWidget` fitType none
+end
+!----------------------------
+begin OWidget
+ name = Plotter_fit_gauss
+ type = XmPushButton
+ labelString = Gaussian
+ activateCallback = osh>\
+  setWidgetResource `thisLocalTargetWidget` fitType none\
+  setWidgetResource `thisLocalTargetWidget` fitType gaussian
+end
+!----------------------------
+begin OWidget
+ name = Plotter_fit_breit
+ type = XmPushButton
+ labelString = Breit Wigner
+ activateCallback = osh>\
+  setWidgetResource `thisLocalTargetWidget` fitType none\
+  setWidgetResource `thisLocalTargetWidget` fitType breit_wigner
+end
+!----------------------------
+begin OWidget
+ name = Plotter_fit_exponential
+ type = XmPushButton
+ labelString = Exponential
+ activateCallback = osh>\
+  setWidgetResource `thisLocalTargetWidget` fitType none\
+  setWidgetResource `thisLocalTargetWidget` fitType exponential
+end
+!----------------------------
+begin OWidget
+ name = Plotter_fit_polynomial
+ type = XmPushButton
+ labelString = Polynomial
+ activateCallback = osh>\
+  setWidgetResource `thisLocalTargetWidget` fitType none\
+  setWidgetResource `thisLocalTargetWidget` fitType polynomial
+end
+!----------------------------
+begin OWidget
+ name = Plotter_layout_casc
+ type = XmCascadeButton
+ labelString = Layout
+ subMenuId = Plotter_layout_pdm
+end
+!----------------------------
+begin OWidget
+ name = Plotter_layout_pdm
+ type = XmPulldownMenu
+ children = Plotter_layout_xv Plotter_layout_xy Plotter_layout_xyv Plotter_layout_xyz
+end
+!----------------------------
+begin OWidget
+ name = Plotter_layout_xv
+ type = XmPushButton
+ labelString = xv
+ activateCallback = osh> setWidgetResource `thisLocalTargetWidget` layout xv
+end
+!----------------------------
+begin OWidget
+ name = Plotter_layout_xy
+ type = XmPushButton
+ labelString = xy
+ activateCallback = osh> setWidgetResource `thisLocalTargetWidget` layout xy
+end
+!----------------------------
+begin OWidget
+ name = Plotter_layout_xyv
+ type = XmPushButton
+ labelString = xyv
+ activateCallback = osh> setWidgetResource `thisLocalTargetWidget` layout xyv
+end
+!----------------------------
+begin OWidget
+ name = Plotter_layout_xyz
+ type = XmPushButton
+ labelString = xyz
+ activateCallback = osh> setWidgetResource `thisLocalTargetWidget` layout xyz
+end
+!----------------------------
+begin OWidget
+ name = Plotter_cancel
+ type = XmPushButton
+ activateCallback = osh> do `get Widget thisParent` unmanage
+ labelString = Cancel
+ background = lightgrey
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ bottomAttachment = attach_form
+ topAttachment = attach_widget
+ topWidget = Plotter_menubar
+end

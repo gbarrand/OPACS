@@ -1,0 +1,211 @@
+!/* +---------------------- Copyright notice -------------------------------+ */
+!/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+!/* |   Permission to use, copy, modify, and distribute this software       | */
+!/* |   and its documentation for any purpose and without fee is hereby     | */
+!/* |   granted, provided that the above copyright notice appear in all     | */
+!/* |   copies and that both that copyright notice and this permission      | */
+!/* |   notice appear in supporting documentation.  This software is        | */
+!/* |   provided "as is" without express or implied warranty.               | */
+!/* +---------------------- Copyright notice -------------------------------+ */
+!----------------------------
+begin OInterface
+ version = v3
+ prefix = Compound_
+ packages = Xm
+end
+!----------------------------
+begin OWidget
+ name = Compound_palette
+ type = XmFormDialog
+ children = Compound_1 Compound_15 
+ autoUnmanage = False
+ dialogTitle = Compound
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = Compound_1
+ type = XmRowColumn
+ children = Compound_3 Compound_4 Compound_5 Compound_6 Compound_7 Compound_grid Compound_8 Compound_9 Compound_17 Compound_18 Compound_10 
+ numColumns = 2
+ background = lightgrey
+ topAttachment = attach_form
+ rightAttachment = attach_form
+ leftAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = Compound_3
+ type = XmPushButton
+ labelString = Pulldown menu
+ background = lightgrey
+ activateCallback = osh>\
+  ref=`thisWidget`\
+  parent=`grabWidgetName $ref`\
+  cascade=`create Widget parent $parent type XmCascadeButton markFile true`\
+  pulldown=`create Widget parent $parent type XmPulldownMenu markFile true`\
+  setAndMarkWidgetResource $cascade subMenuId $pulldown
+end
+!----------------------------
+begin OWidget
+ name = Compound_4
+ type = XmPushButton
+ labelString = Button->file chooser
+ background = lightgrey
+ activateCallback = osh>\
+  ref=`thisWidget`\
+  parent=`grabWidgetName $ref`\
+  push=`create Widget parent $parent type XmPushButton markFile true`\
+  file=`create Widget parent $parent type XmFileSelectionDialog markFile true`\
+  name=`get $file name`\
+  string=`printf 'osh> do Widget/%s manage' $name`\
+  setAndMarkWidgetResource $push activateCallback $string\
+  setAndMarkWidgetResource $file cancelCallback   'osh> do `get Widget this` unmanage'\
+  setAndMarkWidgetResource $file okCallback       'osh> do `get Widget this` unmanage;echo `thisValue`'\
+  do $push move `get Widget grabbedX` `get Widget grabbedY`\
+  do $push markResource x\
+  do $push markResource y
+end
+!----------------------------
+begin OWidget
+ name = Compound_5
+ type = XmPushButton
+ labelString = Option menu
+ background = lightgrey
+ activateCallback = osh>\
+  ref=`thisWidget`\
+  parent=`grabWidgetName $ref`\
+  option=`create Widget parent $parent type XmOptionMenu markFile true`\
+  pull=`create Widget parent $parent type XmPulldownMenu markFile true`\
+  push=`create Widget parent $pull type XmPushButton markFile true`\
+  setAndMarkWidgetResource $option subMenuId $pull\
+  do $option move `get Widget grabbedX` `get Widget grabbedY`\
+  do $option markResource x\
+  do $option markResource y
+end
+!----------------------------
+begin OWidget
+ name = Compound_6
+ type = XmPushButton
+ labelString = Scrolled text
+ background = lightgrey
+ activateCallback = osh>\
+  ref=`thisWidget`\
+  parent=`grabWidgetName $ref`\
+  frame=`create Widget parent $parent type XmFrame markFile true`\
+  setAndMarkWidgetResource $frame borderWidth 3\
+  setAndMarkWidgetResource $frame borderColor lightgrey\
+  text=`create Widget parent $frame type XmScrolledText markFile true`\
+  setWidgetTextSize $text 10 30\
+  do $frame move `get Widget grabbedX` `get Widget grabbedY`\
+  do $frame markResource x\
+  do $frame markResource y
+end
+!----------------------------
+begin OWidget
+ name = Compound_7
+ type = XmPushButton
+ labelString = Scrolled list
+ background = lightgrey
+ activateCallback = osh>\
+  ref=`thisWidget`\
+  parent=`grabWidgetName $ref`\
+  frame=`create Widget parent $parent type XmFrame markFile true`\
+  setAndMarkWidgetResource $frame borderWidth 3\
+  setAndMarkWidgetResource $frame borderColor lightgrey\
+  list=`create Widget parent $frame type XmScrolledList markFile true`\
+  setAndMarkWidgetResource $list visibleItemCount 5\
+  setAndMarkWidgetResource $list selectionPolicy  single_select\
+  #setAndMarkWidgetResource $list listSizePolicy  constant\
+  setAndMarkWidgetResource $list scrollBarDisplayPolicy static\
+  do $frame move `get Widget grabbedX` `get Widget grabbedY`\
+  do $frame markResource x\
+  do $frame markResource y
+end
+!----------------------------
+begin OWidget
+ name = Compound_grid
+ type = XmPushButton
+ labelString = Grid of...
+ background = lightgrey
+ activateCallback = osh> load Grid.odb | realize - ; do Widget/Grid_palette manage;do Widget/Grid_palette_popup raise
+end
+!----------------------------
+begin OWidget
+ name = Compound_8
+ type = XmPushButton
+ labelString = Row column of...
+ background = lightgrey
+ activateCallback = osh> load CompRc.odb | realize - ; do Widget/CompRc_palette manage;do Widget/CompRc_palette_popup raise
+end
+!----------------------------
+begin OWidget
+ name = Compound_9
+ type = XmPushButton
+ activateCallback = osh> load CompForm.odb | realize - ; do Widget/CompForm_palette manage;do Widget/CompForm_palette_popup raise
+ labelString = Form of...
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = Compound_15
+ type = XmPushButton
+ activateCallback = osh> do `get Widget thisParent` unmanage
+ labelString = Cancel
+ background = lightgrey
+ topAttachment = attach_widget
+ topWidget = Compound_1
+ rightAttachment = attach_form
+ leftAttachment = attach_form
+ bottomAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = Compound_17
+ type = XmPushButton
+ labelString = Form = {label,text}
+ background = lightgrey
+ activateCallback = osh> \
+  ref=`thisWidget`\
+  parent=`grabWidgetName $ref`\
+  rows=`ask Rows 1`\
+  widget=`createCompoundWidget $parent label_text $rows`\
+  do $widget move `get Widget grabbedX` `get Widget grabbedY`\
+  do $widget markResource x\
+  do $widget markResource y
+end
+!----------------------------
+begin OWidget
+ name = Compound_18
+ type = XmPushButton
+ labelString = Form = {label,text,scale}
+ background = lightgrey
+ activateCallback = osh> \
+  ref=`thisWidget`\
+  parent=`grabWidgetName $ref`\
+  rows=`ask Rows 1`\
+  widget=`createCompoundWidget $parent label_text_scale $rows`\
+  do $widget move `get Widget grabbedX` `get Widget grabbedY`\
+  do $widget markResource x\
+  do $widget markResource y
+end
+!----------------------------
+begin OWidget
+ name = Compound_10
+ type = XmPushButton
+ labelString = Label->Popup
+ background = lightgrey
+ activateCallback = osh>\
+  ref=`thisWidget`\
+  parent=`grabWidgetName $ref`\
+  label=`create Widget parent $parent type XmLabel markFile true`\
+  popup=`create Widget parent $label type XmPopupMenu markFile true`\
+  push=`create Widget parent $popup type XmPushButton markFile true`\
+  setAndMarkWidgetResource $popup whichButton Button1\
+  name=`get $popup name`\
+  string=`printf 'ButtonPressMask:osh> popWidgetAside %s `get Widget this`' $name`\
+  setAndMarkWidgetResource $label eventHandler $string\
+  do $label move `get Widget grabbedX` `get Widget grabbedY`\
+  do $label markResource x\
+  do $label markResource y
+end

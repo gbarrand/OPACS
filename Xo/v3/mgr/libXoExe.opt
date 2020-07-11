@@ -1,0 +1,26 @@
+htmlobin:libhtmlo/share
+w3obin:libw3o/share
+xxbin:libxx/share
+gobin:libgo/share
+globin:libglxo/share
+globin:libglpso/share
+globin:libgluo/share
+globin:libglo/share
+hobin:libho/share
+cobin:libco/share
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!! X11R5 !!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+SYS$SHARE:DECW$XMLIBSHR12/SHAREABLE
+SYS$SHARE:DECW$XMULIBSHRR5/SHAREABLE
+SYS$SHARE:DECW$XTLIBSHRR5/SHAREABLE
+SYS$SHARE:DECW$XEXTLIBSHR/SHAREABLE
+SYS$SHARE:DECW$XLIBSHR/SHAREABLE
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!! X11R4 !!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!SYS$SHARE:DECW$XMLIBSHR12/SHAREABLE
+!SYS$SHARE:DECW$XMULIBSHR/SHAREABLE
+!SYS$SHARE:DECW$XTSHR/SHAREABLE
+!SYS$SHARE:DECW$XEXTLIBSHR/SHAREABLE
+!SYS$SHARE:DECW$XLIBSHR/SHAREABLE

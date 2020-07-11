@@ -1,0 +1,332 @@
+!/* +---------------------- Copyright notice -------------------------------+ */
+!/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+!/* |   Permission to use, copy, modify, and distribute this software       | */
+!/* |   and its documentation for any purpose and without fee is hereby     | */
+!/* |   granted, provided that the above copyright notice appear in all     | */
+!/* |   copies and that both that copyright notice and this permission      | */
+!/* |   notice appear in supporting documentation.  This software is        | */
+!/* |   provided "as is" without express or implied warranty.               | */
+!/* +---------------------- Copyright notice -------------------------------+ */
+!----------------------------
+begin OInterface
+ version = v3
+ prefix = OContext_
+ packages = Xm Xo
+end
+!----------------------------
+begin OWidget
+ name = OContext_palette
+ type = XmFormDialog
+ children = OContext_reset OContext_line_option OContext_line_pdm OContext_mark_option OContext_mark_pdm OContext_area_option OContext_area_pdm OContext_modeling_option OContext_modeling_pdm OContext_202 OContext_205 
+ background = lightgrey
+ autoUnmanage = false
+ mapCallback = osh> manageWidget OContext_221
+ dialogTitle = Attributes
+end
+!----------------------------
+begin OWidget
+ name = OContext_reset
+ type = XmPushButton
+ labelString = Reset
+ background = lightgrey
+ topAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ activateCallback = osh> do OContext setDefaults
+end
+!----------------------------
+begin OWidget
+ name = OContext_line_option
+ type = XmOptionMenu
+ labelString = Line style
+ subMenuId = OContext_line_pdm
+ background = lightgrey
+ topAttachment = attach_widget
+ topWidget = OContext_reset
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = OContext_line_pdm
+ type = XmPulldownMenu
+ children = OContext_line_solid OContext_line_dashed OContext_line_dotted OContext_line_dash_dotted 
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = OContext_mark_option
+ type = XmOptionMenu
+ labelString = Marker style
+ subMenuId = OContext_mark_pdm
+ background = lightgrey
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = OContext_line_option
+end
+!----------------------------
+begin OWidget
+ name = OContext_mark_pdm
+ type = XmPulldownMenu
+ children = OContext_mark_dot OContext_mark_plus OContext_mark_asterisk OContext_mark_circle OContext_mark_cross OContext_mark_start 
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = OContext_area_option
+ type = XmOptionMenu
+ labelString = Area style
+ subMenuId = OContext_area_pdm
+ background = lightgrey
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = OContext_mark_option
+end
+!----------------------------
+begin OWidget
+ name = OContext_area_pdm
+ type = XmPulldownMenu
+ children = OContext_area_solid OContext_area_hatched OContext_area_checker 
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = OContext_modeling_option
+ type = XmOptionMenu
+ labelString = Modeling
+ subMenuId = OContext_modeling_pdm
+ background = lightgrey
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = OContext_area_option
+end
+!----------------------------
+begin OWidget
+ name = OContext_modeling_pdm
+ type = XmPulldownMenu
+ children = OContext_modeling_wire_frame OContext_modeling_solid OContext_modeling_cloud OContext_modeling_segments
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = OContext_202
+ type = XmForm
+ children = OContext_width_button OContext_width_text 
+ background = lightgrey
+ topAttachment = attach_widget
+ rightAttachment = attach_form
+ topWidget = OContext_modeling_option
+end
+!----------------------------
+begin OWidget
+ name = OContext_width_button
+ type = XmPushButton
+ activateCallback = osh> set OContext lineWidth `getWidgetResource OContext_width_text value`
+ labelString = Line width
+ background = lightgrey
+ topAttachment = attach_position
+ bottomAttachment = attach_position
+ leftAttachment = attach_position
+ rightAttachment = attach_position
+ topPosition = 1
+ bottomPosition = 99
+ leftPosition = 1
+ rightPosition = 30
+ resizable = true
+end
+!----------------------------
+begin OWidget
+ name = OContext_width_text
+ type = XmText
+ createCallback = osh> setWidgetResource `get Widget this` value 1
+ activateCallback = osh> set OContext lineWidth `get Widget thisValue`
+ background = lightgrey
+ topAttachment = attach_position
+ bottomAttachment = attach_position
+ leftAttachment = attach_position
+ rightAttachment = attach_position
+ topPosition = 1
+ bottomPosition = 99
+ leftPosition = 31
+ rightPosition = 99
+ resizable = true
+end
+!----------------------------
+begin OWidget
+ name = OContext_205
+ type = XmPushButton
+ activateCallback = osh> unmanageWidget `get Widget thisParent`
+ labelString = Cancel
+ background = lightgrey
+ topAttachment = attach_widget
+ rightAttachment = attach_form
+ leftAttachment = attach_form
+ topWidget = OContext_202
+end
+!----------------------------
+begin OWidget
+ name = OContext_221
+ type = XmFormDialog
+ children = OContext_222 OContext_223 OContext_224 
+ autoUnmanage = false
+ dialogTitle = Colors
+end
+!----------------------------
+begin OWidget
+ name = OContext_224
+ type = XmLabel
+ labelString = To choose: left button in color box
+ background = black
+ foreground = white
+ topAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = OContext_223
+ type = XoColormap
+ background = black
+ width = 300
+ height = 304
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ bottomAttachment = attach_widget
+ bottomWidget = OContext_222
+ topAttachment = attach_widget
+ topWidget = OContext_224
+ selectCallback = osh> set OContext color `getWidgetResource OContext_223 selectedColor`
+end
+!----------------------------
+begin OWidget
+ name = OContext_222
+ type = XmPushButton
+ activateCallback = osh> unmanageWidget `get Widget thisParent`
+ labelString = Cancel
+ background = grey
+ bottomAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = OContext_line_solid
+ type = XmPushButton
+ labelString = solid
+ activateCallback = osh> set OContext lineStyle solid
+end
+!----------------------------
+begin OWidget
+ name = OContext_line_dashed
+ type = XmPushButton
+ labelString = dashed
+ activateCallback = osh> set OContext lineStyle dashed
+end
+!----------------------------
+begin OWidget
+ name = OContext_line_dotted
+ type = XmPushButton
+ labelString = dotted
+ activateCallback = osh> set OContext lineStyle dotted
+end
+!----------------------------
+begin OWidget
+ name = OContext_line_dash_dotted
+ type = XmPushButton
+ labelString = dash_dotted
+ activateCallback = osh> set OContext lineStyle dash_dotted
+end
+!----------------------------
+begin OWidget
+ name = OContext_mark_dot
+ type = XmPushButton
+ labelString = dot
+ activateCallback = osh> set OContext markerStyle dot
+end
+!----------------------------
+begin OWidget
+ name = OContext_mark_plus
+ type = XmPushButton
+ labelString = plus
+ activateCallback = osh> set OContext markerStyle plus
+end
+!----------------------------
+begin OWidget
+ name = OContext_mark_asterisk
+ type = XmPushButton
+ labelString = asterisk
+ activateCallback = osh> set OContext markerStyle asterisk
+end
+!----------------------------
+begin OWidget
+ name = OContext_mark_circle
+ type = XmPushButton
+ labelString = circle
+ activateCallback = osh> set OContext markerStyle circle
+end
+!----------------------------
+begin OWidget
+ name = OContext_mark_cross
+ type = XmPushButton
+ labelString = cross
+ activateCallback = osh> set OContext markerStyle cross
+end
+!----------------------------
+begin OWidget
+ name = OContext_mark_start
+ type = XmPushButton
+ labelString = star
+ activateCallback = osh> set OContext markerStyle star
+end
+!----------------------------
+begin OWidget
+ name = OContext_area_solid
+ type = XmPushButton
+ labelString = solid
+ activateCallback = osh> set OContext areaStyle solid
+end
+!----------------------------
+begin OWidget
+ name = OContext_area_hatched
+ type = XmPushButton
+ labelString = hatched
+ activateCallback = osh> set OContext areaStyle hatched
+end
+!----------------------------
+begin OWidget
+ name = OContext_area_checker
+ type = XmPushButton
+ labelString = checker
+ activateCallback = osh> set OContext areaStyle checker
+end
+!----------------------------
+begin OWidget
+ name = OContext_modeling_wire_frame
+ type = XmPushButton
+ labelString = wire frame
+ activateCallback = osh> set OContext modeling wire_frame
+end
+!----------------------------
+begin OWidget
+ name = OContext_modeling_solid
+ type = XmPushButton
+ labelString = solid
+ activateCallback = osh> set OContext modeling solid
+end
+!----------------------------
+begin OWidget
+ name = OContext_modeling_cloud
+ type = XmPushButton
+ labelString = cloud
+ activateCallback = osh> set OContext modeling cloud
+end
+!----------------------------
+begin OWidget
+ name = OContext_modeling_segments
+ type = XmPushButton
+ labelString = segments
+ activateCallback = osh> set OContext modeling segments
+end

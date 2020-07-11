@@ -1,0 +1,90 @@
+<TITLE>Special Projections</TITLE>
+<!***************************************************************************>
+<A NAME="Proj"><H3>Special Projections</H3></A>
+<!***************************************************************************>
+<P>
+This is an implementation of the special projections described
+in the CERN Yellow Report "Event Display: can we see what we want?" from
+H. Drevermann, D. Kuhn and B.S. Nilsson, CERN/ECP 95-25. Some of the new
+technics are also described 
+<A HREF="http://www.cern.ch/Physics/Workshops/hepvis/hepvis96/papers/h_drevermann.ps.gz">
+here</A>.
+<P>
+The names of the variables, projections and and formulas used here
+are the same as in the report.
+<P>
+<!--------------------------------------------------------------------------->
+<UL>
+<LI><A HREF="#Remarks">Remarks and Tips</A>
+<LI><A HREF="#fisheye">fish-eye</A>
+<LI><A HREF="#rhoz">rho'/z</A>
+<LI><A HREF="#phir">phi/r</A>
+<LI><A HREF="#phiz">phi/z</A>
+<LI><A HREF="#phirho">phi/rho</A>
+<LI><A HREF="#phitheta">phi/theta</A>
+<LI><A HREF="#vplot">v-plot</A>
+</UL>
+<HR>
+<!***************************************************************************>
+<A NAME="Remarks" ><H3>Remarks and Tips</H3></A>
+<!***************************************************************************>
+For most of these special projections only the markers
+representing the tracks should be visible. Lines in
+general should be avoided especially for the v-plot.
+<P>
+<HR>
+<!***************************************************************************>
+<A NAME="fisheye" ><H3>fish-eye</H3></A>
+<!***************************************************************************>
+In the xy view the circular fish eye transformation is used while
+along the z axis and for the rho'/z projection the rectangular
+fish eye transformation is chosen.
+<P>
+The fish-eye parameter <CODE>a</CODE> is also valid for the rho'/z projection!
+<P>
+The view is actually rescaled using <CODE>rho_max</CODE> and <CODE>z_max</CODE>. 
+This radius and position along z remains fixed.
+<P>
+<HR>
+<!***************************************************************************>
+<A NAME="rhoz" ><H3>rho'/z</H3></A>
+<!***************************************************************************>
+<P>
+The parameter <CODE>phi1</CODE> defines where the event is cut into two unconnected halves.
+Note that even single tracks might be cut into two pieces.
+<P>
+<HR>
+<!***************************************************************************>
+<A NAME="phir" ><H3>phi/r</H3></A>
+<!***************************************************************************>
+<P>
+to be completed ...
+<P>
+<HR>
+<!***************************************************************************>
+<A NAME="phiz" ><H3>phi/z</H3></A>
+<!***************************************************************************>
+<P>
+to be completed ...
+<P>
+<HR>
+<!***************************************************************************>
+<A NAME="phirho" ><H3>phi/rho</H3></A>
+<!***************************************************************************>
+<P>
+to be completed ...
+<P>
+<HR>
+<!***************************************************************************>
+<A NAME="phitheta" ><H3>phi/theta</H3></A>
+<!***************************************************************************>
+<P>
+to be completed ...
+<P>
+<HR>
+<!***************************************************************************>
+<A NAME="vplot" ><H3>v-plot</H3></A>
+<!***************************************************************************>
+<P>
+to be completed ...
+<P>

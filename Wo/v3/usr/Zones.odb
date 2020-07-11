@@ -1,0 +1,204 @@
+!/* +---------------------- Copyright notice -------------------------------+ */
+!/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+!/* |   Permission to use, copy, modify, and distribute this software       | */
+!/* |   and its documentation for any purpose and without fee is hereby     | */
+!/* |   granted, provided that the above copyright notice appear in all     | */
+!/* |   copies and that both that copyright notice and this permission      | */
+!/* |   notice appear in supporting documentation.  This software is        | */
+!/* |   provided "as is" without express or implied warranty.               | */
+!/* +---------------------- Copyright notice -------------------------------+ */
+!----------------------------
+begin OInterface
+ version = v3
+ prefix = Zones_
+ packages = Xm
+end
+!----------------------------
+begin OWidget
+ name = Zones_palette
+ type = XmFormDialog
+ children = Zones_hide Zones_0_label Zones_0_text Zones_1_label Zones_1_text Zones_3_label Zones_3_text Zones_5_label Zones_5_text Zones_2_button Zones_4_option Zones_4_pull 
+ autoUnmanage = false
+ dialogTitle = Grid
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = Zones_hide
+ type = XmPushButton
+ rightAttachment = attach_form
+ leftAttachment = attach_form
+ topAttachment = attach_widget
+ topWidget = Zones_4_option
+ labelString = Cancel
+ background = lightgrey
+ activateCallback = osh> unmanageWidget `get Widget thisParent`
+end
+!----------------------------
+begin OWidget
+ name = Zones_0_label
+ type = XmLabel
+ labelString = Rows
+ background = lightgrey
+ leftAttachment = attach_form
+ topAttachment = attach_form
+ rightAttachment = attach_position
+ rightPosition = 40
+end
+!----------------------------
+begin OWidget
+ name = Zones_0_text
+ type = XmText
+ rightAttachment = attach_form
+ topAttachment = attach_form
+ leftAttachment = attach_widget
+ leftWidget = Zones_0_label
+ value = 1
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = Zones_1_label
+ type = XmLabel
+ labelString = Columns
+ background = lightgrey
+ leftAttachment = attach_form
+ topAttachment = attach_widget
+ topWidget = Zones_0_text
+ rightAttachment = attach_position
+ rightPosition = 40
+end
+!----------------------------
+begin OWidget
+ name = Zones_1_text
+ type = XmText
+ rightAttachment = attach_form
+ topAttachment = attach_widget
+ topWidget = Zones_0_text
+ leftAttachment = attach_widget
+ leftWidget = Zones_1_label
+ value = 1
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = Zones_3_label
+ type = XmLabel
+ labelString = Class
+ background = lightgrey
+ leftAttachment = attach_form
+ topAttachment = attach_widget
+ topWidget = Zones_1_text
+ rightAttachment = attach_position
+ rightPosition = 40
+end
+!----------------------------
+begin OWidget
+ name = Zones_3_text
+ type = XmText
+ rightAttachment = attach_form
+ topAttachment = attach_widget
+ topWidget = Zones_1_text
+ leftAttachment = attach_widget
+ leftWidget = Zones_3_label
+ value = XoCamera
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = Zones_5_label
+ type = XmPushButton
+ labelString = Parent(XmForm)
+ background = lightgrey
+ leftAttachment = attach_form
+ topAttachment = attach_widget
+ topWidget = Zones_3_text
+ rightAttachment = attach_position
+ rightPosition = 40
+ activateCallback = osh>\
+  ref=`thisWidget`\
+  setWidgetResource Zones_5_text value `grabWidgetName $ref`
+end
+!----------------------------
+begin OWidget
+ name = Zones_5_text
+ type = XmText
+ rightAttachment = attach_form
+ topAttachment = attach_widget
+ topWidget = Zones_3_text
+ leftAttachment = attach_widget
+ leftWidget = Zones_5_label
+ value = user_grid
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = Zones_2_button
+ type = XmPushButton
+ labelString = Apply
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topAttachment = attach_widget
+ topWidget = Zones_5_text
+ background = lightgrey
+ activateCallback = &osh>\
+  parent=`getWidgetResource Zones_5_text value`\
+  isNotWidgetSubclass $parent XmForm && echo 'Parent not an XmForm.'\
+  isNotWidgetSubclass $parent XmForm && exit\
+  collect Widget where name eq $parent | get - children | delete -\
+  type=`getWidgetResource Zones_3_text value`\
+  rows=`getWidgetResource Zones_0_text value` `getWidgetResource Zones_1_text value`\
+  cols=`getWidgetResource Zones_1_text value`\
+  buildZones $parent $type $rows $cols\
+  string=`printf '%s_1_1' $parent`\
+  set Widget target $string\
+  isCommand reset_grid && reset_grid
+end
+!----------------------------
+begin OWidget
+ name = Zones_4_option
+ type = XmOptionMenu
+ labelString = Apply also
+ subMenuId = Zones_4_pull
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topAttachment = attach_widget
+ topWidget = Zones_2_button
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = Zones_4_pull
+ type = XmPulldownMenu
+ children = Zones_4_option_1 Zones_4_option_2 
+end
+!----------------------------
+begin OWidget
+ name = Zones_4_option_1
+ type = XmPushButton
+ labelString = 2 x 2
+ activateCallback = &osh>\
+  parent=`getWidgetResource Zones_5_text value`\
+  isNotWidgetSubclass $parent XmForm && echo 'Parent not an XmForm.'\
+  isNotWidgetSubclass $parent XmForm && exit\
+  collect Widget where name eq $parent | get - children | delete -\
+  buildZones $parent `getWidgetResource Zones_3_text value` 2 2\
+  string=`printf '%s_1_1' $parent`\
+  set Widget target $string\
+  isCommand reset_grid && reset_grid
+end
+!----------------------------
+begin OWidget
+ name = Zones_4_option_2
+ type = XmPushButton
+ labelString = 4 x 4
+ activateCallback = &osh>\
+  parent=`getWidgetResource Zones_5_text value`\
+  isNotWidgetSubclass $parent XmForm && echo 'Parent not an XmForm.'\
+  isNotWidgetSubclass $parent XmForm && exit\
+  collect Widget where name eq $parent | get - children | delete -\
+  buildZones $parent `getWidgetResource Zones_3_text value` 4 4\
+  string=`printf '%s_1_1' $parent`\
+  set Widget target $string\
+  isCommand reset_grid && reset_grid
+end

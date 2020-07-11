@@ -1,0 +1,9 @@
+create OHistogram name xxx_1 dimension 1 xAxisNumberOfBins 10 xAxisMinimum 0. xAxisMaximum 10.
+create OHistogram name xxx_2 dimension 2 xAxisNumberOfBins 10 xAxisMinimum 0. xAxisMaximum 10. yAxisNumberOfBins 5 yAxisMinimum 0. yAxisMaximum 5.
+do OHistogram/xxx_1 fill 2.
+do OHistogram/xxx_1 fill 3. 4.
+do OHistogram/xxx_2 fill 2. 1.
+do OHistogram/xxx_2 fill 3. 2. 4.
+do OHistogram/xxx_2 fill 3. 2. 3.
+dump OHistogram/xxx_1
+dump OHistogram/xxx_2

@@ -1,0 +1,76 @@
+#/* +---------------------- Copyright notice -------------------------------+ */
+#/* | Copyright (C) 1995, Guy Barrand, LAL Orsay. (barrand@lalcls.in2p3.fr) | */
+#/* |   Permission to use, copy, modify, and distribute this software       | */
+#/* |   and its documentation for any purpose and without fee is hereby     | */
+#/* |   granted, provided that the above copyright notice appear in all     | */
+#/* |   copies and that both that copyright notice and this permission      | */
+#/* |   notice appear in supporting documentation.  This software is        | */
+#/* |   provided "as is" without express or implied warranty.               | */
+#/* +---------------------- Copyright notice -------------------------------+ */
+
+This_macros = \
+bin=.\
+mgr=.\
+src=.\
+app=.\
+OApp_Wo_CPPFLAGS="/I $(COROOT)\include /I $(XXROOT)\include /I $(WOROOT)\include"\
+libCo="$(COROOT)\$$(CONFIG)\libCo.lib"\
+libXx="$(XXROOT)\$$(CONFIG)\libXx.lib"\
+libWo="$(WOROOT)\$$(CONFIG)\libWo.lib"\
+OApp_Xm_CPPFLAGS="/DHAS_XM"\
+libWoXm="$(WOROOT)\$$(CONFIG)\libWoXm.lib"\
+OApp_Xaw_CPPFLAGS="/DHAS_XAW"\
+libWoXaw="$(WOROOT)\$$(CONFIG)\libWoXaw.lib"\
+OApp_Xo_CPPFLAGS="/DHAS_XO /I $(XOROOT)\include /I $(GOROOT)\include /I $(GLOROOT)\usr\include /I $(HOROOT)\include"\
+libWoGL="$(WOROOT)\$$(CONFIG)\libWoGL.lib"\
+libXo="$(XOROOT)\$$(CONFIG)\libXo.lib"\
+libHo="$(HOROOT)\$$(CONFIG)\libHo.lib"\
+libGL="$(GLOROOT)\$$(CONFIG)\libGLo.lib"\
+libGLU="$(GLOROOT)\$$(CONFIG)\libGLUo.lib"\
+libGLX="$(GLOROOT)\$$(CONFIG)\libGLXo.lib"\
+libGo="$(GOROOT)\$$(CONFIG)\libGo.lib"
+
+#OApp_HTML_CPPFLAGS="/DHAS_HTML"\
+#libwww="$(W3OROOT)\$$(CONFIG)\libW3o.lib"\
+#libhtmlw="$(HTMLOROOT)\$$(CONFIG)\libHTMLo.lib"
+#OApp_Xz_CPPFLAGS="/DHAS_XZ /DHAS_HO /I $(XZROOT)\include /I $(HOROOT)\include"\
+#libWoHoXz=$(WOROOT)\$$(CONFIG)\libWoHoXz.lib\
+#libXz=$(XZROOT)\$$(CONFIG)\libXz.lib\
+#libXzPAWC=$(XZROOT)\$$(CONFIG)\libPAWC.lib\
+#libgraflib=c:\cern\pro\lib\libgraflib.lib\
+#libgrafX11=c:\cern\pro\lib\libgrafX11.lib\
+#libpacklib=c:\cern\pro\lib\libpacklib.lib\
+#libmathlib=c:\cern\pro\lib\libmathlib.lib\
+#OApp_PAW_CPPFLAGS="/DHAS_PAW"\
+#libWoPAW=$(WOROOT)\$$(CONFIG)\libWoPAW.lib\
+#libpawlib=c:\cern\pro\lib\libpawlib.lib\
+#OApp_G3o_CPPFLAGS="/DHAS_G3O /I $(G3OROOT)\include"\
+#libG3o=$(G3OROOT)\$$(CONFIG)\libG3o.lib\
+#libG3oEXPO=$(G3OROOT)\$$(CONFIG)\libG3oEXPO.lib\
+#libgeant=c:\cern\pro\lib\libgeant321.lib\
+#OApp_Ci_CPPFLAGS="/DHAS_CI /I $(CIROOT)\src /I $(CSETROOT)\src"\
+#libWoCi=$(WOROOT)\$$(CONFIG)\libWoCi.lib\
+#libCi="$(CIROOT)\$$(CONFIG)\libCiSwitches.lib $(CIROOT)\$$(CONFIG)\libCi.lib"\
+#libCSet="$(CSETROOT)\$$(CONFIG)\libCSet.lib $(CSETROOT)\$$(CONFIG)\libReg.lib"
+#OApp_FNAL_CPPFLAGS="/DHAS_FNAL /I $(HOME)\$$(CONFIG)\include\FNAL"\
+#libWoFNAL=$(WOROOT)\$$(CONFIG)\libWoFNAL.lib\
+#libFNAL="$(HOME)\$$(CONFIG)\libPlotW.lib $(HOME)\$$(CONFIG)\libNUtil.lib"\
+#OApp_tcl_CPPFLAGS="/DHAS_TCL"\
+#libtcl=c:\usr\local\lib\libtcl.lib
+
+INCLUDE=$(INCLUDE);$(COROOT)\mgr
+!include <Config.nmk>
+
+This_needed :
+	@if "%COROOT%"    == ""  echo "COROOT not set"
+	@if "%XXROOT%"    == ""  echo "XXROOT not set"
+	@
+	@if "%XOROOT%"    == ""  echo "XOROOT not set"
+	@if "%HOROOT%"    == ""  echo "HOROOT not set"
+	@if "%GLOROOT%"   == ""  echo "GLOROOT not set"
+	@if "%GOROOT%"    == ""  echo "GOROOT not set"
+#	@if "%W3OROOT%"   == ""  echo "W3OROOT not set"
+#	@if "%HTMLOROOT%" == ""  echo "HTMLOROOT not set"
+#	@if "%CIROOT%"    == ""  echo "CIROOT not set"
+#	@if "%CSETROOT%"  == ""  echo "CSETROOT not set"
+

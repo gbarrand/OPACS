@@ -1,0 +1,39 @@
+!----------------------------
+begin OInterface
+ prefix = Panels_
+ packages = Xm 
+end
+!----------------------------
+begin OWidget
+ name = Panels_casc
+ type = XmCascadeButton
+ labelString = Panels
+ subMenuId = Panels_pdm
+end
+!----------------------------
+begin OWidget
+ name = Panels_pdm
+ type = XmPulldownMenu
+ children = Panels_default Panels_test Panels_TAoGauss
+end
+!----------------------------
+begin OWidget
+ name = Panels_default
+ type = XmPushButton
+ labelString = Default
+ activateCallback = &osh>fileName=TAoDefault.odb;. LoadPanel.osh
+end
+!----------------------------
+begin OWidget
+ name = Panels_test
+ type = XmPushButton
+ labelString = Test
+ activateCallback = &osh>fileName=TAoTest.odb;. LoadPanel.osh
+end
+!----------------------------
+begin OWidget
+ name = Panels_TAoGauss
+ type = XmPushButton
+ labelString = Gauss
+ activateCallback = &osh>fileName=TAoGauss.odb;. LoadPanel.osh
+end

@@ -1,0 +1,134 @@
+!/* +---------------------- Copyright notice -------------------------------+ */
+!/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+!/* |   Permission to use, copy, modify, and distribute this software       | */
+!/* |   and its documentation for any purpose and without fee is hereby     | */
+!/* |   granted, provided that the above copyright notice appear in all     | */
+!/* |   copies and that both that copyright notice and this permission      | */
+!/* |   notice appear in supporting documentation.  This software is        | */
+!/* |   provided "as is" without express or implied warranty.               | */
+!/* +---------------------- Copyright notice -------------------------------+ */
+!----------------------------
+begin OInterface
+ version = v3
+ prefix = wdup_
+ packages = Xm 
+end
+!----------------------------
+begin OWidget
+ name = wdup_palette
+ type = XmFormDialog
+ children = wdup_hide wdup_2_label wdup_2_text wdup_3_label wdup_3_text wdup_4_option wdup_4_pull wdup_5_button 
+ autoUnmanage = false
+ dialogTitle = Filter
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = wdup_hide
+ type = XmPushButton
+ rightAttachment = attach_form
+ leftAttachment = attach_form
+ topAttachment = attach_widget
+ topWidget = wdup_5_button
+ labelString = Cancel
+ background = lightgrey
+ activateCallback = osh> unmanageWidget `get Widget thisParent`
+end
+!----------------------------
+begin OWidget
+ name = wdup_2_label
+ type = XmPushButton
+ labelString = Widget
+ background = lightgrey
+ leftAttachment = attach_form
+ topAttachment = attach_form
+ rightAttachment = attach_position
+ rightPosition = 40
+ activateCallback = osh>\
+  ref=`thisWidget`\
+  setWidgetResource wdup_2_text value `grabWidgetName $ref`
+end
+!----------------------------
+begin OWidget
+ name = wdup_2_text
+ type = XmText
+ rightAttachment = attach_form
+ topAttachment = attach_form
+ leftAttachment = attach_widget
+ leftWidget = wdup_2_label
+ background = wheat
+end
+!----------------------------
+begin OWidget
+ name = wdup_3_label
+ type = XmPushButton
+ labelString = Parent
+ background = lightgrey
+ leftAttachment = attach_form
+ topAttachment = attach_widget
+ topWidget = wdup_2_text
+ rightAttachment = attach_position
+ rightPosition = 40
+ activateCallback = osh>\
+  ref=`thisWidget`\
+  setWidgetResource wdup_3_text value `grabWidgetName $ref`
+end
+!----------------------------
+begin OWidget
+ name = wdup_3_text
+ type = XmText
+ rightAttachment = attach_form
+ topAttachment = attach_widget
+ topWidget = wdup_2_text
+ leftAttachment = attach_widget
+ leftWidget = wdup_3_label
+ background = wheat
+end
+!----------------------------
+begin OWidget
+ name = wdup_4_option
+ type = XmOptionMenu
+ subMenuId = wdup_4_pull
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topAttachment = attach_widget
+ topWidget = wdup_3_text
+ background = lightgrey
+ labelString = Duplicate hierarchy
+ createCallback = osh> setWidgetOption `get Widget this` ombre
+end
+!----------------------------
+begin OWidget
+ name = wdup_4_pull
+ type = XmPulldownMenu
+ children = wdup_4_option_1 wdup_4_option_2 
+end
+!----------------------------
+begin OWidget
+ name = wdup_4_option_1
+ type = XmPushButton
+ labelString = no
+end
+!----------------------------
+begin OWidget
+ name = wdup_4_option_2
+ type = XmPushButton
+ labelString = yes
+end
+!----------------------------
+begin OWidget
+ name = wdup_5_button
+ type = XmPushButton
+ labelString = Apply
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topAttachment = attach_widget
+ topWidget = wdup_4_option
+ background = lightgrey
+ activateCallback = osh>\
+  widget=`getWidgetResource wdup_2_text value`\
+  oid=`printf 'Widget/%s' $widget`\
+  tree=`getWidgetOption wdup_4_option`\
+  test $tree eq no  && do $oid duplicate          `getWidgetResource wdup_3_text value`\
+  test $tree eq yes && do $oid duplicateHierarchy `getWidgetResource wdup_3_text value`
+end

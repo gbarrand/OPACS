@@ -1,0 +1,137 @@
+/* +---------------------- Copyright notice -------------------------------+ */
+/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+/* |   Permission to use, copy, modify, and distribute this software       | */
+/* |   and its documentation for any purpose and without fee is hereby     | */
+/* |   granted, provided that the above copyright notice appear in all     | */
+/* |   copies and that both that copyright notice and this permission      | */
+/* |   notice appear in supporting documentation.  This software is        | */
+/* |   provided "as is" without express or implied warranty.               | */
+/* +---------------------- Copyright notice -------------------------------+ */
+#include <string.h>
+
+#include <CMemory.h>
+#include <CString.h>
+
+#include <FString.h>
+
+#pragma __nostandard
+
+#include <descrip.h>
+
+#define MINIMUM(a,b)            ((a)<(b)?a:b)
+/******************************************************************************/
+FString FStringCreate (
+ int a_length
+)
+/***************************************************************************/
+/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+{
+   int count;
+  struct dsc$descriptor_s   *fstr;
+/*.........................................................................*/
+  if(a_length<=0)           a_length = 1; /* in fortran character*0 does not exist */
+  fstr                      = CMemoryAllocateBlock(sizeof(struct dsc$descriptor_s)); 
+  if(fstr==NULL)            return NULL;
+  fstr->dsc$b_dtype         = DSC$K_DTYPE_T;
+  fstr->dsc$b_class         = DSC$K_CLASS_S;
+  fstr->dsc$a_pointer       = CMemoryAllocateBlock(a_length*sizeof(char));
+  if(fstr->dsc$a_pointer==NULL)  
+    {
+      CMemoryFreeBlock(fstr);
+      return NULL;
+    }
+  for(count=0;count<a_length;count++) fstr->dsc$a_pointer[count] = ' ';
+  fstr->dsc$w_length        = a_length;
+  return                    fstr;
+}
+/***************************************************************************/
+FString FStringCreateFromC (
+ char* a_string    
+,int* a_length
+)
+/***************************************************************************/
+/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+{
+  size_t alength,length;
+  struct dsc$descriptor_s* fstr;
+/*.........................................................................*/
+  if(a_length!=NULL) *a_length = 0;
+  if(a_string!=NULL)
+    {
+      length = alength = strlen(a_string);
+    }
+  else
+    {
+      length = alength = 0;
+    }
+  length                   = length!=0 ? length : 1; /* in fortran character*0 does not exist */
+  fstr                     = CMemoryAllocateBlock(sizeof(struct dsc$descriptor_s)); 
+  if(fstr==NULL)                return NULL;
+  fstr->dsc$b_dtype        = DSC$K_DTYPE_T;
+  fstr->dsc$b_class        = DSC$K_CLASS_S;
+  fstr->dsc$a_pointer      = CMemoryAllocateBlock(length*sizeof(char));
+  if(fstr->dsc$a_pointer==NULL) 
+    {
+      CMemoryFreeBlock(fstr);
+      return NULL;
+    }
+  fstr->dsc$a_pointer[length-1] = '\0';
+  fstr->dsc$w_length            = length;
+  if( (a_string!=NULL) && (alength!=0) )
+    strncpy (fstr->dsc$a_pointer,a_string,alength);
+  else
+    fstr->dsc$a_pointer[0] = ' ';
+  if(a_length!=NULL) *a_length                = (int)length;
+  return                   fstr;
+}     
+/***************************************************************************/
+int FStringInitializeFromC (
+ FString This
+,int a_length
+,char* a_string    
+)
+/***************************************************************************/
+/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+{
+  size_t length;
+/*.........................................................................*/
+  if(This==NULL)     return 0;
+  if(a_string==NULL) return 0;
+  length = MINIMUM(((struct dsc$descriptor_s *)This)->dsc$w_length,a_length);
+  length = MINIMUM(strlen(a_string),length);
+  if(length<=0) return 0;
+  strncpy (((struct dsc$descriptor_s *)This)->dsc$a_pointer,a_string,length);
+  return  length;
+}     
+/***************************************************************************/
+char* FStringConvertToC (
+ FString This
+,int  a_length     
+)
+/***************************************************************************/
+/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+{
+  char* string;
+/*.........................................................................*/
+  if(This==NULL)     return NULL;
+  string             = CStringCreate(a_length);
+  if(a_length>0)     strncpy (string,((struct dsc$descriptor_s *)This)->dsc$a_pointer,a_length);
+  return             string;
+}     
+/***************************************************************************/
+void FStringDelete (
+ FString This
+)
+/***************************************************************************/
+/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+{
+  struct dsc$descriptor_s *fstr = This;
+/*.........................................................................*/
+  if(This==NULL) return;
+  if(fstr->dsc$a_pointer==NULL) return;
+  CMemoryFreeBlock            (fstr->dsc$a_pointer);
+  fstr->dsc$a_pointer = NULL;
+  fstr->dsc$w_length  = 0;
+  CMemoryFreeBlock (This);
+}     
+#pragma __standard

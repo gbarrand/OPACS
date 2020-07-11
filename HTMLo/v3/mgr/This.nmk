@@ -1,0 +1,163 @@
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#  File produced by the Co/omake tool
+# using file Make.odb.
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#  The soft linked packages has been taken
+# from the property 'has' of the 
+# 'Make' object of file Make.odb.
+# It had the value :
+#    X11 Xext Xt Xmu Xm HTMLoXm
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+HAS_CPPFLAGS = \
+ $(HTMLo_CPPFLAGS)\
+ $(X11_CPPFLAGS)\
+ $(Xext_CPPFLAGS)\
+ $(Xt_CPPFLAGS)\
+ $(Xmu_CPPFLAGS)\
+ $(Xm_CPPFLAGS)\
+ $(HTMLoXm_CPPFLAGS)
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+all   :: mkdir
+
+clean ::
+	if exist $(bin)\*.obj del $(bin)\*.obj
+	if exist $(bin)\*.exe del $(bin)\*.exe
+	if exist $(bin)\*.lib del $(bin)\*.lib
+	if exist $(bin)\*.dll del $(bin)\*.dll
+	if exist $(bin)\*.exp del $(bin)\*.exp
+	if exist $(bin)\*.pdb del $(bin)\*.pdb
+rmlib ::
+	if exist $(bin)\*.lib del $(bin)\*.lib
+rmo   ::
+	if exist $(bin)\*.obj del $(bin)\*.obj
+rmexe ::
+	if exist $(bin)\*.exe del $(bin)\*.exe
+
+mkdir :
+	@if not exist $(bin) mkdir $(bin)
+
+libHTMLo_target = $(bin)\libHTMLo.lib
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+all :: mkdir \
+$(libHTMLo_target) \
+$(bin)\htmlT.exe 
+	@echo "HTMLo : all ok." 
+
+libs :: mkdir \
+$(libHTMLo_target) 
+	@echo "HTMLo : libs ok." 
+
+apps :: mkdir \
+$(bin)\htmlT.exe 
+	@echo "HTMLo : apps ok." 
+#--------------------------------------------
+rmexeo :
+	if exist $(bin)\htmlT.obj del $(bin)\htmlT.obj
+#--------------------------------------------
+htmlT : $(bin)\htmlT.exe
+	@echo "HTMLo : htmlT ok."
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#--------------------------------------------
+$(bin)\htmlT.exe : $(bin)\htmlT.obj \
+$(bin)\CFile.obj \
+$(libHTMLo_target) 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\htmlT.exe $(bin)\htmlT.obj \
+$(bin)\CFile.obj \
+$(libHTMLo) \
+$(libXm) \
+$(libXmu) \
+$(libXt) \
+$(libXext) \
+$(libX11) \
+$(libm) \
+$(CCLDEND) 
+
+$(bin)\htmlT.obj   : $(app)\htmlT.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\htmlT.obj $(app)\htmlT.c
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# libraries 
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#--------------------------------------------
+
+$(bin)\libHTMLo.lib : \
+$(bin)\HTMLWidget.obj \
+$(bin)\DrawingArea.obj \
+$(bin)\HTMLformat.obj \
+$(bin)\HTMLlists.obj \
+$(bin)\HTMLPSformat.obj \
+$(bin)\HTMLimages.obj \
+$(bin)\HTMLparse.obj \
+$(bin)\HTMLjot.obj \
+$(bin)\HTMLtable.obj \
+$(bin)\HTMLwidgets.obj \
+$(bin)\list.obj \
+$(bin)\medcut.obj \
+$(bin)\gifread.obj \
+$(bin)\xpmhash.obj 
+	if exist $(bin)\libHTMLo.lib del $(bin)\libHTMLo.lib 
+	lib.exe @<<
+/nologo /out:$(bin)\libHTMLo.lib
+$(bin)\HTMLWidget.obj
+$(bin)\DrawingArea.obj
+$(bin)\HTMLformat.obj
+$(bin)\HTMLlists.obj
+$(bin)\HTMLPSformat.obj
+$(bin)\HTMLimages.obj
+$(bin)\HTMLparse.obj
+$(bin)\HTMLjot.obj
+$(bin)\HTMLtable.obj
+$(bin)\HTMLwidgets.obj
+$(bin)\list.obj
+$(bin)\medcut.obj
+$(bin)\gifread.obj
+$(bin)\xpmhash.obj
+<<
+#--------------------------------------------
+# libHTMLo dependencies 
+#--------------------------------------------
+$(bin)\HTMLWidget.obj : $(src)\HTMLWidget.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\HTMLWidget.obj $(src)\HTMLWidget.c
+
+$(bin)\DrawingArea.obj : $(src)\DrawingArea.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\DrawingArea.obj $(src)\DrawingArea.c
+
+$(bin)\HTMLformat.obj : $(src)\HTMLformat.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\HTMLformat.obj $(src)\HTMLformat.c
+
+$(bin)\HTMLlists.obj : $(src)\HTMLlists.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\HTMLlists.obj $(src)\HTMLlists.c
+
+$(bin)\HTMLPSformat.obj : $(src)\HTMLPSformat.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\HTMLPSformat.obj $(src)\HTMLPSformat.c
+
+$(bin)\HTMLimages.obj : $(src)\HTMLimages.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\HTMLimages.obj $(src)\HTMLimages.c
+
+$(bin)\HTMLparse.obj : $(src)\HTMLparse.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\HTMLparse.obj $(src)\HTMLparse.c
+
+$(bin)\HTMLjot.obj : $(src)\HTMLjot.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\HTMLjot.obj $(src)\HTMLjot.c
+
+$(bin)\HTMLtable.obj : $(src)\HTMLtable.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\HTMLtable.obj $(src)\HTMLtable.c
+
+$(bin)\HTMLwidgets.obj : $(src)\HTMLwidgets.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\HTMLwidgets.obj $(src)\HTMLwidgets.c
+
+$(bin)\list.obj : $(src)\list.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\list.obj $(src)\list.c
+
+$(bin)\medcut.obj : $(src)\medcut.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\medcut.obj $(src)\medcut.c
+
+$(bin)\gifread.obj : $(src)\gifread.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\gifread.obj $(src)\gifread.c
+
+$(bin)\xpmhash.obj : $(src)\xpmhash.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\xpmhash.obj $(src)\xpmhash.c
+
+$(bin)\CFile.obj : $(app)\CFile.c
+	$(CC) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\CFile.obj $(app)\CFile.c
+
+

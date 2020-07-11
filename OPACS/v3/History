@@ -1,0 +1,13 @@
+03/06/1999 : - add Wo/mgr/run.sh.
+18/05/1999 : - [Co, W3o, HTMLo]/mgr/Config.mk : SunOS.
+             - Co/src/OModule.cc : .cxx by default.
+             - Xz/XzCm : add a ';' if not HAS_CM.
+15/02/1998 : - compile on lx1 with KCC :
+	       Some typedef in include files has been moved under
+               extern C. Should do the same for all of them ?
+01/02/1998 : - compile on lx1 :
+                W3o, HTMLo/mgr/Config.mk : -D_BSD_SOURCE
+                Xo/XoRheostat.c : 
+                      #if (XmVERSION == 1) && (XmREVISION <= 1)
+07/01/1999 : - G3o/ogeant.f/OGRGREO : Load KINE.
+05/01/1999 : - Go/Go.c : Correct PGON.

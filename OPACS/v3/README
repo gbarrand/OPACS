@@ -1,0 +1,213 @@
+
+ UNIX installation :
+ ----------------- 
+     UNIX> mkdir <...>/OPACS
+     UNIX> cd    <...>/OPACS
+     UNIX> ftp ftp.lal.in2p3.fr
+     anonymous
+     user name
+     ftp> cd pub/OPACS/v3
+     ftp> bin
+     ftp> get WoXm.tar.Z        # Wo widget manager knowing the MOTIF widget set.
+    (ftp> get WoXoXm.tar.Z      # Wo widget manager knowing the MOTIF widget set
+                                # plus the "o" graphic over MOTIF widget set.)
+    (ftp> get WoXoXaw.tar.Z     # Wo widget manager knowing the Xaw widget set
+                                # plus the "o" graphic over Athena widget set. 
+                                # Adapted for Linux.)
+    (ftp> get WoXoXmCERN.tar.Z  # Same as WoXm plus bindings to CERN libraries.
+                                # Need a FORTRAN compiler and CERN libraries.)
+    (ftp> get WoXoXmG4o.tar.Z   # Same as WoXoXm plus G4o pacakge.
+                                # Need GEANT4 and Rogue Wave.
+    (ftp> get WoXoXawG4o.tar.Z  # Same as before on Xaw.
+     ftp> quit
+     UNIX> uncompress WoXm.tar.Z
+     UNIX> tar xvf WoXm.tar
+    (UNIX> rm WoXm.tar)
+     UNIX> cd OPACS/v3
+     UNIX> chmod u+x conf.sh    
+     UNIX> edit setup.csh (.sh) # To change the "root" directory variable.
+                                # Some additonnal edition could be necessary to define
+                                # specific environment variables that permit access to some
+                                # external packages like GEANT4.
+      csh> source setup.csh     # To set "o" environment.
+    (  sh> . setup.sh )
+     UNIX> (g)make              # To build the group in the `uname` config.
+                                # Look the head of "Makefile" file to have example
+                                # of more complete commands.
+
+  The compilation "configs" are defined in the files :
+     Co/v3/mgr/Config.mk
+   ( W3o/v3/mgr/Config.mk   )  
+   ( HTMLo/v3/mgr/Config.mk )
+ If the existing "configs" do not match your environment, 
+ edit these files. Existing configs are :
+     OSF1
+     HP-UX
+     ULTRIX
+     Linux
+     AIX     
+     IRIX    (not tested yet)   
+     SunOS   (not tested yet)   
+     insure
+     Linux-gxx
+
+  See the below "General considerations" for more.
+
+ NT installation :
+ ----------------- 
+  Being on Windows, get a NT "command prompt"
+ by double clicking in :
+    "Program manager/Main/Command prompt"
+  Then type :
+     NT> mkdir <...>\OPACS
+     NT> cd    <...>\OPACS
+     NT> ftp ftp.lal.in2p3.fr
+     anonymous
+     user name
+     ftp> cd pub/OPACS/v3
+     ftp> bin
+     ftp> get WoXm.taZ        # Wo widget manager knowing the MOTIF widget set.
+    (ftp> get WoXoXm.taZ      # Wo widget manager knowing the MOTIF widget set
+                              # plus the "o" graphic over MOTIF widget set.)
+    (ftp> get WoXoXaw.taZ     # Wo widget manager knowing the Xaw widget set
+                              # plus the "o" graphic over Athena widget set. 
+                              # Adapted for Linux.)
+    (ftp> get WoXoXmCERN.taZ  # Same as WoXm plus bindings to CERN libraries.
+                              # Need a FORTRAN compiler and CERN libraries.)
+    (ftp> get WoXoXmG4o.taZ   # Same as WoXoXm plus G4o pacakge.
+                              # Need GEANT4 and Rogue Wave.
+    (ftp> get WoXoXawG4o.taZ  # Same as before on Xaw.
+     ftp> quit
+  Use the interactive WinZip facility
+ to decompress and extract the files. WinZip can be
+ launched by double clicking on the taZ file
+ from the "File manager". The first double click
+ on the taZ file will produce a tar file. A second
+ double clicking on the tar file will extract the files. 
+    (NT> delete WoXm.tar)
+    (NT> delete WoXm.taZ)
+     NT> cd OPACS/v3
+     NT> edit setup.bat         # To change the "root" directory variable.
+                                # Some additonnal edition could be necessary to define
+                                # specific environment variables that permit access to some
+                                # external packages like GEANT4.
+     NT> call setup.bat         # To set "o" environment.
+     NT> nmake /f NMake         # To build the group in the "NT" config.
+                                # Look the head of "NMake" file to have example
+                                # of more complete commands.
+
+  The compilation "configs" are defined in the files :
+     Co\v3\mgr\Config.nmk
+   ( W3o\v3\mgr\Config.nmk   )  
+   ( HTMLo\v3\mgr\Config.nmk )
+ If the existing "configs" do not match your environment, 
+ edit these files. Existing configs are :
+     NT
+     NTD     (to compile in debug mode)
+
+  See the below "General considerations" for more.
+
+
+ VMS installation :
+ ----------------- 
+     VMS$ create/dir  disk:[<...>.OPACS]
+     VMS$ set def disk:[<...>.OPACS]
+     VMS$ ftp ftp.lal.in2p3.fr
+     anonymous
+     user name
+     ftp> cd pub/OPACS/v3
+     ftp> bin
+     ftp> get WoXm.tar_Z        # Wo widget manager knowing the MOTIF widget set.
+    (ftp> get WoXoXm.tar_Z      # Wo widget manager knowing the MOTIF widget set
+                                # plus the "o" graphic over MOTIF widget set.)
+    (ftp> get WoXoXaw.tar_Z     # Wo widget manager knowing the Xaw widget set
+                                # plus the "o" graphic over Athena widget set. 
+                                # Adapted for Linux.)
+    (ftp> get WoXoXmCERN.tar_Z  # Same as WoXm plus bindings to CERN libraries.
+                                # Need a FORTRAN compiler and CERN libraries.)
+    (ftp> get WoXoXmG4o.tar_Z   # Same as WoXoXm plus G4o pacakge.
+                                # Need GEANT4 and Rogue Wave.
+    (ftp> get WoXoXawG4o.tar_Z  # Same as before on Xaw.
+     ftp> cd Alpha
+    (ftp> cd VAX)
+     ftp> get compress.exe
+     ftp> get vmstar.exe
+     ftp> quit
+     VMS$ compress == "$disk:[<...>.OPACS]compress
+     VMS$ vmstar   == "$disk:[<...>.OPACS]vmstar
+     VMS$ compress -d WoXm.tar_Z
+     VMS$ vmstar xvf WoXm.tar
+    (VMS$ del WoXm.tar;*)
+     VMS$ set def [.OPACS.v3]
+     VMS$ edit setup.com               # To change the "root" directory variable.
+                                       # Some additonnal edition could be necessary to define
+                                       # specific environment variables that permit access to some
+                                       # external packages like GEANT4.
+     VMS$ @setup.com                   # To set "o" environment.
+     VMS$ mms                          # To build the group in the ALPHA config.
+                                       # Look the head of "descrip.mms" file to have example
+                                       # of more complete commands.
+    (VMS$ mms/macros=(CONFIG=VAX) WoXo # To build the group in the VAX config.)
+
+  The compilation "configs" are defined in the files :
+     [OPACS.Co.v3.mgr]Config.mk
+   ( [OPACS.W3o.v3.mgr]Config.mk   )  
+   ( [OPACS.HTMLo.v3.mgr]Config.mk )
+ If the existing "configs" do not match your environment, 
+ edit these files. Existing configs are :
+     ALPHA
+     VAX
+
+  See the below "General considerations" for more.
+
+ General considerations :
+ ----------------------
+  If using any other none "o" packages like CERN libraries, 
+ or LAL Ci, that are not in a "standard" place, edit the 
+ "setup" files to set the "root" directory variables that 
+ say where these packages are located. 
+
+  Some packages could be declared to Wo (like Xaw, tcl,...).
+ This is done in the Wo/v3/mgr/Make.odb file. The "has"
+ property of the "Make" object controls the "known" packages.
+ Change this property according to examples. Run the "omake"
+ tool that will regenerate the new Wo "This.mk" makefile :
+     UNIX> cd <...>/Wo/v3/mgr
+    (NT>   cd <...>\Wo\v3\mgr)
+    (VMS$  set def disk:[<...>.Wo.v3.mgr])
+     UNIX> vi Make.odb
+    (NT>   edit Make.odb)
+    (VMS$  edit Make.odb)
+     UNIX> omake -make
+    (NT>   omake -make)
+    (VMS$  omake -make)
+ or :
+     UNIX> omake -all
+    (NT>   omake -all)
+    (VMS$  omake -all)
+ to generate also This.nmk and This.mms for NT and VMS.
+ The alias "omake" is defined in the "setup" files.
+  Note that a "Make.odb" exists for each "o" package. For
+ example, in the same way that above, you can reconstruct
+ the Xo widgets on the Xaw library instead of MOTIF.
+
+   OPACS/v3 contains the global Makefile, NMake and descrip.mms. 
+ By default the Wo widget manager is reconstructed over MOTIF. 
+ The global Makefile (NMake, descrip.mms) triggers the stand 
+ alone makefiles of implied "o" packages. 
+  A local Makefile (NMake, descrip.mms) includes the 
+ Config.mk (.nmk, .mms) located in Co/v3/mgr (exceptions 
+ are for W3o and HTMLo that are stand alone packages). 
+ According to the "config" and the local macros the 
+ "This.mk" (.nmk, .mms) is executed.
+
+  In case of trouble, look the environment variables 
+ in the setup files, the "configs" in the Config.mk (.nmk, .mms) 
+ files and the local makefiles for other "make" macros.
+
+ Hot line :
+ --------
+     Guy Barrand at barrand@lal.in2p3.fr
+
+
+

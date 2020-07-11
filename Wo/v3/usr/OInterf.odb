@@ -1,0 +1,221 @@
+!/* +---------------------- Copyright notice -------------------------------+ */
+!/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+!/* |   Permission to use, copy, modify, and distribute this software       | */
+!/* |   and its documentation for any purpose and without fee is hereby     | */
+!/* |   granted, provided that the above copyright notice appear in all     | */
+!/* |   copies and that both that copyright notice and this permission      | */
+!/* |   notice appear in supporting documentation.  This software is        | */
+!/* |   provided "as is" without express or implied warranty.               | */
+!/* +---------------------- Copyright notice -------------------------------+ */
+!----------------------------
+begin OInterface
+ version = v3
+ prefix = OInterface_
+end
+!----------------------------
+begin OWidget
+ name = OInterface_palette
+ type = XmFormDialog
+ children = OInterface_371 OInterface_461 OInterface_1 OInterface_460 OInterface_3 OInterface_2 OInterface_4 OInterface_5 OInterface_6 OInterface_7 OInterface_8 OInterface_459 
+ background = lightgrey
+ mapCallback = osh>\
+  collect OInterface | get - dataBaseName | setWidgetResource OInterface_list items -
+ autoUnmanage = false
+ dialogTitle = odb files
+end
+!----------------------------
+begin OWidget
+ name = OInterface_371
+ type = XmFrame
+ children = OInterface_list 
+ topAttachment = attach_widget
+ bottomAttachment = attach_none
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = OInterface_461
+ rightPosition = 0
+end
+!----------------------------
+begin OWidget
+ name = OInterface_list
+ type = XmScrolledList
+ background = lightgrey
+ visibleItemCount = 5
+ selectionPolicy = single_select
+ listSizePolicy = constant
+ scrollBarDisplayPolicy = static
+ singleSelectionCallback = osh>\
+  collect OInterface where dataBaseName eq `get Widget thisValue` | do - getInformations | setWidgetResource OInterface_infos value -
+end
+!----------------------------
+begin OWidget
+ name = OInterface_461
+ type = XmPushButton
+ background = black
+ foreground = white
+ labelString = odb files
+ activateCallback = osh>\
+  collect OInterface | get - dataBaseName | setWidgetResource OInterface_list items -
+ topAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = OInterface_1
+ type = XmFrame
+ children = OInterface_infos 
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = OInterface_371
+end
+!----------------------------
+begin OWidget
+ name = OInterface_infos
+ type = XmScrolledText
+ createCallback = osh> setWidgetTextSize `get Widget this` 4 20
+ background = lightgrey
+ editMode = multi_line_edit
+end
+!----------------------------
+begin OWidget
+ name = OInterface_460
+ type = XmPushButton
+ background = lightgrey
+ labelString = Change file name
+ activateCallback = osh>\
+  name=`getWidgetResource OInterface_list selectedItems`\
+  test $name eq '' && exit \
+  odb=`collect OInterface where dataBaseName eq $name`\
+  prompt='File name'\
+  default=`get $odb dataBaseFile`\
+  set $odb dataBaseFile `ask $prompt $default`\
+  set $odb modified true
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = OInterface_1
+end
+!----------------------------
+begin OWidget
+ name = OInterface_3
+ type = XmPushButton
+ background = lightgrey
+ labelString = Change prefix
+ activateCallback = osh>\
+  name=`getWidgetResource OInterface_list selectedItems`\
+  test $name eq '' && exit \
+  odb=`collect OInterface where dataBaseName eq $name`\
+  prompt='Generic'\
+  default=`get $odb prefix`\
+  set $odb prefix `ask $prompt $default`\
+  set $odb modified true
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = OInterface_2
+end
+!----------------------------
+begin OWidget
+ name = OInterface_2
+ type = XmPushButton
+ background = lightgrey
+ labelString = Change init script
+ activateCallback = osh>\
+  name=`getWidgetResource OInterface_list selectedItems`\
+  test $name eq '' && exit \
+  odb=`collect OInterface where dataBaseName eq $name`\
+  prompt='Init script'\
+  default=`get $odb createCallback`\
+  set $odb createCallback `askText $prompt $default`\
+  set $odb modified true
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = OInterface_460
+end
+!----------------------------
+begin OWidget
+ name = OInterface_4
+ type = XmPushButton
+ background = lightgrey
+ labelString = Save
+ activateCallback = osh> do Wo saveInterface `getWidgetResource OInterface_list selectedItems`
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = OInterface_3
+end
+!----------------------------
+begin OWidget
+ name = OInterface_5
+ type = XmPushButton
+ background = lightgrey
+ labelString = Reload
+ activateCallback = &osh>\
+  name=`getWidgetResource OInterface_list selectedItems`\
+  test $name eq '' && exit \
+  odb=`collect OInterface where dataBaseName eq $name`\
+  destroy $odb; load $name | realize -
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = OInterface_4
+end
+!----------------------------
+begin OWidget
+ name = OInterface_6
+ type = XmPushButton
+ background = lightgrey
+ labelString = Map shells
+ activateCallback = osh>\
+  name=`getWidgetResource OInterface_list selectedItems`\
+  test $name eq '' && exit \
+  odb=`collect OInterface where dataBaseName eq $name`\
+  do $odb mapShells
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = OInterface_5
+end
+!----------------------------
+begin OWidget
+ name = OInterface_7
+ type = XmPushButton
+ background = lightgrey
+ labelString = Check cbks syntax
+ activateCallback = osh>\
+  name=`getWidgetResource OInterface_list selectedItems`\
+  test $name eq '' && exit \
+  odb=`collect OInterface where dataBaseName eq $name`\
+  do $odb verifySyntaxOfScripts
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = OInterface_6
+end
+!----------------------------
+begin OWidget
+ name = OInterface_8
+ type = XmPushButton
+ background = lightgrey
+ labelString = Check syntax of All callbacks
+ activateCallback = osh> collect OInterface | do - verifySyntaxOfScripts
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = OInterface_7
+end
+!----------------------------
+begin OWidget
+ name = OInterface_459
+ type = XmPushButton
+ background = lightgrey
+ labelString = Cancel
+ activateCallback = osh> unmanageWidget `get Widget thisParent`
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = OInterface_8
+end

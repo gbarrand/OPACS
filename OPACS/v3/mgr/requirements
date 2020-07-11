@@ -1,0 +1,90 @@
+package OPACS
+
+include_dirs ${WOROOT}/include ${COROOT}/include ${XXROOT}/include ${HOROOT}/include ${GOROOT}/include ${XOROOT}/include
+
+public
+
+set COROOT    	"${OPACSROOT}/../../Co/v3"
+set W3OROOT   	"${OPACSROOT}/../../W3o/v3"
+set HTMLOROOT	"${OPACSROOT}/../../HTMLo/v3"
+set HOROOT   	"${OPACSROOT}/../../Ho/v3"
+set GLOROOT  	"${OPACSROOT}/../../GLo/v3"
+set GOROOT   	"${OPACSROOT}/../../Go/v3"
+set XXROOT    	"${OPACSROOT}/../../Xx/v3"
+set XOROOT    	"${OPACSROOT}/../../Xo/v3"
+set XZROOT    	"${OPACSROOT}/../../Xz/v3"
+set G3OROOT   	"${OPACSROOT}/../../G3o/v3"
+set G4OROOT   	"${OPACSROOT}/../../G4o/v3"
+set WOROOT    	"${OPACSROOT}/../../Wo/v3"
+
+set OPATH 	"${OPACSROOT}/../../Co/v3/usr ${OPACSROOT}/../../Wo/v3/usr ${OPACSROOT}/../../Ho/v3/usr ${OPACSROOT}/../../Go/v3/usr ${OPACSROOT}/../../Xo/v3/usr ${OPACSROOT}/../../Xz/v3/usr ${OPACSROOT}/../../G3o/v3/usr ${OPACSROOT}/../../G4o/v3/usr"
+
+set OCONFIG     " " \
+    alpha       "OSF1" \
+    OSF1        "OSF1" \
+    HP-UX       "HP-UX" \
+    AIX         "AIX" \
+    IRIX        "IRIX" \
+    LynxOS	"LynxOS" \
+    Linux       "Linux"
+
+alias  oshow        "${WOROOT}/${OCONFIG}/oshow.exe"
+alias  oapplication "oshow NewApp.odb"
+
+macro O_tag     " " \
+      alpha     "OSF1" \
+      OSF1      "OSF1" \
+      HP-UX     "HP-UX" \
+      AIX       "AIX" \
+      IRIX      "IRIX" \
+      LynxOS	"LynxOS" \
+      Linux     "Linux"
+
+macro Wo_inc	 	"${WOROOT}/include/"
+macro Co_inc 		"${COROOT}/include/"
+macro Go_inc 		"${GOROOT}/include/"
+macro Glo_inc 		"${GLOROOT}/include/"
+macro Xx_inc	 	"${XXROOT}/include/"
+macro Xo_inc 		"${XOROOT}/include/"
+macro Ho_inc	 	"${HOROOT}/include/"
+
+macro W3o_inc	 	"${W3OROOT}/include/"
+macro Htmlo_inc 	"${HTMLOROOT}/include/"
+
+macro OPACS_inc 	". -I$(Wo_inc) -I$(Co_inc) -I$(Go_inc) -I$(Glo_inc) -I$(Xx_inc) -I$(Xo_inc) -I$(Ho_inc) -I$(W3o_inc) -I$(Htmlo_inc)"
+
+#
+#  Next is becoming obsolete (should no longer include WoCi) 
+#
+macro Wo_linkopts 	"-L${WOROOT}/${O_tag}/ -lWoXm -lWoCi -lWoGL -lWo"
+#macro Wo_linkopts 	"-L${WOROOT}/${O_tag}/ -lWoXm -lWoGL -lWo"
+
+macro WoCi_linkopts 	" -lWoCi "
+
+macro Co_linkopts 	"-L${COROOT}/${O_tag}/ -lCo"
+macro Go_linkopts 	"-L${GOROOT}/${O_tag}/ -lGo"
+macro Glo_linkopts 	"-L${GLOROOT}/${O_tag}/ -lGLXo -lGLPSo -lGLUo -lGLo"
+macro Xx_linkopts 	"-L${XXROOT}/${O_tag}/ -lXx"
+macro Xo_linkopts 	"-L${XOROOT}/${O_tag}/ -lXo"
+macro Ho_linkopts 	"-L${HOROOT}/${O_tag}/ -lHo"\
+      LynxOS		"${HOROOT}/${O_tag}/libHo.a"
+
+macro W3o_linkopts 	"-L${W3OROOT}/${O_tag}/ -lW3o"
+macro Htmlo_linkopts 	"-L${HTMLOROOT}/${O_tag}/ -lHTMLo"
+
+#
+#  Can be replaced by a "Motif" package...
+#
+
+macro OPACS_cflags      "-DHAS_XO -DHAS_XM"
+macro OPACS_cppflags    " $(OPACS_cflags) "
+
+macro OPACS_linkopts	"$(Wo_linkopts) $(Xo_linkopts) $(Go_linkopts) $(Glo_linkopts) $(Xx_linkopts) $(Ho_linkopts) $(Htmlo_linkopts) $(W3o_linkopts) $(Co_linkopts) $(X_linkopts) -L${OPACSROOT}/${OPACSCONFIG} -lOPACS"
+
+macro WoPAW_linkopts 	"-L${WOROOT}/${O_tag}/ -lWoPAW"
+macro WoHoXz_linkopts 	"-L${WOROOT}/${O_tag}/ -lWoHoXz"
+
+macro HoCm_linkopts 	"-L${HOROOT}/${O_tag}/ -lHoCm"
+
+library OPACS OPACS.c
+

@@ -1,0 +1,12 @@
+wobin:libwo/share
+xxbin:libxx/share
+cobin:libco/share
+!SYS$SHARE:DECW$XAWLIBSH/SHAREABLE
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!! X11R5 !!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+SYS$SHARE:DECW$XMULIBSHRR5/SHAREABLE
+SYS$SHARE:DECW$XTLIBSHRR5/SHAREABLE
+SYS$SHARE:DECW$XEXTLIBSHR/SHAREABLE
+SYS$SHARE:DECW$XLIBSHR/SHAREABLE
+

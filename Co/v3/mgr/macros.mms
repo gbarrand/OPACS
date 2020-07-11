@@ -1,0 +1,13 @@
+bin=[-.$(CONFIG)]
+mgr=[-.mgr]
+src=[-.src]
+app=[-.app]
+inlib=@inlib.com
+make_so=@maklibs.com
+Co_CPPINCLUDES=[-.include]
+Co_CPPDEFINES=$(CPPDEFINES)
+APP_CPPINCLUDES=NOTHING
+APP_CCDEFINES=NOTHING
+libc=COROOT:[mgr]libc/opt
+libm=COROOT:[mgr]libm/opt
+libCo=COROOT:[$(CONFIG)]libCo/opt

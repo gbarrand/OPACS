@@ -1,0 +1,96 @@
+!/* +---------------------- Copyright notice -------------------------------+ */
+!/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+!/* |   Permission to use, copy, modify, and distribute this software       | */
+!/* |   and its documentation for any purpose and without fee is hereby     | */
+!/* |   granted, provided that the above copyright notice appear in all     | */
+!/* |   copies and that both that copyright notice and this permission      | */
+!/* |   notice appear in supporting documentation.  This software is        | */
+!/* |   provided "as is" without express or implied warranty.               | */
+!/* +---------------------- Copyright notice -------------------------------+ */
+!----------------------------
+begin OInterface
+ version = v3
+ prefix = Sys_
+ packages = Xm 
+end
+!----------------------------
+begin OWidget
+ name = Sys_palette
+ type = XmFormDialog
+ children = Sys_458 Sys_459 Sys_infos Sys_462 Sys_464 Sys_465 
+ x = 457
+ y = 343
+ background = lightgrey
+ autoUnmanage = false
+ dialogTitle = Wo toolkit
+end
+!----------------------------
+begin OWidget
+ name = Sys_458
+ type = XmPushButton
+ background = lightgrey
+ labelString = Wo memory used
+ activateCallback = osh> \
+  mem=`get CMemory byteBalance`\
+  string=`printf 'Wo has allocated %d bytes' $mem`\
+  setWidgetResource Sys_infos value $string
+ topAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = Sys_459
+ type = XmPushButton
+ background = lightgrey
+ labelString = Cancel
+ activateCallback = osh> unmanageWidget `get Widget thisParent`
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = Sys_464
+end
+!----------------------------
+begin OWidget
+ name = Sys_infos
+ type = XmText
+ background = lightgrey
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = Sys_458
+end
+!----------------------------
+begin OWidget
+ name = Sys_462
+ type = XmLabel
+ background = black
+ foreground = white
+ labelString = Set trace mode
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = Sys_infos
+end
+!----------------------------
+begin OWidget
+ name = Sys_464
+ type = XmOptionMenu
+ createCallback = osh> \
+  setWidgetOptions `get Widget this` `get Wo traces`\
+  string='osh>widget=`get Widget this`;string=`getWidgetResource $widget labelString`;set Wo trace $string'\
+  setWidgetOptionScript `get Widget this` $string
+ background = lightgrey
+ labelString = Trace mode
+ subMenuId = Sys_465
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = Sys_462
+end
+!----------------------------
+begin OWidget
+ name = Sys_465
+ type = XmPulldownMenu
+ background = lightgrey
+end

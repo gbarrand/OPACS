@@ -1,0 +1,144 @@
+!/* +---------------------- Copyright notice -------------------------------+ */
+!/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+!/* |   Permission to use, copy, modify, and distribute this software       | */
+!/* |   and its documentation for any purpose and without fee is hereby     | */
+!/* |   granted, provided that the above copyright notice appear in all     | */
+!/* |   copies and that both that copyright notice and this permission      | */
+!/* |   notice appear in supporting documentation.  This software is        | */
+!/* |   provided "as is" without express or implied warranty.               | */
+!/* +---------------------- Copyright notice -------------------------------+ */
+!----------------------------
+begin OInterface
+ version = v3
+ prefix = geantT_
+ parent = WoTest_form
+ packages = Xm Xo
+end
+!----------------------------
+begin OWidget
+ name = geantT_panel
+ type = XmBulletinBoard
+ children = geantT_1 geantT_camera geantT_camera_2  
+ createCallback = &osh>\
+  load geant.odb | realize -\
+  do Widget/geant_palette manage\
+  do Widget/geant_palette_popup raise\
+  set Widget target Widget/geantT_camera\
+  setWidgetResource geant_8 dirMask '../usr/*.fa'
+ background = dimgrey
+ topAttachment = attach_form
+ bottomAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = geantT_camera
+ type = XoCamera
+ x = 200
+ y = 10
+ width = 200
+ height = 300
+ background = black
+ viewLimits = -600 600
+ buffering = double
+ collectCallback = osh>\
+  #From ONode names, the VOLU identifier are extracted, and they are dumped.\
+  collect ONode where highlight eq 1 | get - name | dump -
+end
+!----------------------------
+begin OWidget
+ name = geantT_camera_2
+ type = XoCamera
+ x = 410
+ y = 10
+ width = 250
+ height = 300
+ background = black
+ viewLimits = -600 600
+ buffering = double
+ referenceCamera = geantT_camera
+ collectCallback = osh> collect ONode where highlight eq 1 | get - name | dump -
+end
+!----------------------------
+begin OWidget
+ name = geantT_1
+ type = XmRowColumn
+ children = geantT_infos geantT_nomad_gen geantT_nomad_calo geantT_nemo_gen geantT_atlas_gen 
+end
+!----------------------------
+begin OWidget
+ name = geantT_infos
+ type = XmPushButton
+ labelString = GEANT files\nare in\nftp.lal.in2p3.fr\npub/data/geant
+end
+!----------------------------
+begin OWidget
+ name = geantT_nomad_gen
+ type = XmPushButton
+ labelString = NOMAD
+ activateCallback = osh>\
+  #File in /pub/ftp/pub/data/geant/nomad.fa\
+  widget=`get Widget target`\
+  camera=`get $widget name`\
+  set OContext color cyan;   collect VOLU where name eq MDCH | represent - | viewNode - $camera\
+  set OContext color yellow; collect VOLU where name eq MTRD | represent - | viewNode - $camera\
+  set OContext color magenta;collect VOLU where name eq MPRS | represent - | viewNode - $camera\
+  set OContext color green;  collect VOLU where name eq MCAL | represent - | viewNode - $camera\
+  set OContext color green;  collect VOLU where name eq MUM1 | represent - | viewNode - $camera\
+  set OContext color green;  collect VOLU where name eq MUM2 | represent - | viewNode - $camera\
+  set OContext color green;  collect VOLU where name eq MUM4 | represent - | viewNode - $camera\
+  set OContext color green;  collect VOLU where name eq MUM5 | represent - | viewNode - $camera\
+  set OContext color red;    collect VOLU where name eq MUM3 | represent - | viewNode - $camera\
+  set OContext color blue;   collect VOLU where name eq MSC1 | represent - | viewNode - $camera\
+  set OContext color blue;   collect VOLU where name eq MSC2 | represent - | viewNode - $camera
+end
+!----------------------------
+begin OWidget
+ name = geantT_nomad_calo
+ type = XmPushButton
+ labelString = NOMAD calo
+ activateCallback = osh>\
+  #File in /pub/ftp/pub/data/geant/nomad.fa\
+  widget=`get Widget target`\
+  camera=`get $widget name`\
+  set OContext color red;    collect VOLU where name eq PRES | represent - | viewNode - $camera\
+  set OContext color green;  collect VOLU where name eq CLGF | represent - | viewNode - $camera\
+  set OContext color green;  collect VOLU where name eq MCAL | represent - | viewNode - $camera
+end
+!----------------------------
+begin OWidget
+ name = geantT_nemo_gen
+ type = XmPushButton
+ labelString = NEMO3
+ activateCallback = osh>\
+  #File in /pub/ftp/pub/data/geant/nemo3.fa\
+  widget=`get Widget target`\
+  camera=`get $widget name`\
+  set OContext color green;  collect VOLU where name eq PEAU | represent - | viewNode - $camera\
+  set OContext color red;    collect VOLU where name eq SCIN | represent - | viewNode - $camera\
+  set OContext color red;    collect VOLU where name eq SCE1 | represent - | viewNode - $camera\
+  set OContext color red;    collect VOLU where name eq SCE2 | represent - | viewNode - $camera\
+  set OContext color blue;   collect VOLU where name eq BCI1 | represent - | viewNode - $camera\
+  set OContext color blue;   collect VOLU where name eq BCI2 | represent - | viewNode - $camera\
+  set OContext color blue;   collect VOLU where name eq BCE1 | represent - | viewNode - $camera\
+  set OContext color blue;   collect VOLU where name eq BCE2 | represent - | viewNode - $camera
+end
+!----------------------------
+begin OWidget
+ name = geantT_atlas_gen
+ type = XmPushButton
+ labelString = Atlas
+ activateCallback = osh>\
+  #File in /pub/ftp/pub/data/geant/atlas.fa\
+  widget=`get Widget target`\
+  camera=`get $widget name`\
+  set OContext color white;  collect VOLU where name eq INNE | represent - | viewNode - $camera\
+  set OContext color blue;   collect VOLU where name eq CENT | represent - | viewNode - $camera\
+  set OContext color yellow; collect VOLU where name eq OUTE | represent - | viewNode - $camera\
+  set OContext color green;  collect VOLU where name eq HWHL | represent - | viewNode - $camera\
+  set OContext color green;  collect VOLU where name eq FWHL | represent - | viewNode - $camera\
+  set OContext color blue;   collect VOLU where name eq COIL | represent - | viewNode - $camera\
+  set OContext color blue;   collect VOLU where name eq COIC | represent - | viewNode - $camera\
+  set OContext color yellow; collect VOLU where name eq ECAM | represent - | viewNode - $camera
+end

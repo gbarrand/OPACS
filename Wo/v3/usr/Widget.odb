@@ -1,0 +1,302 @@
+!/* +---------------------- Copyright notice -------------------------------+ */
+!/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+!/* |   Permission to use, copy, modify, and distribute this software       | */
+!/* |   and its documentation for any purpose and without fee is hereby     | */
+!/* |   granted, provided that the above copyright notice appear in all     | */
+!/* |   copies and that both that copyright notice and this permission      | */
+!/* |   notice appear in supporting documentation.  This software is        | */
+!/* |   provided "as is" without express or implied warranty.               | */
+!/* +---------------------- Copyright notice -------------------------------+ */
+!----------------------------
+begin OInterface
+ version = v3
+ prefix = Widget_
+ packages = Xm 
+end
+!----------------------------
+begin OWidget
+ name = Widget_palette
+ type = XmFormDialog
+ children = Widget_grab Widget_localTarget Widget_1 Widget_43 Widget_17 
+ autoUnmanage = False
+ dialogTitle = Widget
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = Widget_grab
+ type = XmPushButton
+ createCallback = osh> setWidgetResource `thisWidget` height `getWidgetResource Widget_localTarget height`
+ activateCallback = osh>\
+  ref=`thisWidget`\
+  setWidgetResource Widget_localTarget value `grabWidgetName $ref`
+ labelString = Widget
+ background = grey
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ topWidget = Widget_1
+end
+!----------------------------
+begin OWidget
+ name = Widget_localTarget
+ type = XmText
+ topAttachment = attach_widget
+ leftAttachment = attach_widget
+ rightAttachment = attach_form
+ topWidget = Widget_1
+ background = wheat
+ leftWidget = Widget_grab
+ createCallback = osh> setWidgetTextSize `get Widget this` 1 10
+end
+!----------------------------
+begin OWidget
+ name = Widget_1
+ type = XmRowColumn
+ children = Widget_27 Widget_28 Widget_29 
+ numColumns = 2
+ background = lightgrey
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = Widget_43
+ type = XmRowColumn
+ children = Widget_47 Widget_22 Widget_23 Widget_10 Widget_24 Widget_30 Widget_34 Widget_35 Widget_51 Widget_58 Widget_59  Widget_60 Widget_8  Widget_15 
+ background = lightgrey
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = Widget_localTarget
+end
+!----------------------------
+begin OWidget
+ name = Widget_8
+ type = XmPushButton
+ activateCallback = osh> get `get Widget thisLocalTarget` children | delete -
+ labelString = Children destroy
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = Widget_15
+ type = XmPushButton
+ activateCallback = osh>\
+  oid=`get Widget thisLocalTarget`\
+  do $oid markFile\
+  do `get $oid parent` markFile\
+  delete $oid
+ labelString = Destroy
+ labelType = pixmap
+ labelPixmap = trash40.xbm
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = Widget_17
+ type = XmPushButton
+ activateCallback = osh> do `get Widget thisParent` unmanage
+ labelString = Cancel
+ background = lightgrey
+ topAttachment = attach_widget
+ topWidget = Widget_43
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = Widget_22
+ type = XmPushButton
+ activateCallback = osh> do `get Widget thisLocalTarget` raise
+ labelString = Raise
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = Widget_23
+ type = XmPushButton
+ activateCallback = osh> do `get Widget thisLocalTarget` lower
+ labelString = Lower
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = Widget_10
+ type = XmPushButton
+ activateCallback = osh>\
+  widget=`get Widget thisLocalTarget`\
+  name=`get $widget name`\
+  string=`ask 'New name' $name`\
+  set $widget name $string
+ labelString = Change name
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = Widget_24
+ type = XmPushButton
+ activateCallback = osh> do `get Widget thisShell` unmap
+ labelString = Unmap shell
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = Widget_27
+ type = XmPushButton
+ activateCallback = osh> do Widget/Widget_37 manage
+ labelString = Load odb file
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = Widget_28
+ type = XmPushButton
+ activateCallback = osh>\
+  get Wo shells | setWidgetResource Widget_42 listItems -\
+  do Widget/Widget_42 manage
+ labelString = Shell map
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = Widget_30
+ type = XmPushButton
+ activateCallback = osh>\
+  widget=`get Widget thisLocalTarget`\
+  file=`ask 'File name' out.odb`\
+  do $widget saveHierarchy $file
+ labelString = Extract hierarchy
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = Widget_34
+ type = XmPushButton
+ activateCallback = osh> get `get Widget thisLocalTarget` children | do - map
+ labelString = Children mapWidget
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = Widget_35
+ type = XmPushButton
+ activateCallback = osh> do `get Widget thisLocalTarget` unmap
+ labelString = Unmap
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = Widget_37
+ type = XmFileSelectionDialog
+ dialogTitle = odb file
+ background = grey
+ okCallback = osh> load `get Widget thisValue` | realize -
+ cancelCallback = osh> do `get Widget this` unmanage
+end
+!----------------------------
+begin OWidget
+ name = Widget_29
+ type = XmPushButton
+ activateCallback = osh> load wdup.odb | realize -; do Widget/wdup_palette manage;do Widget/wdup_palette_popup raise
+ labelString = Duplicate
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = Widget_42
+ type = XmSelectionDialog
+ dialogTitle = Map shell
+ okCallback = osh>\
+  string=`get Widget thisValue`\
+  oid=`printf 'Widget/%s' $string`\
+  do $oid map
+ applyCallback = osh>\
+  string=`get Widget thisValue`\
+  oid=`printf 'Widget/%s' $string`\
+  do $oid map
+ cancelCallback = osh>  do `get Widget this` unmanage
+ autoUnmanage = False
+ background = grey
+end
+!----------------------------
+begin OWidget
+ name = Widget_47
+ type = XmPushButton
+ activateCallback = osh>\
+  do `thisLocalTargetWidget` getInformations | setWidgetResource Widget_infos value -\
+  do Widget/Widget_48 manage
+ labelString = Infos
+ labelPixmap = help.xbm
+ labelType = pixmap
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = Widget_48
+ type = XmFormDialog
+ children = Widget_49 Widget_50 
+ autoUnmanage = False
+ dialogTitle = Widget getInfos
+end
+!----------------------------
+begin OWidget
+ name = Widget_49
+ type = XmPushButton
+ activateCallback = osh> do `get Widget thisParent` unmanage
+ labelString = Cancel
+ background = grey
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ bottomAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = Widget_50
+ type = XmFrame
+ children = Widget_infos 
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topAttachment = attach_form
+ bottomAttachment = attach_widget
+ bottomWidget = Widget_49
+end
+!----------------------------
+begin OWidget
+ name = Widget_infos
+ type = XmScrolledText
+ editMode = multi_line_edit
+ background = lightgrey
+ createCallback = osh> setWidgetTextSize `get Widget this` 20 30
+end
+!----------------------------
+begin OWidget
+ name = Widget_51
+ type = XmPushButton
+ activateCallback = osh> do `get Widget thisLocalTarget` sendPixmapToRootWindow
+ labelString = Pixmap to root
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = Widget_58
+ type = XmPushButton
+ activateCallback = osh> echo 'Not implemented';#saveInterface `get Widget thisLocalTarget`
+ labelString = Save
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = Widget_59
+ type = XmPushButton
+ labelString = Transparent
+ background = lightgrey
+ activateCallback = osh> set `get Widget thisLocalTarget` shape widget
+end
+!----------------------------
+begin OWidget
+ name = Widget_60
+ type = XmPushButton
+ background = lightgrey
+ labelString = Set target
+ activateCallback = osh> set Widget target `get Widget thisLocalTarget`
+end

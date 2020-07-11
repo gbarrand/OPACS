@@ -1,0 +1,142 @@
+!/* +---------------------- Copyright notice -------------------------------+ */
+!/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+!/* |   Permission to use, copy, modify, and distribute this software       | */
+!/* |   and its documentation for any purpose and without fee is hereby     | */
+!/* |   granted, provided that the above copyright notice appear in all     | */
+!/* |   copies and that both that copyright notice and this permission      | */
+!/* |   notice appear in supporting documentation.  This software is        | */
+!/* |   provided "as is" without express or implied warranty.               | */
+!/* +---------------------- Copyright notice -------------------------------+ */
+!----------------------------
+begin Make
+  package = Ho
+!  has     = HoCm
+  libs    = \
+Ho: libc libm libCo\
+HoCm: libCSet libCm libHoCm
+end
+!----------------------------
+!----------------------------
+!----------------------------
+begin OModule
+  name  = oshHo
+  type  = application
+  libs  = libHo libCo libm
+end
+!----------------------------
+begin OModule
+  name  = HoT
+  type  = application
+  libs  = libHo libCo libm
+end
+!----------------------------
+begin OModule
+  name  = gauss
+  type  = application
+  libs  = libCo libm
+  distributed = no
+end
+!----------------------------
+!----------------------------
+begin OModule
+  name  = HoF77T
+  type  = application
+  libs  = libHo libCo libm
+  language = f77
+  distributed = no
+end
+!----------------------------
+begin OModule
+  name  = NoHT
+  type  = application
+  distributed = no
+end
+!----------------------------
+!----------------------------
+!----------------------------
+begin OModule
+  name  = libHo
+  type  = so
+  libs  = libCo libm libc
+end
+!----------------------------
+begin OModule
+  name  = HoCommands
+  inLib = libHo
+end
+!----------------------------
+begin OModule
+  name  = HoTypes
+  inLib = libHo
+end
+!----------------------------
+begin OModule
+  name  = Ho
+  inLib = libHo
+end
+!----------------------------
+begin OModule
+  name  = HoF77
+  inLib = libHo
+end
+!----------------------------
+begin OModule
+  name  = OTuple
+  inLib = libHo
+end
+!----------------------------
+begin OModule
+  name  = OCut
+  inLib = libHo
+end
+!----------------------------
+begin OModule
+  name  = OFunction
+  inLib = libHo
+end
+!----------------------------
+begin OModule
+  name  = OFit
+  inLib = libHo
+end
+!----------------------------
+begin OModule
+  name  = OHistogram
+  inLib = libHo
+end
+!----------------------------
+begin OModule
+  name  = OScatter
+  inLib = libHo
+end
+!----------------------------
+begin OModule
+  name  = OAxis
+  inLib = libHo
+end
+!----------------------------
+begin OModule
+  name  = OStatement
+  inLib = libHo
+end
+!----------------------------
+!-- Ci ----------------------
+!----------------------------
+begin OModule
+  name      = HoBinds
+  inLib     = libHo
+end
+!----------------------------
+!-- Cm ----------------------
+!----------------------------
+begin OModule
+  name  = libHoCm
+  type  = so
+  libs  = libCm libCSet libHo libCo libm libc
+end
+!----------------------------
+begin OModule
+  name  = HoCm
+  inLib = libHoCm
+end
+

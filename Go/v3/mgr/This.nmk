@@ -1,0 +1,233 @@
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#  File produced by the Co/omake tool
+# using file Make.odb.
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#  The soft linked packages has been taken
+# from the property 'has' of the 
+# 'Make' object of file Make.odb.
+# It had the value :
+#    X11 Xext GL
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+HAS_CPPFLAGS = \
+ $(Go_CPPFLAGS)\
+ $(X11_CPPFLAGS)\
+ $(Xext_CPPFLAGS)\
+ $(GL_CPPFLAGS)
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+all   :: mkdir
+
+clean ::
+	if exist $(bin)\*.obj del $(bin)\*.obj
+	if exist $(bin)\*.exe del $(bin)\*.exe
+	if exist $(bin)\*.lib del $(bin)\*.lib
+	if exist $(bin)\*.dll del $(bin)\*.dll
+	if exist $(bin)\*.exp del $(bin)\*.exp
+	if exist $(bin)\*.pdb del $(bin)\*.pdb
+rmlib ::
+	if exist $(bin)\*.lib del $(bin)\*.lib
+rmo   ::
+	if exist $(bin)\*.obj del $(bin)\*.obj
+rmexe ::
+	if exist $(bin)\*.exe del $(bin)\*.exe
+
+mkdir :
+	@if not exist $(bin) mkdir $(bin)
+
+libGo_target = $(bin)\libGo.lib
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+all :: mkdir \
+$(libGo_target) \
+$(bin)\GoT.exe 
+	@echo "Go : all ok." 
+
+libs :: mkdir \
+$(libGo_target) 
+	@echo "Go : libs ok." 
+
+apps :: mkdir \
+$(bin)\GoT.exe \
+$(bin)\oshGo.exe \
+$(bin)\o3dToodb.exe \
+$(bin)\ograd.exe \
+$(bin)\NoHT.exe 
+	@echo "Go : apps ok." 
+#--------------------------------------------
+rmexeo :
+	if exist $(bin)\GoT.obj del $(bin)\GoT.obj
+	if exist $(bin)\oshGo.obj del $(bin)\oshGo.obj
+	if exist $(bin)\o3dToodb.obj del $(bin)\o3dToodb.obj
+	if exist $(bin)\ograd.obj del $(bin)\ograd.obj
+	if exist $(bin)\NoHT.obj del $(bin)\NoHT.obj
+#--------------------------------------------
+GoT : $(bin)\GoT.exe
+	@echo "Go : GoT ok."
+oshGo : $(bin)\oshGo.exe
+	@echo "Go : oshGo ok."
+o3dToodb : $(bin)\o3dToodb.exe
+	@echo "Go : o3dToodb ok."
+ograd : $(bin)\ograd.exe
+	@echo "Go : ograd ok."
+NoHT : $(bin)\NoHT.exe
+	@echo "Go : NoHT ok."
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#--------------------------------------------
+$(bin)\GoT.exe : $(bin)\GoT.obj \
+$(libGo_target) 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\GoT.exe $(bin)\GoT.obj \
+$(libGo) \
+$(libGLX) \
+$(libGLU) \
+$(libGL) \
+$(libXext) \
+$(libX11) \
+$(libCo) \
+$(libm) \
+$(CCLDEND) 
+
+$(bin)\GoT.obj   : $(app)\GoT.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\GoT.obj $(app)\GoT.c
+#--------------------------------------------
+$(bin)\oshGo.exe : $(bin)\oshGo.obj \
+$(libGo_target) 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\oshGo.exe $(bin)\oshGo.obj \
+$(libGo) \
+$(libGLU) \
+$(libGL) \
+$(libXext) \
+$(libX11) \
+$(libCo) \
+$(libm) \
+$(CCLDEND) 
+
+$(bin)\oshGo.obj   : $(app)\oshGo.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\oshGo.obj $(app)\oshGo.c
+#--------------------------------------------
+$(bin)\o3dToodb.exe : $(bin)\o3dToodb.obj \
+$(libGo_target) 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\o3dToodb.exe $(bin)\o3dToodb.obj \
+$(libGo) \
+$(libGLU) \
+$(libGL) \
+$(libXext) \
+$(libX11) \
+$(libCo) \
+$(libm) \
+$(CCLDEND) 
+
+$(bin)\o3dToodb.obj   : $(app)\o3dToodb.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\o3dToodb.obj $(app)\o3dToodb.c
+#--------------------------------------------
+$(bin)\ograd.exe : $(bin)\ograd.obj 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\ograd.exe $(bin)\ograd.obj \
+$(libCo) \
+$(libm) \
+$(CCLDEND) 
+
+$(bin)\ograd.obj   : $(app)\ograd.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\ograd.obj $(app)\ograd.c
+#--------------------------------------------
+$(bin)\NoHT.exe : $(bin)\NoHT.obj 
+	$(CCLD) $(CCLDFLAGS) $(CCLDO)$(bin)\NoHT.exe $(bin)\NoHT.obj \
+$(CCLDEND) 
+
+$(bin)\NoHT.obj   : $(app)\NoHT.c
+	$(CC) $(CCANSI) $(CFLAGS) $(APP_CCFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\NoHT.obj $(app)\NoHT.c
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# libraries 
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#--------------------------------------------
+
+$(bin)\libGo.lib : \
+$(bin)\GoCommands.obj \
+$(bin)\GoTypes.obj \
+$(bin)\GoF77.obj \
+$(bin)\OColormap.obj \
+$(bin)\OCamera.obj \
+$(bin)\OCamVRML.obj \
+$(bin)\OCamDAWN.obj \
+$(bin)\OCamPOV.obj \
+$(bin)\OPick.obj \
+$(bin)\OPointList.obj \
+$(bin)\Go.obj \
+$(bin)\OShape.obj \
+$(bin)\ONode.obj \
+$(bin)\OPrimitive.obj \
+$(bin)\OContextmap.obj \
+$(bin)\OContext.obj \
+$(bin)\GoBinds.obj 
+	if exist $(bin)\libGo.lib del $(bin)\libGo.lib 
+	lib.exe @<<
+/nologo /out:$(bin)\libGo.lib
+$(bin)\GoCommands.obj
+$(bin)\GoTypes.obj
+$(bin)\GoF77.obj
+$(bin)\OColormap.obj
+$(bin)\OCamera.obj
+$(bin)\OCamVRML.obj
+$(bin)\OCamDAWN.obj
+$(bin)\OCamPOV.obj
+$(bin)\OPick.obj
+$(bin)\OPointList.obj
+$(bin)\Go.obj
+$(bin)\OShape.obj
+$(bin)\ONode.obj
+$(bin)\OPrimitive.obj
+$(bin)\OContextmap.obj
+$(bin)\OContext.obj
+$(bin)\GoBinds.obj
+<<
+#--------------------------------------------
+# libGo dependencies 
+#--------------------------------------------
+$(bin)\GoCommands.obj : $(src)\GoCommands.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\GoCommands.obj $(src)\GoCommands.c
+
+$(bin)\GoTypes.obj : $(src)\GoTypes.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\GoTypes.obj $(src)\GoTypes.c
+
+$(bin)\GoF77.obj : $(src)\GoF77.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\GoF77.obj $(src)\GoF77.c
+
+$(bin)\OColormap.obj : $(src)\OColormap.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\OColormap.obj $(src)\OColormap.c
+
+$(bin)\OCamera.obj : $(src)\OCamera.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\OCamera.obj $(src)\OCamera.c
+
+$(bin)\OCamVRML.obj : $(src)\OCamVRML.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\OCamVRML.obj $(src)\OCamVRML.c
+
+$(bin)\OCamDAWN.obj : $(src)\OCamDAWN.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\OCamDAWN.obj $(src)\OCamDAWN.c
+
+$(bin)\OCamPOV.obj : $(src)\OCamPOV.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\OCamPOV.obj $(src)\OCamPOV.c
+
+$(bin)\OPick.obj : $(src)\OPick.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\OPick.obj $(src)\OPick.c
+
+$(bin)\OPointList.obj : $(src)\OPointList.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\OPointList.obj $(src)\OPointList.c
+
+$(bin)\Go.obj : $(src)\Go.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\Go.obj $(src)\Go.c
+
+$(bin)\OShape.obj : $(src)\OShape.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\OShape.obj $(src)\OShape.c
+
+$(bin)\ONode.obj : $(src)\ONode.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\ONode.obj $(src)\ONode.c
+
+$(bin)\OPrimitive.obj : $(src)\OPrimitive.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\OPrimitive.obj $(src)\OPrimitive.c
+
+$(bin)\OContextmap.obj : $(src)\OContextmap.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\OContextmap.obj $(src)\OContextmap.c
+
+$(bin)\OContext.obj : $(src)\OContext.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\OContext.obj $(src)\OContext.c
+
+$(bin)\GoBinds.obj : $(src)\GoBinds.c
+	$(CC) $(CCANSI) $(CFLAGS) $(HAS_CPPFLAGS) /c /Fo$(bin)\GoBinds.obj $(src)\GoBinds.c
+
+

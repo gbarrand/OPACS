@@ -1,0 +1,77 @@
+!----------------------------
+begin OInterface
+ version = v3
+ prefix = XoImageT_
+ parent = WoTest_form
+ createCallback = osh> load oimage.odb
+end
+!----------------------------
+begin OWidget
+ name = XoImageT_panel
+ type = XmBulletinBoard
+ children = XoImageT_fits XoImageT_toucan XoImageT_16 XoImageT_17 XoImageT_prec XoImageT_18 
+ background = dimgrey
+ topAttachment = attach_form
+ bottomAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = XoImageT_fits
+ type = XoImage
+ x = 231
+ y = 6
+ width = 178
+ height = 150
+ virtualColormap = ocolormap_16_grey
+ dataFile = stars.fit
+end
+!----------------------------
+begin OWidget
+ name = XoImageT_toucan
+ type = XoImage
+ x = 10
+ y = 10
+ width = 205
+ height = 154
+ dataFile = toucan.gif
+end
+!----------------------------
+begin OWidget
+ name = XoImageT_16
+ type = XmPushButton
+ x = 18
+ y = 204
+ width = 332
+ height = 212
+ labelType = pixmap
+ labelPixmap = boat.gif
+ activateCallback = osh> printf 'button with labelPixmap \n given by a GIF file\n'
+end
+!----------------------------
+begin OWidget
+ name = XoImageT_17
+ type = XmPushButton
+ x = 22
+ y = 164
+ labelString = Gif image
+ activateCallback = osh> manageWidget XoImageT_18
+end
+!----------------------------
+begin OWidget
+ name = XoImageT_prec
+ type = XmPushButton
+ x = 230
+ y = 164
+ labelString = Pixel prec
+ activateCallback = osh> ask 'Pixel precision' 10 | setWidgetResource XoImageT_toucan pixelPrecision -
+end
+!----------------------------
+begin OWidget
+ name = XoImageT_18
+ type = XmFileSelectionDialog
+ dialogTitle = Image file
+ okCallback = osh> setWidgetResource XoImageT_toucan dataFile `get Widget thisValue`
+ cancelCallback = osh> unmanageWidget `get Widget this`
+end

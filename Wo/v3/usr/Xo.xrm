@@ -1,0 +1,80 @@
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!! XoCamera config !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+*xocamera_popup*background          :lightgrey
+*xocamera_popup*topShadowColor      :white
+*xocamera_popup*bottomShadowColor   :black
+*xocamera_popup*fontList            :-*-helvetica-bold-r-*-*-*-120-*-*-*-*-iso8859-1
+Wo*XoCamera.resizePolicy            :resize_none
+Wo*XoCamera.marginWidth             :0
+Wo*XoCamera.marginHeight            :0
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!! XoPlotter config !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+*xoplotter_popup*background          :lightgrey
+*xoplotter_popup*topShadowColor      :white
+*xoplotter_popup*bottomShadowColor   :black
+*xoplotter_popup*fontList            :-*-helvetica-bold-r-*-*-*-120-*-*-*-*-iso8859-1
+Wo*XoPlotter.background                :white
+Wo*XoPlotter.backgroundColor           :white
+Wo*XoPlotter.resizePolicy              :resize_none
+Wo*XoPlotter.marginWidth               :0
+Wo*XoPlotter.marginHeight              :0
+Wo*PLOTTER_STATS.mappedWhenManaged     :False
+Wo*PLOTTER_STATS.background            :white
+! Xaw
+Wo*PLOTTER_STATS.AsciiSink.background  :white
+! Xm
+Wo*PLOTTER_STATS.cursorPositionVisible :False
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Wo*CMAPD_HIDE.labelString           :Cancel
+Wo*CMAPD_LABEL.background           :black
+Wo*CMAPD_LABEL.foreground           :white
+Wo*CMAPD_LABEL.labelString          :To choose color:\nclick left button \nin color box
+Wo*CMAPD_FRAME.XoColormap.background    :black
+Wo*CMAPD_FRAME.XoColormap.resizable     :False
+Wo*CMAPD_FRAME.XoColormap.width         :250
+Wo*CMAPD_FRAME.XoColormap.height        :250
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Wo*HELP_LABEL.background            :lightgrey
+! Xaw
+Wo*HELP_LABEL.label                 :Sub topics
+Wo*HELP_BACK.label                  :Go back
+! Xm
+Wo*HELP_LABEL.labelString           :Sub topics
+Wo*HELP_BACK.labelString            :Go back
+Wo*HELP_TEXT.rows                   :24
+Wo*HELP_TEXT.columns                :80
+Wo*HELP_TEXT.editMode               :multi_line_edit
+Wo*HELP_TEXT.editable               :False
+Wo*HELP_LIST.visibleItemCount       :5
+Wo*HELP_LIST.selectionPolicy        :single_select
+Wo*HELP_LIST.scrollBarDisplayPolicy :static
+Wo*HELP_CANCEL.labelString          :Cancel
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!! XoImage config !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Wo*XoImage.IMAGE_PIXEL.width             :250
+Wo*XoImage.IMAGE_PIXEL.mappedWhenManaged :False
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!! XoColormap config !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Wo*XoColormap.titleFont                 :-adobe-times-medium-r-normal--20-140-100-100-p-96-iso8859-1
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!! XoMosaic config !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Wo*XoMosaic.homeDocument          :http://www.lal.in2p3.fr/OPACS
+Wo*XoMosaic.width                 :400
+Wo*XoMosaic.height                :500
+Wo*XoMosaic*resizable             :False
+Wo*XoMosaic.html*background            :grey
+Wo*XoMosaic.html.View.background       :grey
+Wo*XoMosaic.html.anchorUnderlines      :1
+Wo*XoMosaic.html.verticalScrollOnRight :True
+Wo*XoMosaic.html.header1Font           : -adobe-times-bold-r-normal-*-34-*-*-*-*-*-*-*
+Wo*XoMosaic.html.header2Font           : -adobe-times-bold-r-normal-*-25-*-*-*-*-*-*-*
+Wo*XoMosaic.html.header5Font           : -adobe-times-bold-r-normal-*-14-*-*-*-*-*-*-*
+Wo*XoMosaic.html.header6Font           : -adobe-times-bold-r-normal-*-11-*-*-*-*-*-*-*
+Wo*XoMosaic.html.listingFont           : -adobe-times-bold-r-normal-*-11-*-*-*-*-*-*-*
+Wo*XoMosaic.background               :lightgrey
+Wo*XoMosaic.track.background         :lightgrey

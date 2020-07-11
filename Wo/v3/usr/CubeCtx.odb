@@ -1,0 +1,23 @@
+!----------------------------
+begin OContextmap
+ name = Cube_size
+ referenceType = Cube
+ referenceProperty = size
+ defaultContext = lineStyle solid color green modeling solid
+! Cube sizes in OApp.c : 0.5 1.0 1.5 2.0
+ values = 1. 1.7
+ contexts = color yellow\
+color gold
+ labelPosition = -1. 0. 0.
+ labelHeight = 0.1
+ title = Cubes
+! labelPacking = horizontal
+ labelPacking = vertical
+ defaultLabel = <%.1f
+! showHitsOnly = true
+ labelContext = color red
+ iconTypes = square
+ iconSizeStretch = 0.7
+ labels = <%.1f e^+\
+<%.1f e^-
+end

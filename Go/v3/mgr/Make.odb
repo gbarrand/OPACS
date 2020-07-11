@@ -1,0 +1,153 @@
+!/* +---------------------- Copyright notice -------------------------------+ */
+!/* | Copyright (C) 1995, Guy Barrand, LAL Orsay, (barrand@lal.in2p3.fr)    | */
+!/* |   Permission to use, copy, modify, and distribute this software       | */
+!/* |   and its documentation for any purpose and without fee is hereby     | */
+!/* |   granted, provided that the above copyright notice appear in all     | */
+!/* |   copies and that both that copyright notice and this permission      | */
+!/* |   notice appear in supporting documentation.  This software is        | */
+!/* |   provided "as is" without express or implied warranty.               | */
+!/* +---------------------- Copyright notice -------------------------------+ */
+! Xext needed when running with some OpenGL.
+!----------------------------
+begin Make
+  package = Go
+  has     = X11 Xext GL
+  libs    = \
+X11:  libX11\
+Xext: libXext\
+GL:   libGL libGLU libGLX\
+Go:   libc libm libCo
+end
+!----------------------------
+!----------------------------
+!----------------------------
+begin OModule
+  name  = GoT
+  type  = application
+  libs  = libGo libGLX libGLU libGL libXext libX11 libCo libm
+end
+!----------------------------
+!----------------------------
+begin OModule
+  name  = oshGo
+  type  = application
+  libs  = libGo libGLU libGL libXext libX11 libCo libm
+  distributed = no
+end
+!----------------------------
+begin OModule
+  name  = o3dToodb
+  type  = application
+  libs  = libGo libGLU libGL libXext libX11 libCo libm
+  distributed = no
+end
+!----------------------------
+begin OModule
+  name  = ograd
+  type  = application
+  libs  = libCo libm
+  distributed = no
+end
+!----------------------------
+begin OModule
+  name  = NoHT
+  type  = application
+  distributed = no
+end
+!----------------------------
+!----------------------------
+!----------------------------
+begin OModule
+  name  = libGo
+  type  = so;NT=ar
+  libs  = libGLU libGL libCo libm libc 
+end
+!----------------------------
+begin OModule
+  name  = GoCommands
+  inLib = libGo
+end
+!----------------------------
+begin OModule
+  name  = GoTypes
+  inLib = libGo
+end
+!----------------------------
+begin OModule
+  name  = GoF77
+  inLib = libGo
+end
+!----------------------------
+begin OModule
+  name  = OColormap
+  inLib = libGo
+end
+!----------------------------
+begin OModule
+  name  = OCamera
+  inLib = libGo
+end
+!----------------------------
+begin OModule
+  name  = OCamVRML
+  inLib = libGo
+end
+!----------------------------
+begin OModule
+  name  = OCamDAWN
+  inLib = libGo
+end
+!----------------------------
+begin OModule
+  name  = OCamPOV
+  inLib = libGo
+end
+!----------------------------
+begin OModule
+  name  = OPick
+  inLib = libGo
+end
+!----------------------------
+begin OModule
+  name  = OPointList
+  inLib = libGo
+end
+!----------------------------
+begin OModule
+  name  = Go
+  inLib = libGo
+end
+!----------------------------
+begin OModule
+  name  = OShape
+  inLib = libGo
+end
+!----------------------------
+begin OModule
+  name  = ONode
+  inLib = libGo
+end
+!----------------------------
+begin OModule
+  name  = OPrimitive
+  inLib = libGo
+end
+!----------------------------
+begin OModule
+  name  = OContextmap
+  inLib = libGo
+end
+!----------------------------
+begin OModule
+  name  = OContext
+  inLib = libGo
+end
+!----------------------------
+!-- Ci ----------------------
+!----------------------------
+begin OModule
+  name      = GoBinds
+  inLib     = libGo
+end
+
+

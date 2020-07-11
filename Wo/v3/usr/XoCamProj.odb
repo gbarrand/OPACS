@@ -1,0 +1,441 @@
+!----------------------------
+begin OInterface
+ version = v3
+ prefix = XoCamProj_
+ packages = Xm Xo
+end
+!----------------------------
+begin OWidget
+ name = XoCamProj_palette
+ type = XmFormDialog
+ children = XoCamProj_localTarget XoCamProj_option XoCamProj_special XoCamProj_332 XoCamProj_340 XoCamProj_346 XoCamProj_fisheye_a XoCamProj_xcompress XoCamProj_349 XoCamProj_rhoz_phy1 XoCamProj_351 XoCamProj_v_k XoCamProj_357 XoCamProj_353 XoCamProj_v_rho_max XoCamProj_355 XoCamProj_v_z_max XoCamProj_option_pdm XoCamProj_help XoCamProj_cancel
+ background = lightgrey
+ autoUnmanage = false
+ dialogTitle = Special Projections
+end
+!----------------------------
+begin OWidget
+ name = XoCamProj_332
+ type = XmPushButton
+ createCallback = osh> setWidgetResource `thisWidget` height `getWidgetResource  XoCamProj_localTarget height`
+ background = grey
+ labelString = XoCamera
+ activateCallback = osh>\
+  ref=`thisWidget`\
+  grab=`grabWidgetName $ref`\
+  setWidgetResource XoCamProj_localTarget value $grab\
+  callWidgetCallbacks XoCamProj_localTarget activateCallback
+ topAttachment = attach_form
+ leftAttachment = attach_form
+ rightAttachment = attach_none
+end
+!----------------------------
+begin OWidget
+ name = XoCamProj_localTarget
+ type = XmText
+ targetChangedCallback = osh>\
+  callWidgetCallbacks `get Widget this` activateCallback
+ background = wheat
+ activateCallback = osh>\
+  widget=`get Widget thisLocalTarget`\
+  isNotWidgetSubclass $widget XoCamera && echo 'Not an XoCamera.'\
+  isNotWidgetSubclass $widget XoCamera && exit\
+  camera=`getWidgetCamera $widget`\
+  setWidgetOption XoCamProj_option `get $camera specialProjection`\
+  # xcompress\
+  shift=`getWidgetResource XoCamProj_xcompress decimalPoints`\
+  shift=`calculate 10. ** $shift`\
+  value=`get $camera xcompress`\
+  value=`calculate $value * $shift`\
+  value=`printf '%.0f' $value`\
+  setWidgetResource XoCamProj_xcompress value $value\
+  # fisheye_a\
+  shift=`getWidgetResource XoCamProj_fisheye_a decimalPoints`\
+  shift=`calculate 10. ** $shift`\
+  value=`get $camera fisheye_a`\
+  value=`calculate $value * $shift`\
+  value=`printf '%.0f' $value`\
+  setWidgetResource XoCamProj_fisheye_a value $value\
+  # rhoz_phy1\
+  shift=`getWidgetResource XoCamProj_rhoz_phy1 decimalPoints`\
+  shift=`calculate 10. ** $shift`\
+  value=`get $camera rhoz_phi1`\
+  value=`calculate $value * $shift`\
+  value=`printf '%.0f' $value`\
+  setWidgetResource XoCamProj_rhoz_phy1 value $value\
+  # v_rho_max\
+  setWidgetResource XoCamProj_v_rho_max value `get $camera   v_rho_max`\
+  # v_z_max\
+  setWidgetResource XoCamProj_v_z_max   value `get $camera   v_z_max`\
+  # v_k\
+  shift=`getWidgetResource XoCamProj_v_k decimalPoints`\
+  shift=`calculate 10. ** $shift`\
+  value=`get $camera v_k`\
+  value=`calculate $value * $shift`\
+  value=`calculate $value * 1000`\
+  value=`printf '%.0f' $value`\
+  setWidgetResource XoCamProj_v_k value $value
+ topAttachment = attach_form
+ leftAttachment = attach_widget
+ rightAttachment = attach_form
+ leftWidget = XoCamProj_332
+end
+!----------------------------
+begin OWidget
+ name = XoCamProj_special
+ type = XmLabel
+ background = black
+ foreground = white
+ labelString = Special Projections
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = XoCamProj_localTarget
+end
+!----------------------------
+begin OWidget
+ name = XoCamProj_option
+ type = XmOptionMenu
+ background = lightgrey
+ labelString = Projection:
+ subMenuId = XoCamProj_option_pdm
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = XoCamProj_special
+ topOffset = 0
+end
+!----------------------------
+begin OWidget
+ name = XoCamProj_option_pdm
+ type = XmPulldownMenu
+ children = XoCamProj_type_xyz XoCamProj_type_rz XoCamProj_type_phiz XoCamProj_type_rhoz XoCamProj_type_thetaphi XoCamProj_type_phitheta XoCamProj_type_phir XoCamProj_type_phirho XoCamProj_type_vplot XoCamProj_type_fisheye 
+ background = lightgrey
+end
+!----------------------------
+begin OWidget
+ name = XoCamProj_type_xyz
+ type = XmPushButton
+ labelString = xyz
+ activateCallback = osh>\
+  widget=`get Widget thisLocalTarget`\
+  camera=`getWidgetCamera $widget`\
+  set $camera specialProjection xyz
+end
+!----------------------------
+begin OWidget
+ name = XoCamProj_type_rz
+ type = XmPushButton
+ labelString = rz
+ activateCallback = osh>\
+  widget=`get Widget thisLocalTarget`\
+  camera=`getWidgetCamera $widget`\
+  set $camera specialProjection rz
+end
+!----------------------------
+begin OWidget
+ name = XoCamProj_type_phiz
+ type = XmPushButton
+ labelString = phiz
+ activateCallback = osh>\
+  widget=`get Widget thisLocalTarget`\
+  camera=`getWidgetCamera $widget`\
+  set $camera specialProjection phiz
+end
+!----------------------------
+begin OWidget
+ name = XoCamProj_type_rhoz
+ type = XmPushButton
+ labelString = rhoz
+ activateCallback = osh>\
+  widget=`get Widget thisLocalTarget`\
+  camera=`getWidgetCamera $widget`\
+  set $camera specialProjection rhoz
+end
+!----------------------------
+begin OWidget
+ name = XoCamProj_type_thetaphi
+ type = XmPushButton
+ labelString = thetaphi
+ activateCallback = osh>\
+  widget=`get Widget thisLocalTarget`\
+  camera=`getWidgetCamera $widget`\
+  set $camera specialProjection thetaphi
+end
+!----------------------------
+begin OWidget
+ name = XoCamProj_type_phitheta
+ type = XmPushButton
+ labelString = phitheta
+ activateCallback = osh>\
+  widget=`get Widget thisLocalTarget`\
+  camera=`getWidgetCamera $widget`\
+  set $camera specialProjection phitheta
+end
+!----------------------------
+begin OWidget
+ name = XoCamProj_type_phir
+ type = XmPushButton
+ labelString = phir
+ activateCallback = osh>\
+  widget=`get Widget thisLocalTarget`\
+  camera=`getWidgetCamera $widget`\
+  set $camera specialProjection phir
+end
+!----------------------------
+begin OWidget
+ name = XoCamProj_type_phirho
+ type = XmPushButton
+ labelString = phirho
+ activateCallback = osh> echo phirho\
+  widget=`get Widget thisLocalTarget`\
+  camera=`getWidgetCamera $widget`\
+  set $camera specialProjection phirho
+end
+!----------------------------
+begin OWidget
+ name = XoCamProj_type_vplot
+ type = XmPushButton
+ labelString = vplot
+ activateCallback = osh>\
+  widget=`get Widget thisLocalTarget`\
+  camera=`getWidgetCamera $widget`\
+  set $camera specialProjection vplot
+end
+!----------------------------
+begin OWidget
+ name = XoCamProj_type_fisheye
+ type = XmPushButton
+ labelString = fisheye
+ activateCallback = osh>\
+  widget=`get Widget thisLocalTarget`\
+  camera=`getWidgetCamera $widget`\
+  set $camera specialProjection fisheye
+end
+!----------------------------
+begin OWidget
+ name = XoCamProj_340
+ type = XmLabel
+ background = black
+ foreground = white
+ labelString = horizontal compression
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = XoCamProj_option
+end
+!----------------------------
+begin OWidget
+ name = XoCamProj_xcompress
+ type = XmScale
+ valueChangedCallback = osh>\
+  this=`thisWidget`\
+  shift=`getWidgetResource $this decimalPoints`\
+  shift=`calculate 10. ** $shift` \
+  value=`getWidgetResource $this value`\
+  widget=`get Widget thisLocalTarget`\
+  camera=`getWidgetCamera $widget`\
+  set $camera xcompress `calculate $value / $shift`
+ maximum = 250
+ minimum = 50
+ orientation = horizontal
+ showValue = true
+ decimalPoints = 2
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = XoCamProj_340
+end
+!----------------------------
+begin OWidget
+ name = XoCamProj_346
+ type = XmLabel
+ background = black
+ foreground = white
+ labelString = a (fisheye, rhoz)
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = XoCamProj_xcompress
+end
+!----------------------------
+begin OWidget
+ name = XoCamProj_fisheye_a
+ type = XmScale
+ valueChangedCallback = osh>\
+  this=`thisWidget`\
+  shift=`getWidgetResource $this decimalPoints`\
+  shift=`calculate 10. ** $shift` \
+  value=`getWidgetResource $this value`\
+  widget=`get Widget thisLocalTarget`\
+  camera=`getWidgetCamera $widget`\
+  set $camera fisheye_a `calculate $value / $shift`
+ maximum = 50
+ minimum = 0
+ orientation = horizontal
+ showValue = true
+ decimalPoints = 3
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = XoCamProj_346
+end
+!----------------------------
+begin OWidget
+ name = XoCamProj_349
+ type = XmLabel
+ background = black
+ foreground = white
+ labelString = phi1 (rhoz) 
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = XoCamProj_fisheye_a
+end
+!----------------------------
+begin OWidget
+ name = XoCamProj_rhoz_phy1
+ type = XmScale
+ valueChangedCallback = osh>\
+  this=`thisWidget`\
+  shift=`getWidgetResource $this decimalPoints`\
+  shift=`calculate 10. ** $shift` \
+  value=`getWidgetResource $this value`\
+  widget=`get Widget thisLocalTarget`\
+  camera=`getWidgetCamera $widget`\
+  set $camera rhoz_phi1 `calculate $value / $shift`
+ maximum = 180
+ minimum = 0
+ orientation = horizontal
+ showValue = true
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = XoCamProj_349
+end
+!----------------------------
+begin OWidget
+ name = XoCamProj_351
+ type = XmLabel
+ background = black
+ foreground = white
+ labelString = k * 1000 (vplot)
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = XoCamProj_rhoz_phy1
+end
+!----------------------------
+begin OWidget
+ name = XoCamProj_v_k
+ type = XmScale
+ valueChangedCallback = osh> this=`thisWidget`\
+  shift=`getWidgetResource $this decimalPoints`\
+  shift=`calculate 10. ** $shift` \
+  value=`getWidgetResource $this value`\
+  value=`calculate $value / 1000`\
+  widget=`get Widget thisLocalTarget`\
+  camera=`getWidgetCamera $widget`\
+  set $camera v_k `calculate $value / $shift`
+ maximum = 50
+ minimum = 0
+ orientation = horizontal
+ showValue = true
+ decimalPoints = 1
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = XoCamProj_351
+end
+!----------------------------
+begin OWidget
+ name = XoCamProj_357
+ type = XmLabel
+ background = black
+ foreground = white
+ labelString = scale values (fisheye, vplot)
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ topWidget = XoCamProj_v_k
+end
+!----------------------------
+begin OWidget
+ name = XoCamProj_353
+ type = XmLabel
+ labelString = v_rho_max
+ topAttachment = attach_widget
+ leftAttachment = attach_form
+ topWidget = XoCamProj_357
+end
+!----------------------------
+begin OWidget
+ name = XoCamProj_v_rho_max
+ type = XmText
+ width = 65
+ background = wheat
+ activateCallback = osh>\
+  this=`thisWidget`\
+  widget=`get Widget thisLocalTarget`\
+  camera=`getWidgetCamera $widget`\
+  set $camera v_rho_max `getWidgetResource $this value`
+ topAttachment = attach_widget
+ leftAttachment = attach_widget
+ topWidget = XoCamProj_357
+ leftWidget = XoCamProj_353
+end
+!----------------------------
+begin OWidget
+ name = XoCamProj_355
+ type = XmLabel
+ labelString = v_z_max
+ topAttachment = attach_widget
+ leftAttachment = attach_widget
+ topWidget = XoCamProj_357
+ leftWidget = XoCamProj_v_rho_max
+end
+!----------------------------
+begin OWidget
+ name = XoCamProj_v_z_max
+ type = XmText
+ width = 65
+ background = wheat
+ activateCallback = osh>\
+  this=`thisWidget`\
+  widget=`get Widget thisLocalTarget`\
+  camera=`getWidgetCamera $widget`\
+  set $camera v_z_max `getWidgetResource $this value`
+ topAttachment = attach_widget
+ leftAttachment = attach_widget
+ topWidget = XoCamProj_357
+ leftWidget = XoCamProj_355
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = XoCamProj_help
+ type = XmPushButton
+ background = lightgrey
+ labelString = Help
+ activateCallback = osh>\
+  load Help.odb | realize -\
+  showTopic Help_help 'XoCamProj.htm'\
+  manageWidget Help_palette;raiseWidget Help_palette_popup
+ topAttachment = attach_widget
+ topWidget = XoCamProj_v_z_max
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+end
+!----------------------------
+begin OWidget
+ name = XoCamProj_cancel
+ type = XmPushButton
+ background = lightgrey
+ labelString = Cancel
+ activateCallback = osh> do `get Widget thisParent` unmanage
+ topAttachment = attach_widget
+ topWidget = XoCamProj_help
+ leftAttachment = attach_form
+ rightAttachment = attach_form
+ bottomAttachment = attach_form
+end

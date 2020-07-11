@@ -1,0 +1,6 @@
+  widget=`thisLocalTargetWidget`
+  value=`getWidgetResource $widget $resource`
+  test $value eq 'true'  && new_value='false'
+  test $value eq 'false' && new_value='true'
+  setWidgetResource $widget $resource $new_value
+

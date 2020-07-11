@@ -1,0 +1,12 @@
+globin:libglo/share
+cobin:libco/share
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!! X11R5 !!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+SYS$SHARE:DECW$XEXTLIBSHR/SHAREABLE
+SYS$SHARE:DECW$XLIBSHR/SHAREABLE
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!! X11R4 !!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!SYS$SHARE:DECW$XEXTLIBSHR/SHAREABLE
+!SYS$SHARE:DECW$XLIBSHR/SHAREABLE

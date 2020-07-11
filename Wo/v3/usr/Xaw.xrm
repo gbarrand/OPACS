@@ -1,0 +1,11 @@
+Wo*Form.width  :100
+Wo*Form.height :200
+Wo*Paned.width  :100
+Wo*Paned.height :200
+Wo*Simple.width  :100
+Wo*Simple.height :200
+Wo*Viewport.width  :100
+Wo*Viewport.height :200
+Wo*Mailbox.fullPixmap:mailfull
+Wo*Mailbox.emptyPixmap:mailempty
+

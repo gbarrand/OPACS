@@ -1,0 +1,1082 @@
+-------------------
+name: Core
+tm_table: (nil)
+num_actions: 0
+num_resources: 10
+resource: screen  Screen 4
+resource: depth  Int 4
+resource: colormap  Colormap 4
+resource: background  Pixel 4
+resource: backgroundPixmap  Pixmap 4
+resource: borderColor  Pixel 4
+resource: borderPixmap  Pixmap 4
+resource: mappedWhenManaged  Boolean 1
+resource: translations  TranslationTable 4
+resource: accelerators  AcceleratorTable 4
+num_constraint_resources: 0
+-------------------
+name: Composite
+tm_table: (nil)
+num_actions: 0
+num_resources: 3
+resource: children  WidgetList 4
+resource: numChildren  Cardinal 4
+resource: insertPosition  Function 4
+num_constraint_resources: 0
+-------------------
+name: Constraint
+tm_table: (nil)
+num_actions: 0
+num_resources: 0
+num_constraint_resources: 0
+-------------------
+name: Shell
+tm_table: (nil)
+num_actions: 0
+num_resources: 13
+resource: x  Position 2
+resource: y  Position 2
+resource: depth  Int 4
+resource: colormap  Colormap 4
+resource: ancestorSensitive  Boolean 1
+resource: allowShellResize  Boolean 1
+resource: geometry  String 4
+resource: createPopupChildProc  Function 4
+resource: saveUnder  Boolean 1
+resource: popupCallback  Callback 4
+resource: popdownCallback  Callback 4
+resource: overrideRedirect  Boolean 1
+resource: visual  Visual 4
+num_constraint_resources: 0
+-------------------
+name: OverrideShell
+tm_table: (nil)
+num_actions: 0
+num_resources: 2
+resource: overrideRedirect  Boolean 1
+resource: saveUnder  Boolean 1
+num_constraint_resources: 0
+-------------------
+name: WMShell
+tm_table: (nil)
+num_actions: 0
+num_resources: 26
+resource: title  String 4
+resource: titleEncoding  Atom 4
+resource: wmTimeout  Int 4
+resource: waitforwm  Boolean 1
+resource: transient  Boolean 1
+resource: baseWidth  Int 4
+resource: baseHeight  Int 4
+resource: winGravity  Int 4
+resource: minWidth  Int 4
+resource: minHeight  Int 4
+resource: maxWidth  Int 4
+resource: maxHeight  Int 4
+resource: widthInc  Int 4
+resource: heightInc  Int 4
+resource: minAspectX  Int 4
+resource: minAspectY  Int 4
+resource: maxAspectX  Int 4
+resource: maxAspectY  Int 4
+resource: input  Bool 4
+resource: initialState  InitialState 4
+resource: iconPixmap  Bitmap 4
+resource: iconWindow  Window 4
+resource: iconX  Int 4
+resource: iconY  Int 4
+resource: iconMask  Bitmap 4
+resource: windowGroup  Window 4
+num_constraint_resources: 0
+-------------------
+name: TransientShell
+tm_table:
+ 
+num_actions: 0
+num_resources: 3
+resource: transient  Boolean 1
+resource: transientFor  Widget 4
+resource: saveUnder  Boolean 1
+num_constraint_resources: 0
+-------------------
+name: TopLevelShell
+tm_table:
+ 
+num_actions: 0
+num_resources: 3
+resource: iconName  String 4
+resource: iconNameEncoding  Atom 4
+resource: iconic  Boolean 1
+num_constraint_resources: 0
+-------------------
+name: ApplicationShell
+tm_table:
+ 
+num_actions: 0
+num_resources: 2
+resource: argc  Int 4
+resource: argv  StringArray 4
+num_constraint_resources: 0
+-------------------
+name: VendorShell
+tm_table: (nil)
+num_actions: 0
+num_resources: 22
+resource: x  ShellHorizPos 2
+resource: y  ShellVertPos 2
+resource: width  ShellHorizDim 2
+resource: height  ShellVertDim 2
+resource: borderWidth  ShellHorizDim 2
+resource: baseWidth  HorizontalInt 4
+resource: baseHeight  VerticalInt 4
+resource: minWidth  HorizontalInt 4
+resource: minHeight  VerticalInt 4
+resource: maxWidth  HorizontalInt 4
+resource: maxHeight  VerticalInt 4
+resource: widthInc  HorizontalInt 4
+resource: heightInc  VerticalInt 4
+resource: minAspectX  HorizontalInt 4
+resource: minAspectY  VerticalInt 4
+resource: maxAspectX  HorizontalInt 4
+resource: maxAspectY  VerticalInt 4
+resource: iconPixmap  Pixmap 4
+resource: iconX  HorizontalInt 4
+resource: iconY  VerticalInt 4
+resource: input  Bool 4
+resource: windowGroup  Window 4
+num_constraint_resources: 0
+-------------------
+name: XmArrowButton
+tm_table:
+ <Btn1Down>:	Arm()
+     <Btn1Down>,<Btn1Up>: Activate()			Disarm()
+     <Btn1Down>(2+):	MultiArm()
+     <Btn1Up>(2+):	MultiActivate()
+     <Btn1Up>:		Activate()			Disarm()
+     <Key>osfSelect:	ArmAndActivate()
+     <Key>osfActivate:	ArmAndActivate()
+     <Key>osfHelp:	Help()
+     ~Shift ~Meta ~Alt <Key>Return:	ArmAndActivate()
+     ~Shift ~Meta ~Alt <Key>space:	ArmAndActivate()
+     <EnterWindow>:	Enter()
+     <LeaveWindow>:	Leave()
+num_actions: 9
+action: Activate
+action: MultiActivate
+action: Arm
+action: MultiArm
+action: Disarm
+action: ArmAndActivate
+action: Enter
+action: Leave
+action: Help
+num_resources: 5
+resource: multiClick  MultiClick 1
+resource: arrowDirection  ArrowDirection 1
+resource: activateCallback  Callback 4
+resource: armCallback  Callback 4
+resource: disarmCallback  Callback 4
+num_constraint_resources: 0
+-------------------
+name: XmArrowButtonGadget
+tm_table: (nil)
+num_actions: 0
+num_resources: 5
+resource: multiClick  MultiClick 1
+resource: arrowDirection  ArrowDirection 1
+resource: activateCallback  Callback 4
+resource: armCallback  Callback 4
+resource: disarmCallback  Callback 4
+num_constraint_resources: 0
+-------------------
+name: XmBulletinBoard
+tm_table:
+ <Key>osfSelect:		ManagerGadgetSelect()
+	<Key>osfActivate: 	BulletinBoardReturn()
+        <Key>osfHelp:		ManagerGadgetHelp()
+	<Key>osfCancel:		BulletinBoardCancel()
+	~Shift ~Meta ~Alt <Key>Return:	BulletinBoardReturn()
+	~Shift ~Meta ~Alt <Key>space:	ManagerGadgetSelect()
+	<Key>:			ManagerGadgetKeyInput()
+	<BtnMotion>:	ManagerGadgetButtonMotion()
+	<Btn1Down>:	ManagerGadgetArm()
+	<Btn1Down>,<Btn1Up>:	ManagerGadgetActivate()
+	<Btn1Up>:	ManagerGadgetActivate()
+	<Btn1Down>(2+):	ManagerGadgetMultiArm()
+	<Btn1Up>(2+):	ManagerGadgetMultiActivate()
+num_actions: 8
+action: Enter
+action: FocusIn
+action: Arm
+action: Activate
+action: Help
+action: Return
+action: BulletinBoardReturn
+action: BulletinBoardCancel
+num_resources: 21
+resource: shadowType  ShadowType 1
+resource: shadowThickness  HorizontalDimension 2
+resource: marginWidth  HorizontalDimension 2
+resource: marginHeight  VerticalDimension 2
+resource: defaultButton  Window 4
+resource: cancelButton  Window 4
+resource: focusCallback  Callback 4
+resource: mapCallback  Callback 4
+resource: unmapCallback  Callback 4
+resource: buttonFontList  XmFontList 4
+resource: labelFontList  XmFontList 4
+resource: textFontList  XmFontList 4
+resource: textTranslations  TranslationTable 4
+resource: allowOverlap  Boolean 1
+resource: autoUnmanage  Boolean 1
+resource: defaultPosition  Boolean 1
+resource: resizePolicy  ResizePolicy 1
+resource: noResize  Boolean 1
+resource: dialogStyle  DialogStyle 1
+resource: dialogTitle  XmString 4
+resource: DXmautoUnrealize  Boolean 1
+num_constraint_resources: 0
+-------------------
+name: XmCascadeButton
+tm_table: (nil)
+num_actions: 11
+action: DelayedArm
+action: CheckDisarm
+action: StartDrag
+action: DoSelect
+action: KeySelect
+action: MenuBarSelect
+action: MenuBarEnter
+action: MenuBarLeave
+action: CleanupMenuBar
+action: Help
+action: (nil)
+num_resources: 8
+resource: activateCallback  Callback 4
+resource: cascadingCallback  Callback 4
+resource: subMenuId  MenuWidget 4
+resource: cascadePixmap  PrimForegroundPixmap 4
+resource: mappingDelay  Int 4
+resource: shadowThickness  HorizontalDimension 2
+resource: traversalOn  Boolean 1
+resource: highlightThickness  HorizontalDimension 2
+num_constraint_resources: 0
+-------------------
+name: XmCascadeButtonGadget
+tm_table: (nil)
+num_actions: 0
+num_resources: 6
+resource: activateCallback  Callback 4
+resource: cascadingCallback  Callback 4
+resource: subMenuId  MenuWidget 4
+resource: shadowThickness  HorizontalDimension 2
+resource: traversalOn  Boolean 1
+resource: highlightThickness  HorizontalDimension 2
+num_constraint_resources: 0
+-------------------
+name: XmCommand
+tm_table:
+ 
+num_actions: 4
+action: Return
+action: UpOrDown
+action: BulletinBoardReturn
+action: SelectionBoxUpOrDown
+num_resources: 12
+resource: commandEnteredCallback  Callback 4
+resource: commandChangedCallback  Callback 4
+resource: promptString  XmString 4
+resource: command  XmString 4
+resource: historyItems  XmStringTable 4
+resource: historyItemCount  Int 4
+resource: historyMaxItems  Int 4
+resource: historyVisibleItemCount  Int 4
+resource: dialogType  DialogType 1
+resource: defaultPosition  Boolean 1
+resource: autoUnmanage  Boolean 1
+resource: resizePolicy  ResizePolicy 1
+num_constraint_resources: 0
+-------------------
+name: XmDialogShell
+tm_table:
+ 
+num_actions: 0
+num_resources: 0
+num_constraint_resources: 0
+-------------------
+name: XmDrawingArea
+tm_table:
+ <Key>osfSelect:	DrawingAreaInput() ManagerGadgetSelect()
+<Key>osfActivate:	DrawingAreaInput() ManagerGadgetSelect()
+<Key>osfHelp:	DrawingAreaInput() ManagerGadgetHelp()
+~Shift ~Meta ~Alt <Key>Return:	DrawingAreaInput() ManagerGadgetSelect()
+~Shift ~Meta ~Alt <Key>space:	DrawingAreaInput() ManagerGadgetSelect()
+<KeyDown>:	DrawingAreaInput() ManagerGadgetKeyInput()
+<KeyUp>:	DrawingAreaInput()
+<BtnMotion>:	ManagerGadgetButtonMotion()
+<Btn1Down>:	DrawingAreaInput() ManagerGadgetArm()
+<Btn1Down>,<Btn1Up>:	DrawingAreaInput() ManagerGadgetActivate()
+<Btn1Up>:	DrawingAreaInput() ManagerGadgetActivate()
+<Btn1Down>(2+):	DrawingAreaInput() ManagerGadgetMultiArm()
+<Btn1Up>(2+):	DrawingAreaInput() ManagerGadgetMultiActivate()
+<BtnDown>:	DrawingAreaInput()
+<BtnUp>:	DrawingAreaInput()
+num_actions: 6
+action: Arm
+action: Activate
+action: Enter
+action: FocusIn
+action: Help
+action: DrawingAreaInput
+num_resources: 6
+resource: marginWidth  HorizontalDimension 2
+resource: marginHeight  VerticalDimension 2
+resource: resizeCallback  Callback 4
+resource: exposeCallback  Callback 4
+resource: inputCallback  Callback 4
+resource: resizePolicy  ResizePolicy 1
+num_constraint_resources: 0
+-------------------
+name: XmDrawnButton
+tm_table:
+ <Btn1Down>:					Arm()
+ <Btn1Down>,<Btn1Up>:				Activate() Disarm()
+ <Btn1Down>(2+):				MultiArm()
+ <Btn1Up>(2+):					MultiActivate() 
+ <Btn1Up>:					Activate() Disarm()
+ <Key>osfSelect:	ArmAndActivate()
+ <Key>osfActivate:	ArmAndActivate()
+ <Key>osfHelp:		Help()
+ ~Shift ~Meta ~Alt<Key>Return:	ArmAndActivate()
+ ~Shift ~Meta ~Alt<Key>space:	ArmAndActivate()
+ <EnterWindow>:					Enter()
+ <LeaveWindow>:					Leave()
+num_actions: 9
+action: Arm
+action: Activate
+action: MultiActivate
+action: MultiArm
+action: ArmAndActivate
+action: Disarm
+action: Enter
+action: Leave
+action: Help
+num_resources: 12
+resource: multiClick  MultiClick 1
+resource: pushButtonEnabled  Boolean 1
+resource: shadowType  ShadowType 1
+resource: activateCallback  Callback 4
+resource: armCallback  Callback 4
+resource: disarmCallback  Callback 4
+resource: exposeCallback  Callback 4
+resource: resizeCallback  Callback 4
+resource: shadowThickness  Dimension 2
+resource: labelString  XmString 4
+resource: traversalOn  Boolean 1
+resource: highlightThickness  HorizontalDimension 2
+num_constraint_resources: 0
+-------------------
+name: XmFileSelectionBox
+tm_table:
+ 
+num_actions: 3
+action: UpOrDown
+action: SelectionBoxUpOrDown
+action: SelectionBoxRestore
+num_resources: 21
+resource: directory  XmString 4
+resource: pattern  XmString 4
+resource: dirListLabelString  XmString 4
+resource: dirListItems  XmStringTable 4
+resource: dirListItemCount  Int 4
+resource: filterLabelString  XmString 4
+resource: dirMask  XmString 4
+resource: noMatchString  XmString 4
+resource: qualifySearchDataProc  Proc 4
+resource: dirSearchProc  Proc 4
+resource: fileSearchProc  Proc 4
+resource: fileTypeMask  FileTypeMask 1
+resource: listUpdated  Boolean 1
+resource: directoryValid  Boolean 1
+resource: dirSpec  XmString 4
+resource: autoUnmanage  Boolean 1
+resource: fileListLabelString  XmString 4
+resource: applyLabelString  XmString 4
+resource: dialogType  DialogType 1
+resource: fileListItems  XmStringTable 4
+resource: fileListItemCount  Int 4
+num_constraint_resources: 0
+-------------------
+name: XmForm
+tm_table:
+ 
+num_actions: 0
+num_resources: 6
+resource: marginWidth  HorizontalDimension 2
+resource: marginHeight  VerticalDimension 2
+resource: horizontalSpacing  HorizontalDimension 2
+resource: verticalSpacing  VerticalDimension 2
+resource: fractionBase  Int 4
+resource: rubberPositioning  Boolean 1
+num_constraint_resources: 17
+constraint_resource: topAttachment Attachment 1
+constraint_resource: bottomAttachment Attachment 1
+constraint_resource: leftAttachment Attachment 1
+constraint_resource: rightAttachment Attachment 1
+constraint_resource: topWidget Window 4
+constraint_resource: bottomWidget Window 4
+constraint_resource: leftWidget Window 4
+constraint_resource: rightWidget Window 4
+constraint_resource: topPosition Int 4
+constraint_resource: bottomPosition Int 4
+constraint_resource: leftPosition Int 4
+constraint_resource: rightPosition Int 4
+constraint_resource: topOffset Int 4
+constraint_resource: bottomOffset Int 4
+constraint_resource: leftOffset Int 4
+constraint_resource: rightOffset Int 4
+constraint_resource: resizable Boolean 1
+-------------------
+name: XmFrame
+tm_table:
+ 
+num_actions: 0
+num_resources: 3
+resource: marginWidth  HorizontalDimension 2
+resource: marginHeight  VerticalDimension 2
+resource: shadowType  ShadowType 1
+num_constraint_resources: 0
+-------------------
+name: XmLabel
+tm_table:
+ <EnterWindow>:	Enter()
+       <LeaveWindow>:	Leave()
+       <Key>osfHelp:	Help()
+num_actions: 3
+action: Enter
+action: Leave
+action: Help
+num_resources: 21
+resource: shadowThickness  HorizontalDimension 2
+resource: alignment  XmAlignment 1
+resource: labelType  XmLabelType 1
+resource: marginWidth  HorizontalDimension 2
+resource: marginHeight  VerticalDimension 2
+resource: marginLeft  HorizontalDimension 2
+resource: marginRight  HorizontalDimension 2
+resource: marginTop  VerticalDimension 2
+resource: marginBottom  VerticalDimension 2
+resource: fontList  XmFontList 4
+resource: labelPixmap  PrimForegroundPixmap 4
+resource: labelInsensitivePixmap  Pixmap 4
+resource: labelString  XmString 4
+resource: mnemonic  KeySym 4
+resource: mnemonicCharSet  String 4
+resource: accelerator  String 4
+resource: acceleratorText  XmString 4
+resource: recomputeSize  Boolean 1
+resource: stringDirection  StringDirection 1
+resource: traversalOn  Boolean 1
+resource: highlightThickness  HorizontalDimension 2
+num_constraint_resources: 0
+-------------------
+name: XmLabelGadget
+tm_table: (nil)
+num_actions: 0
+num_resources: 11
+resource: shadowThickness  HorizontalDimension 2
+resource: labelPixmap  GadgetPixmap 4
+resource: labelInsensitivePixmap  GadgetPixmap 4
+resource: labelString  XmString 4
+resource: fontList  XmFontList 4
+resource: mnemonic  KeySym 4
+resource: mnemonicCharSet  String 4
+resource: accelerator  String 4
+resource: acceleratorText  XmString 4
+resource: traversalOn  Boolean 1
+resource: highlightThickness  HorizontalDimension 2
+num_constraint_resources: 0
+-------------------
+name: XmList
+tm_table: (nil)
+num_actions: 62
+action: ListButtonMotion
+action: ListShiftSelect
+action: ListShiftUnSelect
+action: ListBeginExtend
+action: ListEndExtend
+action: ListCtrlSelect
+action: ListCtrlUnSelect
+action: ListBeginToggle
+action: ListEndToggle
+action: ListShiftCtrlSelect
+action: ListShiftCtrlUnSelect
+action: ListExtendAddSelect
+action: ListExtendAddUnSelect
+action: ListItemSelect
+action: ListItemUnSelect
+action: ListBeginSelect
+action: ListEndSelect
+action: ListKbdBeginSelect
+action: ListKbdEndSelect
+action: ListKbdShiftSelect
+action: ListKbdShiftUnSelect
+action: ListKbdCtrlSelect
+action: ListKbdCtrlUnSelect
+action: ListKbdBeginExtend
+action: ListKbdEndExtend
+action: ListKbdBeginToggle
+action: ListKbdEndToggle
+action: ListKbdSelectAll
+action: ListKbdDeSelectAll
+action: ListKbdActivate
+action: ListKbdCancel
+action: ListAddMode
+action: ListPrevItem
+action: ListNextItem
+action: ListPrevPage
+action: ListNextPage
+action: ListLeftChar
+action: ListLeftPage
+action: ListRightChar
+action: ListRightPage
+action: ListCtrlPrevItem
+action: ListCtrlNextItem
+action: ListShiftPrevItem
+action: ListShiftNextItem
+action: List_ShiftCtrlPrevItem
+action: List_ShiftCtrlNextItem
+action: ListAddPrevItem
+action: ListAddNextItem
+action: ListExtendPrevItem
+action: ListExtendNextItem
+action: ListExtendAddPrevItem
+action: ListExtendAddNextItem
+action: ListBeginLine
+action: ListEndLine
+action: ListBeginData
+action: ListEndData
+action: ListBeginDataExtend
+action: ListEndDataExtend
+action: ListFocusIn
+action: ListFocusOut
+action: ListEnter
+action: ListLeave
+num_resources: 24
+resource: listSpacing  VerticalDimension 2
+resource: listMarginWidth  HorizontalDimension 2
+resource: listMarginHeight  VerticalDimension 2
+resource: fontList  XmFontList 4
+resource: stringDirection  StringDirection 1
+resource: items  XmStringTable 4
+resource: itemCount  Int 4
+resource: selectedItems  XmStringTable 4
+resource: selectedItemCount  Int 4
+resource: visibleItemCount  Int 4
+resource: topItemPosition  Int 4
+resource: selectionPolicy  SelectionPolicy 1
+resource: listSizePolicy  ListSizePolicy 1
+resource: scrollBarDisplayPolicy  ScrollBarDisplayPolicy 1
+resource: automaticSelection  Boolean 1
+resource: doubleClickInterval  Int 4
+resource: singleSelectionCallback  Callback 4
+resource: multipleSelectionCallback  Callback 4
+resource: extendedSelectionCallback  Callback 4
+resource: browseSelectionCallback  Callback 4
+resource: defaultActionCallback  Callback 4
+resource: horizontalScrollBar  Window 4
+resource: verticalScrollBar  Window 4
+resource: navigationType  NavigationType 1
+num_constraint_resources: 0
+-------------------
+name: XmMainWindow
+tm_table:
+ 
+num_actions: 1
+action: Help
+num_resources: 8
+resource: commandWindow  Window 4
+resource: commandWindowLocation  CommandWindowLocation 1
+resource: menuBar  Window 4
+resource: messageWindow  Window 4
+resource: mainWindowMarginWidth  HorizontalDimension 2
+resource: mainWindowMarginHeight  VerticalDimension 2
+resource: showSeparator  Boolean 1
+resource: navigationType  NavigationType 1
+num_constraint_resources: 0
+-------------------
+name: XmMenuShell
+tm_table: (nil)
+num_actions: 3
+action: MenuShellPopdownOne
+action: MenuShellPopdownDone
+action: ClearTraversal
+num_resources: 1
+resource: defaultFontList  XmFontList 4
+num_constraint_resources: 0
+-------------------
+name: XmMessageBox
+tm_table:
+ 
+num_actions: 0
+num_resources: 11
+resource: dialogType  DialogType 1
+resource: minimizeButtons  Boolean 1
+resource: defaultButtonType  DefaultButtonType 1
+resource: messageString  XmString 4
+resource: messageAlignment  XmAlignment 1
+resource: symbolPixmap  ManForegroundPixmap 4
+resource: okLabelString  XmString 4
+resource: okCallback  Callback 4
+resource: cancelLabelString  XmString 4
+resource: cancelCallback  Callback 4
+resource: helpLabelString  XmString 4
+num_constraint_resources: 0
+-------------------
+name: XmPanedWindow
+tm_table:
+ 
+num_actions: 3
+action: Help
+action: arm
+action: activate
+num_resources: 9
+resource: marginWidth  HorizontalDimension 2
+resource: marginHeight  VerticalDimension 2
+resource: spacing  VerticalDimension 2
+resource: refigureMode  Boolean 1
+resource: separatorOn  Boolean 1
+resource: sashIndent  HorizontalPosition 2
+resource: sashWidth  HorizontalDimension 2
+resource: sashHeight  VerticalDimension 2
+resource: sashShadowThickness  HorizontalDimension 2
+num_constraint_resources: 4
+constraint_resource: allowResize Boolean 1
+constraint_resource: paneMinimum VerticalDimension 2
+constraint_resource: paneMaximum VerticalDimension 2
+constraint_resource: skipAdjust Boolean 1
+-------------------
+name: XmPushButton
+tm_table: (nil)
+num_actions: 12
+action: Arm
+action: MultiArm
+action: Activate
+action: MultiActivate
+action: ArmAndActivate
+action: Disarm
+action: BtnDown
+action: BtnUp
+action: Enter
+action: Leave
+action: KeySelect
+action: Help
+num_resources: 12
+resource: multiClick  MultiClick 1
+resource: fillOnArm  Boolean 1
+resource: armColor  Pixel 4
+resource: armPixmap  PrimForegroundPixmap 4
+resource: showAsDefault  BooleanDimension 2
+resource: activateCallback  Callback 4
+resource: armCallback  Callback 4
+resource: disarmCallback  Callback 4
+resource: shadowThickness  HorizontalDimension 2
+resource: defaultButtonShadowThickness  HorizontalDimension 2
+resource: traversalOn  Boolean 1
+resource: highlightThickness  HorizontalDimension 2
+num_constraint_resources: 0
+-------------------
+name: XmPushButtonGadget
+tm_table: (nil)
+num_actions: 0
+num_resources: 7
+resource: activateCallback  Callback 4
+resource: armCallback  Callback 4
+resource: disarmCallback  Callback 4
+resource: shadowThickness  HorizontalDimension 2
+resource: traversalOn  Boolean 1
+resource: highlightThickness  HorizontalDimension 2
+resource: showAsDefault  BooleanDimension 2
+num_constraint_resources: 0
+-------------------
+name: XmRowColumn
+tm_table: (nil)
+num_actions: 32
+action: Help
+action: MenuBtnDown
+action: MenuBtnUp
+action: PulldownBtnDown
+action: PulldownBtnUp
+action: PopupBtnDown
+action: PopupBtnUp
+action: MenuBarBtnDown
+action: MenuBarBtnUp
+action: WorkAreaBtnDown
+action: WorkAreaBtnUp
+action: _MenuGetGadget
+action: FocusOut
+action: FocusIn
+action: Unmap
+action: Noop
+action: MenuTraverseLeft
+action: MenuTraverseRight
+action: MenuTraverseUp
+action: MenuTraverseDown
+action: MenuEscape
+action: MenuFocusIn
+action: MenuFocusOut
+action: MenuUnmap
+action: MenuEnter
+action: MenuGadgetReturn
+action: MenuGadgetEscape
+action: MenuGadgetTraverseLeft
+action: MenuGadgetTraverseRight
+action: MenuGadgetTraverseUp
+action: MenuGadgetTraverseDown
+action: (nil)
+num_resources: 35
+resource: resizeWidth  Boolean 1
+resource: resizeHeight  Boolean 1
+resource: whichButton  WhichButton 4
+resource: menuPost  String 4
+resource: adjustLast  Boolean 1
+resource: marginWidth  HorizontalDimension 2
+resource: marginHeight  VerticalDimension 2
+resource: entryCallback  Callback 4
+resource: mapCallback  Callback 4
+resource: unmapCallback  Callback 4
+resource: orientation  XmOrientation 1
+resource: spacing  HorizontalDimension 2
+resource: entryBorder  HorizontalDimension 2
+resource: isAligned  Boolean 1
+resource: entryAlignment  XmAlignment 1
+resource: adjustMargin  Boolean 1
+resource: packing  Packing 1
+resource: numColumns  Short 2
+resource: radioBehavior  Boolean 1
+resource: radioAlwaysOne  Boolean 1
+resource: isHomogeneous  Boolean 1
+resource: entryClass  Int 4
+resource: rowColumnType  RowColumnType 1
+resource: menuHelpWidget  MenuWidget 4
+resource: labelString  XmString 4
+resource: subMenuId  MenuWidget 4
+resource: menuHistory  MenuWidget 4
+resource: popupEnabled  Boolean 1
+resource: menuAccelerator  String 4
+resource: mnemonic  KeySym 4
+resource: mnemonicCharSet  String 4
+resource: shadowThickness  HorizontalDimension 2
+resource: postFromList  WidgetList 4
+resource: postFromCount  Int 4
+resource: navigationType  NavigationType 1
+num_constraint_resources: 0
+-------------------
+name: XmSash
+tm_table:
+ <Key>osfHelp:	Help()
+ Ctrl ~Shift <Key>osfUp:	SashAction(Key, LargeIncr, Up)
+ ~Ctrl ~Shift <Key>osfUp:	SashAction(Key, DefaultIncr, Up)
+ Ctrl ~Shift <Key>osfDown:	SashAction(Key, LargeIncr, Down)
+ ~Ctrl ~Shift <Key>osfDown:	SashAction(Key, DefaultIncr, Down)
+ Shift ~Meta ~Alt <Key>Tab:	PrevTabGroup()
+ ~Meta ~Alt <Key>Tab:		NextTabGroup()
+ ~Ctrl ~Shift ~Meta ~Alt<Btn1Down>:	SashAction(Start)
+ ~Ctrl ~Shift ~Meta ~Alt<Btn1Motion>:	SashAction(Move)
+ ~Ctrl ~Shift ~Meta ~Alt<Btn1Up>:	SashAction(Commit)
+ ~Ctrl ~Shift ~Meta ~Alt<Btn2Down>:	SashAction(Start)
+ ~Ctrl ~Shift ~Meta ~Alt<Btn2Motion>:	SashAction(Move)
+ ~Ctrl ~Shift ~Meta ~Alt<Btn2Up>:	SashAction(Commit)
+ <FocusIn>:	SashFocusIn()
+ <FocusOut>:	SashFocusOut()
+ <Unmap>:	PrimitiveUnmap()
+ <EnterWindow>:	enter()
+ <LeaveWindow>:	leave()
+num_actions: 8
+action: Help
+action: SashAction
+action: SashFocusIn
+action: SashFocusOut
+action: PrevTabGroup
+action: NextTabGroup
+action: enter
+action: leave
+num_resources: 2
+resource: borderWidth  Dimension 2
+resource: callback  Callback 4
+num_constraint_resources: 0
+-------------------
+name: XmScale
+tm_table:
+ 
+num_actions: 0
+num_resources: 18
+resource: width  HorizontalDimension 2
+resource: height  VerticalDimension 2
+resource: value  Int 4
+resource: maximum  Int 4
+resource: minimum  Int 4
+resource: orientation  XmOrientation 1
+resource: processingDirection  ProcessingDirection 1
+resource: titleString  XmString 4
+resource: fontList  XmFontList 4
+resource: showValue  Boolean 1
+resource: decimalPoints  Short 2
+resource: scaleWidth  HorizontalDimension 2
+resource: scaleHeight  VerticalDimension 2
+resource: highlightThickness  HorizontalDimension 2
+resource: highlightOnEnter  Boolean 1
+resource: valueChangedCallback  Callback 4
+resource: dragCallback  Callback 4
+resource: scaleMultiple  Int 4
+num_constraint_resources: 0
+-------------------
+name: XmScrollBar
+tm_table:
+ ~Shift ~Ctrl ~Meta ~Alt ~Button2 ~Button3<Btn1Down>:	Select()
+~Shift ~Ctrl ~Meta ~Alt ~Button2 ~Button3<Btn1Up>:	Release()
+~Shift ~Ctrl ~Meta ~Alt Button1<PtrMoved>:	Moved()
+~Shift ~Ctrl ~Meta ~Alt ~Button1 ~Button3<Btn2Down>:	Select()
+~Shift ~Ctrl ~Meta ~Alt ~Button1 ~Button3<Btn2Up>:	Release()
+~Shift ~Ctrl ~Meta ~Alt Button2<PtrMoved>:	Moved()
+~Shift Ctrl ~Meta ~Alt <Btn1Down>:	TopOrBottom()
+~Shift Ctrl ~Meta ~Alt <Btn1Up>:	Release()
+~Shift ~Ctrl ~Meta ~Alt Button1<Btn2Down>:           CancelDrag()
+~Shift ~Ctrl ~Meta ~Alt Button1<Btn3Down>:           CancelDrag()
+~Shift ~Ctrl ~Meta ~Alt Button2<Btn1Down>:           CancelDrag()
+~Shift ~Ctrl ~Meta ~Alt Button2<Btn3Down>:           CancelDrag()
+~Shift ~Ctrl ~Meta ~Alt <Key>osfUp:	IncrementUpOrLeft(0)
+~Shift ~Ctrl ~Meta ~Alt <Key>osfDown:	IncrementDownOrRight(0)
+~Shift ~Ctrl ~Meta ~Alt <Key>osfLeft:	IncrementUpOrLeft(1)
+~Shift ~Ctrl ~Meta ~Alt <Key>osfRight:	IncrementDownOrRight(1)
+~Shift Ctrl ~Meta ~Alt <Key>osfUp:	PageUpOrLeft(0)
+~Shift Ctrl ~Meta ~Alt <Key>osfDown:	PageDownOrRight(0)
+~Shift Ctrl ~Meta ~Alt <Key>osfLeft:	PageUpOrLeft(1)
+~Shift Ctrl ~Meta ~Alt <Key>osfRight:	PageDownOrRight(1)
+~Shift ~Ctrl ~Meta ~Alt <Key>osfPageUp:	PageUpOrLeft(0)
+~Shift ~Ctrl ~Meta ~Alt <Key>osfPageDown:	PageDownOrRight(0)
+~Shift Ctrl ~Meta ~Alt <Key>osfPageUp:	PageUpOrLeft(1)
+~Shift Ctrl ~Meta ~Alt <Key>osfPageDown:	PageDownOrRight(1)
+~Shift ~Ctrl ~Meta ~Alt <Key>osfBeginLine:	TopOrBottom()
+~Shift ~Ctrl ~Meta ~Alt <Key>osfEndLine:	TopOrBottom()
+~Shift Ctrl ~Meta ~Alt <Key>osfBeginLine:	TopOrBottom()
+~Shift Ctrl ~Meta ~Alt <Key>osfEndLine:	TopOrBottom()
+<FocusIn>:	PrimitiveFocusIn()
+<FocusOut>:	PrimitiveFocusOut()
+<Unmap>:	PrimitiveUnmap()
+<Enter>:	PrimitiveEnter()
+<Leave>:	PrimitiveLeave()
+~Shift ~Ctrl ~Meta ~Alt <Key>osfHelp:	PrimitiveHelp()
+Shift ~Ctrl ~Meta ~Alt <Key>Tab:	PrimitivePrevTabGroup()
+~Shift ~Ctrl ~Meta ~Alt <Key>Tab:	PrimitiveNextTabGroup()
+~Shift Ctrl ~Meta ~Alt <Key>Tab:	PrimitiveNextTabGroup()
+num_actions: 24
+action: CancelDrag
+action: Select
+action: Release
+action: Moved
+action: TopOrBottom
+action: IncrementUpOrLeft
+action: IncrementDownOrRight
+action: PageUpOrLeft
+action: PageDownOrRight
+action: PrimitiveFocusIn
+action: PrimitiveFocusOut
+action: PrimitiveUnmap
+action: PrimitiveEnter
+action: PrimitiveLeave
+action: PrimitiveHelp
+action: PrimitiveTraverseLeft
+action: PrimitiveTraverseRight
+action: PrimitiveTraverseUp
+action: PrimitiveTraverseDown
+action: PrimitiveTraverseNext
+action: PrimitiveTraversePrev
+action: PrimitiveTraverseHome
+action: PrimitiveNextTabGroup
+action: PrimitivePrevTabGroup
+num_resources: 24
+resource: navigationType  NavigationType 1
+resource: foreground  Pixel 4
+resource: troughColor  Pixel 4
+resource: value  Int 4
+resource: minimum  Int 4
+resource: maximum  Int 4
+resource: sliderSize  Int 4
+resource: showArrows  Boolean 1
+resource: orientation  XmOrientation 1
+resource: processingDirection  ProcessingDirection 1
+resource: increment  Int 4
+resource: pageIncrement  Int 4
+resource: initialDelay  Int 4
+resource: repeatDelay  Int 4
+resource: valueChangedCallback  Callback 4
+resource: incrementCallback  Callback 4
+resource: decrementCallback  Callback 4
+resource: pageIncrementCallback  Callback 4
+resource: pageDecrementCallback  Callback 4
+resource: toTopCallback  Callback 4
+resource: toBottomCallback  Callback 4
+resource: dragCallback  Callback 4
+resource: traversalOn  Boolean 1
+resource: highlightThickness  HorizontalDimension 2
+num_constraint_resources: 0
+-------------------
+name: XmScrolledWindow
+tm_table:
+ 
+num_actions: 22
+action: SWBeginLine
+action: SWEndLine
+action: SWTopLine
+action: SWBottomLine
+action: SWLeftPage
+action: SWRightPage
+action: SWUpPage
+action: SWDownPage
+action: SWBeginLineWork
+action: SWEndLineWork
+action: SWTopLineWork
+action: SWBottomLineWork
+action: SWBeginLineGrab
+action: SWEndLineGrab
+action: SWTopLineGrab
+action: SWBottomLineGrab
+action: SWLeftPageGrab
+action: SWRightPageGrab
+action: SWUpPageGrab
+action: SWDownPageGrab
+action: SWCWMapNotify
+action: Help
+num_resources: 12
+resource: horizontalScrollBar  Window 4
+resource: verticalScrollBar  Window 4
+resource: workWindow  Window 4
+resource: clipWindow  Window 4
+resource: scrollingPolicy  ScrollingPolicy 1
+resource: visualPolicy  VisualPolicy 1
+resource: scrollBarDisplayPolicy  ScrollBarDisplayPolicy 1
+resource: scrollBarPlacement  ScrollBarPlacement 1
+resource: scrolledWindowMarginWidth  HorizontalDimension 2
+resource: scrolledWindowMarginHeight  VerticalDimension 2
+resource: spacing  Dimension 2
+resource: shadowThickness  Dimension 2
+num_constraint_resources: 0
+-------------------
+name: XmSelectionBox
+tm_table:
+ 
+num_actions: 3
+action: UpOrDown
+action: SelectionBoxUpOrDown
+action: SelectionBoxRestore
+num_resources: 19
+resource: textAccelerators  AcceleratorTable 4
+resource: selectionLabelString  XmString 4
+resource: listLabelString  XmString 4
+resource: textColumns  Short 2
+resource: textString  XmString 4
+resource: listItems  XmStringTable 4
+resource: listItemCount  Int 4
+resource: listVisibleItemCount  Int 4
+resource: okLabelString  XmString 4
+resource: applyLabelString  XmString 4
+resource: cancelLabelString  XmString 4
+resource: helpLabelString  XmString 4
+resource: noMatchCallback  Callback 4
+resource: mustMatch  Boolean 1
+resource: minimizeButtons  Boolean 1
+resource: okCallback  Callback 4
+resource: applyCallback  Callback 4
+resource: cancelCallback  Callback 4
+resource: dialogType  DialogType 1
+num_constraint_resources: 0
+-------------------
+name: XmSeparatorGadget
+tm_table: (nil)
+num_actions: 0
+num_resources: 0
+num_constraint_resources: 0
+-------------------
+name: XmSeparator
+tm_table: (nil)
+num_actions: 1
+action: Help
+num_resources: 5
+resource: separatorType  SeparatorType 1
+resource: margin  HorizontalDimension 2
+resource: orientation  XmOrientation 1
+resource: traversalOn  Boolean 1
+resource: highlightThickness  HorizontalDimension 2
+num_constraint_resources: 0
+-------------------
+name: XmText
+tm_table: (nil)
+num_actions: 0
+num_resources: 22
+resource: source  Pointer 4
+resource: activateCallback  Callback 4
+resource: focusCallback  Callback 4
+resource: losingFocusCallback  Callback 4
+resource: valueChangedCallback  Callback 4
+resource: modifyVerifyCallback  Callback 4
+resource: motionVerifyCallback  Callback 4
+resource: gainPrimaryCallback  Callback 4
+resource: losePrimaryCallback  Callback 4
+resource: value  String 4
+resource: maxLength  Int 4
+resource: marginHeight  VerticalDimension 2
+resource: marginWidth  HorizontalDimension 2
+resource: inputCreate  Function 4
+resource: inputCreate  Function 4
+resource: topCharacter  TextPosition 4
+resource: cursorPosition  TextPosition 4
+resource: editMode  EditMode 4
+resource: autoShowCursorPosition  Boolean 1
+resource: editable  Boolean 1
+resource: verifyBell  Boolean 1
+resource: navigationType  NavigationType 1
+num_constraint_resources: 0
+-------------------
+name: XmToggleButton
+tm_table: (nil)
+num_actions: 10
+action: Arm
+action: ArmAndActivate
+action: Disarm
+action: Select
+action: Enter
+action: Leave
+action: BtnDown
+action: BtnUp
+action: KeySelect
+action: Help
+num_resources: 15
+resource: indicatorSize  VerticalDimension 2
+resource: indicatorType  IndicatorType 1
+resource: visibleWhenOff  Boolean 1
+resource: spacing  HorizontalDimension 2
+resource: selectPixmap  PrimForegroundPixmap 4
+resource: selectInsensitivePixmap  Pixmap 4
+resource: set  Boolean 1
+resource: indicatorOn  Boolean 1
+resource: fillOnSelect  Boolean 1
+resource: selectColor  Pixel 4
+resource: valueChangedCallback  Callback 4
+resource: armCallback  Callback 4
+resource: disarmCallback  Callback 4
+resource: traversalOn  Boolean 1
+resource: highlightThickness  HorizontalDimension 2
+num_constraint_resources: 0
+-------------------
+name: XmToggleButtonGadget
+tm_table: (nil)
+num_actions: 0
+num_resources: 6
+resource: set  Boolean 1
+resource: valueChangedCallback  Callback 4
+resource: armCallback  Callback 4
+resource: disarmCallback  Callback 4
+resource: traversalOn  Boolean 1
+resource: highlightThickness  HorizontalDimension 2
+num_constraint_resources: 0
